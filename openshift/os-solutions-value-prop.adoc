@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-solutions-value-prop.html 
+keywords: NetApp Solutions, hybrid cloud, container workloads, containers, Red Hat OpenShift, RedHat OpenShift, VMware, ROSA, ACC, Trident Protect, Advanced Cluster Management, ACM, Hub Cluster 
+summary:  
+---
+= Red Hat OpenShift 컨테이너 워크로드를 위한 NetApp 하이브리드 멀티클라우드 솔루션의 가치 제안
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+대부분의 고객은 기존 인프라 없이 Kubernetes 기반 환경을 구축하는 것으로 시작하지 않습니다.  아마도 그들은 대부분의 엔터프라이즈 애플리케이션을 가상 머신(예: 대규모 VMware 환경)에서 실행하는 전통적인 IT 부서일 것입니다.  그런 다음 그들은 현대적 애플리케이션 개발팀의 요구를 충족시키기 위해 작은 컨테이너 기반 환경을 구축하기 시작했습니다.  이러한 이니셔티브는 보통 작게 시작하지만, 팀이 새로운 기술과 능력을 배우고 이를 도입함으로써 얻을 수 있는 많은 이점을 인식하기 시작하면서 점점 더 보편화되기 시작합니다.  고객에게 좋은 소식은 NetApp 두 환경의 요구 사항을 모두 충족할 수 있다는 것입니다.  Red Hat OpenShift를 활용한 하이브리드 멀티클라우드 솔루션 세트를 통해 NetApp 고객은 전체 인프라와 조직을 개편하지 않고도 최신 클라우드 기술과 서비스를 도입할 수 있습니다.  고객 애플리케이션과 데이터가 온프레미스, 클라우드, 가상 머신 또는 컨테이너에서 호스팅되는지 여부에 관계없이 NetApp 일관된 데이터 관리, 보호, 보안 및 이동성을 제공할 수 있습니다.  이러한 새로운 솔루션을 사용하면 NetApp 수십 년 동안 온프레미스 데이터 센터 환경에서 제공해 온 동일한 가치를 기업의 전체 데이터 수평선에서 사용할 수 있으며, 새로운 기술을 습득하거나 새로운 팀을 구성하기 위해 상당한 투자를 할 필요가 없습니다.  NetApp 고객이 클라우드 여정의 어떤 단계에 있든 이러한 비즈니스 과제를 해결하는 데 도움을 줄 수 있는 좋은 위치에 있습니다.
+
+Red Hat Openshift를 활용한 NetApp 하이브리드 멀티 클라우드:
+
+* NetApp 기반 스토리지 솔루션과 함께 Red Hat OpenShift를 사용할 때 고객이 데이터와 애플리케이션을 관리, 보호, 보안 및 마이그레이션하는 가장 좋은 방법을 보여주는 검증된 설계와 사례를 고객에게 제공합니다.
+* VMware 환경, 베어 메탈 인프라 또는 이 두 가지의 조합에서 NetApp 스토리지와 함께 Red Hat OpenShift를 실행하는 고객을 위한 모범 사례를 제시합니다.
+* 온프레미스와 클라우드 환경, 그리고 두 가지를 모두 사용하는 하이브리드 환경에 대한 전략과 옵션을 설명합니다.
+

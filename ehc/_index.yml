@@ -1,0 +1,84 @@
+---
+indexpage:
+  title: VMware 솔루션을 활용한 NetApp 하이브리드 멀티클라우드
+  summary: VMware 솔루션이 포함된 NetApp 하이브리드 멀티클라우드는 주요 퍼블릭 클라우드 하이퍼스케일러에서 NetApp 스토리지의
+    역량을 입증하는 전략적 및 기술적 역량의 집합입니다.
+  lead: VMware 솔루션이 포함된 NetApp 하이브리드 멀티클라우드는 주요 퍼블릭 클라우드 하이퍼스케일러에서 NetApp 스토리지의 역량을
+    입증하는 전략적 및 기술적 역량의 집합입니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: 개요
+      url: "../vmware/vmw-hybrid-overview.html"
+    - title: 하이퍼스케일러 클라우드의 VMware를 위한 NetApp 솔루션
+      url: "../vmware/vmw-hybrid-hyperscalers.html"
+    - title: 지원되는 저장 옵션
+      url: "../vmware/vmw-hybrid-support-configs.html"
+    - title: 지원되는 솔루션
+      url: "../vmware/vmw-hybrid-solutions.html"
+    - title: 요약
+      url: "../vmware/vmw-hybrid-summary.html"
+  - title: AWS의 NetApp (VMC)
+    links:
+    - title: VMC용 VMware를 활용한 NetApp 하이브리드 멀티클라우드
+      url: "../vmware/vmw-aws-vmc-overview.html"
+    - title: 가상화 환경 구성
+      url: "../vmware/vmw-aws-vmc-setup.html"
+    - title: NetApp 스토리지 연결 옵션
+      url: "../vmware/vmw-aws-vmc-storage.html"
+    - title: VMC를 위한 하이브리드 멀티클라우드 솔루션
+      url: "../vmware/vmw-aws-vmc-solutions.html"
+  - title: Azure의 NetApp (AVS)
+    links:
+    - title: AVS를 위한 VMware와 함께하는 NetApp 하이브리드 멀티클라우드
+      url: "../vmware/vmw-azure-avs-overview.html"
+    - title: 가상화 환경 구성
+      url: "../vmware/vmw-azure-avs-setup.html"
+    - title: NetApp 스토리지 연결 옵션
+      url: "../vmware/vmw-azure-avs-storage.html"
+    - title: AVS를 위한 하이브리드 멀티클라우드 솔루션
+      url: "../vmware/vmw-azure-avs-solutions.html"
+  - title: Google Cloud Platform의 NetApp
+    links:
+    - title: GCVE를 위한 VMware와 함께하는 NetApp 하이브리드 멀티클라우드
+      url: "../vmware/vmw-gcp-gcve-overview.html"
+    - title: 가상화 환경 구성
+      url: "../vmware/vmw-gcp-gcve-setup.html"
+    - title: NetApp 스토리지 연결 옵션
+      url: "../vmware/vmw-gcp-gcve-storage.html"
+    - title: GCVE를 위한 하이브리드 멀티클라우드 솔루션
+      url: "../vmware/vmw-gcp-gcve-solutions.html"
+    - title: Google Cloud의 NetApp 볼륨
+      url: "../google/gcp-gcnv-overview.html"
+  - title: 시뮬레이터
+    links:
+    - title: FSx ONTAP + VMC 시뮬레이터
+      url: https://netapp-automation.github.io/FSx-VMC-Simulator
+    - title: ANF + AVS 시뮬레이터
+      url: https://netapp-automation.github.io/ANF-AVS-Simulator
+    - title: VMC 시뮬레이터를 사용한 AWS용 DRO
+      url: https://netapp-automation.github.io/dro-simulator/?intro-1
+    - title: AVS 시뮬레이터를 사용한 ANF용 DRO
+      url: https://netapp-automation.github.io/dro-simulator-avs-anf/?intro-1
+    - title: BlueXP DRaaS 시뮬레이터
+      url: https://netapp-automation.github.io/DRaaS_Simulator/?0.1
+    - title: BlueXP - VM 백업 및 복구 시뮬레이터
+      url: https://netapp-automation.github.io/Backup_and_Recovery_for_VMs_Simulator/?0.1
+  - title: TCO 계산기
+    links:
+    - title: FSx ONTAP + VMC TCO 계산기
+      url: https://cloud.netapp.com/vmc-aws-fsx-ontap/roi
+    - title: ANF + AVS TCO 계산기
+      url: https://bluexp.netapp.com/anf-avs/tcoestimator
+    - title: GCVE + NetApp Volumes TCO 추정기
+      url: https://bluexp.netapp.com/gcve-cvs/roi
+  - title: BlueXP disaster recovery
+    links:
+    - title: SnapCenter 플러그인과 BlueXP backup and recovery 통해 VM에 대한 VMware 데이터 보호
+      url: "../vmware/vmw-hybrid-321-dp-scv.html"
+    - title: BlueXP 사용한 재해 복구
+      url: "../vmware/vmw-hybrid-dr-overview.html"
+    - title: NFS 데이터 저장소에 BlueXP 사용한 재해 복구
+      url: "../vmware/vmw-hybrid-dr-nfs.html"
+    - title: VMFS 데이터 저장소에 BlueXP 사용한 재해 복구
+      url: "../vmware/vmw-hybrid-dr-vmfs.html"

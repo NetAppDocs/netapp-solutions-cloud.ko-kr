@@ -1,0 +1,168 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-hybrid-hyperscalers.html 
+keywords: NetApp Solutions, hyperscalers, amazon, vmc, vmware managed cloud, microsoft, azure, avs, azure vmware solution, google cloud platform, gcp, google cloud virtualization engine, gcve, enterprise, hybrid, cloud, migrate, migration, disaster recovery, dr 
+summary:  
+---
+= 하이퍼스케일러를 위한 VMware용 NetApp 솔루션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 이 세 가지(3) 주요 하이퍼스케일러에 제공하는 기능에 대해 자세히 알아보세요. NetApp 은 게스트 연결 스토리지 장치 또는 보조 NFS 데이터 저장소로 사용되거나 워크플로 마이그레이션, 클라우드로 확장/버스팅, 백업/복원 및 재해 복구에 사용됩니다.
+
+클라우드를 선택하고 나머지는 NetApp 에 맡겨보세요!
+
+image:netapp-cloud.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+NOTE: 특정 하이퍼스케일러의 기능을 보려면 해당 하이퍼스케일러에 적합한 탭을 클릭하세요.
+
+다음 옵션 중에서 선택하여 원하는 콘텐츠 섹션으로 이동하세요.
+
+* link:#config["하이퍼스케일러 구성의 VMware"]
+* link:#datastore["NetApp 스토리지 옵션"]
+* link:#solutions["NetApp / VMware 클라우드 솔루션"]
+
+
+
+
+== 하이퍼스케일러 구성의 VMware
+
+온프레미스와 마찬가지로, VM을 만들고 마이그레이션하기 위한 성공적인 프로덕션 준비 환경을 위해서는 클라우드 기반 가상화 환경을 계획하는 것이 중요합니다.
+
+[role="tabbed-block"]
+====
+.AWS / VMC
+--
+이 섹션에서는 AWS SDDC에서 VMware Cloud를 설정하고 관리하는 방법과 NetApp 스토리지를 연결하는 데 사용 가능한 옵션과 함께 사용하는 방법을 설명합니다.
+
+
+NOTE: 게스트 내 스토리지는 Cloud Volumes ONTAP AWS VMC에 연결하는 데 지원되는 유일한 방법입니다.
+
+설정 과정은 다음 단계로 나눌 수 있습니다.
+
+* AWS용 VMware Cloud 배포 및 구성
+* VMware Cloud를 FSx ONTAP 에 연결
+
+
+자세한 내용을 보려면link:../vmware/vmw-aws-vmc-setup.html["VMC 구성 단계"] .
+
+--
+.Azure / AVS
+--
+이 섹션에서는 Azure VMware Solution을 설정하고 관리하는 방법과 NetApp 스토리지를 연결하는 데 사용 가능한 옵션과 함께 사용하는 방법을 설명합니다.
+
+
+NOTE: 게스트 내 스토리지는 Cloud Volumes ONTAP Azure VMware Solution에 연결하는 데 지원되는 유일한 방법입니다.
+
+설정 과정은 다음 단계로 나눌 수 있습니다.
+
+* 리소스 공급자를 등록하고 프라이빗 클라우드를 생성하세요
+* 새 ExpressRoute 가상 네트워크 게이트웨이 또는 기존 ExpressRoute 가상 네트워크 게이트웨이에 연결
+* 네트워크 연결을 검증하고 프라이빗 클라우드에 액세스합니다.
+
+
+자세한 내용을 보려면link:azure-setup.html["AVS 구성 단계"] .
+
+--
+.GCP/GCVE
+--
+이 섹션에서는 GCVE를 설정하고 관리하는 방법과 NetApp 스토리지 연결에 사용 가능한 옵션과 함께 사용하는 방법을 설명합니다.
+
+
+NOTE: 게스트 내 스토리지는 Cloud Volumes ONTAP 및 Google Cloud NetApp Volumes GCVE에 연결하는 데 지원되는 유일한 방법입니다.
+
+설정 과정은 다음 단계로 나눌 수 있습니다.
+
+* GCVE 배포 및 구성
+* GCVE에 대한 개인 액세스 활성화
+
+
+자세한 내용을 보려면link:gcp-setup.html["GCVE 구성 단계"] .
+
+--
+====
+
+
+== NetApp 스토리지 옵션
+
+NetApp 스토리지는 3대 주요 하이퍼스케일러 내에서 게스트 연결 또는 보조 NFS 데이터 저장소로 등 여러 가지 방법으로 활용할 수 있습니다.
+
+방문해주세요link:vmw-hybrid-support-configs.html["지원되는 NetApp 스토리지 옵션"] 자세한 내용은.
+
+[role="tabbed-block"]
+====
+.AWS / VMC
+--
+AWS는 다음 구성에서 NetApp 스토리지를 지원합니다.
+
+* 게스트 연결 스토리지로서의 FSx ONTAP
+* 게스트 연결 스토리지로서의 Cloud Volumes ONTAP (CVO)
+* 보충 NFS 데이터 저장소로서의 FSx ONTAP
+
+
+자세한 내용을 보려면link:aws-guest.html["VMC용 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:aws-native-nfs-datastore-option.html["VMC에 대한 보충 NFS 데이터 저장소 옵션"] .
+
+--
+.Azure / AVS
+--
+Azure는 다음 구성에서 NetApp 스토리지를 지원합니다.
+
+* 게스트 연결 스토리지로서의 Azure NetApp Files (ANF)
+* 게스트 연결 스토리지로서의 Cloud Volumes ONTAP (CVO)
+* 보조 NFS 데이터 저장소로서의 Azure NetApp Files (ANF)
+
+
+자세한 내용을 보려면link:azure-guest.html["AVS용 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:azure-native-nfs-datastore-option.html["AVS를 위한 보충 NFS 데이터 저장소 옵션"] .
+
+--
+.GCP/GCVE
+--
+Google Cloud는 다음 구성에서 NetApp 스토리지를 지원합니다.
+
+* 게스트 연결 스토리지로서의 Cloud Volumes ONTAP (CVO)
+* 게스트 연결 스토리지로서의 Google Cloud NetApp Volumes (NetApp Volumes)
+* Google Cloud NetApp Volumes (NetApp Volumes)를 보조 NFS 데이터 저장소로 사용
+
+
+자세한 내용을 보려면link:gcp-guest.html["GCVE를 위한 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:gcp-ncvs-datastore.html["GCVE에 대한 보충 NFS 데이터 저장소 옵션"] .
+
+더 자세히 알아보세요link:https://www.netapp.com/blog/cloud-volumes-service-google-cloud-vmware-engine/["Google Cloud NetApp Volumes 데이터 저장소 지원(NetApp 블로그)"^] 또는link:https://cloud.google.com/blog/products/compute/how-to-use-netapp-cvs-as-datastores-with-vmware-engine["Google Cloud NetApp Volumes Google Cloud VMware Engine의 데이터 저장소로 사용하는 방법(Google 블로그)"^]
+
+--
+====
+
+
+== NetApp / VMware 클라우드 솔루션
+
+NetApp 및 VMware 클라우드 솔루션을 사용하면 많은 사용 사례를 원하는 하이퍼스케일러에 간편하게 배포할 수 있습니다.  VMware는 주요 클라우드 워크로드 사용 사례를 다음과 같이 정의합니다.
+
+* 보호(재해 복구 및 백업/복원 모두 포함)
+* 이주하다
+* 연장하다
+
+
+[role="tabbed-block"]
+====
+.AWS / VMC
+--
+link:vmw-aws-vmc-solutions.html["AWS/VMC용 NetApp 솔루션 찾아보기"]
+
+--
+.Azure / AVS
+--
+link:vmw-azure-avs-solutions.html["Azure/AVS용 NetApp 솔루션 찾아보기"]
+
+--
+.GCP/GCVE
+--
+link:vmw-gcp-gcve-solutions.html["Google Cloud Platform(GCP)/GCVE를 위한 NetApp 솔루션을 찾아보세요"]
+
+--
+====

@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-pm-aws-data-migration.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP, Ansible Automation Platform, BlueXP 
+summary:  
+---
+= 데이터 마이그레이션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 페이지에서는 영구 저장소로 FSx ONTAP 사용하여 관리형 Red Hat OpenShift 클러스터의 컨테이너 워크로드에 대한 데이터 마이그레이션 옵션을 보여줍니다.
+
+
+
+== 데이터 마이그레이션
+
+AWS의 Red Hat OpenShift 서비스와 Amazon FSx for NetApp ONTAP (FSx ONTAP)은 AWS의 서비스 포트폴리오에 속합니다.  FSx ONTAP 단일 AZ 또는 다중 AZ 옵션으로 제공됩니다.  Multi-Az 옵션은 가용성 영역 장애로부터 데이터를 보호합니다.  FSx ONTAP Trident 와 통합되어 ROSA 클러스터의 애플리케이션에 대한 영구 저장소를 제공할 수 있습니다.
+
+
+
+=== Helm 차트를 사용하여 FSx ONTAP 과 Trident 통합
+
+.Amazon FSx ONTAP 과 ROSA 클러스터 통합
+video::621ae20d-7567-4bbf-809d-b01200fa7a68[panopto]
+컨테이너 애플리케이션 마이그레이션에는 다음이 포함됩니다.
+
+* 영구 볼륨: BlueXP 사용하여 이를 구현할 수 있습니다.  또 다른 옵션은 Trident Protect를 사용하여 온프레미스에서 클라우드 환경으로 컨테이너 애플리케이션을 마이그레이션하는 것입니다.  자동화는 같은 목적으로 사용될 수 있습니다.
+* 애플리케이션 메타데이터: OpenShift GitOps(Argo CD)를 사용하여 이를 달성할 수 있습니다.
+
+
+
+
+=== FSx ONTAP 사용하여 영구 저장소를 위한 ROSA 클러스터의 애플리케이션 장애 조치 및 장애 복구
+
+다음 비디오는 BlueXP 와 Argo CD를 사용한 애플리케이션 장애 조치 및 장애 복구 시나리오를 보여줍니다.
+
+.ROSA 클러스터에서 애플리케이션의 장애 조치 및 장애 복구
+video::e9a07d79-42a1-4480-86be-b01200fa62f5[panopto]
+
+
+=== OpenShift 컨테이너 워크로드를 위한 데이터 보호 및 마이그레이션 솔루션
+
+image:rhhc-rosa-with-fsxn.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]

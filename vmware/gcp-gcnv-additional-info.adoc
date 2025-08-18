@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: vmware/gcp-gcnv-additional-info.html 
+keywords:  
+summary:  
+---
+= 추가 정보 및 연락처 정보
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹사이트를 검토하세요.
+
+* Google Cloud Google Cloud NetApp Volumes Cloud 설명서
++
+https://cloud.google.com/architecture/partners/netapp-cloud-volumes/["https://cloud.google.com/architecture/partners/netapp-cloud-volumes/"^]
+
+* Google 개인 서비스 액세스
++
+https://cloud.google.com/vpc/docs/private-services-access?hl=en_US["https://cloud.google.com/vpc/docs/private-services-access?hl=en_US"^]
+
+* NetApp 제품 설명서
++
+https://www.netapp.com/support-and-training/documentation/["https://www.netapp.com/support-and-training/documentation/"^]
+
+* 암호화 검증 모듈 프로그램 NetApp CryptoMod
++
+https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4144["https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4144"^]
+
+* 랜섬웨어에 대한 NetApp 솔루션
++
+https://www.netapp.com/pdf.html?item=/media/16716-sb-3938pdf.pdf&v=202093745["https://www.netapp.com/pdf.html?item=/media/16716-sb-3938pdf.pdf&v=202093745"^]
+
+* TR-4616: ONTAP 의 NFS Kerberos
++
+https://www.netapp.com/pdf.html?item=/media/19384-tr-4616.pdf["https://www.netapp.com/pdf.html?item=/media/19384-tr-4616.pdf"^]
+
+
+
+
+
+== 문의하기
+
+이 기술 보고서를 개선할 수 있는 방법을 알려주시기 바랍니다.
+
+mailto:doccomments@netapp.com[doccomments@netapp.com^]으로 문의하세요.  제목에 기술 보고서 4918을 포함하세요.

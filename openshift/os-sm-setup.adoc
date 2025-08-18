@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-sm-setup.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP 
+summary:  
+---
+= AWS에서 Red Hat OpenShift 컨테이너 플랫폼 배포 및 구성
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 섹션에서는 AWS에서 OpenShift 클러스터를 설정 및 관리하고, 여기에 상태 저장 애플리케이션을 배포하는 방법에 대한 개략적인 워크플로를 설명합니다.  Trident 의 도움으로 NetApp Cloud Volumes ONTAP 스토리지를 사용하여 영구 볼륨을 제공하는 방법을 보여줍니다.  상태 저장 애플리케이션의 데이터 보호 및 마이그레이션 활동을 수행하기 위해 Trident Protect를 사용하는 방법에 대한 세부 정보가 제공됩니다.
+
+
+NOTE: AWS에 Red Hat OpenShift Container 플랫폼 클러스터를 배포하는 방법에는 여러 가지가 있습니다.  설정에 대한 이러한 간략한 설명은 사용된 특정 방법에 대한 문서 링크를 제공합니다.  제공된 관련 링크에서 다른 방법을 참조할 수 있습니다.link:os-solutions-resources.html["리소스 섹션"] .
+
+다음은 VPN을 사용하여 AWS에 배포되고 데이터 센터에 연결된 클러스터를 나타내는 다이어그램입니다.
+
+image:rhhc-self-managed-aws.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+설정 과정은 다음 단계로 나눌 수 있습니다.
+
+.Advanced Cluster Management에서 AWS에 OCP 클러스터를 설치합니다.
+[%collapsible%open]
+====
+* 온프레미스 네트워크에 연결하기 위해 사이트 간 VPN 연결(pfsense 사용)이 있는 VPC를 만듭니다.
+* 사내 네트워크에 인터넷 연결이 있습니다.
+* 3개의 다른 AZ에 3개의 개인 서브넷을 만듭니다.
+* VPC에 대한 Route 53 개인 호스팅 영역과 DNS 확인자를 만듭니다.
+
+
+ACM(고급 클러스터 관리) 마법사를 사용하여 AWS에서 OpenShift 클러스터를 만듭니다.  지침을 참조하세요link:https://docs.openshift.com/dedicated/osd_install_access_delete_cluster/creating-an-aws-cluster.html["여기"] .
+
+
+NOTE: OpenShift Hybrid Cloud 콘솔에서 AWS에 클러스터를 생성할 수도 있습니다.  나타내다link:https://docs.openshift.com/container-platform/4.10/installing/installing_aws/installing-aws-default.html["여기"] 지침을 보려면 클릭하세요.
+
+
+TIP: ACM을 사용하여 클러스터를 생성할 때, 양식 보기에서 세부 정보를 입력한 후 yaml 파일을 편집하여 설치를 사용자 정의할 수 있습니다.  클러스터가 생성된 후에는 문제 해결이나 추가적인 수동 구성을 위해 클러스터 노드에 ssh 로그인할 수 있습니다.  설치 중에 제공한 ssh 키와 사용자 이름 core를 사용하여 로그인합니다.
+
+====
+.BlueXP 사용하여 AWS에 Cloud Volumes ONTAP 배포합니다.
+[%collapsible%open]
+====
+* 온프레미스 VMware 환경에 커넥터를 설치합니다.  지침을 참조하세요link:https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-install-connector-on-prem.html#install-the-connector["여기"] .
+* 커넥터를 사용하여 AWS에 CVO 인스턴스를 배포합니다.  지침을 참조하세요link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-getting-started-aws.html["여기"] .
+
+
+
+NOTE: 커넥터는 클라우드 환경에도 설치될 수 있습니다.  나타내다link:https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html["여기"] 추가 정보를 원하시면.
+
+====
+.OCP 클러스터에 Trident 설치
+[%collapsible%open]
+====
+* Helm을 사용하여 Trident Operator를 배포합니다.  지침을 참조하세요link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html["여기"]
+* 백엔드와 스토리지 클래스를 만듭니다.  지침을 참조하세요link:https://docs.netapp.com/us-en/trident/trident-use/backends.html["여기"] .
+
+
+====
+.다중 구역 아키텍처를 위한 Trident 의 CSI 토폴로지 기능 사용
+오늘날 클라우드 공급업체는 Kubernetes/OpenShift 클러스터 관리자가 영역 기반 클러스터 노드를 생성할 수 있도록 합니다.  노드는 한 지역 내의 여러 가용성 영역에 위치할 수도 있고, 여러 지역에 걸쳐 위치할 수도 있습니다.  다중 구역 아키텍처의 워크로드에 대한 볼륨 프로비저닝을 용이하게 하기 위해 Trident CSI 토폴로지를 사용합니다.  CSI 토폴로지 기능을 사용하면 지역 및 가용성 영역을 기반으로 볼륨에 대한 액세스를 노드 하위 집합으로 제한할 수 있습니다.  나타내다link:https://docs.netapp.com/us-en/trident/trident-use/csi-topology.html["여기"] 추가 세부 사항은 다음을 참조하세요.
+
+
+NOTE: Kubernetes는 두 가지 볼륨 바인딩 모드를 지원합니다. - **_VolumeBindingMode_가 _Immediate_**(기본값)로 설정된 경우 Trident 토폴로지 인식 없이 볼륨을 생성합니다.  영구 볼륨은 요청하는 포드의 스케줄링 요구 사항에 대한 종속성 없이 생성됩니다.  - **_VolumeBindingMode_가 _WaitForFirstConsumer_**로 설정된 경우 PVC에 대한 영구 볼륨의 생성 및 바인딩은 PVC를 사용하는 포드가 예약되고 생성될 때까지 지연됩니다.  이런 방식으로 토폴로지 요구 사항에 의해 적용되는 스케줄링 제약 조건을 충족하는 볼륨이 생성됩니다.  Trident 스토리지 백엔드는 가용성 영역(토폴로지 인식 백엔드)을 기반으로 볼륨을 선택적으로 프로비저닝하도록 설계될 수 있습니다.  이러한 백엔드를 사용하는 StorageClass의 경우, 지원되는 지역/영역에서 예약된 애플리케이션에서 요청하는 경우에만 볼륨이 생성됩니다.  (토폴로지 인식 StorageClass) 참조link:https://docs.netapp.com/us-en/trident/trident-use/csi-topology.html["여기"] 추가 세부 사항은 다음을 참조하세요.

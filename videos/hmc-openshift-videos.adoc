@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: videos/hmc-openshift-videos.html 
+summary: NetApp 사용한 하이브리드 클라우드 가상화 솔루션을 보여주는 비디오 및 데모 
+keywords: hybrid cloud, rosa, fsx ontap, azure vmware, netapp hci, videos, demos 
+---
+= NetApp 과 Red Hat OpenShift를 위한 하이브리드 멀티클라우드 솔루션에 대한 비디오를 시청하세요
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 과 Red Hat OpenShift를 위한 하이브리드 멀티클라우드 솔루션을 소개하는 NetApp의 포괄적인 비디오 라이브러리를 살펴보세요.  이 컬렉션에는 FSx ONTAP 사용한 AWS(ROSA)의 OpenShift에 대한 스냅샷 및 복원, Trident 와의 통합, 앱에 대한 장애 조치 및 장애 복구, Ansible을 사용한 FlexPod 에서의 자동화된 Oracle RAC 배포에 대한 데모가 포함되어 있습니다.
+
+
+
+== 스냅샷 및 복원
+
+.Amazon FSx ONTAP 스토리지를 사용하는 AWS(ROSA) 클러스터의 Red Hat OpenShift Service에 대한 애플리케이션 스냅샷/복원
+video::36ecf505-5d1d-4e99-a6f8-b11c00341793[panopto,width=360]
+
+
+== 스토리지 통합
+
+.FSx ONTAP 과 Trident 의 통합
+video::621ae20d-7567-4bbf-809d-b01200fa7a68[panopto,width=360]
+
+
+== 장애 조치 및 장애 복구
+
+.FSx ONTAP 사용한 ROSA의 앱 장애 조치 및 장애 복구
+video::e9a07d79-42a1-4480-86be-b01200fa62f5[panopto,width=360]
+
+
+== 솔루션 자동화
+
+.Ansible을 사용하여 FlexPod 에 Oracle 19c RAC 자동 배포
+video::VcQMJIRzhoY[youtube,width=360]

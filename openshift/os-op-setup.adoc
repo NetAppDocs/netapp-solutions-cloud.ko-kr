@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-op-setup.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP 
+summary:  
+---
+= VMware에서 Red Hat OpenShift Container 플랫폼 배포 및 구성
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 섹션에서는 OpenShift 클러스터를 설정 및 관리하고 클러스터에서 상태 저장 애플리케이션을 관리하는 방법에 대한 고급 워크플로를 설명합니다.  Trident 의 도움으로 NetApp ONTAP 스토리지 어레이를 사용하여 영구 볼륨을 제공하는 방법을 보여줍니다.
+
+
+NOTE: Red Hat OpenShift Container 플랫폼 클러스터를 배포하는 방법에는 여러 가지가 있습니다.  설정에 대한 이러한 간략한 설명은 사용된 특정 방법에 대한 문서 링크를 제공합니다.  제공된 관련 링크에서 다른 방법을 참조할 수 있습니다.link:os-solutions-resources.html["리소스 섹션"] .
+
+다음은 데이터 센터의 VMware에 배포된 클러스터를 나타내는 다이어그램입니다.
+
+image:rhhc-on-premises.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+설정 과정은 다음 단계로 나눌 수 있습니다.
+
+.CentOS VM 배포 및 구성
+[%collapsible%open]
+====
+* VMware vSphere 환경에 배포됩니다.
+* 이 VM은 솔루션의 NetApp Trident 및 NetApp Trident Protect와 같은 일부 구성 요소를 배포하는 데 사용됩니다.
+* 이 VM에는 설치 중에 루트 사용자가 구성됩니다.
+
+
+====
+.VMware vSphere(Hub 클러스터)에 OpenShift Container Platform 클러스터 배포 및 구성
+[%collapsible%open]
+====
+지침을 참조하세요.link:https://docs.openshift.com/container-platform/4.17/installing/installing_vsphere/installing-vsphere-assisted-installer.html["지원 배치"] OCP 클러스터를 배포하는 방법.
+
+
+TIP: 다음 사항을 기억하세요. - 설치 프로그램에 제공할 ssh 공개 키와 개인 키를 생성하세요.  이러한 키는 필요한 경우 마스터 및 워커 노드에 로그인하는 데 사용됩니다.  - 지원 설치 프로그램에서 설치 프로그램을 다운로드하세요.  이 프로그램은 마스터 및 워커 노드에 대해 VMware vSphere 환경에서 생성한 VM을 부팅하는 데 사용됩니다.  - VM은 최소한의 CPU, 메모리, 하드 디스크 요구 사항을 가져야 합니다.  (vm create 명령을 참조하세요.link:https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2024/html/installing_openshift_container_platform_with_the_assisted_installer/installing-on-vsphere["이것"] (이 정보를 제공하는 마스터 및 워커 노드에 대한 페이지) - 모든 VM에서 diskUUID를 활성화해야 합니다.  - 마스터용으로 최소 3개의 노드와 워커용으로 3개의 노드를 만듭니다.  - 설치 프로그램에서 발견되면 VMware vSphere 통합 토글 버튼을 켭니다.
+
+====
+.허브 클러스터에 고급 클러스터 관리 설치
+[%collapsible%open]
+====
+이는 허브 클러스터의 고급 클러스터 관리 운영자를 사용하여 설치됩니다.  지침을 참조하세요link:https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/install/installing#doc-wrapper["여기"] .
+
+====
+.두 개의 추가 OCP 클러스터(소스 및 대상)를 설치합니다.
+[%collapsible%open]
+====
+* 추가 클러스터는 허브 클러스터의 ACM을 사용하여 배포할 수 있습니다.
+* 지침을 참조하세요link:https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/clusters/cluster_mce_overview#vsphere_prerequisites["여기"] .
+
+
+====
+.NetApp ONTAP 스토리지 구성
+[%collapsible%open]
+====
+* VMWare 환경에서 OCP VM에 연결할 수 있는 ONTAP 클러스터를 설치합니다.
+* SVM을 생성합니다.
+* SVM의 저장소에 액세스하기 위해 NAS 데이터 lif를 구성합니다.
+
+
+====
+.OCP 클러스터에 NetApp Trident 설치
+[%collapsible%open]
+====
+* 허브, 소스 및 대상 클러스터의 세 클러스터 모두에 NetApp Trident 설치합니다.
+* 지침을 참조하세요link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-operator.html["여기"] .
+* ontap-nas에 대한 스토리지 백엔드를 만듭니다.
+* ontap-nas에 대한 스토리지 클래스를 생성합니다.
+* 지침을 참조하세요link:https://docs.netapp.com/us-en/trident/trident-use/create-stor-class.html["여기"] .
+
+
+====
+.소스 클러스터에 애플리케이션 배포
+[%collapsible%open]
+====
+OpenShift GitOps를 사용하여 애플리케이션을 배포합니다.  (예: Postgres, Ghost)
+
+====
+다음 단계는 Trident Protect를 사용하여 데이터를 보호하고 소스 클러스터에서 대상 클러스터로 데이터를 마이그레이션하는 것입니다.  나타내다link:os-dp-tp-solution.html["여기"] 지침을 보려면 클릭하세요.

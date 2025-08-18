@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-solutions-validated.html 
+keywords: NetApp Solutions, hybrid cloud, container workloads, containers, Red Hat OpenShift, RedHat OpenShift, VMware, ROSA, ACC, Trident Protect, Advanced Cluster Management, ACM, Hub Cluster 
+summary:  
+---
+= Red Hat OpenShift 컨테이너 워크로드를 위한 NetApp Hybrid Multicloud 지원 솔루션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 솔루션은 OpenShift 컨테이너 플랫폼(OCP), OpenShift Advanced Cluster Manager(ACM), NetApp ONTAP, NetApp BlueXP 및 NetApp Trident Protect(ACC)를 사용하여 마이그레이션 및 중앙 집중식 데이터 보호를 테스트하고 검증합니다.
+
+이 솔루션의 경우 다음 시나리오가 NetApp 에서 테스트되어 검증되었습니다.  솔루션은 다음과 같은 특성에 따라 여러 시나리오로 구분됩니다.
+
+* 온프레미스
+* 구름
++
+** 자체 관리형 OpenShift 클러스터 및 자체 관리형 NetApp 스토리지
+** 공급자 관리 OpenShift 클러스터 및 공급자 관리 NetApp 스토리지
+
+
+
+
+**향후 추가적인 솔루션과 사용 사례를 구축할 예정입니다.**
+
+
+
+== 시나리오 1: Trident Protect를 사용한 온프레미스 환경 내 데이터 보호 및 마이그레이션
+
+**온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 NetApp 스토리지**
+
+* ACC를 사용하여 데이터 보호를 위해 스냅샷 사본, 백업 및 복원을 만듭니다.
+* ACC를 사용하여 컨테이너 애플리케이션의 SnapMirror 복제를 수행합니다.
+
+
+
+
+=== 시나리오 1
+
+image:rhhc-on-premises.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+== 시나리오 2: Trident Protect를 사용하여 온프레미스 환경에서 AWS 환경으로의 데이터 보호 및 마이그레이션
+
+**온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **AWS 클라우드: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지**
+
+* ACC를 사용하여 데이터 보호를 위해 백업 및 복원을 수행합니다.
+* ACC를 사용하여 컨테이너 애플리케이션의 SnapMirror 복제를 수행합니다.
+
+
+
+
+=== 시나리오 2
+
+image:rhhc-self-managed-aws.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+== 시나리오 3: 온프레미스 환경에서 AWS 환경으로의 데이터 보호 및 마이그레이션
+
+**온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **AWS 클라우드: 공급자 관리형 OpenShift 클러스터(ROSA) 및 공급자 관리형 스토리지(FSx ONTAP)**
+
+* BlueXP 사용하여 영구 볼륨(FSx ONTAP) 복제를 수행합니다.
+* OpenShift GitOps를 사용하여 애플리케이션 메타데이터를 다시 생성합니다.
+
+
+
+
+=== 시나리오 3
+
+image:rhhc-rosa-with-fsxn.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+=== 시나리오 4: Trident Protect를 사용하여 온프레미스 환경에서 GCP 환경으로의 데이터 보호 및 마이그레이션
+
+**온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **Google Cloud: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지**
+
+* ACC를 사용하여 데이터 보호를 위해 백업 및 복원을 수행합니다.
+* ACC를 사용하여 컨테이너 애플리케이션의 SnapMirror 복제를 수행합니다.
+
+
+image:rhhc-self-managed-gcp.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+MetroCluster 구성에서 ONTAP 사용할 때의 고려 사항은 다음을 참조하세요.link:https://docs.netapp.com/us-en/ontap-metrocluster/install-stretch/concept_considerations_when_using_ontap_in_a_mcc_configuration.html["여기"] .
+
+
+
+=== 시나리오 5: Trident Protect를 사용하여 온프레미스 환경에서 Azure 환경으로의 데이터 보호 및 마이그레이션
+
+**온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **Azure Cloud: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지**
+
+* ACC를 사용하여 데이터 보호를 위해 백업 및 복원을 수행합니다.
+* ACC를 사용하여 컨테이너 애플리케이션의 SnapMirror 복제를 수행합니다.
+
+
+image:rhhc-self-managed-azure.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+MetroCluster 구성에서 ONTAP 사용할 때의 고려 사항은 다음을 참조하세요.link:https://docs.netapp.com/us-en/ontap-metrocluster/install-stretch/concept_considerations_when_using_ontap_in_a_mcc_configuration.html["여기"] .

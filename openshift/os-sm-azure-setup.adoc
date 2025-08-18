@@ -1,0 +1,117 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-sm-azure-setup.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP, Azure, Azure Cloud. 
+summary:  
+---
+= Azure에서 Red Hat OpenShift 컨테이너 플랫폼 배포 및 구성
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 섹션에서는 Azure에서 OpenShift 클러스터를 설정 및 관리하고 여기에 상태 저장 애플리케이션을 배포하는 방법에 대한 개략적인 워크플로를 설명합니다.  Trident 의 도움으로 NetApp Cloud Volumes ONTAP 스토리지를 사용하여 영구 볼륨을 제공하는 방법을 보여줍니다.  상태 저장 애플리케이션의 데이터 보호 및 마이그레이션 활동을 수행하기 위해 Trident Protect를 사용하는 방법에 대한 세부 정보가 제공됩니다.
+
+다음은 VPN을 사용하여 Azure에 배포되고 데이터 센터에 연결된 클러스터를 보여주는 다이어그램입니다.
+
+image:rhhc-self-managed-azure.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+NOTE: Azure에 Red Hat OpenShift Container 플랫폼 클러스터를 배포하는 방법에는 여러 가지가 있습니다.  설정에 대한 이러한 간략한 설명은 사용된 특정 방법에 대한 문서 링크를 제공합니다.  제공된 관련 링크에서 다른 방법을 참조할 수 있습니다.link:os-solutions-resources.html["리소스 섹션"] .
+
+설정 과정은 다음 단계로 나눌 수 있습니다.
+
+.CLI에서 Azure에 OCP 클러스터를 설치합니다.
+[%collapsible%open]
+====
+* 명시된 모든 전제 조건을 충족했는지 확인하세요.link:https://docs.openshift.com/container-platform/4.13/installing/installing_azure/installing-azure-vnet.html["여기"] .
+* VPN, 서브넷, 네트워크 보안 그룹, 개인 DNS 영역을 만듭니다.  VPN 게이트웨이와 사이트 간 VPN 연결을 생성합니다.
+* 온프레미스와 Azure 간의 VPN 연결을 위해 pfsense VM을 생성하고 구성했습니다.  지침은 다음을 참조하세요.link:https://docs.netgate.com/pfsense/en/latest/recipes/ipsec-s2s-psk.html["여기"] .
+* 설치 프로그램과 풀 시크릿을 얻고 설명서에 제공된 단계에 따라 클러스터를 배포합니다.link:https://docs.openshift.com/container-platform/4.13/installing/installing_azure/installing-azure-vnet.html["여기"] .
+* 클러스터 설치가 완료되고 kubeconfig 파일과 클러스터 콘솔에 로그인할 수 있는 사용자 이름과 비밀번호가 제공됩니다.
+
+
+install-config.yaml 파일의 샘플은 아래와 같습니다.
+
+....
+apiVersion: v1
+baseDomain: sddc.netapp.com
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform:
+    azure:
+      encryptionAtHost: false
+      osDisk:
+        diskSizeGB: 512
+        diskType: "StandardSSD_LRS"
+      type: Standard_D2s_v3
+      ultraSSDCapability: Disabled
+      #zones:
+      #- "1"
+      #- "2"
+      #- "3"
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform:
+    azure:
+      encryptionAtHost: false
+      osDisk:
+        diskSizeGB: 1024
+        diskType: Premium_LRS
+      type: Standard_D8s_v3
+      ultraSSDCapability: Disabled
+  replicas: 3
+metadata:
+  creationTimestamp: null
+  name: azure-cluster
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  azure:
+    baseDomainResourceGroupName: ocp-base-domain-rg
+    cloudName: AzurePublicCloud
+    computeSubnet: ocp-subnet2
+    controlPlaneSubnet: ocp-subnet1
+    defaultMachinePlatform:
+      osDisk:
+        diskSizeGB: 1024
+        diskType: "StandardSSD_LRS"
+      ultraSSDCapability: Disabled
+    networkResourceGroupName: ocp-nc-us-rg
+    #outboundType: UserDefinedRouting
+    region: northcentralus
+    resourceGroupName: ocp-cluster-ncusrg
+    virtualNetwork: ocp_vnet_ncus
+publish: Internal
+pullSecret:
+....
+====
+.BlueXP 사용하여 Azure에 Cloud Volumes ONTAP 배포합니다.
+[%collapsible%open]
+====
+* Azure에 커넥터를 설치합니다.  지침을 참조하세요 https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-azure-bluexp.html["여기"] .
+* 커넥터를 사용하여 Azure에 CVO 인스턴스를 배포합니다.  자세한 지침은 여기 링크를 참조하세요: https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-getting-started-azure.html
+
+
+====
+.다중 구역 아키텍처를 위한 Trident 의 CSI 토폴로지 기능 사용
+오늘날 클라우드 공급업체는 Kubernetes/OpenShift 클러스터 관리자가 영역 기반 클러스터 노드를 생성할 수 있도록 합니다.  노드는 한 지역 내의 여러 가용성 영역에 위치할 수도 있고, 여러 지역에 걸쳐 위치할 수도 있습니다.  다중 구역 아키텍처의 워크로드에 대한 볼륨 프로비저닝을 용이하게 하기 위해 Trident CSI 토폴로지를 사용합니다.  CSI 토폴로지 기능을 사용하면 지역 및 가용성 영역을 기반으로 볼륨에 대한 액세스를 노드 하위 집합으로 제한할 수 있습니다.  나타내다link:https://docs.netapp.com/us-en/trident/trident-use/csi-topology.html["여기"] 추가 세부 사항은 다음을 참조하세요.
+
+
+NOTE: Kubernetes는 두 가지 볼륨 바인딩 모드를 지원합니다. - **_VolumeBindingMode_가 _Immediate_**(기본값)로 설정된 경우 Trident 토폴로지 인식 없이 볼륨을 생성합니다.  영구 볼륨은 요청하는 포드의 스케줄링 요구 사항에 대한 종속성 없이 생성됩니다.  - **_VolumeBindingMode_가 _WaitForFirstConsumer_**로 설정된 경우 PVC에 대한 영구 볼륨의 생성 및 바인딩은 PVC를 사용하는 포드가 예약되고 생성될 때까지 지연됩니다.  이런 방식으로 토폴로지 요구 사항에 의해 적용되는 스케줄링 제약 조건을 충족하는 볼륨이 생성됩니다.  Trident 스토리지 백엔드는 가용성 영역(토폴로지 인식 백엔드)을 기반으로 볼륨을 선택적으로 프로비저닝하도록 설계될 수 있습니다.  이러한 백엔드를 사용하는 StorageClass의 경우, 지원되는 지역/영역에서 예약된 애플리케이션에서 요청하는 경우에만 볼륨이 생성됩니다.  (토폴로지 인식 StorageClass) 참조link:https://docs.netapp.com/us-en/trident/trident-use/csi-topology.html["여기"] 추가 세부 사항은 다음을 참조하세요.

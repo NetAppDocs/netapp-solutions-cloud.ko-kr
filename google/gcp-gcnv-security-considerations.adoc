@@ -1,0 +1,179 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-security-considerations.html 
+keywords: secure logins, cluster administration, upgrades, data at-rest, mitigation 
+summary: 데이터 보안 방법을 이해하기 위한 첫 번째 단계는 위험과 잠재적인 공격 영역을 파악하는 것입니다. 
+---
+= 보안 고려 사항 및 공격 표면
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+데이터 보안 방법을 이해하기 위한 첫 번째 단계는 위험과 잠재적인 공격 영역을 파악하는 것입니다.
+
+여기에는 다음이 포함됩니다(이에 국한되지 않음):
+
+* 관리 및 로그인
+* 정지 상태의 데이터
+* 비행 중 데이터
+* 네트워크 및 방화벽
+* 랜섬웨어, 맬웨어 및 바이러스
+
+
+공격 표면을 이해하면 환경의 보안을 강화하는 데 도움이 됩니다.  Google Cloud의 Google Cloud NetApp Volumes 이미 이러한 주제 중 많은 부분을 고려하고 있으며, 어떠한 관리자 상호 작용 없이도 기본적으로 보안 기능을 구현합니다.
+
+
+
+== 안전한 로그인 보장
+
+중요한 인프라 구성 요소를 보호할 때 승인된 사용자만 로그인하여 환경을 관리할 수 있도록 하는 것이 중요합니다.  악의적인 행위자가 관리자 자격 증명을 침해하면 성에 접근할 수 있는 열쇠를 손에 넣고 구성 변경, 볼륨 및 백업 삭제, 백도어 생성 또는 스냅샷 일정 비활성화 등 원하는 작업을 모두 수행할 수 있습니다.
+
+Google Cloud용 Google Cloud NetApp Volumes StaaS(Storage as a Service)의 난독화를 통해 승인되지 않은 관리자 로그인으로부터 보호합니다.  Google Cloud NetApp Volumes 외부 로그인 없이 클라우드 제공업체에서 전적으로 유지 관리합니다.  모든 설정 및 구성 작업은 완전히 자동화되어 있어, 매우 드문 상황을 제외하고는 인간 관리자가 시스템과 상호 작용할 필요가 전혀 없습니다.
+
+로그인이 필요한 경우, Google Cloud의 Google Cloud NetApp Volumes 시스템에 로그인할 수 있는 신뢰할 수 있는 관리자의 매우 짧은 목록을 유지하여 로그인을 보호합니다.  이러한 게이트키핑은 잠재적으로 악의적인 행위자가 접근하는 횟수를 줄이는 데 도움이 됩니다.  또한, Google Cloud 네트워킹은 여러 계층의 네트워크 보안 뒤에 시스템을 숨기고 외부 세계에 필요한 것만 노출합니다.  Google Cloud, Google Cloud NetApp Volumes 아키텍처에 대한 정보는 다음 섹션을 참조하세요.link:gcp-gcnv-arch-detail.html["Google Cloud NetApp Volumes 아키텍처."]
+
+
+
+== 클러스터 관리 및 업그레이드
+
+잠재적인 보안 위험이 있는 두 가지 영역으로는 클러스터 관리(악의적인 행위자가 관리자 액세스 권한을 갖는 경우 발생)와 업그레이드(소프트웨어 이미지가 손상된 경우 발생)가 있습니다.
+
+
+
+=== 스토리지 관리 보호
+
+서비스로 제공되는 스토리지는 클라우드 데이터 센터 외부의 최종 사용자가 액세스할 수 없도록 하여 관리자가 노출될 수 있는 추가적인 위험을 제거합니다.  대신, 고객이 데이터 액세스 플레인에 대해서만 구성이 수행됩니다.  각 테넌트는 자체 볼륨을 관리하며, 어떤 테넌트도 다른 Google Cloud NetApp Volumes 인스턴스에 접속할 수 없습니다.  서비스는 자동화로 관리되며, 섹션에 설명된 프로세스를 통해 시스템에 대한 액세스 권한이 부여된 매우 소수의 신뢰할 수 있는 관리자 목록이 있습니다.link:gcp-gcnv-service-operation.html["서비스 운영."]
+
+NetApp Volumes-Performance 서비스 유형은 지역에 장애가 발생할 경우 다른 지역에 대한 데이터 보호를 제공하기 위한 옵션으로 지역 간 복제를 제공합니다.  이러한 경우, Google Cloud NetApp Volumes 영향을 받지 않는 지역으로 장애 조치되어 데이터 액세스를 유지할 수 있습니다.
+
+
+
+=== 서비스 업그레이드
+
+업데이트는 취약한 시스템을 보호하는 데 도움이 됩니다.  각 업데이트에는 공격 표면을 최소화하는 보안 강화 및 버그 수정이 제공됩니다.  소프트웨어 업데이트는 중앙 저장소에서 다운로드되고, 업데이트가 허용되기 전에 검증을 거쳐 공식 이미지가 사용되었는지, 그리고 악의적인 행위자에 의해 업그레이드가 손상되지 않았는지 확인합니다.
+
+Google Cloud NetApp Volumes 사용하면 클라우드 제공업체 팀이 업데이트를 처리하므로 구성 및 업그레이드에 정통하고 프로세스를 자동화하고 완벽하게 테스트한 전문가를 제공함으로써 관리자 팀의 위험 노출이 제거됩니다.  업그레이드는 중단 없이 이루어지며, Google Cloud NetApp Volumes 최상의 전반적인 결과를 위해 최신 업데이트를 유지합니다.
+
+이러한 서비스 업그레이드를 수행하는 관리자 팀에 대한 정보는 다음 섹션을 참조하세요.link:gcp-gcnv-service-operation.html["서비스 운영."]
+
+
+
+== 저장 중인 데이터 보안
+
+디스크가 도난당하거나 반환되거나 다른 용도로 사용되는 경우를 대비해 저장 데이터 암호화는 중요한 역할을 합니다.  Google Cloud NetApp Volumes 의 데이터는 소프트웨어 기반 암호화를 사용하여 저장 상태에서 보호됩니다.
+
+* Google에서 생성한 키는 NetApp Volumes-SW에 사용됩니다.
+* NetApp Volumes-Performance의 경우 볼륨별 키는 Google Cloud NetApp Volumes 에 내장된 키 관리자에 저장되며, 이 키 관리자는 NetApp ONTAP CryptoMod를 사용하여 AES-256 암호화 키를 생성합니다.  CryptoMod는 CMVP FIPS 140-2 검증 모듈 목록에 등재되어 있습니다. 보다 https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4144["FIPS 140-2 인증 #4144"^] .
+
+
+2021년 11월부터 NetApp Volumes-Performance에 대한 고객 관리 암호화(CMEK) 기능 미리보기가 제공되었습니다.  이 기능을 사용하면 Google 키 관리 서비스(KMS)에 호스팅된 프로젝트별, 지역별 마스터 키로 볼륨별 키를 암호화할 수 있습니다.  KMS를 사용하면 외부 키 관리자를 연결할 수 있습니다.
+
+NetApp Volumes-Performance에 대한 KMS 구성 방법에 대한 자세한 내용은 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/customer-managed-keys?hl=en_US["Google Cloud NetApp Volumes 문서를 참조하세요."^] .
+
+아키텍처에 대한 자세한 내용은 섹션을 참조하세요.link:gcp-gcnv-arch-detail.html["Google Cloud NetApp Volumes 아키텍처."]
+
+
+
+=== 비행 중 데이터 보안
+
+저장 중인 데이터를 보호하는 것 외에도 Google Cloud NetApp Volumes 인스턴스와 클라이언트 또는 복제 대상 간에 데이터가 전송되는 동안에도 데이터를 보호할 수 있어야 합니다.  Google Cloud NetApp Volumes Kerberos를 사용한 SMB 암호화, 패킷 서명/봉인, 데이터 전송의 종단 간 암호화를 위한 NFS Kerberos 5p와 같은 암호화 방법을 사용하여 NAS 프로토콜을 통해 전송 중인 데이터에 대한 암호화를 제공합니다.
+
+Google Cloud NetApp Volumes 볼륨 복제에는 AES-GCM 암호화 방법을 활용하는 TLS 1.2가 사용됩니다.
+
+Telnet, NDMP 등의 대부분의 안전하지 않은 기내 프로토콜은 기본적으로 비활성화되어 있습니다.  하지만 DNS는 Google Cloud NetApp Volumes 에서 암호화되지 않으므로(DNS Sec 지원 없음) 가능한 경우 외부 네트워크 암호화를 사용하여 암호화해야 합니다.  섹션을 참조하세요link:gcp-gcnv-data-encrypt-in-transit.html["전송 중 데이터 암호화"] 전송 중 데이터 보안에 대한 자세한 내용은 여기를 참조하세요.
+
+NAS 프로토콜 암호화에 대한 정보는 다음 섹션을 참조하세요.link:gcp-gcnv-data-encrypt-in-transit.html#nas-protocols["NAS 프로토콜."]
+
+
+
+== NAS 권한에 대한 사용자 및 그룹
+
+클라우드에서 데이터를 보호하는 데는 적절한 사용자 및 그룹 인증이 필요합니다. 즉, 데이터에 액세스하는 사용자가 해당 환경에서 실제 사용자인지 확인하고 그룹에 유효한 사용자가 포함되어 있는지 확인해야 합니다.  이러한 사용자와 그룹은 저장 시스템의 파일과 폴더에 대한 초기 공유 및 내보내기 액세스 권한과 권한 검증을 제공합니다.
+
+Google Cloud NetApp Volumes SMB 공유 및 Windows 스타일 권한에 대해 표준 Active Directory 기반 Windows 사용자 및 그룹 인증을 사용합니다.  이 서비스는 NFS 내보내기, NFSv4 ID 유효성 검사, Kerberos 인증 및 NFSv4 ACL을 위한 UNIX 사용자 및 그룹을 위한 LDAP와 같은 UNIX ID 공급자를 활용할 수도 있습니다.
+
+
+NOTE: 현재 Google Cloud NetApp Volumes 에서는 LDAP 기능을 위해 Active Directory LDAP만 지원됩니다.
+
+
+
+== 랜섬웨어, 맬웨어 및 바이러스의 탐지, 예방 및 완화
+
+랜섬웨어, 맬웨어, 바이러스는 관리자에게 지속적인 위협이며, 이러한 위협을 탐지, 예방, 완화하는 것이 기업 조직의 최우선 과제입니다.  중요한 데이터 세트에 대한 단일 랜섬웨어 공격은 잠재적으로 수백만 달러의 손실을 초래할 수 있으므로 위험을 최소화하기 위해 할 수 있는 모든 조치를 취하는 것이 좋습니다.
+
+현재 Google Cloud NetApp Volumes 바이러스 백신 보호와 같은 기본 감지 또는 예방 조치가 포함되어 있지 않습니다. https://www.netapp.com/blog/prevent-ransomware-spread-ONTAP/["자동 랜섬웨어 감지"^] 정기적인 스냅샷 일정을 활성화하면 랜섬웨어 이벤트에서 빠르게 복구할 수 있는 방법이 있습니다.  스냅샷 복사본은 변경 불가능하며 파일 시스템에서 변경된 블록에 대한 읽기 전용 포인터로, 거의 즉각적으로 실행되고 성능에 미치는 영향이 최소화되며 데이터가 변경되거나 삭제될 때만 공간을 사용합니다.  원하는 허용 가능한 복구 지점 목표(RPO)/복구 시간 목표(RTO)에 맞춰 스냅샷 복사 일정을 설정할 수 있으며 볼륨당 최대 1,024개의 스냅샷 복사본을 보관할 수 있습니다.
+
+Google Cloud NetApp Volumes 에서는 스냅샷 지원이 추가 비용(스냅샷 복사본에 보관된 변경된 블록/데이터에 대한 데이터 저장 비용 제외) 없이 제공되며, 랜섬웨어 공격이 발생하는 경우 공격이 발생하기 전의 스냅샷 복사본으로 롤백하는 데 사용할 수 있습니다.  스냅샷 복원은 몇 초 만에 완료되며, 복원 후에는 평소처럼 데이터를 제공할 수 있습니다. 자세한 내용은 다음을 참조하세요.  https://www.netapp.com/pdf.html?item=/media/16716-sb-3938pdf.pdf&v=202093745["랜섬웨어에 대한 NetApp 솔루션"^] .
+
+랜섬웨어가 비즈니스에 영향을 미치지 않도록 방지하려면 다음 중 하나 이상을 포함하는 다층적 접근 방식이 필요합니다.
+
+* 엔드포인트 보호
+* 네트워크 방화벽을 통한 외부 위협으로부터 보호
+* 데이터 이상 감지
+* 중요 데이터 세트의 다중 백업(온사이트 및 오프사이트)
+* 백업의 정기적인 복원 테스트
+* 변경 불가능한 읽기 전용 NetApp 스냅샷 복사본
+* 중요 인프라를 위한 다중 인증
+* 시스템 로그인에 대한 보안 감사
+
+
+이 목록은 모든 내용을 담고 있지는 않지만 랜섬웨어 공격의 가능성에 대처할 때 참고할 만한 좋은 청사진입니다.  Google Cloud의 Google Cloud NetApp Volumes 랜섬웨어 이벤트로부터 보호하고 그 영향을 줄이는 여러 가지 방법을 제공합니다.
+
+
+
+=== 변경 불가능한 스냅샷 복사본
+
+Google Cloud NetApp Volumes 기본적으로 사용자 지정 일정에 따라 생성되는 변경 불가능한 읽기 전용 스냅샷 복사본을 제공하여 데이터가 삭제되거나 전체 볼륨이 랜섬웨어 공격을 받은 경우 신속한 특정 시점 복구가 가능합니다.  스냅샷은 이전의 좋은 스냅샷 사본으로 빠르게 복원되며 스냅샷 일정과 RTO/RPO의 보존 기간을 기반으로 데이터 손실을 최소화합니다.  스냅샷 기술을 사용하면 성능에 미치는 영향이 미미합니다.
+
+Google Cloud NetApp Volumes 의 스냅샷 복사본은 읽기 전용이므로 랜섬웨어가 눈에 띄지 않게 데이터 세트에 확산되고 랜섬웨어에 감염된 데이터의 스냅샷 복사본이 생성되지 않는 한 랜섬웨어에 감염될 수 없습니다.  따라서 데이터 이상을 기반으로 한 랜섬웨어 감지도 고려해야 합니다.  Google Cloud NetApp Volumes 현재 기본적으로 감지 기능을 제공하지 않지만 외부 모니터링 소프트웨어를 사용할 수 있습니다.
+
+
+
+=== 백업 및 복원
+
+Google Cloud NetApp Volumes 표준 NAS 클라이언트 백업 기능(NFS 또는 SMB를 통한 백업 등)을 제공합니다.
+
+* NetApp Volumes-Performance는 다른 NetApp Volumes-Performance 볼륨에 대한 지역 간 볼륨 복제 기능을 제공합니다.  자세한 내용은 다음을 참조하세요. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/volume-replication?hl=en_US["볼륨 복제"^] Google Cloud NetApp Volumes 문서에서.
+* NetApp Volumes-SW는 서비스 기반 볼륨 백업/복원 기능을 제공합니다.  자세한 내용은 다음을 참조하세요. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/back-up?hl=en_US["클라우드 백업"^] Google Cloud NetApp Volumes 문서에서.
+
+
+볼륨 복제는 랜섬웨어 이벤트를 포함한 재해 발생 시 빠른 장애 조치를 위해 소스 볼륨의 정확한 사본을 제공합니다.
+
+
+
+=== 지역 간 복제
+
+NetApp Volumes-Performance를 사용하면 Google 네트워크에서 실행되는 복제에 사용되는 특정 인터페이스를 사용하여 NetApp 에서 제어하는 백엔드 서비스 네트워크에서 TLS1.2 AES 256 GCM 암호화를 사용하여 데이터 보호 및 보관 사용 사례를 위해 Google Cloud 지역 전체에서 볼륨을 안전하게 복제할 수 있습니다.  기본(소스) 볼륨에는 활성 프로덕션 데이터가 포함되어 있으며 보조(대상) 볼륨에 복제되어 기본 데이터 세트의 정확한 복제본을 제공합니다.
+
+초기 복제는 모든 블록을 전송하지만 업데이트는 기본 볼륨에서 변경된 블록만 전송합니다.  예를 들어, 기본 볼륨에 있는 1TB 데이터베이스를 보조 볼륨으로 복제하는 경우, 초기 복제 시 1TB의 공간이 전송됩니다.  해당 데이터베이스에 초기화와 다음 업데이트 사이에 변경되는 수백 개의 행(가정적으로 수 MB)이 있는 경우, 변경된 행이 있는 블록만 보조(수 MB)에 복제됩니다.  이를 통해 전송 시간을 짧게 유지하고 복제 비용을 낮추는 데 도움이 됩니다.
+
+파일과 폴더에 대한 모든 권한은 보조 볼륨에 복제되지만 공유 액세스 권한(예: 내보내기 정책 및 규칙 또는 SMB 공유 및 공유 ACL)은 별도로 처리해야 합니다.  사이트 장애 조치(failover)의 경우 대상 사이트는 동일한 이름 서비스와 Active Directory 도메인 연결을 활용하여 사용자 및 그룹 ID와 권한을 일관되게 처리해야 합니다.  재해 발생 시 복제 관계를 끊고 보조 볼륨을 읽기-쓰기로 변환하여 보조 볼륨을 장애 조치 대상으로 사용할 수 있습니다.
+
+볼륨 복제본은 읽기 전용이므로 바이러스에 의해 데이터가 감염되거나 랜섬웨어에 의해 기본 데이터 세트가 암호화된 경우 데이터를 빠르게 복구할 수 있도록 데이터의 변경 불가능한 복사본을 오프사이트에 제공합니다.  읽기 전용 데이터는 암호화되지 않지만, 기본 볼륨이 영향을 받고 복제가 발생하면 감염된 블록도 복제됩니다.  영향을 받지 않은 이전 스냅샷 복사본을 사용하여 복구할 수 있지만, 공격이 얼마나 빨리 감지되는지에 따라 SLA가 약속된 RTO/RPO 범위를 벗어날 수 있습니다.
+
+또한 Google Cloud의 지역 간 복제(CRR) 관리를 통해 볼륨 삭제, 스냅샷 삭제 또는 스냅샷 일정 변경과 같은 악의적인 관리 작업을 방지할 수 있습니다.  이 작업은 볼륨 관리자(소스 볼륨을 삭제할 수 있지만 미러를 해제할 수 없으므로 대상 볼륨을 삭제할 수 없음)와 CRR 관리자(볼륨 작업을 수행할 수 없음)를 분리하는 사용자 지정 역할을 생성하여 수행됩니다.  보다 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["보안 고려 사항"^] 각 관리자 그룹에서 허용하는 권한에 대한 자세한 내용은 Google Cloud NetApp Volumes 문서를 참조하세요.
+
+
+
+=== Google Cloud NetApp Volumes 백업
+
+Google Cloud NetApp Volumes 높은 데이터 내구성을 제공하지만 외부 이벤트로 인해 데이터가 손실될 수 있습니다.  바이러스나 랜섬웨어와 같은 보안 이벤트가 발생하는 경우, 적절한 시기에 데이터 액세스를 재개하기 위해 백업과 복원이 매우 중요합니다.  관리자가 실수로 Google Cloud NetApp Volumes 볼륨을 삭제할 수 있습니다.  또는 사용자가 단순히 여러 달 동안 데이터의 백업 버전을 보관하고 싶어하고 볼륨 내부에 추가 스냅샷 복사 공간을 유지하는 것이 비용 문제가 될 수도 있습니다.  최근 몇 주 동안의 백업 버전을 보관하여 손실된 데이터를 복원하는 가장 좋은 방법은 스냅샷 복사본이지만, 해당 복사본은 볼륨 내부에 저장되어 있으며 볼륨이 사라지면 손실됩니다.
+
+이러한 모든 이유로 Google Cloud NetApp Volumes 다음을 통해 백업 서비스를 제공합니다. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/back-up?hl=en_US["Google Cloud NetApp Volumes 백업"^] .
+
+Google Cloud NetApp Volumes 백업은 Google Cloud Storage(GCS)에 볼륨 사본을 생성합니다.  볼륨 내에 저장된 실제 데이터만 백업하며, 여유 공간은 백업하지 않습니다.  이 백업은 영구적으로 증분적으로 작동합니다. 즉, 볼륨 콘텐츠를 한 번 전송한 후 변경된 데이터만 계속 백업합니다.  여러 개의 전체 백업을 거치는 기존 백업 개념과 비교했을 때, 이 방식은 백업 스토리지 용량을 대폭 절약하여 비용을 절감합니다.  백업 공간의 월별 가격은 볼륨에 비해 낮으므로 백업 버전을 더 오랫동안 보관하기에 이상적인 곳입니다.
+
+사용자는 Google Cloud NetApp Volumes 백업을 사용하여 동일한 지역 내의 동일 볼륨이나 다른 볼륨에 모든 백업 버전을 복원할 수 있습니다.  소스 볼륨이 삭제되더라도 백업 데이터는 보존되며 독립적으로 관리(예: 삭제)해야 합니다.
+
+Google Cloud NetApp Volumes 백업은 옵션으로 Google Cloud NetApp Volumes 에 내장되어 있습니다.  사용자는 볼륨별로 Google Cloud NetApp Volumes 백업을 활성화하여 보호할 볼륨을 결정할 수 있습니다.  를 참조하십시오 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/back-up?hl=en_US["Google Cloud NetApp Volumes 백업 설명서"^] 백업에 대한 정보는 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/resource-limits-quotas?hl=en_US["지원되는 최대 백업 버전 수"^] , 일정 및 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/costs?hl=en_US["가격"^] .
+
+프로젝트의 모든 백업 데이터는 GCS 버킷에 저장됩니다. 이 버킷은 서비스에서 관리하며 사용자에게는 보이지 않습니다.  각 프로젝트는 다른 버킷을 사용합니다.  현재 버킷은 Google Cloud NetApp Volumes 볼륨과 동일한 지역에 있지만 더 많은 옵션에 대해 논의 중입니다.  최신 상태를 확인하려면 설명서를 참조하세요.
+
+Google Cloud NetApp Volumes 버킷에서 GCS로 데이터를 전송하는 데는 HTTPS 및 TLS1.2를 사용하는 서비스 내부 Google 네트워크가 사용됩니다.  저장된 데이터는 Google에서 관리하는 키를 사용하여 암호화됩니다.
+
+Google Cloud NetApp Volumes 백업을 관리하려면(백업 생성, 삭제 및 복원) 사용자에게 다음 권한이 있어야 합니다. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["역할/netappcloudvolumes.admin"^] 역할.

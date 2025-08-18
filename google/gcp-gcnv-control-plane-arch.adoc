@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-control-plane-arch.html 
+keywords: identity, access, management, authorization, permission, service accounts, cloud volumes service api, jwt tokens 
+summary: Google Cloud NetApp Volumes 에 대한 모든 관리 작업은 API를 통해 수행됩니다.  GCP Cloud Console에 통합된 Google Cloud NetApp Volumes 관리도 Google Cloud NetApp Volumes API를 사용합니다. 
+---
+= 제어 평면 아키텍처
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Google Cloud NetApp Volumes 에 대한 모든 관리 작업은 API를 통해 수행됩니다.  GCP Cloud Console에 통합된 Google Cloud NetApp Volumes 관리도 Google Cloud NetApp Volumes API를 사용합니다.
+
+
+
+== ID 및 액세스 관리
+
+ID 및 액세스 관리(https://cloud.google.com/iam/docs/overview["그래요"^] )은 Google Cloud 프로젝트 인스턴스에 대한 인증(로그인) 및 권한 부여(사용 권한)를 제어할 수 있는 표준 서비스입니다.  Google IAM은 권한 부여 및 해제에 대한 전체 감사 추적을 제공합니다.  현재 Google Cloud NetApp Volumes 제어 평면 감사를 제공하지 않습니다.
+
+
+
+=== 권한/허가 개요
+
+IAM은 Google Cloud NetApp Volumes 대한 기본 제공 세부적인 권한을 제공합니다.  당신은 찾을 수 있습니다 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["여기에서 세부적인 권한의 전체 목록을 확인하세요."^] .
+
+IAM은 또한 다음과 같은 두 가지 미리 정의된 역할을 제공합니다. `netappcloudvolumes.admin` 그리고 `netappcloudvolumes.viewer` .  이러한 역할은 특정 사용자나 서비스 계정에 할당될 수 있습니다.
+
+IAM 사용자가 Google Cloud NetApp Volumes 관리할 수 있도록 적절한 역할과 권한을 할당합니다.
+
+세분화된 권한을 사용하는 예는 다음과 같습니다.
+
+* 사용자가 볼륨을 삭제할 수 없도록 get/list/create/update 권한만 있는 사용자 지정 역할을 빌드합니다.
+* 사용자 정의 역할만 사용하세요. `snapshot.*` 애플리케이션과 일관된 스냅샷 통합을 구축하는 데 사용되는 서비스 계정을 생성할 수 있는 권한입니다.
+* 위임할 사용자 정의 역할 작성 `volumereplication.*` 특정 사용자에게.
+
+
+
+
+=== 서비스 계정
+
+스크립트를 통해 Google Cloud NetApp Volumes API 호출을 수행하려면 https://registry.terraform.io/providers/NetApp/netapp-gcp/latest/docs["테라폼"^] , 서비스 계정을 생성해야 합니다. `roles/netappcloudvolumes.admin` 역할.  이 서비스 계정을 사용하면 두 가지 방법으로 Google Cloud NetApp Volumes API 요청을 인증하는 데 필요한 JWT 토큰을 생성할 수 있습니다.
+
+* JSON 키를 생성하고 Google API를 사용하여 이를 통해 JWT 토큰을 파생합니다.  가장 간단한 방법이지만, 수동으로 비밀(JSON 키)을 관리해야 합니다.
+* 사용 https://cloud.google.com/iam/docs/impersonating-service-accounts["서비스 계정 사칭"^] ~와 함께 `roles/iam.serviceAccountTokenCreator` .  코드(스크립트, Terraform 등)는 다음과 같이 실행됩니다. https://google.aip.dev/auth/4110["애플리케이션 기본 자격 증명"^] 서비스 계정을 가장하여 권한을 얻습니다.  이러한 접근 방식은 Google의 보안 모범 사례를 반영합니다.
+
+
+보다 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/api?hl=en_US["서비스 계정 및 개인 키 생성"^] 자세한 내용은 Google 클라우드 문서를 참조하세요.
+
+
+
+== Google Cloud NetApp Volumes API
+
+Google Cloud NetApp Volumes API는 기본 네트워크 전송으로 HTTPS(TLSv1.2)를 사용하는 REST 기반 API를 사용합니다.  최신 API 정의를 찾을 수 있습니다 https://cloudvolumesgcp-api.netapp.com/swagger.json["여기"^] API 사용 방법에 대한 정보 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/api?hl=en_US["Google 클라우드 문서의 Cloud Volumes API"^] .
+
+API 엔드포인트는 NetApp 에서 표준 HTTPS(TLSv1.2) 기능을 사용하여 운영 및 보안됩니다.
+
+
+
+=== JWT 토큰
+
+API에 대한 인증은 JWT 베어러 토큰을 사용하여 수행됩니다.(https://datatracker.ietf.org/doc/html/rfc7519["RFC-7519"^] ).  유효한 JWT 토큰은 Google Cloud IAM 인증을 사용하여 얻어야 합니다.  이 작업은 서비스 계정 JSON 키를 제공하여 IAM에서 토큰을 가져와서 수행해야 합니다.
+
+
+
+== 감사 로깅
+
+현재 사용자가 접근할 수 있는 제어 평면 감사 로그가 없습니다.

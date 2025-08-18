@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-overview.html 
+keywords: 4918, tr4918, overview, introduction, scope, audience, abbreviation, definition 
+summary: 특히 스토리지 관리자가 인프라를 제어할 수 없는 클라우드의 경우 보안은 클라우드 제공업체가 제공하는 서비스에 데이터를 신뢰하는 데 가장 중요합니다.  이 문서는 Google Cloud NetApp Volumes Google Cloud에서 제공하는 보안 서비스에 대한 개요입니다. 
+---
+= TR-4918: 보안 개요 - Google Cloud의 Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+올리버 크라우스, 저스틴 파리시, NetApp
+
+[role="lead"]
+특히 스토리지 관리자가 인프라를 제어할 수 없는 클라우드의 경우 보안은 클라우드 제공업체가 제공하는 서비스에 데이터를 신뢰하는 데 가장 중요합니다.  이 문서는 보안 제공에 대한 개요입니다. https://cloud.netapp.com/cloud-volumes-service-for-gcp["Google Cloud NetApp Volumes Google Cloud에서 제공됩니다."^] .
+
+
+
+== 대상 청중
+
+이 문서의 대상 독자는 다음과 같은 역할을 포함하되 이에 국한되지 않습니다.
+
+* 클라우드 제공업체
+* 스토리지 관리자
+* 스토리지 아키텍트
+* 현장 자원
+* 비즈니스 의사 결정권자
+
+
+이 기술 보고서의 내용에 대해 질문이 있는 경우 다음 섹션을 참조하세요.link:../vmware/gcp-gcnv-additional-info.html#contact-us["문의하세요."]
+
+|===
+| 약어 | 정의 
+
+
+| NetApp 볼륨-SW | Google Cloud NetApp Volumes, 서비스 유형 NetApp Volumes 
+
+
+| NetApp 볼륨-성능 | 클라우드 볼륨 서비스, 서비스 유형 NetApp 볼륨-성능 
+
+
+| 공익광고 |  
+|===

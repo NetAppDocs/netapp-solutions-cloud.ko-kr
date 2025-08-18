@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-solutions-overview.html 
+keywords: NetApp Solutions, hybrid cloud, container workloads, containers, Red Hat OpenShift, RedHat OpenShift, VMware, ROSA, ACC, Trident Protect, Advanced Cluster Management, ACM, Hub Cluster 
+summary:  
+---
+= Red Hat OpenShift 컨테이너 워크로드를 위한 NetApp 하이브리드 멀티클라우드 솔루션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 기존 엔터프라이즈 애플리케이션을 현대화하고 Kubernetes를 기반으로 구축된 컨테이너와 오케스트레이션 플랫폼을 사용하여 새로운 애플리케이션을 구축하는 고객이 크게 늘어나는 것을 보고 있습니다.  Red Hat OpenShift Container Platform은 많은 고객이 도입한 사례 중 하나입니다.
+
+
+
+== 개요
+
+점점 더 많은 고객이 기업 내에서 컨테이너를 도입함에 따라 NetApp 상태 저장 애플리케이션의 지속적인 스토리지 요구 사항과 데이터 보호, 데이터 보안, 데이터 마이그레이션과 같은 기존 데이터 관리 요구 사항을 충족하는 데 완벽한 위치에 있습니다.  하지만 이러한 요구 사항은 다양한 전략, 도구, 방법을 통해 충족됩니다.
+
+** NetApp ONTAP** 기반 스토리지 옵션은 아래 나열되어 있으며 컨테이너와 Kubernetes 배포에 보안, 데이터 보호, 안정성 및 유연성을 제공합니다.
+
+* 온프레미스의 자체 관리형 스토리지:
++
+** NetApp Fabric Attached Storage(FAS), NetApp All Flash FAS Array(AFF), NetApp All SAN Array(ASA) 및 ONTAP Select
+
+
+* 온프레미스의 공급자 관리 스토리지:
++
+** NetApp Keystone STaaS(Storage as a Service)를 제공합니다.
+
+
+* 클라우드의 자체 관리형 스토리지:
++
+** NetApp Cloud Volumes ONTAP(CVO)은 하이퍼스케일러에서 자체 관리형 스토리지를 제공합니다.
+
+
+* 클라우드의 공급자 관리 스토리지:
++
+** Amazon FSx for NetApp ONTAP, Azure NetApp Files 및 Google Cloud NetApp Volumes 클라우드에서 파일 기반 스토리지를 제공합니다.
+
+
+
+
+image:rhhc-ontap-features.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+** NetApp BlueXP**를 사용하면 단일 제어 평면/인터페이스에서 모든 스토리지 및 데이터 자산을 관리할 수 있습니다.
+
+BlueXP 사용하면 클라우드 스토리지(예: Cloud Volumes ONTAP 및 Azure NetApp Files)를 만들고 관리하고, 데이터를 이동, 보호 및 분석하고, 여러 온프레미스 및 엣지 스토리지 장치를 제어할 수 있습니다.
+
+** NetApp Trident**는 다양한 NetApp 스토리지 옵션에 의해 지원되는 영구 스토리지를 빠르고 쉽게 사용할 수 있도록 하는 CSI 호환 스토리지 오케스트레이터입니다.  NetApp 에서 유지 관리하고 지원하는 오픈 소스 소프트웨어입니다.
+
+image:rhhc-trident-features.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+비즈니스에 중요한 컨테이너 작업에는 지속적인 볼륨 이상이 필요합니다.  데이터 관리 요구 사항에는 애플리케이션 쿠버네티스 객체의 보호 및 마이그레이션도 필요합니다.
+
+
+NOTE: 애플리케이션 데이터에는 사용자 데이터 외에도 Kubernetes 객체가 포함됩니다. 다음은 몇 가지 예입니다. - Pod 사양, PVC, 배포, 서비스와 같은 Kubernetes 객체 - 구성 맵 및 비밀과 같은 사용자 지정 구성 객체 - 스냅샷 복사본, 백업, 복제본과 같은 영구 데이터 - CR 및 CRD와 같은 사용자 지정 리소스
+
+** NetApp Trident Protect**는 NetApp 에서 유지 관리하는 오픈 소스 무료 소프트웨어로 제공되며, NetApp ONTAP 스토리지 시스템과 NetApp Trident CSI 스토리지 프로비저너가 지원하는 상태 저장 Kubernetes 애플리케이션의 기능과 가용성을 향상시키는 고급 애플리케이션 데이터 관리 기능을 제공합니다.  Trident Protect는 퍼블릭 클라우드와 온프레미스 환경에서 컨테이너화된 워크로드의 관리, 보호 및 이동을 간소화합니다.  또한 API와 CLI를 통해 자동화 기능도 제공합니다.
+
+이 참조 문서는 Trident Protect를 사용하여 RedHat OpenShift 플랫폼에 배포된 컨테이너 기반 애플리케이션의 데이터 보호에 대한 검증을 제공합니다.  또한 이 솔루션은 컨테이너 플랫폼을 관리하기 위한 Red Hat Advanced Cluster Management(ACM)의 배포 및 사용에 대한 높은 수준의 세부 정보를 제공합니다.  또한 이 문서에서는 Trident CSI 프로비저너를 사용하여 NetApp 스토리지를 Red Hat OpenShift 컨테이너 플랫폼과 통합하는 방법에 대한 세부 정보를 강조합니다.

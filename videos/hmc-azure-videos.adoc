@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: videos/hmc-azure-videos.html 
+summary: NetApp 활용한 하이브리드 클라우드 AVS 솔루션을 선보이는 비디오 및 데모 
+keywords: hybrid cloud, rosa, fsx ontap, azure vmware, netapp hci, videos, demos 
+---
+= NetApp 사용한 Azure VMware 클라우드를 위한 하이브리드 멀티클라우드 솔루션에 대한 비디오를 시청하세요
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 의 Azure VMware Solution(AVS)을 위한 하이브리드 멀티클라우드 솔루션을 소개하는 NetApp의 포괄적인 비디오 라이브러리를 살펴보세요.  이 컬렉션에는 보충 데이터 저장소, 재해 복구, 마이그레이션 워크플로에 대한 비디오가 포함되어 있습니다.
+
+
+
+== 보충 데이터 저장소
+
+.Azure NetApp Files 사용한 Azure VMware 솔루션 보충 데이터 저장소 개요
+video::8c5ddb30-6c31-4cde-86e2-b01200effbd6[panopto,width=360]
+
+
+== 재해 복구
+
+.Cloud Volumes ONTAP, SnapCenter 및 JetStream을 사용한 Azure VMware 솔루션 DR
+video::5cd19888-8314-4cfc-ba30-b01200efff4f[panopto,width=360]
+
+
+== 마이그레이션 워크플로(HCX)
+
+.AVS 및 ANF를 위한 VMware HCX를 사용한 콜드 마이그레이션 데모
+video::b7ffa5ad-5559-4e56-a166-b01200f025bc[panopto,width=360]
+.AVS 및 ANF를 위한 VMware HCX를 사용한 vMotion 데모
+video::986bb505-6f3d-4a5a-b016-b01200f03f18[panopto,width=360]
+.AVS 및 ANF를 위한 VMware HCX를 사용한 대량 마이그레이션 데모
+video::255640f5-4dff-438c-8d50-b01200f017d1[panopto,width=360]

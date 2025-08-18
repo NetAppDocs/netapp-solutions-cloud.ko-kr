@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: videos/hmc-aws-videos.html 
+summary: NetApp 활용한 AWS 하이브리드 멀티클라우드 솔루션을 선보이는 비디오 및 데모 
+keywords: hybrid cloud, rosa, fsx ontap, azure vmware, netapp hci, videos, demos 
+---
+= NetApp 사용한 Amazon Web Services용 하이브리드 멀티클라우드 솔루션에 대한 비디오를 시청하세요
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 의 AWS용 하이브리드 멀티클라우드 솔루션을 소개하는 NetApp의 포괄적인 비디오 라이브러리를 살펴보세요.  Windows 및 Linux 시나리오를 포함하여 VMware Cloud on AWS와 Amazon FSx for ONTAP 의 게스트 연결 스토리지, TCO 절감, 보충 데이터 저장소 및 마이그레이션 워크플로에 대한 비디오를 시청하세요.
+
+
+
+== 게스트 연결 스토리지
+
+.iSCSI를 사용하는 FSx ONTAP 사용한 Windows 게스트 연결 스토리지
+video::0d03e040-634f-4086-8cb5-b01200fb8515[panopto,width=360]
+.NFS를 사용하는 FSx ONTAP 사용한 Linux 게스트 연결 스토리지
+video::c3befe1b-4f32-4839-a031-b01200fb6d60[panopto,width=360]
+
+
+== TCO 및 보충 데이터 저장소
+
+.Amazon FSx ONTAP 통한 VMware Cloud on AWS TCO 절감
+video::f0fedec5-dc17-47af-8821-b01200f00e08[panopto,width=360]
+.Amazon FSx ONTAP 사용한 AWS 보충 데이터 저장소의 VMware Cloud
+video::2065dcc1-f31a-4e71-a7d5-b01200f01171[panopto,width=360]
+
+
+== 마이그레이션 워크플로(HCX)
+
+.VMC를 위한 VMware HCX 배포 및 구성 설정
+video::6132c921-a44c-4c81-aab7-b01200fb5d29[panopto,width=360]
+.VMC 및 FSx ONTAP 용 VMware HCX를 사용한 vMotion 마이그레이션 데모
+video::52661f10-3f90-4f3d-865a-b01200f06d31[panopto,width=360]
+.VMC 및 FSx ONTAP 용 VMware HCX를 사용한 콜드 마이그레이션 데모
+video::685c0dc2-9d8a-42ff-b46d-b01200f056b0[panopto,width=360]

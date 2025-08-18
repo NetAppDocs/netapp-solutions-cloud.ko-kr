@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-contact-us.html 
+keywords:  
+summary:  
+---
+= 문의하기
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 기술 보고서를 개선할 수 있는 방법을 알려주시기 바랍니다.
+
+mailto:doccomments@netapp.com[doccomments@netapp.com^]으로 문의하세요.  제목에 기술 보고서 4918을 포함하세요.

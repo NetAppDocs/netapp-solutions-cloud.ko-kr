@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-solutions-resources.html 
+keywords: NetApp Solutions, hybrid cloud, container workloads, containers, Red Hat OpenShift, RedHat OpenShift, VMware, ROSA, ACC, Trident Protect, Advanced Cluster Management, ACM, Hub Cluster 
+summary:  
+---
+= 추가 문서
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+참고할 수 있는 추가 문서는 다음과 같습니다.
+
+. link:https://docs.vmware.com/en/VMware-vSphere/index.html["VMware vSphere"]
+. link:https://access.redhat.com/documentation/en-us/openshift_container_platform/4.12["OpenShift 컨테이너 플랫폼 제품 문서"]
+. link:https://docs.openshift.com/container-platform/4.17/installing/overview/index.html["OpenShift 컨테이너 플랫폼 클러스터 설치"]
+. link:https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.4["고급 클러스터 관리 제품 설명서"]
+. link:https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.4/html/clusters/managing-your-clusters#creating-a-cluster["ACM을 사용하여 클러스터 만들기"]
+. link:https://access.redhat.com/documentation/en-us/red_hat_quay/2.9/html-single/deploy_red_hat_quay_on_openshift/index["OpenShift에 Red Hat Quay 배포"]
+. link:https://docs.netapp.com/us-en/trident/["Trident"]
+. link:https://docs.netapp.com/us-en/ontap/["ONTAP 9"]
+. link:https://github.com/NetApp/Verda["NetApp 베르다"]- Verda(오픈 소스)에는 인기 있는 클라우드 네이티브 데이터 집약형 애플리케이션을 위한 참조 실행 후크 컬렉션이 있습니다.
+. link:https://docs.netapp.com/us-en/cloud-manager-family/["NetApp BlueXP"]
+. link:https://docs.openshift.com/rosa/welcome/index.html["AWS의 Red Hat OpenShift 서비스"]
+. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/["Amazon FSx ONTAP"]
+. link:https://docs.openshift.com/container-platform/4.13/installing/installing_gcp/preparing-to-install-on-gcp.html["GCP에 OpenShift 클러스터 설치"]
+. link:https://docs.openshift.com/container-platform/4.13/installing/installing_azure/preparing-to-install-on-azure.html["Azure에 OpenShift 클러스터 설치"]
+

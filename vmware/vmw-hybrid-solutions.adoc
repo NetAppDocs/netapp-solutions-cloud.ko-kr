@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-hybrid-solutions.html 
+keywords: NetApp Solutions, aws, amazon, vmc, vmware managed cloud, azure, avs, gcp, gcve, enterprise, hybrid, cloud, migrate, migration, disaster recovery, dr, backup, burst 
+summary:  
+---
+= 하이퍼스케일러를 위한 VMware용 NetApp 솔루션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 각 하이퍼스케일러의 VMware 환경에 제공하는 솔루션에 대해 자세히 알아보세요. 워크플로우 마이그레이션, 클라우드로의 확장/버스팅, 백업/복원 및 재해 복구 등이 포함됩니다.
+
+
+
+== VMware 환경을 위한 NetApp 솔루션
+
+하이브리드 클라우드 모델이나 "클라우드 우선" 모델에서 운영하는 경우, NetApp 클라우드 또는 하이브리드 클라우드 모델에서 워크로드를 관리하는 가장 일반적인 사용 사례를 해결하는 다양한 솔루션을 제공합니다.
+
+NetApp 각 하이퍼스케일러에서 게스트 내부(게스트 연결) 스토리지 또는 보조 NFS 데이터 저장소로 프로비저닝된 스토리지 솔루션도 제공합니다.  모든 솔루션은 클라우드 워크로드에 대한 VMware 분류에 따라 분류됩니다.  해당 분류에는 다음이 포함됩니다.
+
+* 보호(재해 복구 및 백업/복원 모두 포함)
+* 이주하다
+* 연장하다
+
+
+각 하이퍼스케일러에 사용 가능한 솔루션에 대한 자세한 내용은 다음을 방문하세요.
+
+* link:vmw-aws-vmc-solutions.html["AWS/VMC 솔루션"]
+* link:vmw-azure-avs-solutions.html["Azure/AVS 솔루션"]
+* link:vmw-gcp-gcve-solutions.html["GCP/GCVE 솔루션"]
+

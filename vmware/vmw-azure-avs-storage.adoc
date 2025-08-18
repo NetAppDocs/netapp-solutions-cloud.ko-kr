@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-azure-avs-storage.html 
+keywords: azure, netapp, anf, storage, options, nfs, supplemental, cvo 
+summary: NetApp 스토리지는 게스트 연결 또는 보조 스토리지로 Azure VMware 서비스에 연결될 수 있습니다. 
+---
+= Azure 가상화 서비스: NetApp 스토리지 사용 옵션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 스토리지는 게스트 연결 또는 보조 스토리지로 Azure VMware 서비스에 연결될 수 있습니다.
+
+
+
+== 보조 NFS 데이터 저장소로서의 Azure NetApp Files (ANF)
+
+ESXi 버전 3에서는 온프레미스 배포에 NFS 데이터 저장소 지원이 도입되어 vSphere의 스토리지 기능이 크게 확장되었습니다.
+
+NFS에서 vSphere를 실행하는 것은 강력한 성능과 안정성을 제공하므로 온프레미스 가상화 배포에 널리 채택된 옵션입니다.  온프레미스 데이터 센터에 상당한 NAS(네트워크 연결 스토리지)가 있는 경우 용량 및 성능 문제를 극복하기 위해 Azure NetApp 파일 데이터 저장소와 함께 Azure에 Azure VMware 솔루션 SDDC를 배포하는 것을 고려해야 합니다.
+
+Azure NetApp Files 업계를 선도하는 고가용성 NetApp ONTAP 데이터 관리 소프트웨어를 기반으로 구축되었습니다.  Microsoft Azure 서비스는 기초형, 일반형, 특수형의 세 가지 범주로 그룹화됩니다.  Azure NetApp Files 특수 범주에 속하며 이미 여러 지역에 배포된 하드웨어에 의해 지원됩니다.  Azure NetApp Files 고가용성(HA) 기능이 내장되어 있어 대부분의 중단으로부터 데이터를 보호하고 업계 최고 수준인 99.99%^ 가동 시간 SLA를 제공합니다.
+
+NFS 데이터 저장소로서의 ANF에 대한 자세한 내용은 다음을 방문하세요.
+
+* link:vmw-azure-avs-nfs-ds-overview.html["보충 NFS 데이터 저장소로서의 ANF: 개요"]
+* link:vmw-azure-avs-nfs-ds-config.html["Azure의 보충 NFS 데이터 저장소 옵션"]
+
+
+
+
+== 게스트 연결 스토리지로서의 Azure NetApp Files (ANF)
+
+Azure NetApp Files 엔터프라이즈급 데이터 관리 및 저장 기능을 Azure에 제공하여 워크로드와 애플리케이션을 손쉽게 관리할 수 있도록 해줍니다.  워크로드를 클라우드로 마이그레이션하여 성능 저하 없이 실행하세요.
+
+Azure NetApp Files 장애물을 제거하여 모든 파일 기반 애플리케이션을 클라우드로 옮길 수 있도록 해줍니다.  처음으로 애플리케이션을 다시 설계할 필요가 없고, 복잡하지 않게 애플리케이션을 위한 영구 저장소를 확보할 수 있습니다.
+
+이 서비스는 Microsoft Azure Portal을 통해 제공되므로 사용자는 Microsoft Enterprise Agreement의 일부로 완벽하게 관리되는 서비스를 경험할 수 있습니다.  Microsoft가 관리하는 세계적 수준의 지원을 통해 완벽한 안심을 누리세요.  이 단일 솔루션을 사용하면 다중 프로토콜 워크로드를 빠르고 쉽게 추가할 수 있습니다. 레거시 환경에서도 Windows 및 Linux 파일 기반 애플리케이션을 빌드하고 배포할 수 있습니다.
+
+자세한 내용은 다음을 방문하세요.link:vmw-azure-avs-guest-storage.html#anf["게스트 연결 스토리지로서의 ANF"] .
+
+
+
+== 게스트 연결 스토리지로서의 Cloud Volumes ONTAP (CVO)
+
+Cloud Volumes ONTAP (CVO)은 NetApp의 ONTAP 스토리지 소프트웨어를 기반으로 구축된 업계 최고의 클라우드 데이터 관리 솔루션으로, Amazon Web Services(AWS), Microsoft Azure 및 Google Cloud Platform(GCP)에서 기본적으로 제공됩니다.
+
+ONTAP 은 클라우드 기반 스토리지를 사용하는 소프트웨어 정의 버전으로, 클라우드와 온프레미스에서 동일한 스토리지 소프트웨어를 사용할 수 있어 데이터를 관리하는 완전히 새로운 방법에 대한 IT 직원의 재교육 필요성이 줄어듭니다.
+
+CVO를 사용하면 고객은 엣지에서 데이터 센터, 클라우드로 원활하게 데이터를 이동할 수 있으며, 하이브리드 클라우드를 하나로 통합할 수 있습니다. 이 모든 기능은 단일 창 관리 콘솔인 NetApp Cloud Manager를 통해 관리할 수 있습니다.
+
+CVO는 설계상 클라우드에서 가장 까다로운 애플리케이션도 만족시킬 수 있는 극한의 성능과 고급 데이터 관리 기능을 제공합니다.
+
+자세한 내용은 다음을 방문하세요.link:vmw-azure-avs-guest-storage.html#azure-cvo["게스트 연결 스토리지로서의 CVO"] .

@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-security-overview.html 
+keywords: secure, architecture, tenancy model, identity management, control plane, security hardening, encryption, zero trust, ransomware 
+summary: Google Cloud의 Google Cloud NetApp Volumes 기본적으로 데이터를 보호하는 다양한 방법을 제공합니다. 
+---
+= Google Cloud의 Google Cloud NetApp Volumes 데이터를 보호하는 방법
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Google Cloud의 Google Cloud NetApp Volumes 기본적으로 데이터를 보호하는 다양한 방법을 제공합니다.
+
+
+
+== 보안 아키텍처 및 테넌시 모델
+
+Google Cloud NetApp Volumes 서비스 관리(제어 평면)와 데이터 액세스(데이터 평면)를 여러 엔드포인트에 분할하여 어느 쪽도 다른 쪽에 영향을 미치지 않도록 하여 Google Cloud에서 안전한 아키텍처를 제공합니다(섹션 참조).link:gcp-gcnv-arch-detail.html["Google Cloud NetApp Volumes 아키텍처"] ).  Google을 사용합니다 https://cloud.google.com/vpc/docs/private-services-access?hl=en_US["개인 서비스 접근"^] (PSA) 프레임워크를 통해 서비스를 제공합니다.  이 프레임워크는 NetApp 에서 제공하고 운영하는 서비스 생산자와 고객 프로젝트의 가상 사설 클라우드(VPC)인 서비스 소비자를 구분합니다. 이 소비자는 Google Cloud NetApp Volumes 파일 공유에 액세스하려는 클라이언트를 호스팅합니다.
+
+이 아키텍처에서는 세입자(섹션 참조)link:gcp-gcnv-arch-detail.html#tenancy-model["임대 모델"] )은 사용자가 명시적으로 연결하지 않는 한 서로 완전히 분리된 Google Cloud 프로젝트로 정의됩니다.  테넌트는 Google Cloud NetApp Volumes 볼륨 플랫폼을 사용하여 다른 테넌트로부터 데이터 볼륨, 외부 이름 서비스 및 기타 필수 솔루션 부분을 완전히 격리할 수 있습니다.  Google Cloud NetApp Volumes 플랫폼은 VPC 피어링을 통해 연결되므로 해당 격리가 여기에도 적용됩니다.  공유 VPC를 사용하여 여러 프로젝트 간에 Google Cloud NetApp Volumes 볼륨 공유를 활성화할 수 있습니다(섹션 참조)link:gcp-gcnv-arch-detail.html#shared-vpcs["공유 VPC"] ).  SMB 공유 및 NFS 내보내기에 액세스 제어를 적용하여 데이터 세트를 보거나 수정할 수 있는 사람이나 항목을 제한할 수 있습니다.
+
+
+
+== 제어 평면에 대한 강력한 ID 관리
+
+Google Cloud NetApp Volumes 구성이 이루어지는 제어 평면에서 ID 관리는 다음을 사용하여 관리됩니다. https://cloud.google.com/iam/docs/overview["ID 액세스 관리(IAM)"^] .  IAM은 Google Cloud 프로젝트 인스턴스에 대한 인증(로그인) 및 권한 부여(사용 권한)를 제어할 수 있는 표준 서비스입니다.  모든 구성은 TLS 1.2 암호화를 사용하는 안전한 HTTPS 전송을 통해 Google Cloud NetApp Volumes API를 통해 수행되며, 추가 보안을 위해 JWT 토큰을 사용하여 인증이 수행됩니다.  Google Cloud NetApp Volumes 용 Google 콘솔 UI는 사용자 입력을 Google Cloud NetApp Volumes API 호출로 변환합니다.
+
+
+
+== 보안 강화 - 공격 표면 제한
+
+효과적인 보안의 일부는 서비스에서 사용 가능한 공격 표면의 수를 제한하는 것입니다.  공격 표면에는 저장 데이터, 전송 중인 데이터, 로그인, 데이터 세트 자체 등 다양한 요소가 포함될 수 있습니다.
+
+관리형 서비스는 설계상 본질적으로 일부 공격 영역을 제거합니다.  섹션에 설명된 대로 인프라 관리link:gcp-gcnv-service-operation.html["서비스 운영,"] 전담팀이 처리하고 자동화하여 실제로 사람이 구성을 만지는 횟수를 줄임으로써 의도적이든 의도치 않은 오류든 발생하는 횟수를 줄이는 데 도움이 됩니다.  네트워크는 반드시 필요한 서비스만 서로 접근할 수 있도록 울타리로 둘러싸여 있습니다.  암호화는 데이터 저장소에 내장되어 있으며 데이터 평면에만 Google Cloud NetApp Volumes 관리자가 보안에 주의를 기울여야 합니다.  대부분의 관리를 API 인터페이스 뒤에 숨기면 공격 표면을 제한하여 보안을 확보할 수 있습니다.
+
+
+
+== 제로 트러스트 모델
+
+역사적으로 IT 보안 철학은 신뢰하되 확인하는 것이었으며, 위협을 완화하기 위해 외부 메커니즘(예: 방화벽 및 침입 탐지 시스템)에만 의존하는 것으로 나타났습니다.  그러나 공격과 침해는 피싱, 소셜 엔지니어링, 내부자 위협 및 네트워크에 침입하여 파괴를 일으키는 검증 방법을 제공하는 기타 방법을 통해 검증을 우회하는 방식으로 발전했습니다.
+
+Zero Trust는 보안의 새로운 방법론이 되었으며, 현재의 모토는 "모든 것을 검증하면서도 아무것도 믿지 마라"입니다.  따라서 기본적으로 아무것도 접근이 허용되지 않습니다.  이 만트라는 표준 방화벽과 침입 탐지 시스템(IDS)을 포함한 다양한 방법으로 시행되며 다음과 같은 방법을 통해서도 시행됩니다.
+
+* 강력한 인증 방법(AES 암호화 Kerberos 또는 JWT 토큰 등)
+* 단일 강력한 ID 소스(예: Windows Active Directory, LDAP(Lightweight Directory Access Protocol), Google IAM)
+* 네트워크 분할 및 보안 멀티테넌시(기본적으로 테넌트만 액세스 허용)
+* 최소 권한 액세스 정책을 통한 세분화된 액세스 제어
+* 디지털 감사 및 서류 추적 기능을 갖춘 전담 및 신뢰할 수 있는 관리자의 소규모 독점 목록
+
+
+Google Cloud에서 실행되는 Google Google Cloud NetApp Volumes "아무것도 믿지 않고, 모든 것을 검증한다"는 입장을 구현하여 Zero Trust 모델을 고수합니다.
+
+
+
+== 암호화
+
+정지 상태의 데이터 암호화(섹션 참조)link:gcp-gcnv-data-encrypt-at-rest.html["저장 중 데이터 암호화"] ) NetApp Volume Encryption(NVE)과 함께 XTS-AES-256 암호를 사용하고 비행 중에link:gcp-gcnv-data-encrypt-in-transit.html#smb-encryption["SMB 암호화"] 또는 NFS Kerberos 5p 지원.  지역 간 복제 전송은 TLS 1.2 암호화로 보호되므로 안심할 수 있습니다(섹션 링크:gcp-gcnv-security-considerations.html#랜섬웨어, 맬웨어 및 바이러스의 탐지, 예방 및 완화#cross-region-replication["지역 간 복제"] 참조).  또한 Google 네트워킹은 암호화된 통신도 제공합니다(섹션 참조)link:gcp-gcnv-data-encrypt-in-transit.html["전송 중 데이터 암호화"] ) 공격에 대한 보호 계층을 추가했습니다.  전송 암호화에 대한 자세한 내용은 섹션을 참조하세요.link:gcp-gcnv-data-encrypt-in-transit.html#google-cloud-network["구글 클라우드 네트워크"] .
+
+
+
+== 데이터 보호 및 백업
+
+보안은 단순히 공격을 예방하는 것만이 아닙니다.  또한 공격이 발생할 경우 어떻게 공격을 복구할 것인가에 대한 내용도 있습니다.  이 전략에는 데이터 보호와 백업이 포함됩니다.  Google Cloud NetApp Volumes 중단 발생 시 다른 지역으로 복제하는 방법을 제공합니다(섹션 참조).link:gcp-gcnv-security-considerations.html#cross-region-replication["지역 간 복제"] ) 또는 데이터 세트가 랜섬웨어 공격의 영향을 받는 경우.  또한 다음을 사용하여 Google Cloud NetApp Volumes 인스턴스 외부 위치에 대한 비동기 데이터 백업을 수행할 수도 있습니다.link:gcp-gcnv-security-considerations.html#cloud-volumes-service-backup["Google Cloud NetApp Volumes 백업"] .  정기적으로 백업하면 보안 사고를 완화하는 데 걸리는 시간을 줄이고 관리자의 비용과 걱정을 줄일 수 있습니다.
+
+
+
+== 업계 최고의 스냅샷 복사본을 통한 빠른 랜섬웨어 완화
+
+데이터 보호 및 백업 외에도 Google Cloud NetApp Volumes 변경 불가능한 스냅샷 복사본에 대한 지원을 제공합니다(섹션 참조).link:gcp-gcnv-security-considerations.html#immutable-snapshot-copies["변경 불가능한 스냅샷 복사본"] ) 랜섬웨어 공격으로부터 복구를 허용하는 볼륨(섹션 참조)link:gcp-gcnv-service-operation.html["서비스 운영"] 문제를 발견한 후 몇 초 이내에 최소한의 방해로 해결합니다.  복구 시간과 효과는 스냅샷 일정에 따라 다르지만, 랜섬웨어 공격 시 최소 1시간 간격의 델타를 제공하는 스냅샷 사본을 만들 수 있습니다.  스냅샷 복사는 성능과 용량 사용에 미치는 영향이 미미하며 데이터 세트를 보호하는 데 있어 위험은 적고 보상은 높은 접근 방식입니다.

@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-sm-data-protection.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP 
+summary:  
+---
+= Trident Protect를 사용한 데이터 보호
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 페이지에서는 Trident Protect(ACC)를 사용하여 VMware vSphere 또는 클라우드에서 실행되는 Red Hat OpenShift Container 기반 애플리케이션에 대한 데이터 보호 옵션을 보여줍니다.
+
+사용자가 Red Hat OpenShift를 사용하여 애플리케이션을 현대화하는 과정에서 실수로 인한 삭제나 기타 인적 오류로부터 데이터를 보호하기 위한 데이터 보호 전략이 마련되어야 합니다.  재난으로부터 데이터를 보호하기 위해 규제 또는 규정 준수 목적으로 보호 전략도 필요한 경우가 많습니다.
+
+데이터 보호에 대한 요구 사항은 특정 시점의 복사본으로 되돌리는 것부터 인간의 개입 없이 다른 오류 도메인으로 자동으로 장애 조치하는 것까지 다양합니다.  많은 고객이 ONTAP Kubernetes 애플리케이션용 기본 스토리지 플랫폼으로 선택하는 이유는 멀티테넌시, 멀티 프로토콜, 고성능 및 대용량 제공, 다중 사이트 위치에 대한 복제 및 캐싱, 보안 및 유연성과 같은 풍부한 기능 때문입니다.
+
+고객은 데이터 센터를 확장하기 위해 클라우드 환경을 설정하여 클라우드의 이점을 활용할 수 있을 뿐만 아니라 향후 작업 부하를 이동할 때 유리한 위치를 확보할 수 있습니다.  이러한 고객에게는 OpenShift 애플리케이션과 데이터를 클라우드 환경에 백업하는 것이 불가피한 선택이 됩니다.  그런 다음 애플리케이션과 관련 데이터를 클라우드의 OpenShift 클러스터나 데이터 센터에 복원할 수 있습니다.
+
+
+
+== ACC를 사용한 백업 및 복원
+
+신청서 소유자는 ACC에서 발견한 신청서를 검토하고 업데이트할 수 있습니다.  Trident Protect는 CSI를 사용하여 스냅샷 복사본을 만들고 해당 시점의 스냅샷 복사본을 사용하여 백업을 수행할 수 있습니다.  백업 대상은 클라우드 환경의 객체 저장소가 될 수 있습니다.  예약된 백업과 보관할 백업 버전 수에 대한 보호 정책을 구성할 수 있습니다.  최소 RPO는 1시간입니다.
+
+
+
+=== ACC를 사용하여 백업에서 애플리케이션 복원
+
+image:rhhc-onprem-dp-br.png["Trident 보호 복구 옵션"]
+
+
+
+== 애플리케이션별 실행 후크
+
+스토리지 어레이 수준의 데이터 보호 기능을 사용할 수 있더라도 백업과 복원 애플리케이션의 일관성을 유지하려면 추가 단계가 필요한 경우가 많습니다.  앱별 추가 단계는 다음과 같습니다. - 스냅샷 복사본이 생성되기 전이나 후에 수행할 수 있습니다.  - 백업이 생성되기 전이나 후에.  - 스냅샷 복사본이나 백업에서 복원한 후.
+
+Trident Protect는 실행 후크라고 불리는 사용자 정의 스크립트로 코딩된 이러한 앱별 단계를 실행할 수 있습니다.
+
+NetApp의link:https://github.com/NetApp/Verda["오픈소스 프로젝트 Verda"] 인기 있는 클라우드 기반 애플리케이션에 대한 실행 후크를 제공하여 애플리케이션 보호를 간단하고, 강력하고, 쉽게 조정할 수 있도록 합니다.  저장소에 없는 애플리케이션에 대한 충분한 정보가 있다면 해당 프로젝트에 기여하세요.
+
+
+
+== Redis 애플리케이션의 사전 스냅샷을 위한 샘플 실행 후크입니다.
+
+image:rhhc-onprem-dp-br-hook.png["Trident 프로텍트 처형 후크"]
+
+
+
+== ACC를 사용한 복제
+
+지역적 보호나 낮은 RPO 및 RTO 솔루션의 경우, 애플리케이션을 다른 사이트(바람직하게는 다른 지역)에서 실행되는 다른 Kubernetes 인스턴스에 복제할 수 있습니다.  Trident Protect는 RPO가 5분 정도로 짧은 ONTAP 비동기 SnapMirror 활용합니다.  나타내다link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html["여기"] SnapMirror 설정 지침은 여기를 참조하세요.
+
+
+
+=== ACC가 포함된 SnapMirror
+
+image:rhhc-onprem-dp-rep.png["Trident Protect 복제"]
+
+
+NOTE: san-economy 및 nas-economy 스토리지 드라이버는 복제 기능을 지원하지 않습니다.  나타내다link:https://docs.netapp.com/us-en/astra-control-center/get-started/requirements.html#astra-trident-requirements["여기"] 추가 세부 사항은 다음을 참조하세요.
+
+
+
+=== 데모 비디오:
+
+link:https://www.netapp.tv/details/29504?mcid=35609780286441704190790628065560989458["Trident Protect를 사용한 재해 복구 시연 영상"]
+
+.Trident Protect를 통한 데이터 보호
+video::0cec0c90-4c6f-4018-9e4f-b09700eefb3a[panopto,width=360]
+Trident Protect 데이터 보호 기능에 대한 자세한 내용을 확인할 수 있습니다.link:https://docs.netapp.com/us-en/astra-control-center/concepts/data-protection.html["여기"]
+
+
+
+== ACC를 사용한 재해 복구(복제를 사용한 장애 조치 및 장애 복구)
+
+.애플리케이션 장애 조치 및 장애 복구를 위해 Astra Control 사용
+video::1546191b-bc46-42eb-ac34-b0d60142c58d[panopto,width=360]

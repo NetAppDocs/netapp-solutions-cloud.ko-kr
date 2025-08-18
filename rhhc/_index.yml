@@ -1,0 +1,67 @@
+---
+indexpage:
+  title: Red Hat OpenShift 컨테이너 워크로드를 활용한 NetApp 하이브리드 멀티클라우드
+  summary: Red Hat OpenShift 컨테이너 플랫폼을 기반으로 한 NetApp 하이브리드 멀티클라우드 솔루션은 온프레미스와 퍼블릭
+    클라우드에서 상태 저장 컨테이너 워크로드에 대한 데이터 보호 및 마이그레이션 기능을 조율하는 것이 얼마나 쉬운지 보여주는 전략적 및 기술적
+    역량의 집합입니다.
+  lead: Red Hat OpenShift 컨테이너 플랫폼을 기반으로 한 NetApp 하이브리드 멀티클라우드 솔루션은 온프레미스와 퍼블릭 클라우드에서
+    상태 저장 컨테이너 워크로드에 대한 데이터 보호 및 마이그레이션 기능을 조율하는 것이 얼마나 쉬운지 보여주는 전략적 및 기술적 역량의 집합입니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: 개요
+      url: "../openshift/os-solutions-overview.html"
+    - title: 가치 제안
+      url: "../openshift/os-solutions-value-prop.html"
+    - title: 검증된 솔루션
+      url: "../openshift/os-solutions-validated.html"
+    - title: 검증된 버전
+      url: "../openshift/os-solutions-versions.html"
+    - title: 지원되는 저장 옵션
+      url: "../openshift/os-solutions-storage-options.html"
+  - title: 온프레미스 워크로드
+    links:
+    - title: 온프레미스 솔루션
+      url: "../openshift/os-op-solution.html"
+    - title: 환경 구성
+      url: "../openshift/os-op-setup.html"
+    - title: ACC를 사용하여 데이터 보호
+      url: "../openshift/os-op-data-protection.html"
+    - title: ACC를 사용하여 데이터 마이그레이션
+      url: "../openshift/os-op-data-migration.html"
+  - title: 자체 관리형 하이브리드 클라우드 워크로드
+    links:
+    - title: 솔루션 개요
+      url: "../openshift/os-sm-solution.html"
+    - title: 환경 구성
+      url: "../openshift/os-sm-setup.html"
+    - title: ACC를 사용하여 데이터 보호
+      url: "../openshift/os-sm-data-protection.html"
+    - title: ACC를 사용하여 데이터 마이그레이션
+      url: "../openshift/os-sm-data-migration.html"
+  - title: 공급자 관리 하이브리드 클라우드 워크로드
+    links:
+    - title: 공급자 관리 구성 요소를 갖춘 하이브리드 클라우드 솔루션
+      url: "../openshift/os-pm-solution.html"
+    - title: 환경 구성
+      url: "../openshift/os-pm-setup.html"
+    - title: ACS를 사용하여 데이터 보호
+      url: "../openshift/os-pm-aws-dp.html"
+    - title: BlueXP 사용하여 데이터 마이그레이션
+      url: "../openshift/os-pm-aws-data-migration.html"
+    - title: 추가 솔루션
+      url: "../openshift/os-pm-rosa-additional.html"
+  - title: 타사 도구를 사용하여 컨테이너 앱 보호
+    links:
+    - title: 개요
+      url: "../openshift/os-dp-velero-solution.html"
+    - title: OADP 설치
+      url: "../openshift/os-dp-velero-installation.html"
+    - title: Velero를 사용한 컨테이너 앱 백업
+      url: "../openshift/os-dp-velero-backup.html"
+    - title: Velero를 사용하여 백업에서 복원
+      url: "../openshift/os-dp-velero-restore.html"
+    - title: 앱 마이그레이션
+      url: "../openshift/os-dp-velero-migrate.html"
+    - title: 백업 및 복원 삭제
+      url: "../openshift/os-dp-velero-delete.html"

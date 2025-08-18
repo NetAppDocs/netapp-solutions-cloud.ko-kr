@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-firewall.html 
+keywords: tcp, nfs, smb share, kerberos, active directory, dns 
+summary: Google Cloud NetApp Volumes NFS 및 SMB 공유를 제공하기 위해 여러 개의 TCP 포트를 노출합니다. 
+---
+= 방화벽
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Google Cloud NetApp Volumes NFS 및 SMB 공유를 제공하기 위해 여러 TCP 포트를 노출합니다.
+
+* https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["NFS 액세스에 필요한 포트"^]
+* https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["SMB 접속에 필요한 포트"^]
+
+
+또한 SMB, Kerberos를 포함한 LDAP가 있는 NFS 및 이중 프로토콜 구성에는 Windows Active Directory 도메인에 대한 액세스가 필요합니다.  Active Directory 연결은 다음과 같아야 합니다. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/creating-smb-volumes?hl=en_US["구성됨"^] 지역별로.  Active Directory 도메인 컨트롤러(DC)는 다음을 사용하여 식별됩니다. https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/7fcdce70-5205-44d6-9c3a-260e616a2f04["DNS 기반 DC 검색"^] 지정된 DNS 서버를 사용합니다.  반환된 모든 DC가 사용됩니다.  Active Directory 사이트를 지정하여 적격 DC 목록을 제한할 수 있습니다.
+
+Google Cloud NetApp Volumes CIDR 범위에 할당된 IP 주소로 접근합니다. `gcloud compute address` 명령하는 동안 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/setting-up-private-services-access?hl=en_US["Google Cloud NetApp Volumes 온보딩"^] .  이 CIDR을 소스 주소로 사용하여 Active Directory 도메인 컨트롤러에 대한 인바운드 방화벽을 구성할 수 있습니다.
+
+Active Directory 도메인 컨트롤러는 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["여기에 언급된 대로 Google Cloud NetApp Volumes CIDR에 포트를 노출합니다."^] .

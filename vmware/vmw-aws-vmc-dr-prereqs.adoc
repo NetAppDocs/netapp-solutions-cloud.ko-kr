@@ -1,0 +1,710 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-aws-vmc-dr-prereqs.html 
+keywords: overview, dr, snapcenter, data replication, snapmirror 
+summary: 이 솔루션에서 SnapCenter SQL Server 및 Oracle 애플리케이션 데이터에 대한 애플리케이션 일관성 스냅샷을 제공합니다.  이 구성은 SnapMirror 기술과 함께 온프레미스 AFF 와 FSx ONTAP 클러스터 간에 고속 데이터 복제를 제공합니다.  또한, Veeam Backup & Replication은 가상 머신에 대한 백업 및 복원 기능을 제공합니다. 
+---
+= DR 솔루션 요구 사항, 전제 조건 및 계획
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 솔루션에서 SnapCenter SQL Server 및 Oracle 애플리케이션 데이터에 대한 애플리케이션 일관성 스냅샷을 제공합니다.  이 구성은 SnapMirror 기술과 함께 온프레미스 AFF 와 FSx ONTAP 클러스터 간에 고속 데이터 복제를 제공합니다.  또한, Veeam Backup & Replication은 가상 머신에 대한 백업 및 복원 기능을 제공합니다.
+
+
+
+== 기술
+
+이 솔루션에는 NetApp, VMware, Amazon Web Services(AWS), Veeam의 혁신적인 기술이 포함되어 있습니다.
+
+
+
+=== VMware
+
+.VMware 클라우드 파운데이션
+[%collapsible%open]
+====
+VMware Cloud Foundation 플랫폼은 관리자가 이기종 환경 전반에 논리적 인프라를 프로비저닝할 수 있도록 하는 여러 제품을 통합합니다.  이러한 인프라(도메인이라고 함)는 프라이빗 및 퍼블릭 클라우드에서 일관된 운영을 제공합니다.  Cloud Foundation 소프트웨어에는 고객의 위험을 줄이고 배포를 용이하게 하기 위해 사전 검증되고 적격한 구성 요소를 식별하는 부품 목록이 함께 제공됩니다.
+
+Cloud Foundation BoM의 구성 요소는 다음과 같습니다.
+
+* 클라우드 빌더
+* SDDC 관리자
+* VMware vCenter 서버 어플라이언스
+* VMware ESXi
+* VMware NSX
+* vRealize 자동화
+* vRealize Suite 라이프사이클 관리자
+* vRealize 로그 인사이트
+
+
+VMware Cloud Foundation에 대한 자세한 내용은 다음을 참조하세요. https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html["VMware Cloud Foundation 문서"^] .
+
+====
+.VMware vSphere
+[%collapsible%open]
+====
+VMware vSphere는 물리적 리소스를 고객의 작업 부하와 애플리케이션 요구 사항을 충족하는 데 사용할 수 있는 컴퓨팅, 네트워크 및 스토리지 풀로 변환하는 가상화 플랫폼입니다.  VMware vSphere의 주요 구성 요소는 다음과 같습니다.
+
+* *ESXi.*  이 VMware 하이퍼바이저는 컴퓨팅 프로세서, 메모리, 네트워크 및 기타 리소스를 추상화하고 가상 머신과 컨테이너 워크로드에서 사용할 수 있도록 합니다.
+* *vCenter.*  VMware vCenter는 가상 인프라의 일부로 컴퓨팅 리소스, 네트워킹 및 스토리지와 상호 작용할 수 있는 중앙 관리 환경을 만듭니다.
+
+
+고객은 NetApp ONTAP 사용하여 긴밀한 제품 통합, 견고한 지원, 강력한 기능 및 스토리지 효율성을 통해 견고한 하이브리드 멀티클라우드 환경을 구축함으로써 vSphere 환경의 모든 잠재력을 실현할 수 있습니다.
+
+VMware vSphere에 대한 자세한 내용은 다음을 참조하세요. https://docs.vmware.com/en/VMware-vSphere/index.html["이 링크"^] .
+
+====
+.VMware NSX
+[%collapsible%open]
+====
+일반적으로 네트워크 하이퍼바이저라고 불리는 VMware NSX는 소프트웨어 정의 모델을 사용하여 가상화된 워크로드를 연결합니다.  VMware NSX는 온프레미스와 AWS의 VMware Cloud에서 어디에서나 사용 가능하며, 고객 애플리케이션과 워크로드에 대한 네트워크 가상화와 보안을 강화합니다.
+
+VMware NSX에 대한 자세한 내용은 다음을 참조하세요. https://docs.vmware.com/en/VMware-NSX-T-Data-Center/index.html["이 링크"^] .
+
+====
+
+
+=== NetApp
+
+.NetApp ONTAP
+[%collapsible%open]
+====
+NetApp ONTAP 소프트웨어는 거의 20년 동안 VMware vSphere 환경을 위한 선도적인 스토리지 솔루션으로 자리매김했으며, 비용을 절감하는 동시에 관리를 간소화하는 혁신적인 기능을 지속적으로 추가하고 있습니다. ONTAP vSphere와 함께 사용하면 호스트 하드웨어와 VMware 소프트웨어 비용을 줄일 수 있는 훌륭한 조합입니다.  일관된 고성능을 유지하면서도 기본 스토리지 효율성을 활용하여 더 낮은 비용으로 데이터를 보호할 수도 있습니다.
+
+NetApp ONTAP 에 대한 자세한 내용은 다음을 참조하세요. https://docs.vmware.com/en/VMware-Cloud-on-AWS/index.html["이 링크"^] .
+
+====
+.VMware용 NetApp ONTAP 도구
+[%collapsible%open]
+====
+VMware용 ONTAP 도구는 여러 플러그인을 단일 가상 어플라이언스로 결합하여 NetApp 스토리지 시스템을 사용하는 VMware 환경에서 가상 머신에 대한 종단 간 수명 주기 관리를 제공합니다.  VMware용 ONTAP 도구에는 다음이 포함됩니다.
+
+* *가상 스토리지 콘솔(VSC).*  NetApp 스토리지를 사용하여 VM 및 데이터 저장소에 대한 포괄적인 관리 작업을 수행합니다.
+* * ONTAP 용 VASA 공급자.*  VMware 가상 볼륨(vVols) 및 NetApp 스토리지를 통해 스토리지 정책 기반 관리(SPBM)를 활성화합니다.
+* *스토리지 복제 어댑터(SRA)*.  VMware Site Recovery Manager(SRM)와 함께 사용하면 장애 발생 시 vCenter 데이터 저장소와 가상 머신을 복구합니다.
+
+
+VMware용 ONTAP 도구를 사용하면 사용자는 외부 스토리지를 관리할 수 있을 뿐만 아니라 vVols 및 VMware Site Recovery Manager와 통합할 수도 있습니다.  이를 통해 vCenter 환경 내에서 NetApp 스토리지를 훨씬 더 쉽게 배포하고 운영할 수 있습니다.
+
+VMware용 NetApp ONTAP 도구에 대한 자세한 내용은 다음을 참조하세요. https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/index.html["이 링크"^] .
+
+====
+.NetApp SnapCenter
+[%collapsible%open]
+====
+NetApp SnapCenter software 애플리케이션, 데이터베이스, 파일 시스템 전반에서 데이터 보호를 안전하게 조정하고 관리할 수 있는 사용하기 쉬운 엔터프라이즈 플랫폼입니다. SnapCenter 스토리지 시스템의 활동을 감독하고 규제하는 기능을 희생하지 않으면서도 이러한 작업을 애플리케이션 소유자에게 위임하여 백업, 복원 및 복제 수명 주기 관리를 간소화합니다.  SnapCenter 스토리지 기반 데이터 관리를 활용하여 성능과 가용성을 높이는 동시에 테스트 및 개발 시간을 단축합니다.
+
+SnapCenter Plug-in for VMware vSphere 가상 머신(VM), 데이터 저장소 및 가상 머신 디스크(VMDK)에 대한 충돌 일관성 및 VM 일관성 백업 및 복원 작업을 지원합니다.  또한 가상화된 데이터베이스와 파일 시스템에 대한 애플리케이션 일관성 백업 및 복원 작업을 보호하기 위해 SnapCenter 애플리케이션별 플러그인을 지원합니다.
+
+NetApp SnapCenter 에 대한 자세한 내용은 다음을 참조하세요. https://docs.netapp.com/us-en/snapcenter/["이 링크"^] .
+
+====
+
+
+=== 제3자 데이터 보호
+
+.Veeam 백업 및 복제
+[%collapsible%open]
+====
+Veeam Backup & Replication은 클라우드, 가상 및 물리적 워크로드를 위한 백업, 복구 및 데이터 관리 솔루션입니다.  Veeam Backup & Replication은 NetApp Snapshot 기술과의 특수 통합을 통해 vSphere 환경을 더욱 안전하게 보호합니다.
+
+Veeam Backup & Replication에 대한 자세한 내용은 다음을 참조하세요. https://www.veeam.com/vm-backup-recovery-replication-software.html["이 링크"^] .
+
+====
+
+
+=== 퍼블릭 클라우드
+
+.AWS ID 및 액세스 관리
+[%collapsible%open]
+====
+AWS 환경에는 컴퓨팅, 스토리지, 데이터베이스, 네트워크, 분석 등 다양한 제품이 포함되어 있어 비즈니스 과제를 해결하는 데 도움이 됩니다.  기업은 누가 이러한 제품, 서비스 및 리소스에 액세스할 수 있는지 정의할 수 있어야 합니다.  사용자가 구성을 조작, 변경 또는 추가할 수 있는 조건을 결정하는 것도 마찬가지로 중요합니다.
+
+AWS Identity and Access Management(AIM)는 AWS 서비스와 제품에 대한 액세스를 관리하기 위한 안전한 제어 평면을 제공합니다.  적절하게 구성된 사용자, 액세스 키 및 권한을 통해 VMware Cloud on AWS 및 Amazon FSx 배포할 수 있습니다.
+
+AIM에 대한 자세한 내용은 다음을 참조하세요. https://docs.aws.amazon.com/iam/index.html["이 링크"^] .
+
+====
+.AWS의 VMware 클라우드
+[%collapsible%open]
+====
+AWS의 VMware Cloud는 기본 AWS 서비스에 대한 최적화된 액세스를 통해 VMware의 엔터프라이즈급 SDDC 소프트웨어를 AWS 클라우드에 제공합니다.  VMware Cloud Foundation 기반의 VMware Cloud on AWS는 VMware의 컴퓨팅, 스토리지 및 네트워크 가상화 제품(VMware vSphere, VMware vSAN 및 VMware NSX)과 전용의 탄력적 베어메탈 AWS 인프라에서 실행되도록 최적화된 VMware vCenter Server 관리를 통합합니다.
+
+AWS의 VMware Cloud에 대한 자세한 내용은 다음을 참조하세요. https://docs.vmware.com/en/VMware-Cloud-on-AWS/index.html["이 링크"^] .
+
+====
+.Amazon FSx ONTAP
+[%collapsible%open]
+====
+Amazon FSx ONTAP 은 기본 AWS 서비스로 제공되는 모든 기능을 갖춘 완전 관리형 ONTAP 시스템입니다.  NetApp ONTAP 기반으로 구축되어 완벽하게 관리되는 클라우드 서비스의 간편함을 제공하면서도 친숙한 기능을 제공합니다.
+
+Amazon FSx ONTAP 퍼블릭 클라우드 또는 온프레미스의 VMware를 포함한 다양한 컴퓨팅 유형에 대한 다중 프로토콜 지원을 제공합니다.  현재 게스트 연결 사용 사례와 기술 미리보기에 있는 NFS 데이터 저장소에서 사용 가능한 Amazon FSx ONTAP 사용하면 기업은 온프레미스 환경과 클라우드에서 익숙한 기능을 활용할 수 있습니다.
+
+Amazon FSx ONTAP 에 대한 자세한 내용은 다음을 참조하세요. https://aws.amazon.com/fsx/netapp-ontap/["이 링크"] .
+
+====
+
+
+== 개요 - AWS 게스트 연결 스토리지 재해 복구
+
+이 섹션에서는 사용자가 NetApp 및 VMware와 함께 사용하기 위해 온프레미스 및 클라우드 환경을 확인, 구성 및 검증하는 데 도움이 되는 지침을 제공합니다.  특히 이 솔루션은 온프레미스 ONTAP AFF 와 클라우드용 VMware Cloud 및 AWS FSx ONTAP 사용한 VMware 게스트 연결 사용 사례에 중점을 둡니다.  이 솔루션은 재해 복구 시나리오에서 Oracle과 MS SQL의 두 가지 애플리케이션을 통해 시연됩니다.
+
+.기술과 지식
+[%collapsible%open]
+====
+AWS용 Google Cloud NetApp Volumes 액세스하려면 다음과 같은 기술과 정보가 필요합니다.
+
+* 온프레미스 VMware 및 ONTAP 환경에 대한 액세스 및 지식.
+* VMware Cloud 및 AWS에 대한 접근성과 지식.
+* AWS 및 Amazon FSx ONTAP 에 대한 액세스 및 지식.
+* SDDC 및 AWS 리소스에 대한 지식.
+* 온프레미스와 클라우드 리소스 간의 네트워크 연결에 대한 지식.
+* 재해 복구 시나리오에 대한 실무 지식.
+* VMware에 배포된 애플리케이션에 대한 실무 지식.
+
+
+====
+.행정
+[%collapsible%open]
+====
+온프레미스 또는 클라우드의 리소스와 상호 작용하든, 사용자와 관리자는 필요한 시기에 필요한 리소스를 권한에 따라 프로비저닝할 수 있는 능력과 권한이 있어야 합니다.  ONTAP 및 VMware를 비롯한 온프레미스 시스템과 VMware Cloud 및 AWS를 비롯한 클라우드 리소스에 대한 역할 및 권한의 상호 작용은 성공적인 하이브리드 클라우드 배포에 가장 중요합니다.
+
+VMware 및 ONTAP 온프레미스와 VMware Cloud on AWS 및 FSx ONTAP 사용하여 DR 솔루션을 구축하려면 다음과 같은 관리 작업이 필요합니다.
+
+* 다음 사항의 프로비저닝을 가능하게 하는 역할 및 계정:
++
+** ONTAP 스토리지 리소스
+** VMware VM, 데이터 저장소 등
+** AWS VPC 및 보안 그룹
+
+
+* 온프레미스 VMware 환경 및 ONTAP 프로비저닝
+* VMware 클라우드 환경
+* FSx ONTAP 파일 시스템용 Amazon
+* 온프레미스 환경과 AWS 간 연결
+* AWS VPC에 대한 연결
+
+
+====
+.온프레미스
+[%collapsible%open]
+====
+다음 그림에서 볼 수 있듯이 VMware 가상 환경에는 ESXi 호스트, VMware vCenter Server, NSX 네트워킹 및 기타 구성 요소의 라이선싱이 포함됩니다.  모든 구성 요소는 서로 다르게 라이센스가 부여되며, 기본 구성 요소가 사용 가능한 라이센스 용량을 어떻게 소모하는지 이해하는 것이 중요합니다.
+
+image:dr-vmc-aws-002.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+.ESXi 호스트
+[%collapsible%open]
+=====
+VMware 환경의 컴퓨팅 호스트는 ESXi와 함께 배포됩니다.  다양한 용량 계층에서 vSphere 라이선스를 받으면 가상 머신은 각 호스트의 물리적 CPU와 적용 가능한 기능을 활용할 수 있습니다.
+
+=====
+.VMware vCenter
+[%collapsible%open]
+=====
+ESXi 호스트와 스토리지를 관리하는 것은 vCenter Server를 통해 VMware 관리자가 사용할 수 있는 여러 기능 중 하나입니다.  VMware vCenter 7.0부터 라이선스에 따라 사용 가능한 VMware vCenter 에디션은 세 가지입니다.
+
+* vCenter Server 필수 사항
+* vCenter 서버 파운데이션
+* vCenter 서버 표준
+
+
+=====
+.VMware NSX
+[%collapsible%open]
+=====
+VMware NSX는 관리자에게 고급 기능을 활성화하는 데 필요한 유연성을 제공합니다.  기능은 라이선스가 부여된 NSX-T Edition 버전에 따라 활성화됩니다.
+
+* 전문적인
+* 고급의
+* 엔터프라이즈 플러스
+* 원격 사무실/지사
+
+
+=====
+.NetApp ONTAP
+[%collapsible%open]
+=====
+NetApp ONTAP 라이선싱은 관리자가 NetApp 스토리지 내의 다양한 기능과 특징에 액세스하는 방법을 말합니다.  라이선스는 하나 이상의 소프트웨어 사용 권한에 대한 기록입니다.  라이선스 코드라고도 하는 라이선스 키를 설치하면 스토리지 시스템에서 특정 기능이나 서비스를 사용할 수 있습니다.  예를 들어, ONTAP 라이선스를 통해 모든 주요 산업 표준 클라이언트 프로토콜(NFS, SMB, FC, FCoE, iSCSI, NVMe/FC)을 지원합니다.
+
+Data ONTAP 기능 라이선스는 패키지로 발급되며, 각 패키지에는 여러 기능이나 단일 기능이 포함되어 있습니다.  패키지에는 라이센스 키가 필요하며, 키를 설치하면 패키지의 모든 기능에 액세스할 수 있습니다.
+
+라이센스 유형은 다음과 같습니다.
+
+* *노드 잠금 라이센스.*  노드 잠금 라이선스를 설치하면 노드에 라이선스가 부여된 기능을 사용할 수 있는 권한이 부여됩니다.  클러스터가 라이센스가 부여된 기능을 사용하려면 최소한 하나의 노드에 해당 기능에 대한 라이센스가 부여되어야 합니다.
+* *마스터/사이트 라이센스.*  마스터 라이선스나 사이트 라이선스는 특정 시스템 일련 번호에 구속되지 않습니다.  사이트 라이선스를 설치하면 클러스터의 모든 노드가 라이선스가 부여된 기능을 사용할 수 있습니다.
+* *데모/임시 라이센스.*  데모 또는 임시 라이센스는 특정 시간이 지나면 만료됩니다.  이 라이선스를 사용하면 권한을 구매하지 않고도 특정 소프트웨어 기능을 사용해 볼 수 있습니다.
+* *용량 라이선스(ONTAP Select 및 FabricPool 만 해당).*  ONTAP Select 인스턴스는 사용자가 관리하려는 데이터 양에 따라 라이선스가 부여됩니다.  ONTAP 9.4부터 FabricPool 사용하려면 타사 스토리지 계층(예: AWS)과 함께 용량 라이선스가 필요합니다.
+
+
+=====
+.NetApp SnapCenter
+[%collapsible%open]
+=====
+SnapCenter 데이터 보호 작업을 수행하기 위해 여러 개의 라이선스가 필요합니다.  설치하는 SnapCenter 라이선스 유형은 스토리지 환경과 사용하려는 기능에 따라 달라집니다.  SnapCenter Standard 라이선스는 애플리케이션, 데이터베이스, 파일 시스템 및 가상 머신을 보호합니다.  SnapCenter 에 스토리지 시스템을 추가하기 전에 하나 이상의 SnapCenter 라이선스를 설치해야 합니다.
+
+애플리케이션, 데이터베이스, 파일 시스템 및 가상 머신을 보호하려면 FAS 또는 AFF 스토리지 시스템에 표준 컨트롤러 기반 라이선스가 설치되어 있거나 ONTAP Select 및 Cloud Volumes ONTAP 플랫폼에 표준 용량 기반 라이선스가 설치되어 있어야 합니다.
+
+이 솔루션에 대한 다음 SnapCenter 백업 필수 구성 요소를 참조하세요.
+
+* 백업된 데이터베이스와 구성 파일을 찾기 위해 온프레미스 ONTAP 시스템에 볼륨과 SMB 공유를 생성했습니다.
+* 온프레미스 ONTAP 시스템과 AWS 계정의 FSx 또는 CVO 간의 SnapMirror 관계입니다.  백업된 SnapCenter 데이터베이스와 구성 파일이 포함된 스냅샷을 전송하는 데 사용됩니다.
+* EC2 인스턴스나 VMware Cloud SDDC의 VM에 있는 클라우드 계정에 Windows Server가 설치되어 있습니다.
+* VMware Cloud의 Windows EC2 인스턴스 또는 VM에 SnapCenter 설치되었습니다.
+
+
+=====
+.MS-SQL
+[%collapsible%open]
+=====
+이 솔루션 검증의 일환으로 MS SQL을 사용하여 재해 복구를 시연합니다.
+
+MS SQL 및 NetApp ONTAP 에 대한 모범 사례에 대한 자세한 내용은 다음을 참조하세요. https://www.netapp.com/media/8585-tr4590.pdf["이 링크"^] .
+
+=====
+.신탁
+[%collapsible%open]
+=====
+이 솔루션 검증의 일환으로 ORACLE을 사용하여 재해 복구를 시연합니다.  ORACLE 및 NetApp ONTAP 에 대한 모범 사례에 대한 자세한 내용은 다음을 참조하세요. https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["이 링크"^] .
+
+=====
+.빔
+[%collapsible%open]
+=====
+이 솔루션 검증의 일환으로 Veeam을 사용하여 재해 복구를 시연합니다.  Veeam 및 NetApp ONTAP 에 대한 모범 사례에 대한 자세한 내용은 다음을 참조하세요. https://www.veeam.com/wp-netapp-configuration-best-practices-guide.html["이 링크"^] .
+
+=====
+====
+.클라우드
+[%collapsible%open]
+====
+.AWS
+[%collapsible%open]
+=====
+다음 작업을 수행할 수 있어야 합니다.
+
+* 도메인 서비스를 배포하고 구성합니다.
+* 지정된 VPC의 애플리케이션 요구 사항에 따라 FSx ONTAP 배포합니다.
+* FSx ONTAP 의 트래픽을 허용하도록 AWS Compute Gateway에서 VMware Cloud를 구성합니다.
+* FSx ONTAP 서비스가 배포된 AWS VPC 서브넷과 VMware Cloud on AWS 서브넷 간 통신을 허용하도록 AWS 보안 그룹을 구성합니다.
+
+
+=====
+.VMware 클라우드
+[%collapsible%open]
+=====
+다음 작업을 수행할 수 있어야 합니다.
+
+* AWS SDDC에서 VMware Cloud를 구성합니다.
+
+
+=====
+.클라우드 관리자 계정 확인
+[%collapsible%open]
+=====
+NetApp Cloud Manager를 사용하여 리소스를 배포할 수 있어야 합니다.  이를 확인하려면 다음 작업을 완료하세요.
+
+* https://docs.netapp.com/us-en/bluexp-setup-admin/concept-modes.html["Cloud Central에 가입하세요"^]아직 하지 않았다면.
+* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html["Cloud Manager에 로그인하세요"^] .
+* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-setting-up-netapp-accounts.html["작업 공간 및 사용자 설정"^] .
+* https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html["커넥터 만들기"^] .
+
+
+=====
+.Amazon FSx ONTAP
+[%collapsible%open]
+=====
+AWS 계정이 생기면 다음 작업을 수행할 수 있어야 합니다.
+
+* NetApp ONTAP 파일 시스템에 대한 Amazon FSx 프로비저닝할 수 있는 IAM 관리 사용자를 만듭니다.
+
+
+=====
+====
+.구성 전제 조건
+[%collapsible%open]
+====
+고객의 다양한 토폴로지를 고려하여, 이 섹션에서는 온프레미스에서 클라우드 리소스로의 통신을 지원하는 데 필요한 포트에 초점을 맞춥니다.
+
+.필수 포트 및 방화벽 고려 사항
+[%collapsible%open]
+=====
+다음 표에서는 인프라 전체에서 활성화해야 하는 포트를 설명합니다.
+
+Veeam Backup & Replication 소프트웨어에 필요한 포트의 보다 포괄적인 목록을 보려면 다음을 따르세요. https://helpcenter.veeam.com/docs/backup/vsphere/used_ports.html?zoom_highlight=port+requirements&ver=110["이 링크"^] .
+
+SnapCenter 에 대한 포트 요구 사항의 보다 포괄적인 목록을 보려면 다음을 따르세요. https://docs.netapp.com/ocsc-41/index.jsp?topic=%2Fcom.netapp.doc.ocsc-isg%2FGUID-6B5E4464-FE9A-4D2A-B526-E6F4298C9550.html["이 링크"^] .
+
+다음 표에는 Microsoft Windows Server에 대한 Veeam 포트 요구 사항이 나와 있습니다.
+
+|===
+| 에서 | 에게 | 규약 | 포트 | 노트 
+
+
+| 백업 서버 | 마이크로소프트 윈도우 서버 | TCP | 445 | Veeam Backup & Replication 구성 요소를 배포하려면 포트가 필요합니다. 
+
+
+| 백업 프록시 |  | TCP | 6160 | Veeam 설치 서비스에서 사용하는 기본 포트입니다. 
+
+
+| 백업 저장소 |  | TCP | 2500에서 3500까지 | 데이터 전송 채널과 로그 파일 수집에 사용되는 기본 포트 범위입니다. 
+
+
+| 마운트 서버 |  | TCP | 6162 | Veeam Data Mover에서 사용하는 기본 포트입니다. 
+|===
+
+NOTE: 작업이 사용하는 모든 TCP 연결에 대해 이 범위의 포트 하나가 할당됩니다.
+
+다음 표에는 Linux 서버에 대한 Veeam 포트 요구 사항이 나열되어 있습니다.
+
+|===
+| 에서 | 에게 | 규약 | 포트 | 노트 
+
+
+| 백업 서버 | 리눅스 서버 | TCP | 22 | 콘솔에서 대상 Linux 호스트로의 제어 채널로 사용되는 포트입니다. 
+
+
+|  |  | TCP | 6162 | Veeam Data Mover에서 사용하는 기본 포트입니다. 
+
+
+|  |  | TCP | 2500에서 3500까지 | 데이터 전송 채널과 로그 파일 수집에 사용되는 기본 포트 범위입니다. 
+|===
+
+NOTE: 작업이 사용하는 모든 TCP 연결에 대해 이 범위의 포트 하나가 할당됩니다.
+
+다음 표에는 Veeam 백업 서버 포트 요구 사항이 나와 있습니다.
+
+|===
+| 에서 | 에게 | 규약 | 포트 | 노트 
+
+
+| 백업 서버 | vCenter 서버 | HTTPS, TCP | 443 | vCenter Server에 연결하는 데 사용되는 기본 포트입니다.  콘솔에서 대상 Linux 호스트로의 제어 채널로 사용되는 포트입니다. 
+
+
+|  | Veeam Backup & Replication 구성 데이터베이스를 호스팅하는 Microsoft SQL Server | TCP | 1443 | Veeam Backup & Replication 구성 데이터베이스가 배포된 Microsoft SQL Server와 통신하는 데 사용되는 포트입니다(Microsoft SQL Server 기본 인스턴스를 사용하는 경우). 
+
+
+|  | 모든 백업 서버의 이름 확인을 제공하는 DNS 서버 | TCP | 3389 | DNS 서버와 통신하는 데 사용되는 포트 
+|===
+
+NOTE: vCloud Director를 사용하는 경우 기본 vCenter Server에서 포트 443을 열어야 합니다.
+
+다음 표에는 Veeam Backup Proxy 포트 요구 사항이 나와 있습니다.
+
+|===
+| 에서 | 에게 | 규약 | 포트 | 노트 
+
+
+| 백업 서버 | 백업 프록시 | TCP | 6210 | SMB 파일 공유 백업 중에 VSS 스냅샷을 찍기 위해 Veeam Backup VSS Integration Service에서 사용하는 기본 포트입니다. 
+
+
+| 백업 프록시 | vCenter 서버 | TCP | 1443 | vCenter 설정에서 사용자 정의할 수 있는 기본 VMware 웹 서비스 포트입니다. 
+|===
+다음 표에는 SnapCenter 포트 요구 사항이 나와 있습니다.
+
+|===
+| 포트 유형 | 규약 | 포트 | 노트 
+
+
+| SnapCenter 관리 포트 | HTTPS | 8146 | 이 포트는 SnapCenter 클라이언트( SnapCenter 사용자)와 SnapCenter 서버 간 통신에 사용됩니다.  플러그인 호스트에서 SnapCenter 서버로의 통신에도 사용됩니다. 
+
+
+| SnapCenter SMCore 통신 포트 | HTTPS | 8043 | 이 포트는 SnapCenter 서버와 SnapCenter 플러그인이 설치된 호스트 간의 통신에 사용됩니다. 
+
+
+| Windows 플러그인 호스트, 설치 | TCP | 135, 445 | 이러한 포트는 SnapCenter 서버와 플러그인이 설치되는 호스트 간의 통신에 사용됩니다.  설치 후 포트를 닫을 수 있습니다.  또한 Windows Instrumentation Services는 열려 있어야 하는 포트 49152~65535를 검색합니다. 
+
+
+| Linux 플러그인 호스트, 설치 | SSH | 22 | 이러한 포트는 SnapCenter 서버와 플러그인이 설치되는 호스트 간의 통신에 사용됩니다.  SnapCenter 는 포트를 사용하여 플러그인 패키지 바이너리를 Linux 플러그인 호스트에 복사합니다. 
+
+
+| Windows/Linux용 SnapCenter 플러그인 패키지 | HTTPS | 8145 | 이 포트는 SMCore와 SnapCenter 플러그인이 설치된 호스트 간의 통신에 사용됩니다. 
+
+
+| VMware vSphere vCenter Server 포트 | HTTPS | 443 | 이 포트는 VMware vSphere용 SnapCenter 플러그인과 vCenter 서버 간 통신에 사용됩니다. 
+
+
+| Vmware vSphere 포트용 SnapCenter 플러그인 | HTTPS | 8144 | 이 포트는 vCenter vSphere 웹 클라이언트와 SnapCenter 서버의 통신에 사용됩니다. 
+|===
+=====
+====
+
+
+== 네트워킹
+
+이 솔루션을 사용하려면 NetApp SyncMirror 작업을 수행하기 위해 온프레미스 ONTAP 클러스터에서 AWS FSx ONTAP 상호 연결 클러스터 네트워크 주소로의 성공적인 통신이 필요합니다.  또한 Veeam 백업 서버는 AWS S3 버킷에 액세스할 수 있어야 합니다.  인터넷 전송을 사용하는 대신 기존 VPN이나 Direct Connect 링크를 S3 버킷에 대한 개인 링크로 사용할 수 있습니다.
+
+.구내
+[%collapsible%open]
+====
+ONTAP SAN 환경을 위한 iSCSI, 파이버 채널(FC), 파이버 채널 오버 이더넷(FCoE), 비휘발성 메모리 익스프레스 오버 파이버 채널(NVMe/FC)을 비롯하여 가상화에 사용되는 모든 주요 스토리지 프로토콜을 지원합니다.  ONTAP 또한 게스트 연결을 위해 NFS(v3 및 v4.1)와 SMB 또는 S3를 지원합니다.  사용자 환경에 가장 적합한 것을 자유롭게 선택할 수 있으며, 필요에 따라 단일 시스템에서 프로토콜을 결합할 수 있습니다.  예를 들어, 몇 개의 iSCSI LUN이나 게스트 공유를 사용하여 NFS 데이터 저장소의 일반적인 사용을 확장할 수 있습니다.
+
+이 솔루션은 게스트 VMDK의 온프레미스 데이터 저장소에 NFS 데이터 저장소를 활용하고 게스트 애플리케이션 데이터에 iSCSI와 NFS를 모두 활용합니다.
+
+.클라이언트 네트워크
+[%collapsible%open]
+=====
+VMkernel 네트워크 포트와 소프트웨어 정의 네트워킹은 ESXi 호스트에 대한 연결을 제공하여 VMware 환경 외부의 요소와 통신할 수 있도록 해줍니다.  연결성은 사용되는 VMkernel 인터페이스 유형에 따라 달라집니다.
+
+이 솔루션의 경우 다음 VMkernel 인터페이스가 구성되었습니다.
+
+* 관리
+* v모션
+* NFS
+* iSCSI
+
+
+=====
+.스토리지 네트워크 프로비저닝됨
+[%collapsible%open]
+=====
+LIF(논리적 인터페이스)는 클러스터 내 노드에 대한 네트워크 액세스 지점을 나타냅니다.  이를 통해 클라이언트가 액세스하는 데이터를 저장하는 스토리지 가상 머신과 통신할 수 있습니다.  클러스터가 네트워크를 통해 통신을 보내고 받는 포트에 LIF를 구성할 수 있습니다.
+
+이 솔루션의 경우 LIF는 다음 저장 프로토콜에 맞게 구성됩니다.
+
+* NFS
+* iSCSI
+
+
+=====
+====
+.클라우드 연결 옵션
+[%collapsible%open]
+====
+고객은 온프레미스 환경을 클라우드 리소스에 연결할 때 VPN이나 직접 연결 토폴로지 배포를 포함하여 다양한 옵션을 선택할 수 있습니다.
+
+.가상 사설망(VPN)
+[%collapsible%open]
+=====
+VPN(가상 사설망)은 종종 인터넷 기반 또는 개인 MPLS 네트워크와 안전한 IPSec 터널을 만드는 데 사용됩니다.  VPN은 설정하기 쉽지만, 인터넷 기반일 경우 안정성과 속도가 부족합니다.  엔드포인트는 AWS VPC 또는 VMware Cloud SDDC에서 종료될 수 있습니다.  이 재해 복구 솔루션의 경우 온프레미스 네트워크에서 AWS FSx ONTAP 에 대한 연결을 만들었습니다.  따라서 FSx ONTAP 연결된 AWS VPC(가상 사설 게이트웨이 또는 전송 게이트웨이)에서 종료될 수 있습니다.
+
+VPN 설정은 경로 기반이거나 정책 기반일 수 있습니다.  경로 기반 설정을 사용하면 엔드포인트가 자동으로 경로를 교환하고 설치 프로그램은 새로 생성된 서브넷에 대한 경로를 학습합니다.  정책 기반 설정에서는 로컬 및 원격 서브넷을 정의해야 하며, 새로운 서브넷이 추가되어 IPSec 터널에서 통신이 허용되면 경로를 업데이트해야 합니다.
+
+
+NOTE: 기본 게이트웨이에 IPSec VPN 터널이 생성되지 않은 경우, 로컬 VPN 터널 엔드포인트를 통해 경로 테이블에 원격 네트워크 경로를 정의해야 합니다.
+
+다음 그림은 일반적인 VPN 연결 옵션을 보여줍니다.
+
+image:dr-vmc-aws-003.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+=====
+.직접 연결
+[%collapsible%open]
+=====
+Direct Connect는 AWS 네트워크에 대한 전용 링크를 제공합니다.  전용 연결은 1Gbps, 10Gbps 또는 100Gbps 이더넷 포트를 사용하여 AWS에 대한 링크를 생성합니다.  AWS Direct Connect 파트너는 자체와 AWS 간에 미리 설정된 네트워크 링크를 사용하여 호스팅 연결을 제공하며, 50Mbps에서 최대 10Gbps까지 이용 가능합니다.  기본적으로 트래픽은 암호화되지 않습니다.  그러나 MACsec 또는 IPsec을 사용하여 트래픽을 보호하는 옵션도 있습니다.  MACsec은 2계층 암호화를 제공하는 반면 IPsec은 3계층 암호화를 제공합니다.  MACsec은 어떤 장치가 통신하고 있는지 숨겨 보안을 강화합니다.
+
+고객은 AWS Direct Connect 위치에 라우터 장비를 보유해야 합니다.  이를 설정하려면 AWS 파트너 네트워크(APN)를 활용하세요.  해당 라우터와 AWS 라우터 사이에 물리적 연결이 설정됩니다.  VPC에서 FSx ONTAP 에 대한 액세스를 활성화하려면 Direct Connect에서 VPC로의 개인 가상 인터페이스 또는 전송 가상 인터페이스가 있어야 합니다.  개인 가상 인터페이스를 사용하면 VPC 연결에 대한 직접 연결 확장성이 제한됩니다.
+
+다음 그림은 Direct Connect 인터페이스 옵션을 보여줍니다.
+
+image:dr-vmc-aws-004.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+=====
+.트랜짓 게이트웨이
+[%collapsible%open]
+=====
+트랜짓 게이트웨이는 지역 수준의 구성으로, 지역 내에서 직접 연결-VPC 연결의 확장성을 높여줍니다.  지역 간 연결이 필요한 경우, 전송 게이트웨이를 피어링해야 합니다.  자세한 내용은 다음을 확인하세요. https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html["AWS Direct Connect 설명서"^] .
+
+=====
+====
+.클라우드 네트워크 고려 사항
+[%collapsible%open]
+====
+클라우드에서는 기본 네트워크 인프라를 클라우드 서비스 제공자가 관리하는 반면, 고객은 AWS에서 VPC 네트워크, 서브넷, 라우팅 테이블 등을 관리해야 합니다.  또한 컴퓨팅 에지에서 NSX 네트워크 세그먼트를 관리해야 합니다.  SDDC는 외부 VPC 및 Transit Connect에 대한 경로를 그룹화합니다.
+
+Multi-AZ 가용성을 갖춘 FSx ONTAP VMware Cloud에 연결된 VPC에 배포되면 iSCSI 트래픽은 통신을 활성화하기 위해 필요한 경로 테이블 업데이트를 수신합니다.  기본적으로 다중 AZ 배포의 경우 연결된 VPC에 있는 FSx ONTAP NFS/SMB 서브넷에서 VMware Cloud로 가는 경로는 없습니다.  해당 경로를 정의하기 위해 VMware에서 관리하는 전송 게이트웨이인 VMware Cloud SDDC 그룹을 사용하여 동일한 지역에 있는 VMware Cloud SDDC 간 통신은 물론 외부 VPC 및 다른 전송 게이트웨이와의 통신을 허용했습니다.
+
+
+NOTE: 트랜짓 게이트웨이를 사용하면 데이터 전송 비용이 발생합니다.  특정 지역에 대한 비용 세부 정보는 다음을 참조하세요. https://aws.amazon.com/transit-gateway/pricing/["이 링크"^] .
+
+VMware Cloud SDDC는 단일 가용성 영역에 배포할 수 있으며, 이는 단일 데이터 센터를 보유하는 것과 같습니다.  또한, 가용성 영역에 장애가 발생할 경우 가용성을 높이고 가동 중지 시간을 줄이는 NetApp MetroCluster 솔루션과 유사한 스트레치 클러스터 옵션도 제공됩니다.
+
+데이터 전송 비용을 최소화하려면 VMware Cloud SDDC와 AWS 인스턴스 또는 서비스를 동일한 가용성 영역에 유지하세요.  AWS는 부하를 가용성 영역에 분산하기 위해 계정에 맞는 AZ 순서 목록을 제공하므로, 이름보다는 가용성 영역 ID로 일치시키는 것이 더 좋습니다.  예를 들어, 한 계정(US-East-1a)은 AZ ID 1을 가리키고, 다른 계정(US-East-1c)은 AZ ID 1을 가리킬 수 있습니다.  가용성 영역 ID는 여러 가지 방법으로 검색할 수 있습니다.  다음 예에서는 VPC 서브넷에서 AZ ID를 검색했습니다.
+
+image:dr-vmc-aws-005.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+VMware Cloud SDDC에서는 네트워킹이 NSX로 관리되고, 남북 트래픽 업링크 포트를 처리하는 엣지 게이트웨이(Tier-0 라우터)가 AWS VPC에 연결됩니다.  컴퓨팅 게이트웨이와 관리 게이트웨이(Tier-1 라우터)는 동서 트래픽을 처리합니다.  에지의 업링크 포트가 많이 사용되면 특정 호스트 IP 또는 서브넷과 연결할 트래픽 그룹을 만들 수 있습니다.  트래픽 그룹을 생성하면 트래픽을 분리하기 위한 추가적인 에지 노드가 생성됩니다.  확인하세요 https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-networking-security/GUID-306D3EDC-F94E-4216-B306-413905A4A784.html["VMware 설명서"^] 멀티 에지 설정을 사용하는 데 필요한 최소한의 vSphere 호스트 수에 대해 설명합니다.
+
+.클라이언트 네트워크
+[%collapsible%open]
+=====
+VMware Cloud SDDC를 프로비저닝할 때 VMKernel 포트는 이미 구성되어 사용할 준비가 되어 있습니다.  VMware가 해당 포트를 관리하므로 업데이트할 필요가 없습니다.
+
+다음 그림은 호스트 VMKernel 정보의 샘플을 보여줍니다.
+
+image:dr-vmc-aws-006.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+=====
+.스토리지 네트워크 프로비저닝(iSCSI, NFS)
+[%collapsible%open]
+=====
+VM 게스트 스토리지 네트워크의 경우 일반적으로 포트 그룹을 생성합니다.  NSX를 사용하면 vCenter에서 포트 그룹으로 사용되는 세그먼트를 만들 수 있습니다.  스토리지 네트워크는 라우팅 가능한 서브넷에 있으므로 별도의 네트워크 세그먼트를 만들지 않고도 기본 NIC를 사용하여 LUN에 액세스하거나 NFS 내보내기를 마운트할 수 있습니다.  저장소 트래픽을 분리하려면 추가 세그먼트를 만들고, 규칙을 정의하고, 해당 세그먼트의 MTU 크기를 제어할 수 있습니다.  장애 허용성을 제공하려면 저장 네트워크에 전용 세그먼트를 두 개 이상 두는 것이 좋습니다.  이전에 언급했듯이 업링크 대역폭이 문제가 되면 트래픽 그룹을 만들고 IP 접두사와 게이트웨이를 할당하여 소스 기반 라우팅을 수행할 수 있습니다.
+
+장애 조치 중에 네트워크 세그먼트 매핑을 추측하지 못하도록 DR SDDC의 세그먼트를 소스 환경과 일치시키는 것이 좋습니다.
+
+=====
+.보안 그룹
+[%collapsible%open]
+=====
+다양한 보안 옵션은 AWS VPC와 VMware Cloud SDDC 네트워크에서 안전한 통신을 제공합니다.  VMware Cloud SDDC 네트워크 내에서 NSX 추적 흐름을 사용하여 사용된 규칙을 포함한 경로를 식별할 수 있습니다.  그런 다음 VPC 네트워크에서 네트워크 분석기를 사용하여 흐름 중에 사용되는 경로 테이블, 보안 그룹, 네트워크 액세스 제어 목록을 포함한 경로를 식별할 수 있습니다.
+
+=====
+====
+
+
+== 스토리지
+
+NetApp AFF A-Series 시스템은 클라우드를 활용한 유연한 데이터 관리 옵션을 갖춘 고성능 스토리지 인프라를 제공하여 다양한 기업 시나리오를 충족합니다.  이 솔루션에서는 ONTAP AFF A300 기본 온프레미스 스토리지 시스템으로 사용했습니다.
+
+NetApp ONTAP VMware 및 SnapCenter 용 ONTAP 도구와 함께 솔루션에 사용되어 VMware vSphere와 긴밀하게 통합된 포괄적인 관리 및 애플리케이션 백업 기능을 제공합니다.
+
+.온프레미스
+[%collapsible%open]
+====
+가상 머신과 해당 VMDK 파일을 호스팅하는 VMware 데이터 저장소에 ONTAP 스토리지를 사용했습니다.  VMware는 연결된 데이터 저장소에 대해 여러 스토리지 프로토콜을 지원하며, 이 솔루션에서는 ESXi 호스트의 데이터 저장소에 NFS 볼륨을 사용했습니다.  하지만 ONTAP 스토리지 시스템은 VMware가 지원하는 모든 프로토콜을 지원합니다.
+
+다음 그림은 VMware 스토리지 옵션을 보여줍니다.
+
+image:dr-vmc-aws-007.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+ONTAP 볼륨은 애플리케이션 VM의 iSCSI와 NFS 게스트 연결 스토리지 모두에 사용되었습니다.  우리는 애플리케이션 데이터에 대해 다음과 같은 저장 프로토콜을 사용했습니다.
+
+* 게스트에 연결된 Oracle 데이터베이스 파일을 위한 NFS 볼륨입니다.
+* 게스트에 연결된 Microsoft SQL Server 데이터베이스와 트랜잭션 로그를 위한 iSCSI LUN입니다.
+
+
+|===
+| 운영 체제 | 데이터베이스 유형 | 저장 프로토콜 | 볼륨 설명 
+
+
+| 윈도우 서버 2019 | SQL 서버 2019 | iSCSI | 데이터베이스 파일 
+
+
+|  |  | iSCSI | 로그 파일 
+
+
+| 오라클 리눅스 8.5 | 오라클 19c | NFS | 오라클 바이너리 
+
+
+|  |  | NFS | 오라클 데이터 
+
+
+|  |  | NFS | Oracle 복구 파일 
+|===
+또한 SnapCenter 데이터베이스 백업을 위한 백업 대상뿐만 아니라 기본 Veeam 백업 저장소에도 ONTAP 스토리지를 사용했습니다.
+
+* Veeam 백업 저장소의 SMB 공유.
+* SnapCenter 데이터베이스 백업의 대상으로 SMB 공유를 선택합니다.
+
+
+====
+.클라우드 스토리지
+[%collapsible%open]
+====
+이 솔루션에는 장애 조치 프로세스의 일부로 복원되는 가상 머신을 호스팅하기 위한 AWS의 VMware Cloud가 포함되어 있습니다.  이 글을 쓰는 시점에서 VMware는 VM과 VMDK를 호스팅하는 데이터 저장소에 대해 vSAN 스토리지를 지원합니다.
+
+FSx ONTAP SnapCenter 및 SyncMirror 사용하여 미러링되는 애플리케이션 데이터의 보조 저장소로 사용됩니다.  장애 조치 프로세스의 일부로 FSx ONTAP 클러스터가 기본 스토리지로 변환되고, 데이터베이스 애플리케이션은 FSx 스토리지 클러스터에서 실행되는 정상 기능을 재개할 수 있습니다.
+
+.Amazon FSx ONTAP 설정
+[%collapsible%open]
+=====
+Cloud Manager를 사용하여 AWS FSx ONTAP 배포하려면 다음 지침을 따르세요. https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/start/task-getting-started-fsx.html["이 링크"^] .
+
+FSx ONTAP 배포한 후 온프레미스 ONTAP 인스턴스를 FSx ONTAP 으로 끌어서 놓아 볼륨의 복제 설정을 시작합니다.
+
+다음 그림은 FSx ONTAP 환경을 보여줍니다.
+
+image:dr-vmc-aws-008.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+=====
+.네트워크 인터페이스가 생성됨
+[%collapsible%open]
+=====
+FSx ONTAP 에는 iSCSI, NFS, SMB 및 클러스터 간 네트워크에 사용할 수 있도록 미리 구성된 네트워크 인터페이스가 있습니다.
+
+=====
+.VM 데이터 저장소 저장소
+[%collapsible%open]
+=====
+VMware Cloud SDDC에는 두 개의 VSAN 데이터 저장소가 함께 제공됩니다. `vsandatastore` 그리고 `workloaddatastore` .  우리는 사용했다 `vsandatastore` cloudadmin 자격 증명으로 액세스가 제한된 관리 VM을 호스팅합니다.  작업 부하의 경우 다음을 사용했습니다. `workloaddatastore` .
+
+=====
+====
+
+
+== 컴퓨팅
+
+VMware vSphere는 데이터 센터와 모든 주요 클라우드 공급업체에서 가상화된 인프라를 제공합니다.  이 생태계는 가상화된 컴퓨팅이 위치에 관계없이 일관성을 유지하는 재해 복구 시나리오에 이상적입니다.  이 솔루션은 데이터 센터 위치와 AWS의 VMware Cloud 모두에서 VMware 가상화 컴퓨팅 리소스를 사용합니다.
+
+.온프레미스
+[%collapsible%open]
+====
+이 솔루션은 VMware vSphere v7.0U3를 실행하는 HPE Proliant DL360 Gen 10 서버를 사용합니다.  우리는 SQL 서버와 Oracle 서버에 적절한 리소스를 제공하기 위해 6개의 컴퓨팅 인스턴스를 배포했습니다.
+
+다양한 데이터베이스 크기를 가진 SQL Server 2019를 실행하는 10개의 Windows Server 2019 VM과 다양한 데이터베이스 크기를 가진 Oracle 19c를 실행하는 10개의 Oracle Linux 8.5 VM을 배포했습니다.
+
+====
+.클라우드
+[%collapsible%open]
+====
+우리는 기본 사이트에서 복원된 가상 머신을 실행하는 데 필요한 적절한 리소스를 제공하기 위해 두 개의 호스트를 갖춘 AWS의 VMware Cloud에 SDDC를 배포했습니다.
+
+image:dr-vmc-aws-009.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+====
+
+
+== BlueXP backup and recovery 도구
+
+AWS에서 실행되는 VMware Cloud Volume 서비스로 애플리케이션 VM과 데이터베이스 볼륨을 장애 조치하려면 SnapCenter Server와 Veeam Backup and Replication Server의 실행 인스턴스를 설치하고 구성해야 했습니다.  장애 조치가 완료된 후에는 온프레미스 데이터 센터로의 장애 복구를 계획하고 실행할 때까지 정상적인 백업 작업을 재개하도록 이러한 도구도 구성해야 합니다.
+
+.백업 도구 배포
+[%collapsible%open]
+====
+SnapCenter 서버와 Veeam Backup & Replication 서버는 VMware Cloud SDDC에 설치하거나 VMware Cloud 환경에 네트워크로 연결된 VPC에 있는 EC2 인스턴스에 설치할 수 있습니다.
+
+.SnapCenter 서버
+[%collapsible%open]
+=====
+SnapCenter software NetApp 지원 사이트에서 구할 수 있으며 도메인이나 작업 그룹에 있는 Microsoft Windows 시스템에 설치할 수 있습니다.  자세한 계획 가이드와 설치 지침은 다음에서 확인할 수 있습니다.link:https://docs.netapp.com/us-en/snapcenter/install/install_workflow.html["NetApp 문서 센터"^] .
+
+SnapCenter software 다음에서 찾을 수 있습니다. https://mysupport.netapp.com["이 링크"^] .
+
+=====
+.Veeam 백업 및 복제 서버
+[%collapsible%open]
+=====
+AWS의 VMware Cloud에 있는 Windows 서버나 EC2 인스턴스에 Veeam Backup & Replication 서버를 설치할 수 있습니다.  자세한 구현 지침은 다음을 참조하세요. https://www.veeam.com/documentation-guides-datasheets.html["Veeam 도움말 센터 기술 문서"^] .
+
+=====
+====
+.백업 도구 및 구성
+[%collapsible%open]
+====
+SnapCenter 와 Veeam Backup & Replication을 설치한 후에는 VMware Cloud on AWS에 데이터를 복원하는 데 필요한 작업을 수행하도록 구성해야 합니다.
+
+. SnapCenter 구성
+
+
+[]
+=====
+FSx ONTAP 에 미러링된 애플리케이션 데이터를 복원하려면 먼저 온프레미스 SnapCenter 데이터베이스의 전체 복원을 수행해야 합니다.  이 프로세스가 완료되면 VM과의 통신이 재설정되고 이제 FSx ONTAP 기본 스토리지로 사용하여 애플리케이션 백업을 재개할 수 있습니다.
+
+AWS에 있는 SnapCenter 서버에서 완료해야 할 단계 목록은 다음 섹션을 참조하세요.link:vmw-aws-vmc-guest-storage-dr.html#deploy-secondary-snapcenter["보조 Windows SnapCenter 서버 배포"] .
+
+=====
+.Veeam 백업 및 복제 구성
+[%collapsible%open]
+=====
+Amazon S3 스토리지에 백업된 가상 머신을 복원하려면 Veeam Server를 Windows 서버에 설치하고 VMware Cloud, FSx ONTAP 및 원본 백업 저장소가 포함된 S3 버킷과 통신하도록 구성해야 합니다.  VM이 복원되면 새로운 백업을 수행하기 위해 FSx ONTAP 에 새로운 백업 저장소를 구성해야 합니다.
+
+애플리케이션 VM의 장애 조치를 완료하는 데 필요한 단계의 전체 목록은 섹션을 참조하세요.link:vmw-aws-vmc-guest-storage-dr.html#deploy-secondary-veeam["보조 Veeam 백업 및 복제 서버 배포"] .
+
+=====
+====

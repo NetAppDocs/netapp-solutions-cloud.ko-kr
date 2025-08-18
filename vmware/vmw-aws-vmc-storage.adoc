@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-aws-vmc-storage.html 
+keywords: aws, netapp, fsxn, storage, options, nfs, supplemental, cvo 
+summary: NetApp 스토리지는 게스트 연결 또는 보조 스토리지로 Azure VMware 서비스에 연결될 수 있습니다. 
+---
+= Amazon Web Services: NetApp 스토리지 사용 옵션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp 스토리지는 게스트 연결 또는 보조 스토리지로 Amazon Web Services에 연결될 수 있습니다.
+
+
+
+== 보충 NFS 데이터 저장소로서 Amazon FSx for NetApp ONTAP (FSx ONTAP)
+
+Amazon FSx ONTAP 데이터 요구 사항을 애플리케이션 계층에 원활하게 전달하여 TCO를 줄이는 동시에 파일 서비스와 함께 애플리케이션 워크로드를 배포하고 관리할 수 있는 탁월한 옵션을 제공합니다.  어떤 사용 사례든 Amazon FSx ONTAP 과 함께 VMware Cloud on AWS를 선택하면 클라우드의 이점을 빠르게 실현하고, 온프레미스에서 AWS로 일관된 인프라와 운영을 구현하고, 워크로드를 양방향으로 이식하고, 엔터프라이즈급 용량과 성능을 확보할 수 있습니다.  이는 저장소를 연결하는 데 사용되는 익숙한 프로세스 및 절차와 동일합니다.
+
+자세한 내용은 다음 웹사이트를 방문하세요.
+
+* link:vmw-aws-vmc-nfs-ds-overview.html["보충 NFS 데이터 저장소로서의 FSx ONTAP : 개요"]
+* link:vmw-aws-vmc-nfs-ds-config.html["보충 데이터 저장소로서 ONTAP 용 Amazon FSx"]
+
+
+
+
+== 게스트 연결 스토리지로서 Amazon FSx for NetApp ONTAP
+
+Amazon FSx ONTAP NetApp의 인기 있는 ONTAP 파일 시스템을 기반으로 높은 안정성, 확장성, 고성능, 다양한 기능을 갖춘 파일 스토리지를 제공하는 완전 관리형 서비스입니다.  FSx ONTAP NetApp 파일 시스템의 친숙한 기능, 성능, 기능 및 API 운영과 완벽하게 관리되는 AWS 서비스의 민첩성, 확장성 및 단순성을 결합합니다.
+
+FSx ONTAP AWS나 온프레미스에서 실행되는 Linux, Windows, macOS 컴퓨팅 인스턴스에서 광범위하게 액세스할 수 있는 기능이 풍부하고 빠르며 유연한 공유 파일 스토리지를 제공합니다.  FSx ONTAP 밀리초 미만의 지연 시간을 제공하는 고성능 SSD(Solid State Drive) 스토리지를 제공합니다.  FSx ONTAP 사용하면 데이터의 일부에만 SSD 스토리지 비용을 지불하는 동시에 워크로드에 대해 SSD 수준의 성능을 달성할 수 있습니다.
+
+FSx ONTAP 사용하면 버튼을 클릭하기만 하면 파일의 스냅샷을 생성하고, 복제하고, 복제할 수 있으므로 데이터를 관리하는 것이 더 쉬워집니다.  또한 FSx ONTAP 비용이 저렴하고 탄력적인 스토리지에 데이터를 자동으로 계층화하므로 용량을 프로비저닝하거나 관리할 필요성이 줄어듭니다.
+
+FSx ONTAP 완벽하게 관리되는 백업과 지역 간 재해 복구 지원을 통해 가용성과 내구성이 뛰어난 스토리지를 제공합니다.  FSx ONTAP 널리 사용되는 데이터 보안 및 바이러스 백신 애플리케이션을 지원하여 데이터를 보다 쉽게 보호하고 보안을 강화합니다.
+
+자세한 내용은 다음을 방문하세요.link:vmw-aws-vmc-guest-storage.html#fsx-ontap["게스트 연결 스토리지로서의 FSx ONTAP"]
+
+
+
+== 게스트 연결 스토리지로서의 Cloud Volumes ONTAP (CVO)
+
+클라우드 볼륨 ONTAP 또는 CVO는 NetApp의 ONTAP 스토리지 소프트웨어를 기반으로 구축된 업계 최고의 클라우드 데이터 관리 솔루션으로, Amazon Web Services(AWS), Microsoft Azure 및 Google Cloud Platform(GCP)에서 기본적으로 제공됩니다.
+
+ONTAP 은 클라우드 기반 스토리지를 사용하는 소프트웨어 정의 버전으로, 클라우드와 온프레미스에서 동일한 스토리지 소프트웨어를 사용할 수 있어 데이터를 관리하는 완전히 새로운 방법에 대한 IT 직원의 재교육 필요성이 줄어듭니다.
+
+CVO를 사용하면 고객은 엣지에서 데이터 센터, 클라우드로 원활하게 데이터를 이동할 수 있으며, 하이브리드 클라우드를 하나로 통합할 수 있습니다. 이 모든 기능은 단일 창 관리 콘솔인 NetApp Cloud Manager를 통해 관리할 수 있습니다.
+
+CVO는 설계상 클라우드에서 가장 까다로운 애플리케이션도 만족시킬 수 있는 극한의 성능과 고급 데이터 관리 기능을 제공합니다.
+
+자세한 내용은 다음을 방문하세요.link:vmw-aws-vmc-guest-storage.html#aws-cvo["게스트 연결 스토리지로서의 CVO"] .

@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-hybrid-dr-overview.html 
+keywords: dr, draas, bluexp, disaster recovery, vmfs datastore, nfs datastore, overview 
+summary: 이 문서의 섹션에서는 온프레미스 VMware VM을 다른 지정된 사이트로 재해 복구하도록 BlueXP DRaaS를 구성하는 방법을 설명합니다. 
+---
+= 개요
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+재해 복구는 모든 VMware 관리자의 가장 중요한 관심사입니다.  VMware는 전체 서버를 가상 머신을 구성하는 일련의 파일로 캡슐화하므로 관리자는 복제본, 스냅샷, 복제본과 같은 블록 스토리지 기반 기술을 활용하여 이러한 VM을 보호합니다.  ONTAP 어레이는 볼륨 데이터를 전송하고, 지정된 데이터 저장소 LUN에 있는 가상 머신을 한 사이트에서 다른 사이트로 전송하기 위한 내장 복제 기능을 제공합니다.  BlueXP DRaaS는 vSphere와 통합되어 재해 발생 시 원활한 장애 조치 및 장애 복구를 위해 전체 워크플로를 자동화합니다.  스토리지 복제를 지능형 자동화와 결합함으로써 관리자는 이제 재해 복구 계획을 구성, 자동화 및 테스트할 수 있는 관리 가능한 방법을 갖게 되었을 뿐만 아니라 재해 발생 시 이를 쉽게 실행할 수 있는 수단도 갖게 되었습니다.
+
+VMware vSphere 환경에서 DR 장애 조치에 가장 많은 시간이 소요되는 부분은 DR 사이트에서 VM의 인벤토리를 작성하고, 등록하고, 재구성하고, 전원을 켜는 데 필요한 단계를 실행하는 것입니다.  이상적인 솔루션은 RPO(분 단위)와 RTO(분 단위에서 시간 단위)가 모두 낮습니다.  DR 솔루션에서 종종 간과되는 요소 중 하나는 주기적으로 DR 솔루션을 효율적으로 테스트하는 능력입니다.
+
+DR 솔루션을 설계하려면 다음 요소를 염두에 두십시오.
+
+* 복구 시간 목표(RTO).  RTO는 기업이 재해로부터 얼마나 빨리 복구할 수 있는지를 나타내는 지표로, 더 구체적으로는 비즈니스 서비스를 다시 사용할 수 있도록 복구 프로세스를 실행하는 데 걸리는 시간을 나타냅니다.
+* 복구 지점 목표(RPO)  RPO는 재해가 발생한 시간을 기준으로 복구된 데이터가 사용 가능해진 이후의 경과 시간을 말합니다.
+* 확장성과 적응성.  이 요소에는 수요가 증가함에 따라 저장 리소스를 점진적으로 늘릴 수 있는 능력이 포함됩니다.
+
+
+사용 가능한 솔루션에 대한 자세한 기술 정보는 다음을 참조하세요.
+
+* link:vmw-hybrid-dr-nfs.html["NFS 데이터 저장소에 BlueXP DRaaS를 사용한 DR"]
+* link:vmw-hybrid-dr-vmfs.html["VMFS 데이터 저장소에 BlueXP DRaaS를 사용한 DR"]
+

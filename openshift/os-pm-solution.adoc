@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-pm-solution.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP 
+summary:  
+---
+= 관리형 Red Hat OpenShift 컨테이너 플랫폼 워크로드를 갖춘 NetApp 솔루션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+고객은 "클라우드에서 태어났을 수도 있고", 현대화 여정의 어느 시점에 데이터 센터에서 일부 선택된 워크로드나 모든 워크로드를 클라우드로 옮길 준비가 되었을 수도 있습니다.  이들은 워크로드를 실행하기 위해 클라우드에서 공급자가 관리하는 OpenShift 컨테이너와 공급자가 관리하는 NetApp 스토리지를 사용하기로 선택할 수 있습니다.  컨테이너 워크로드를 위한 성공적인 프로덕션 준비 환경을 구축하려면 클라우드에서 관리형 Red Hat OpenShift 컨테이너 클러스터를 계획하고 배포해야 합니다.  NetApp 3대 퍼블릭 클라우드에서 관리형 Red Hat 솔루션을 위한 완전 관리형 스토리지 제품을 제공합니다.
+
+* Amazon FSx for NetApp ONTAP (FSx ONTAP)*
+
+FSx ONTAP AWS에서 컨테이너를 배포할 때 데이터 보호, 안정성, 유연성을 제공합니다.  Trident 고객의 상태 저장 애플리케이션을 위한 영구 FSx ONTAP 스토리지를 사용하는 동적 스토리지 프로비저너 역할을 합니다.
+
+ROSA는 여러 가용성 영역에 걸쳐 제어 평면 노드를 분산하여 HA 모드로 배포할 수 있는 반면, FSx ONTAP 도 다중 AZ 옵션으로 프로비저닝하여 높은 가용성을 제공하고 AZ 장애로부터 보호할 수 있습니다.
+
+* Google Cloud NetApp Volumes*
+
+Red Hat OpenShift Dedicated는 하이브리드 클라우드 전반에서 애플리케이션을 신속하게 구축, 배포 및 확장할 수 있는 완전 관리형 애플리케이션 플랫폼입니다.  Google Cloud NetApp Volumes ONTAP의 엔터프라이즈 데이터 관리 기능 전체를 Google Cloud의 OpenShift 배포에 적용하는 영구 볼륨을 제공합니다.

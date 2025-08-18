@@ -1,0 +1,354 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-aws-vmc-migrate-hcx.html 
+keywords: aws, vmc, hybrid multicloud, migrate, vmware hcx, hcx 
+summary:  
+---
+= TR 4942: VMware HCX를 사용하여 FSx ONTAP 데이터 저장소로 워크로드 마이그레이션
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Amazon FSx ONTAP 의 보충 NFS 데이터 저장소를 갖춘 Amazon Web Services(AWS)의 VMware Cloud(VMC)에 대한 일반적인 사용 사례는 VMware 워크로드의 마이그레이션입니다.  VMware HCX는 선호되는 옵션으로, VMware가 지원하는 모든 데이터 저장소에서 실행되는 온프레미스 가상 머신(VM)과 해당 데이터를 VMC 데이터 저장소로 옮기는 다양한 마이그레이션 방법을 제공합니다. 여기에는 FSx ONTAP 의 보충 NFS 데이터 저장소도 포함됩니다.
+
+
+
+== 개요: VMware HCX, FSx ONTAP 추가 데이터 저장소 및 VMware Cloud를 사용하여 가상 머신 마이그레이션
+
+VMware HCX는 기본적으로 클라우드 전반의 워크로드 마이그레이션, 워크로드 리밸런싱, 비즈니스 연속성을 간소화하도록 설계된 모빌리티 플랫폼입니다.  이 솔루션은 AWS의 VMware Cloud에 포함되어 있으며, 워크로드를 마이그레이션하는 다양한 방법을 제공하며 재해 복구(DR) 작업에 사용할 수 있습니다.
+
+이 문서에서는 온프레미스와 클라우드 데이터 센터 측에서 모든 주요 구성 요소를 포함하여 VMware HCX를 배포하고 구성하기 위한 단계별 지침을 제공하며, 이를 통해 다양한 VM 마이그레이션 메커니즘을 구현할 수 있습니다.
+
+자세한 내용은 다음을 참조하세요. https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10.html["VMware HCX 사용자 가이드"^] 그리고 https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/getting-started-with-vmware-hcx-4-10/install-checklist-b-hcx-with-a-vmc-sddc-instance.html["설치 체크리스트 B - AWS SDDC 대상 환경에서 VMware Cloud를 사용한 HCX"^] .
+
+.상위 수준 단계
+[%collapsible%open]
+====
+이 목록은 VMware HCX를 설치하고 구성하는 간단한 단계를 제공합니다.
+
+. VMware Cloud Services Console을 통해 VMC 소프트웨어 정의 데이터 센터(SDDC)에 대한 HCX를 활성화합니다.
+. 온프레미스 vCenter Server에 HCX Connector OVA 설치 프로그램을 다운로드하여 배포합니다.
+. 라이선스 키로 HCX를 활성화합니다.
+. 온프레미스 VMware HCX Connector를 VMC HCX Cloud Manager와 페어링합니다.
+. 네트워크 프로필, 컴퓨팅 프로필 및 서비스 메시를 구성합니다.
+. (선택 사항) 네트워크 확장을 수행하여 네트워크를 확장하고 재IP를 방지합니다.
+. 기기 상태를 검증하고 마이그레이션이 가능한지 확인하세요.
+. VM 워크로드를 마이그레이션합니다.
+
+
+====
+.필수 조건
+[%collapsible%open]
+====
+시작하기 전에 다음 전제 조건이 충족되었는지 확인하세요. 자세한 내용은 다음을 참조하세요.  https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/preparing-for-hcx-installations.html["설치 준비"^] .  연결성을 포함한 전제 조건이 충족되면 VMC의 VMware HCX 콘솔에서 라이선스 키를 생성하여 HCX를 구성하고 활성화합니다.  HCX가 활성화되면 vCenter 플러그인이 배포되고 vCenter 콘솔을 사용하여 관리할 수 있습니다.
+
+HCX 활성화 및 배포를 진행하기 전에 다음 설치 단계를 완료해야 합니다.
+
+. 기존 VMC SDDC를 사용하거나 이에 따라 새 SDDC를 만듭니다.link:vmw-aws-vmc-setup.html["NetApp 링크"^] 아니면 이것 https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.getting-started/GUID-EF198D55-03E3-44D1-AC48-6E2ABA31FF02.html["VMware 링크"^] .
+. 온프레미스 vCenter 환경에서 VMC SDDC로 가는 네트워크 경로는 vMotion을 사용하여 VM 마이그레이션을 지원해야 합니다.
+. 필수 사항을 확인하세요 https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/preparing-for-hcx-installations/network-port-and-protocol-requirements.html["방화벽 규칙 및 포트"^] 온프레미스 vCenter Server와 SDDC vCenter 간의 vMotion 트래픽에 허용됩니다.
+. FSx ONTAP NFS 볼륨은 VMC SDDC의 보조 데이터 저장소로 마운트되어야 합니다.  적절한 클러스터에 NFS 데이터 저장소를 연결하려면 여기에 설명된 단계를 따르세요.link:vmw-aws-vmc-nfs-ds-overview.html["NetApp 링크"^] 아니면 이것 https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-D55294A3-7C40-4AD8-80AA-B33A25769CCA.html["VMware 링크"^] .
+
+
+====
+.고수준 아키텍처
+[%collapsible%open]
+====
+테스트 목적으로 이 검증에 사용된 온프레미스 랩 환경은 사이트 간 VPN을 통해 AWS VPC에 연결되었으며, 이를 통해 외부 전송 게이트웨이를 통해 온프레미스에서 AWS 및 VMware 클라우드 SDDC로의 연결이 가능해졌습니다.  HCX 마이그레이션 및 네트워크 확장 트래픽은 온프레미스와 VMware 클라우드 대상 SDDC 간의 인터넷을 통해 흐릅니다.  이 아키텍처는 Direct Connect 개인 가상 인터페이스를 사용하도록 수정될 수 있습니다.
+
+다음 이미지는 상위 수준의 아키텍처를 보여줍니다.
+
+image:fsx-hcx-001.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+====
+
+
+== 솔루션 배포
+
+이 솔루션의 배포를 완료하려면 다음 단계를 따르세요.
+
+.1단계: 애드온 옵션을 사용하여 VMC SDDC를 통해 HCX 활성화
+[%collapsible%open]
+====
+설치를 수행하려면 다음 단계를 완료하세요.
+
+. VMC 콘솔에 로그인하세요 https://vmc.vmware.com/home["vmc.vmware.com"^] 인벤토리에 액세스하세요.
+. 적절한 SDDC를 선택하고 추가 기능에 액세스하려면 SDDC에서 세부 정보 보기를 클릭하고 추가 기능 탭을 선택하세요.
+. VMware HCX에 대해 활성화를 클릭합니다.
++
+
+NOTE: 이 단계를 완료하는 데 최대 25분이 걸립니다.
+
++
+image:fsx-hcx-002.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 배포가 완료되면 HCX Manager와 관련 플러그인을 vCenter Console에서 사용할 수 있는지 확인하여 배포를 검증합니다.
+. HCX Cloud Manager에 액세스하는 데 필요한 포트를 열려면 적절한 관리 게이트웨이 방화벽을 만듭니다. 이제 HCX Cloud Manager가 HCX 작업을 수행할 준비가 되었습니다.
+
+
+====
+.2단계: 온프레미스 vCenter Server에 설치 프로그램 OVA 배포
+[%collapsible%open]
+====
+온프레미스 커넥터가 VMC의 HCX 관리자와 통신하려면 온프레미스 환경에서 적절한 방화벽 포트가 열려 있는지 확인하세요.
+
+. VMC 콘솔에서 HCX 대시보드로 이동한 후 관리로 가서 시스템 업데이트 탭을 선택합니다.  HCX 커넥터 OVA 이미지에 대한 다운로드 링크 요청을 클릭합니다.
+. HCX 커넥터를 다운로드한 후 온프레미스 vCenter Server에 OVA를 배포합니다.  vSphere 클러스터를 마우스 오른쪽 버튼으로 클릭하고 OVF 템플릿 배포 옵션을 선택합니다.
++
+image:fsx-hcx-005.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. OVF 템플릿 배포 마법사에서 필요한 정보를 입력하고 다음을 클릭한 다음 마침을 클릭하여 VMware HCX Connector OVA를 배포합니다.
+. 가상 어플라이언스를 수동으로 켜십시오. 단계별 지침은 다음으로 이동하십시오. https://docs.vmware.com/en/VMware-HCX/services/user-guide/GUID-BFD7E194-CFE5-4259-B74B-991B26A51758.html["VMware HCX 사용자 가이드"^] .
+
+
+====
+.3단계: 라이선스 키로 HCX 커넥터 활성화
+[%collapsible%open]
+====
+온프레미스에 VMware HCX Connector OVA를 배포하고 어플라이언스를 시작한 후 다음 단계를 완료하여 HCX Connector를 활성화합니다.  VMC의 VMware HCX 콘솔에서 라이선스 키를 생성하고 VMware HCX 커넥터 설정 중에 라이선스를 입력합니다.
+
+. VMware Cloud Console에서 인벤토리로 이동하여 SDDC를 선택하고 세부 정보 보기를 클릭합니다.  VMware HCX 타일의 추가 기능 탭에서 HCX 열기를 클릭합니다.
+. 활성화 키 탭에서 활성화 키 만들기를 클릭합니다.  시스템 유형을 HCX 커넥터로 선택하고 확인을 클릭하면 키가 생성됩니다.  활성화 키를 복사하세요.
++
+image:fsx-hcx-007.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
++
+
+NOTE: 온프레미스에 배포된 각 HCX 커넥터에는 별도의 키가 필요합니다.
+
+. 온프레미스 VMware HCX 커넥터에 로그인하세요. `"https://hcxconnectorIP:9443"` 관리자 자격 증명을 사용합니다.
++
+
+NOTE: OVA 배포 중에 정의된 비밀번호를 사용하세요.
+
+. 라이센스 섹션에서 2단계에서 복사한 활성화 키를 입력하고 활성화를 클릭합니다.
++
+
+NOTE: 활성화를 성공적으로 완료하려면 온프레미스 HCX 커넥터가 인터넷에 액세스할 수 있어야 합니다.
+
+. 데이터 센터 위치에서 온프레미스에 VMware HCX Manager를 설치할 위치를 입력합니다.  계속을 클릭하세요.
+. 시스템 이름에서 이름을 업데이트하고 계속을 클릭합니다.
+. 예를 선택한 후 계속을 클릭합니다.
+. 'vCenter 연결'에서 IP 주소나 정규화된 도메인 이름(FQDN)과 vCenter Server의 자격 증명을 입력하고 계속을 클릭합니다.
++
+
+NOTE: 나중에 통신 문제를 피하려면 FQDN을 사용하세요.
+
+. SSO/PSC 구성에서 Platform Services Controller의 FQDN 또는 IP 주소를 입력하고 계속을 클릭합니다.
++
+
+NOTE: vCenter Server의 IP 주소 또는 FQDN을 입력하세요.
+
+. 정보가 올바르게 입력되었는지 확인하고 다시 시작을 클릭하세요.
+. 완료되면 vCenter Server가 녹색으로 표시됩니다.  vCenter Server와 SSO 모두 올바른 구성 매개변수를 가져야 하며, 이는 이전 페이지와 동일해야 합니다.
++
+
+NOTE: 이 프로세스는 약 10~20분 정도 걸리며 플러그인이 vCenter Server에 추가됩니다.
+
+
+
+image:fsx-hcx-008.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+====
+.4단계: 온프레미스 VMware HCX 커넥터를 VMC HCX Cloud Manager와 페어링
+[%collapsible%open]
+====
+. 온프레미스 vCenter Server와 VMC SDDC 간에 사이트 쌍을 생성하려면 온프레미스 vCenter Server에 로그인하고 HCX vSphere Web Client 플러그인에 액세스합니다.
++
+image:fsx-hcx-009.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 인프라에서 사이트 페어링 추가를 클릭합니다.  원격 사이트를 인증하려면 VMC HCX Cloud Manager URL 또는 IP 주소와 CloudAdmin 역할에 대한 자격 증명을 입력하세요.
++
+image:fsx-hcx-010.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
++
+
+NOTE: HCX 정보는 SDDC 설정 페이지에서 검색할 수 있습니다.
+
++
+image:fsx-hcx-011.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
++
+image:fsx-hcx-012.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 사이트 페어링을 시작하려면 연결을 클릭하세요.
++
+
+NOTE: VMware HCX Connector는 포트 443을 통해 HCX Cloud Manager IP와 통신할 수 있어야 합니다.
+
+. 페어링이 생성되면 새로 구성된 사이트 페어링을 HCX 대시보드에서 사용할 수 있습니다.
+
+
+====
+.5단계: 네트워크 프로필, 컴퓨팅 프로필 및 서비스 메시 구성
+[%collapsible%open]
+====
+VMware HCX Interconnect(HCX-IX) 어플라이언스는 인터넷을 통한 보안 터널 기능과 대상 사이트에 대한 개인 연결을 제공하여 복제 및 vMotion 기반 기능을 구현합니다.  상호 연결은 암호화, 트래픽 엔지니어링 및 SD-WAN을 제공합니다.  HCI-IX Interconnect Appliance를 생성하려면 다음 단계를 완료하세요.
+
+. 인프라에서 상호 연결 > 다중 사이트 서비스 메시 > 컴퓨팅 프로필 > 컴퓨팅 프로필 만들기를 선택합니다.
++
+
+NOTE: 컴퓨팅 프로필에는 상호 연결 가상 어플라이언스를 배포하는 데 필요한 컴퓨팅, 스토리지 및 네트워크 배포 매개변수가 포함되어 있습니다.  또한 HCX 서비스에서 VMware 데이터 센터의 어느 부분에 액세스할 수 있는지도 지정합니다.
+
++
+자세한 지침은 다음을 참조하세요. https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/configuring-and-managing-the-hcx-interconnect/configuring-the-hcx-service-mesh/create-a-compute-profile.html["컴퓨팅 프로필 생성"^] .
+
++
+image:fsx-hcx-013.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 컴퓨팅 프로필이 생성된 후, 멀티 사이트 서비스 메시 > 네트워크 프로필 > 네트워크 프로필 생성을 선택하여 네트워크 프로필을 생성합니다.
+. 네트워크 프로필은 HCX가 가상 어플라이언스에 사용할 IP 주소와 네트워크 범위를 정의합니다.
++
+
+NOTE: 이렇게 하려면 두 개 이상의 IP 주소가 필요합니다.  이러한 IP 주소는 관리 네트워크에서 가상 어플라이언스에 할당됩니다.
+
++
+image:fsx-hcx-014.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
++
+자세한 지침은 다음을 참조하세요. https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/configuring-and-managing-the-hcx-interconnect/configuring-the-hcx-service-mesh/create-a-network-profile.html["네트워크 프로필 만들기"^] .
+
++
+
+NOTE: 인터넷을 통해 SD-WAN에 연결하는 경우 네트워킹 및 보안 섹션에서 공용 IP를 예약해야 합니다.
+
+. 서비스 메시를 생성하려면 Interconnect 옵션 내에서 Service Mesh 탭을 선택하고 온-프레미스 및 VMC SDDC 사이트를 선택합니다.
++
+서비스 메시는 로컬 및 원격 컴퓨팅과 네트워크 프로필 쌍을 설정합니다.
+
++
+image:fsx-hcx-015.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
++
+
+NOTE: 이 프로세스의 일부에는 소스 사이트와 대상 사이트 모두에 자동으로 구성되는 HCX 어플라이언스를 배포하여 안전한 전송 패브릭을 만드는 작업이 포함됩니다.
+
+. 소스 및 원격 컴퓨팅 프로필을 선택하고 계속을 클릭합니다.
++
+image:fsx-hcx-016.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 활성화할 서비스를 선택하고 계속을 클릭하세요.
++
+image:fsx-hcx-017.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
++
+
+NOTE: 복제 지원 vMotion 마이그레이션, SRM 통합 및 OS 지원 마이그레이션에는 HCX Enterprise 라이선스가 필요합니다.
+
+. 서비스 메시의 이름을 만들고 마침을 클릭하여 생성 프로세스를 시작합니다.  배포를 완료하는 데 약 30분이 소요됩니다.  서비스 메시가 구성된 후 워크로드 VM을 마이그레이션하는 데 필요한 가상 인프라와 네트워킹이 생성되었습니다.
++
+image:fsx-hcx-018.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+====
+.6단계: 워크로드 마이그레이션
+[%collapsible%open]
+====
+HCX는 온프레미스와 VMC SDDC와 같은 두 개 이상의 서로 다른 환경 간에 양방향 마이그레이션 서비스를 제공합니다.  다양한 마이그레이션 기술을 사용하여 HCX 활성화 사이트 간에 애플리케이션 워크로드를 마이그레이션할 수 있습니다. 이러한 마이그레이션 기술에는 HCX 대량 마이그레이션, HCX vMotion, HCX 콜드 마이그레이션, HCX 복제 지원 vMotion(HCX Enterprise 에디션에서 사용 가능), HCX OS 지원 마이그레이션(HCX Enterprise 에디션에서 사용 가능)이 있습니다.
+
+사용 가능한 HCX 마이그레이션 기술에 대해 자세히 알아보려면 다음을 참조하세요. https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/migrating-virtual-machines-with-vmware-hcx/vmware-hcx-migration-types.html["VMware HCX 마이그레이션 유형"^]
+
+HCX-IX 어플라이언스는 Mobility Agent 서비스를 사용하여 vMotion, Cold 및 Replication Assisted vMotion(RAV) 마이그레이션을 수행합니다.
+
+
+NOTE: HCX-IX 어플라이언스는 vCenter Server에 Mobility Agent 서비스를 호스트 개체로 추가합니다.  이 개체에 표시되는 프로세서, 메모리, 스토리지 및 네트워킹 리소스는 IX 어플라이언스를 호스팅하는 물리적 하이퍼바이저의 실제 소비량을 나타내지 않습니다.
+
+image:fsx-hcx-019.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+.VMware HCX vMotion
+[%collapsible%open]
+=====
+이 섹션에서는 HCX vMotion 메커니즘을 설명합니다.  이 마이그레이션 기술은 VMware vMotion 프로토콜을 사용하여 VM을 VMC SDDC로 마이그레이션합니다.  vMotion 마이그레이션 옵션은 한 번에 하나의 VM의 VM 상태를 마이그레이션하는 데 사용됩니다.  이 마이그레이션 방법을 사용하는 동안 서비스 중단은 발생하지 않습니다.
+
+
+NOTE: IP 주소를 변경하지 않고도 VM을 마이그레이션하려면 VM이 연결된 포트 그룹에 대해 네트워크 확장이 있어야 합니다.
+
+. 온프레미스 vSphere 클라이언트에서 인벤토리로 이동하여 마이그레이션할 VM을 마우스 오른쪽 버튼으로 클릭하고 HCX 작업 > HCX 대상 사이트로 마이그레이션을 선택합니다.
++
+image:fsx-hcx-020.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 가상 머신 마이그레이션 마법사에서 원격 사이트 연결(대상 VMC SDDC)을 선택합니다.
++
+image:fsx-hcx-021.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 그룹 이름을 추가하고 전송 및 배치에서 필수 필드(클러스터, 저장소, 대상 네트워크)를 업데이트한 후 확인을 클릭합니다.
++
+image:fsx-hcx-022.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+. 유효성 검사가 완료되면 '이동'을 클릭하여 마이그레이션을 시작합니다.
++
+
+NOTE: vMotion 전송은 VM의 활성 메모리, 실행 상태, IP 주소, MAC 주소를 캡처합니다.  HCX vMotion의 요구 사항 및 제한 사항에 대한 자세한 내용은 다음을 참조하세요. https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/migrating-virtual-machines-with-vmware-hcx/understanding-vmware-hcx-vmotion-and-cold-migration.html#GUID-517866F6-AF06-4EFC-8FAE-DA067418D584-en["VMware HCX vMotion 및 콜드 마이그레이션 이해"^] .
+
+. HCX > 마이그레이션 대시보드에서 vMotion의 진행 상황과 완료를 모니터링할 수 있습니다.
++
+image:fsx-hcx-023.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+=====
+.VMware 복제 지원 vMotion
+[%collapsible%open]
+=====
+VMware 설명서에서 알 수 있듯이 VMware HCX 복제 지원 vMotion(RAV)은 대량 마이그레이션과 vMotion의 이점을 결합합니다.  대량 마이그레이션은 vSphere Replication을 사용하여 여러 VM을 병렬로 마이그레이션합니다. 전환 중에 VM이 재부팅됩니다.  HCX vMotion은 가동 중지 시간 없이 마이그레이션을 수행하지만 복제 그룹에서 한 번에 하나의 VM씩 순차적으로 수행됩니다.  RAV는 VM을 병렬로 복제하고 전환 창까지 동기화를 유지합니다.  전환 프로세스 동안 VM 가동 중지 시간 없이 한 번에 하나의 VM만 마이그레이션합니다.
+
+다음 스크린샷은 복제 지원 vMotion으로 마이그레이션 프로필을 보여줍니다.
+
+image:fsx-hcx-024.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+소수의 VM에 대한 vMotion과 비교했을 때 복제 기간이 더 길어질 수 있습니다.  RAV를 사용하면 델타만 동기화하고 메모리 내용을 포함합니다.  다음은 마이그레이션 상태의 스크린샷입니다. 마이그레이션 시작 시간은 같고 종료 시간은 각 VM마다 다릅니다.
+
+image:fsx-hcx-025.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+=====
+HCX 마이그레이션 옵션에 대한 추가 정보와 HCX를 사용하여 온프레미스에서 VMware Cloud on AWS로 워크로드를 마이그레이션하는 방법에 대한 자세한 내용은 다음을 참조하세요. https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/migrating-virtual-machines-with-vmware-hcx.html["VMware HCX 사용자 가이드"^] .
+
+
+NOTE: VMware HCX vMotion에는 100Mbps 이상의 처리량 성능이 필요합니다.
+
+
+NOTE: 대상 VMC FSx ONTAP 데이터 저장소에는 마이그레이션을 수용할 수 있는 충분한 공간이 있어야 합니다.
+
+====
+
+
+== 결론
+
+온프레미스의 모든 유형/공급업체 스토리지에 있는 데이터를 포함하여 모든 클라우드 또는 하이브리드 클라우드를 타겟으로 삼는지 여부에 관계없이 Amazon FSx ONTAP 과 HCX는 데이터 요구 사항을 애플리케이션 계층에 원활하게 전달하여 TCO를 줄이는 동시에 워크로드를 배포하고 마이그레이션할 수 있는 탁월한 옵션을 제공합니다.  어떤 사용 사례에서든 FSx ONTAP 데이터 저장소와 함께 VMC를 선택하면 클라우드의 이점을 빠르게 실현하고, 온프레미스와 여러 클라우드에서 일관된 인프라와 운영을 구현하고, 워크로드를 양방향으로 이동시키고, 엔터프라이즈급 용량과 성능을 확보할 수 있습니다.  이는 VMware vSphere 복제, VMware vMotion 또는 NFC 복사를 사용하여 스토리지를 연결하고 VM을 마이그레이션하는 데 사용되는 익숙한 프로세스 및 절차와 동일합니다.
+
+
+
+== 테이크아웃
+
+이 문서의 주요 내용은 다음과 같습니다.
+
+* 이제 Amazon FSx ONTAP VMC SDDC의 데이터 저장소로 사용할 수 있습니다.
+* FSx ONTAP 데이터 저장소를 실행하는 VMC로 온프레미스 데이터 센터의 데이터를 쉽게 마이그레이션할 수 있습니다.
+* 마이그레이션 작업 중에 용량 및 성능 요구 사항을 충족하기 위해 FSx ONTAP 데이터 저장소를 쉽게 확장하거나 축소할 수 있습니다.
+
+
+
+
+== 추가 정보를 찾을 수 있는 곳
+
+이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 웹사이트 링크를 참조하세요.
+
+* VMware Cloud 설명서
++
+https://docs.vmware.com/en/VMware-Cloud-on-AWS/["https://docs.vmware.com/en/VMware-Cloud-on-AWS/"^]
+
+* Amazon FSx ONTAP 설명서
++
+https://docs.aws.amazon.com/fsx/latest/ONTAPGuide["https://docs.aws.amazon.com/fsx/latest/ONTAPGuide"^]
+
++
+VMware HCX 사용자 가이드
+
+* https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10.html["https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10.html"^]
+

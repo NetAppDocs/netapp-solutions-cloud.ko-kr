@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-arch-detail.html 
+keywords: tenancy model, shared vpcs, service controls, packet sniffing, trace considerations 
+summary: 'CloudSQL, Google Cloud VMware Engine(GCVE), FileStore 등 다른 Google Cloud 기본 서비스와 유사한 방식으로 Google Cloud NetApp Volumes Google PSA를 사용하여 서비스를 제공합니다.' 
+---
+= Google Cloud NetApp Volumes 아키텍처
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+CloudSQL, Google Cloud VMware Engine(GCVE), FileStore와 같은 다른 Google Cloud 기본 서비스와 유사한 방식으로 Google Cloud NetApp Volumes 사용합니다. https://cloud.google.com/vpc/docs/private-services-access?hl=en_US["구글 공익광고"^] 서비스를 제공하기 위해.  PSA에서는 서비스가 서비스 생산자 프로젝트 내부에 구축됩니다. https://cloud.google.com/vpc/docs/vpc-peering?hl=en_US["VPC 네트워크 피어링"^] 서비스 소비자와 연결합니다.  서비스 제작자는 NetApp 에서 제공하고 운영하며, 서비스 소비자는 고객 프로젝트의 VPC로, Google Cloud NetApp Volumes 파일 공유에 액세스하려는 클라이언트를 호스팅합니다.
+
+다음 그림은 다음에서 참조됩니다. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/architecture?hl=en_US["건축 섹션"^] Google Cloud NetApp Volumes 설명서에서는 개략적인 보기를 보여줍니다.
+
+image:ncvs-gc-001.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+점선 위의 부분은 볼륨 수명 주기를 제어하는 서비스의 제어 평면을 보여줍니다.  점선 아래 부분은 데이터 평면을 보여줍니다.  왼쪽 파란색 상자는 사용자 VPC(서비스 소비자)를 나타내고, 오른쪽 파란색 상자는 NetApp 에서 제공하는 서비스 생산자를 나타냅니다.  둘 다 VPC 피어링을 통해 연결됩니다.
+
+
+
+== 임대 모델
+
+Google Cloud NetApp Volumes 에서는 개별 프로젝트가 고유한 테넌트로 간주됩니다.  즉, 볼륨 조작, 스냅샷 복사본 등이 프로젝트별로 수행된다는 의미입니다.  즉, 모든 볼륨은 해당 볼륨이 생성된 프로젝트의 소유이며, 기본적으로 해당 프로젝트에서만 볼륨 내부의 데이터를 관리하고 액세스할 수 있습니다.  이는 서비스의 제어 평면 뷰로 간주됩니다.
+
+
+
+=== 공유 VPC
+
+데이터 평면 보기에서 Google Cloud NetApp Volumes 공유 VPC에 연결할 수 있습니다.  호스팅 프로젝트나 공유 VPC에 연결된 서비스 프로젝트 중 하나에서 볼륨을 생성할 수 있습니다.  해당 공유 VPC에 연결된 모든 프로젝트(호스트 또는 서비스)는 네트워크 계층(TCP/IP)에서 볼륨에 도달할 수 있습니다.  공유 VPC에서 네트워크로 연결된 모든 클라이언트는 NAS 프로토콜을 통해 데이터에 액세스할 가능성이 있으므로 개별 볼륨에 대한 액세스 제어(예: 사용자/그룹 액세스 제어 목록(ACL) 및 NFS 내보내기용 호스트 이름/IP 주소)를 사용하여 누가 데이터에 액세스할 수 있는지 제어해야 합니다.
+
+고객 프로젝트당 최대 5개의 VPC에 Google Cloud NetApp Volumes 연결할 수 있습니다.  제어 평면에서 이 프로젝트를 사용하면 연결된 VPC에 관계없이 생성된 모든 볼륨을 관리할 수 있습니다.  데이터 플레인에서 VPC는 서로 분리되어 있으며, 각 볼륨은 하나의 VPC에만 연결될 수 있습니다.
+
+개별 볼륨에 대한 액세스는 프로토콜별(NFS/SMB) 액세스 제어 메커니즘을 통해 제어됩니다.
+
+즉, 네트워크 계층에서는 공유 VPC에 연결된 모든 프로젝트가 볼륨을 볼 수 있는 반면, 관리 측면에서는 제어 평면을 통해 소유자 프로젝트만 볼륨을 볼 수 있습니다.
+
+
+
+=== VPC 서비스 제어
+
+VPC 서비스 제어는 인터넷에 연결되어 전 세계에서 접근 가능한 Google Cloud 서비스 주변에 액세스 제어 경계를 설정합니다.  이러한 서비스는 사용자 ID를 통해 액세스 제어를 제공하지만 어떤 네트워크 위치 요청이 발생하는지 제한할 수는 없습니다.  VPC 서비스 제어는 정의된 네트워크에 대한 액세스를 제한하는 기능을 도입하여 이러한 격차를 해소합니다.
+
+Google Cloud NetApp Volumes 데이터 플레인은 외부 인터넷에 연결되지 않고 명확하게 정의된 네트워크 경계(경계)가 있는 개인 VPC에 연결됩니다.  해당 네트워크 내에서 각 볼륨은 프로토콜별 액세스 제어를 사용합니다.  모든 외부 네트워크 연결은 Google Cloud 프로젝트 관리자가 명시적으로 생성합니다.  그러나 제어 평면은 데이터 평면과 동일한 보호 기능을 제공하지 않으며 유효한 자격 증명을 가진 모든 사람이 어디서나 액세스할 수 있습니다. https://datatracker.ietf.org/doc/html/rfc7519["JWT 토큰"^] ).
+
+간단히 말해, Google Cloud NetApp Volumes 데이터 플레인은 VPC 서비스 제어를 지원할 필요 없이 네트워크 액세스 제어 기능을 제공하며 VPC 서비스 제어를 명시적으로 사용하지 않습니다.
+
+
+
+=== 패킷 스니핑/추적 고려 사항
+
+패킷 캡처는 네트워크 문제나 기타 문제(예: NAS 권한, LDAP 연결 등)를 해결하는 데 유용할 수 있지만, 네트워크 IP 주소, MAC 주소, 사용자 및 그룹 이름, 엔드포인트에서 사용되는 보안 수준에 대한 정보를 얻기 위해 악의적으로 사용될 수도 있습니다.  Google Cloud 네트워킹, VPC 및 방화벽 규칙이 구성된 방식 때문에 사용자 로그인 자격 증명 없이는 원치 않는 네트워크 패킷 액세스를 얻기 어렵습니다.link:gcp-gcnv-control-plane-arch.html#jwt-tokens["JWT 토큰"] 클라우드 인스턴스로.  패킷 캡처는 엔드포인트(예: 가상 머신(VM))에서만 가능하며, 공유 VPC 및/또는 외부 네트워크 터널/IP 전달을 사용하여 엔드포인트로의 외부 트래픽을 명시적으로 허용하지 않는 한 VPC 내부의 엔드포인트에서만 가능합니다.  클라이언트 외부의 트래픽을 탐지할 방법이 없습니다.
+
+공유 VPC를 사용하는 경우 NFS Kerberos 및/또는link:gcp-gcnv-data-encrypt-in-transit.html#smb-encryption["SMB 암호화"] 흔적에서 얻은 정보의 대부분을 가릴 수 있습니다.  그러나 일부 트래픽은 여전히 일반 텍스트로 전송됩니다.link:gcp-gcnv-nas-dependencies.html#dns["DNS"] 그리고link:gcp-gcnv-nas-dependencies.html#ldap-queries["LDAP 쿼리"] .  다음 그림은 Google Cloud NetApp Volumes 에서 발생한 일반 텍스트 LDAP 쿼리의 패킷 캡처와 노출된 잠재적 식별 정보를 보여줍니다.  현재 Google Cloud NetApp Volumes 의 LDAP 쿼리는 암호화나 SSL을 통한 LDAP를 지원하지 않습니다.  NetApp Volumes-Performance는 Active Directory에서 요청하는 경우 LDAP 서명을 지원합니다.  NetApp Volumes-SW는 LDAP 서명을 지원하지 않습니다.
+
+image:ncvs-gc-002.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+NOTE: unixUserPassword는 LDAP에 의해 쿼리되며 일반 텍스트로 전송되지 않고 대신 솔트 해시 형태로 전송됩니다.  기본적으로 Windows LDAP는 unixUserPassword 필드를 채우지 않습니다.  이 필드는 LDAP를 통해 클라이언트에 대한 대화형 로그인을 위해 Windows LDAP를 활용해야 하는 경우에만 필요합니다.  Google Cloud NetApp Volumes 인스턴스에 대한 대화형 LDAP 로그인을 지원하지 않습니다.
+
+다음 그림은 AUTH_SYS를 통한 NFS 캡처 옆에 있는 NFS Kerberos 대화의 패킷 캡처를 보여줍니다.  두 가지 추적에서 제공되는 정보가 어떻게 다른지, 그리고 전송 중 암호화를 활성화하면 NAS 트래픽에 대한 전반적인 보안이 어떻게 강화되는지 살펴보세요.
+
+image:ncvs-gc-003.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+image:ncvs-gc-004.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+=== VM 네트워크 인터페이스
+
+공격자가 시도할 수 있는 한 가지 방법은 VM에 새 네트워크 인터페이스 카드(NIC)를 추가하는 것입니다. https://en.wikipedia.org/wiki/Promiscuous_mode["난잡한 모드"^] (포트 미러링) 또는 기존 NIC에서 무차별 모드를 활성화하여 모든 트래픽을 탐지합니다.  Google Cloud에서 새로운 NIC를 추가하려면 VM을 완전히 종료해야 하며, 이를 통해 알림이 생성되므로 공격자가 이를 눈치채지 못하게 수행할 수 없습니다.
+
+또한 NIC는 전혀 무차별 모드로 설정할 수 없으며 Google Cloud에서 경고가 발생합니다.

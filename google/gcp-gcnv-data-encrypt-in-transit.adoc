@@ -1,0 +1,128 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-data-encrypt-in-transit.html 
+keywords: google cloud network, nas protocols, smb encryption, NFSv4.1 Kerberos 
+summary: 전송 중인 데이터는 NAS 프로토콜 계층에서 암호화될 수 있으며, Google Cloud 네트워크 자체도 다음 섹션에서 설명하는 대로 암호화됩니다. 
+---
+= 전송 중 데이터 암호화
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+전송 중인 데이터는 NAS 프로토콜 계층에서 암호화될 수 있으며, Google Cloud 네트워크 자체도 다음 섹션에서 설명하는 대로 암호화됩니다.
+
+
+
+== 구글 클라우드 네트워크
+
+Google Cloud는 네트워크 수준에서 트래픽을 암호화합니다. https://cloud.google.com/security/encryption-in-transit["전송 중 암호화"^] Google 문서에서.  "Google Cloud NetApp Volumes 아키텍처" 섹션에서 언급한 대로, Google Cloud NetApp Volumes NetApp 제어하는 PSA 제작자 프로젝트에서 제공됩니다.
+
+NetApp Volumes-SW의 경우, 프로듀서 테넌트는 Google VM을 실행하여 서비스를 제공합니다.  사용자 VM과 Google Cloud NetApp Volumes VM 간의 트래픽은 Google에서 자동으로 암호화됩니다.
+
+NetApp Volumes-Performance의 데이터 경로는 네트워크 계층에서 완전히 암호화되지 않았지만 NetApp 과 Google은 다음과 같은 조합을 사용합니다. https://1.ieee802.org/security/802-1ae/["IEEE 802.1AE 암호화(MACSec)"^] , https://datatracker.ietf.org/doc/html/rfc2003["캡슐화"^] (데이터 암호화) 및 물리적으로 제한된 네트워크를 통해 Google Cloud NetApp Volumes NetApp Volumes-Performance 서비스 유형과 Google Cloud 간에 전송되는 데이터를 보호합니다.
+
+
+
+== NAS 프로토콜
+
+NFS 및 SMB NAS 프로토콜은 프로토콜 계층에서 선택적 전송 암호화를 제공합니다.
+
+
+
+=== SMB 암호화
+
+https://docs.microsoft.com/en-us/windows-server/storage/file-server/smb-security["SMB 암호화"^]SMB 데이터의 종단 간 암호화를 제공하고 신뢰할 수 없는 네트워크에서 발생하는 도청으로부터 데이터를 보호합니다.  클라이언트/서버 데이터 연결(SMB3.x 지원 클라이언트에서만 사용 가능)과 서버/도메인 컨트롤러 인증 모두에 대해 암호화를 활성화할 수 있습니다.
+
+SMB 암호화가 활성화된 경우 암호화를 지원하지 않는 클라이언트는 공유에 액세스할 수 없습니다.
+
+Google Cloud NetApp Volumes SMB 암호화를 위해 RC4-HMAC, AES-128-CTS-HMAC-SHA1 및 AES-256-CTS-HMAC-SHA1 보안 암호를 지원합니다.  SMB는 서버에서 지원하는 가장 높은 암호화 유형으로 협상합니다.
+
+
+
+=== NFSv4.1 케르베로스
+
+NFSv4.1의 경우 NetApp Volumes-Performance는 다음에 설명된 대로 Kerberos 인증을 제공합니다. https://datatracker.ietf.org/doc/html/rfc7530["RFC7530"^] 볼륨별로 Kerberos를 활성화할 수 있습니다.
+
+현재 Kerberos에 사용할 수 있는 가장 강력한 암호화 유형은 AES-256-CTS-HMAC-SHA1입니다.  Google Cloud NetApp Volumes AES-256-CTS-HMAC-SHA1, AES-128-CTS-HMAC-SHA1, DES3 및 NFS용 DES를 지원합니다.  또한 CIFS/SMB 트래픽의 경우 ARCFOUR-HMAC(RC4)를 지원하지만 NFS의 경우 지원하지 않습니다.
+
+Kerberos는 NFS 마운트에 대해 세 가지 보안 수준을 제공하며, 이를 통해 Kerberos 보안의 강도를 선택할 수 있습니다.
+
+RedHat의 경우 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/storage_administration_guide/s1-nfs-client-config-options["일반적인 마운트 옵션"^] 선적 서류 비치:
+
+....
+sec=krb5 uses Kerberos V5 instead of local UNIX UIDs and GIDs to authenticate users.
+sec=krb5i uses Kerberos V5 for user authentication and performs integrity checking of NFS operations using secure checksums to prevent data tampering.
+sec=krb5p uses Kerberos V5 for user authentication, integrity checking, and encrypts NFS traffic to prevent traffic sniffing. This is the most secure setting, but it also involves the most performance overhead.
+....
+일반적으로 Kerberos 보안 수준이 높아질수록 클라이언트와 서버가 전송하는 각 패킷에 대한 NFS 작업을 암호화하고 암호 해독하는 데 시간을 소비하므로 성능이 저하됩니다.  많은 클라이언트와 NFS 서버는 더 나은 전반적인 경험을 위해 CPU에 AES-NI 오프로드를 지원하지만, Kerberos 5p(전체 엔드투엔드 암호화)가 성능에 미치는 영향은 Kerberos 5(사용자 인증)가 미치는 영향보다 훨씬 큽니다.
+
+다음 표는 각 수준이 보안과 성능에 미치는 영향의 차이점을 보여줍니다.
+
+|===
+| 보안 수준 | 보안 | 성능 
+
+
+| NFSv3—시스템  a| 
+* 보안성이 가장 낮음; 숫자 사용자 ID/그룹 ID가 포함된 일반 텍스트
+* 패킷 캡처에서 UID, GID, 클라이언트 IP 주소, 내보내기 경로, 파일 이름, 권한을 볼 수 있습니다.
+
+ a| 
+* 대부분의 경우에 가장 좋습니다
+
+
+
+
+| NFSv4.x—시스템  a| 
+* NFSv3보다 보안성이 더 높음(클라이언트 ID, 이름 문자열/도메인 문자열 일치) 그러나 여전히 일반 텍스트
+* 패킷 캡처에서 UID, GID, 클라이언트 IP 주소, 이름 문자열, 도메인 ID, 내보내기 경로, 파일 이름, 권한을 볼 수 있습니다.
+
+ a| 
+* 순차적 작업(예: VM, 데이터베이스, 대용량 파일)에 적합합니다.
+* 파일 수가 많고 메타데이터가 많으면 나쁩니다(30-50% 더 나쁨)
+
+
+
+
+| NFS—krb5  a| 
+* 모든 NFS 패킷의 자격 증명에 대한 Kerberos 암호화 - GSS 래퍼의 RPC 호출에서 사용자/그룹의 UID/GID를 래핑합니다.
+* 마운트에 대한 액세스를 요청하는 사용자는 유효한 Kerberos 티켓(사용자 이름/암호 또는 수동 키 탭 교환을 통해)이 필요합니다. 티켓은 지정된 기간 후에 만료되며 사용자는 액세스를 위해 다시 인증해야 합니다.
+* NFS 작업이나 mount/portmapper/nlm과 같은 보조 프로토콜에 대한 암호화 없음(패킷 캡처에서 내보내기 경로, IP 주소, 파일 핸들, 권한, 파일 이름, atime/mtime을 볼 수 있음)
+
+ a| 
+* 대부분의 경우 Kerberos에 가장 좋지만 AUTH_SYS보다 나쁩니다.
+
+
+
+
+| NFS—krb5i  a| 
+* 모든 NFS 패킷의 자격 증명에 대한 Kerberos 암호화 - GSS 래퍼의 RPC 호출에서 사용자/그룹의 UID/GID를 래핑합니다.
+* 마운트에 대한 액세스를 요청하는 사용자는 유효한 Kerberos 티켓(사용자 이름/암호 또는 수동 키 탭 교환을 통해)이 필요합니다. 티켓은 지정된 기간 후에 만료되며 사용자는 액세스를 위해 다시 인증해야 합니다.
+* NFS 작업이나 mount/portmapper/nlm과 같은 보조 프로토콜에 대한 암호화 없음(패킷 캡처에서 내보내기 경로, IP 주소, 파일 핸들, 권한, 파일 이름, atime/mtime을 볼 수 있음)
+* 모든 패킷에 Kerberos GSS 체크섬을 추가하여 아무것도 패킷을 가로채지 못하도록 보장합니다.  체크섬이 일치하면 대화가 허용됩니다.
+
+ a| 
+* NFS 페이로드가 암호화되지 않기 때문에 krb5p보다 낫습니다. krb5에 비해 추가된 오버헤드는 무결성 검사합계뿐입니다.  krb5i의 성능은 krb5보다 크게 나쁘지는 않지만 약간 저하될 것입니다.
+
+
+
+
+| NFS – krb5p  a| 
+* 모든 NFS 패킷의 자격 증명에 대한 Kerberos 암호화 - GSS 래퍼의 RPC 호출에서 사용자/그룹의 UID/GID를 래핑합니다.
+* 마운트에 대한 액세스를 요청하는 사용자는 유효한 Kerberos 티켓(사용자 이름/암호 또는 수동 키탭 교환을 통해)이 필요합니다. 티켓은 지정된 기간이 지나면 만료되며 사용자는 액세스를 위해 다시 인증해야 합니다.
+* 모든 NFS 패킷 페이로드는 GSS 래퍼로 암호화됩니다(패킷 캡처에서 파일 핸들, 권한, 파일 이름, atime/mtime을 볼 수 없음).
+* 무결성 검사가 포함되어 있습니다.
+* NFS 작업 유형이 표시됩니다(FSINFO, ACCESS, GETATTR 등).
+* 보조 프로토콜(마운트, 포트맵, nlm 등)은 암호화되지 않습니다. (내보내기 경로, IP 주소를 볼 수 있음)
+
+ a| 
+* 보안 수준의 성능이 최악입니다. krb5p는 더 많은 암호화/복호화를 수행해야 합니다.
+* 파일 수가 많은 작업 부하의 경우 NFSv4.x를 사용하는 krb5p보다 성능이 더 뛰어납니다.
+
+
+|===
+Google Cloud NetApp Volumes 에서는 구성된 Active Directory 서버가 Kerberos 서버 및 LDAP 서버로 사용됩니다(RFC2307 호환 스키마에서 사용자 ID를 조회하기 위해).  다른 Kerberos 또는 LDAP 서버는 지원되지 않습니다.  NetApp Google Cloud NetApp Volumes 에서 ID 관리를 위해 LDAP를 사용할 것을 적극 권장합니다.  패킷 캡처에서 NFS Kerberos가 어떻게 표시되는지에 대한 자세한 내용은 섹션 link:gcp-gcnv-arch-detail.html#Packet sniffing/trace considerations["Packet sniffing/trace considerations."]를 참조하세요.

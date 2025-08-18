@@ -1,0 +1,64 @@
+---
+indexpage:
+  title: NetApp 퍼블릭 및 하이브리드 클라우드 솔루션
+  summary: NetApp 솔루션은 고객의 가장 중요한 비즈니스 요구 사항을 지원하기 위해 NetApp 제품 및 서비스 포트폴리오를 강조하는
+    전략적 및 기술적 역량의 집합입니다.
+  lead: NetApp 솔루션은 고객의 가장 중요한 비즈니스 요구 사항을 지원하기 위해 NetApp 제품 및 서비스 포트폴리오를 강조하는 전략적
+    및 기술적 역량의 집합입니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: 새로운 소식
+      url: "/whats-new.html"
+    - title: 블로그
+      url: "/blogs.html"
+    - title: 비디오 및 데모
+      url: "/videos/index.html"
+  - title: VMware를 위한 NetApp 클라우드 솔루션
+    links:
+    - title: 퍼블릭 클라우드를 위한 VMware
+      url: "/vmware/vmw-hybrid-overview.html"
+    - title: VMware 하이브리드 클라우드 사용 사례
+      url: "/vmware/vmw-hybrid-use-cases.html"
+    - title: AWS/VMC용 NetApp
+      url: "/vmware/vmw-aws-vmc-overview.html"
+    - title: AWS/EVS용 NetApp
+      url: "/vmware/evs-mount-fsxn-intro.html"
+    - title: Azure/AVS용 NetApp
+      url: "/vmware/vmw-azure-avs-overview.html"
+    - title: GCP/GCVE용 NetApp
+      url: "/vmware/vmw-gcp-gcve-overview.html"
+    - title: VMware용 BlueXP disaster recovery
+      url: "/vmware/vmw-hybrid-dr-overview.html"
+  - title: OpenShift를 위한 NetApp 클라우드 솔루션
+    links:
+    - title: 온프레미스용 OpenShift
+      url: "/openshift/os-op-solution.html"
+    - title: 자체 관리 구성 요소를 갖춘 하이브리드 클라우드
+      url: "/openshift/os-sm-solution.html"
+    - title: 공급자 관리 구성 요소를 갖춘 하이브리드 클라우드
+      url: "/openshift/os-pm-solution.html"
+    - title: Trident Protect를 사용하여 데이터 보호
+      url: "/openshift/os-dp-tp-solution.html"
+    - title: 타사 도구를 사용하여 컨테이너 앱 보호
+      url: "/openshift/os-dp-velero-solution.html"
+  - title: VMware Sovereign Cloud 솔루션
+    links:
+    - title: Sovereign Cloud에 대해 알아보세요
+      url: https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-sovereign-cloud.html
+    - title: Sovereign Cloud와 NetApp 통합
+      url: https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-sovereign-cloud-use-cases.html
+    - title: Sovereign Cloud 솔루션 개요
+      url: https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/docs/vmw-sovereign-cloud-solution-brief-customer.pdf
+    - title: Sovereign Cloud 설명
+      url: https://www.vmware.com/topics/glossary/content/sovereign-cloud.html
+    - title: VMware Sovereign Cloud의 안전하고 규정을 준수하는 인프라
+      url: https://www.vmware.com/solutions/cloud-infrastructure/sovereign-cloud
+  - title: 솔루션 요청 및 피드백
+    links:
+    - title: 요청 자동화
+      url: https://github.com/NetAppDocs/netapp-solutions/issues/new?body=[Request%20Automation]%0d%0a%0d%0aSolution%20Name:%20%0d%0aRequest%20Title:%20%0d%0aDescription:%0d%0aSuggestions:&title=Request%20Automation%20-%20%3Crequest_title%3E
+    - title: 새로운 솔루션을 제안하다
+      url: https://github.com/NetAppDocs/netapp-solutions/issues/new?body=[Request%20Solution]%0d%0a%0d%0aSolution%20Use%20Case:%20%0d%0aSolution%20Description:%20%0d%0aAdditional%20Comments:&title=Request%20Solution%20-%20%3Csolution%3E
+    - title: 솔루션 피드백 제공
+      url: https://github.com/NetAppDocs/netapp-solutions/issues/new?body=[Solution%20Feedback]%0d%0a%0d%0aSolution%20Name:%20%0d%0aSolution%20Feedback:%20%0d%0aAdditional%20Comments:&title=Solution%20Feedback%20-%20%3Csolution%3E

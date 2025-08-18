@@ -1,0 +1,284 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-pm-aws-dp.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMWare, provider managed storage, ONTAP, AWS FSx ONTAP, Astra Control Service 
+summary:  
+---
+= 데이터 보호
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 페이지에서는 Astra Control Service를 사용하여 AWS(ROSA) 클러스터에서 관리되는 Red Hat OpenShift에 대한 데이터 보호 옵션을 보여줍니다.  Astra Control Service(ACS)는 클러스터를 추가하고, 클러스터에서 실행되는 애플리케이션을 정의하고, 애플리케이션 인식 데이터 관리 활동을 수행할 수 있는 사용하기 쉬운 그래픽 사용자 인터페이스를 제공합니다.  ACS 기능은 워크플로 자동화를 허용하는 API를 통해서도 접근할 수 있습니다.
+
+Astra Control(ACS 또는 ACC)을 구동하는 것은 NetApp Trident 입니다.  Trident Red Hat OpenShift, EKS, AKS, SUSE Rancher, Anthos 등과 같은 여러 유형의 Kubernetes 클러스터를 FAS/ AFF, ONTAP Select, CVO, Google Google Cloud NetApp Volumes, Azure NetApp Files , Amazon FSx ONTAP 과 같은 다양한 NetApp ONTAP 스토리지와 통합합니다.
+
+이 섹션에서는 ACS를 사용한 다음 데이터 보호 옵션에 대한 세부 정보를 제공합니다.
+
+* 한 지역에서 실행 중인 ROSA 애플리케이션의 백업 및 복원을 보여주고 다른 지역으로 복원하는 방법을 보여주는 비디오입니다.
+* ROSA 애플리케이션의 스냅샷과 복원을 보여주는 비디오입니다.
+* ROSA 클러스터와 Amazon FSx ONTAP 설치하는 방법, NetApp Trident 사용하여 스토리지 백엔드와 통합하는 방법, ROSA 클러스터에 PostgreSQL 애플리케이션을 설치하는 방법, ACS를 사용하여 애플리케이션 스냅샷을 만드는 방법 및 해당 스냅샷에서 애플리케이션을 복원하는 방법에 대한 단계별 세부 정보입니다.
+* ACS를 사용하여 FSx ONTAP 있는 ROSA 클러스터에서 MySQL 애플리케이션의 스냅샷을 만들고 복원하는 방법에 대한 단계별 세부 정보를 보여주는 블로그입니다.
+
+
+
+
+== 백업/백업에서 복원
+
+다음 비디오는 한 지역에서 실행 중인 ROSA 애플리케이션의 백업을 다른 지역으로 복원하는 과정을 보여줍니다.
+
+.AWS에서 Red Hat OpenShift 서비스를 위한 FSx NetApp ONTAP
+video::01dd455e-7f5a-421c-b501-b01200fa91fd[panopto]
+
+
+== 스냅샷/스냅샷에서 복원
+
+다음 비디오에서는 ROSA 애플리케이션의 스냅샷을 찍고 이후 스냅샷에서 복원하는 방법을 보여줍니다.
+
+.Amazon FSx ONTAP 스토리지를 사용하는 AWS(ROSA) 클러스터의 Red Hat OpenShift Service에 대한 애플리케이션 스냅샷/복원
+video::36ecf505-5d1d-4e99-a6f8-b11c00341793[panopto]
+
+
+== 블로그
+
+* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/Using-Astra-Control-Service-for-data-management-of-apps-on-ROSA-clusters-with/ba-p/450903["Amazon FSx 스토리지를 사용하여 ROSA 클러스터의 앱 데이터 관리를 위한 Astra Control Service 사용"]
+
+
+
+
+== 스냅샷을 생성하고 이를 통해 복원하는 단계별 세부 정보
+
+
+
+=== 필수 설정
+
+* link:https://signin.aws.amazon.com/signin?redirect_uri=https://portal.aws.amazon.com/billing/signup/resume&client_id=signup["AWS 계정"]
+* link:https://console.redhat.com/["Red Hat OpenShift 계정"]
+* IAM 사용자link:https://www.rosaworkshop.io/rosa/1-account_setup/["적절한 권한"] ROSA 클러스터를 생성하고 액세스하려면
+* link:https://aws.amazon.com/cli/["AWS CLI"]
+* link:https://console.redhat.com/openshift/downloads["로사 CLI"]
+* link:https://console.redhat.com/openshift/downloads["오픈시프트 CLI"](오케이)
+* 서브넷과 적절한 게이트웨이 및 경로가 있는 VPC
+* link:https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html["ROSA 클러스터 설치됨"]VPC로
+* link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/getting-started-step1.html["Amazon FSx ONTAP"]동일한 VPC에서 생성됨
+* ROSA 클러스터에 대한 액세스link:https://console.redhat.com/openshift/overview["OpenShift 하이브리드 클라우드 콘솔"]
+
+
+
+
+=== 다음 단계
+
+. 관리자 사용자를 만들고 클러스터에 로그인합니다.
+. 클러스터에 대한 kubeconfig 파일을 만듭니다.
+. 클러스터에 Trident 설치합니다.
+. Trident CSI 프로비저너를 사용하여 백엔드, 스토리지 클래스 및 스냅샷 클래스 구성을 만듭니다.
+. 클러스터에 postgresql 애플리케이션을 배포합니다.
+. 데이터베이스를 만들고 레코드를 추가합니다.
+. 클러스터를 ACS에 추가합니다.
+. ACS에서 애플리케이션을 정의합니다.
+. ACS를 사용하여 스냅샷을 만듭니다.
+. postgresql 애플리케이션에서 데이터베이스를 삭제합니다.
+. ACS를 사용하여 스냅샷에서 복원합니다.
+. 스냅샷에서 앱이 복원되었는지 확인하세요.
+
+
+
+
+==== **1. 관리자 사용자를 생성하고 클러스터에 로그인합니다.
+
+다음 명령을 사용하여 관리자 사용자를 만들어 ROSA 클러스터에 액세스합니다. (설치 시 관리자 사용자를 만들지 않은 경우에만 관리자 사용자를 만들어야 합니다.)
+
+`rosa create admin --cluster=<cluster-name>`
+
+이 명령을 실행하면 다음과 같은 출력이 제공됩니다.  클러스터에 로그인하려면 다음을 사용하세요. `oc login` 출력에 제공된 명령입니다.
+
+image:rhhc-rosa-cluster-admin-create.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+NOTE: 토큰을 사용하여 클러스터에 로그인할 수도 있습니다.  클러스터를 생성할 때 이미 관리자 사용자를 생성한 경우 관리자 사용자 자격 증명을 사용하여 Red Hat OpenShift Hybrid Cloud 콘솔에서 클러스터에 로그인할 수 있습니다.  그런 다음 로그인한 사용자 이름이 표시되는 오른쪽 상단 모서리를 클릭하면 다음을 얻을 수 있습니다. `oc login` 명령줄에 대한 명령(토큰 로그인).
+
+
+
+==== **2. 클러스터에 대한 kubeconfig 파일을 만듭니다.
+
+절차를 따르세요link:https://docs.netapp.com/us-en/astra-control-service/get-started/create-kubeconfig.html#create-a-kubeconfig-file-for-red-hat-openshift-service-on-aws-rosa-clusters["여기"] ROSA 클러스터에 대한 kubeconfig 파일을 생성합니다.  이 kubeconfig 파일은 나중에 ACS에 클러스터를 추가할 때 사용됩니다.
+
+
+
+==== **3. 클러스터에 Trident 설치**
+
+ROSA 클러스터에 Trident (최신 버전)를 설치합니다.  이를 위해 다음 절차 중 하나를 따르세요.link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy.html["여기"] .  클러스터 콘솔에서 helm을 사용하여 Trident 설치하려면 먼저 Trident 라는 프로젝트를 만듭니다.
+
+image:rhhc-trident-project-create.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+그런 다음 개발자 보기에서 Helm 차트 저장소를 만듭니다.  URL 필드에는 다음을 사용합니다. `'https://netapp.github.io/trident-helm-chart'` .  그런 다음 Trident 운영자에 대한 헬름 릴리스를 만듭니다.
+
+image:rhhc-helm-repo-create.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"] image:rhhc-helm-release-create.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+콘솔의 관리자 보기로 돌아가서 트라이던트 프로젝트에서 포드를 선택하여 모든 트라이던트 포드가 실행 중인지 확인합니다.
+
+image:rhhc-trident-installed.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **4. Trident CSI 프로비저너를 사용하여 백엔드, 스토리지 클래스 및 스냅샷 클래스 구성을 만듭니다.**
+
+아래에 표시된 yaml 파일을 사용하여 트라이던트 백엔드 객체, 스토리지 클래스 객체 및 Volumesnapshot 객체를 만듭니다.  백엔드의 구성 YAML에 생성한 Amazon FSx ONTAP 파일 시스템에 대한 자격 증명, 관리 LIF 및 파일 시스템의 vserver 이름을 제공해야 합니다.  해당 세부 정보를 얻으려면 Amazon FSx 용 AWS 콘솔로 이동하여 파일 시스템을 선택하고 관리 탭으로 이동하세요.  또한 업데이트를 클릭하여 비밀번호를 설정하세요. `fsxadmin` 사용자.
+
+
+NOTE: 명령줄을 사용하여 객체를 만들거나 하이브리드 클라우드 콘솔에서 yaml 파일을 사용하여 객체를 만들 수 있습니다.
+
+image:rhhc-fsx-details.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+** Trident 백엔드 구성**
+
+[source, yaml]
+----
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backend-tbc-ontap-nas-secret
+type: Opaque
+stringData:
+  username: fsxadmin
+  password: <password>
+---
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: ontap-nas
+spec:
+  version: 1
+  storageDriverName: ontap-nas
+  managementLIF: <management lif>
+  backendName: ontap-nas
+  svm: fsx
+  credentials:
+    name: backend-tbc-ontap-nas-secret
+----
+**저장 클래스**
+
+[source, yaml]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ontap-nas
+provisioner: csi.trident.netapp.io
+parameters:
+  backendType: "ontap-nas"
+  media: "ssd"
+  provisioningType: "thin"
+  snapshots: "true"
+allowVolumeExpansion: true
+----
+**스냅샷 수업**
+
+[source, yaml]
+----
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: trident-snapshotclass
+driver: csi.trident.netapp.io
+deletionPolicy: Delete
+----
+아래 명령을 실행하여 백엔드, 스토리지 클래스 및 trident-snapshotclass 개체가 생성되었는지 확인합니다.
+
+image:rhhc-tbc-sc-verify.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+이때 해야 할 중요한 수정 사항은 gp3 대신 ontap-nas를 기본 스토리지 클래스로 설정하는 것입니다. 이렇게 하면 나중에 배포하는 postgresql 앱에서 기본 스토리지 클래스를 사용할 수 있습니다.  클러스터의 Openshift 콘솔에서 저장소 아래에 있는 StorageClasses를 선택합니다.  현재 기본 클래스의 주석을 false로 편집하고 ontap-nas 스토리지 클래스에 대해 true로 설정된 주석 storageclass.kubernetes.io/is-default-class를 추가합니다.
+
+image:rhhc-change-default-sc.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+image:rhhc-default-sc.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **5. 클러스터에 postgresql 애플리케이션 배포**
+
+다음과 같이 명령줄에서 애플리케이션을 배포할 수 있습니다.
+
+`helm install postgresql bitnami/postgresql -n postgresql --create-namespace`
+
+image:rhhc-postgres-install.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+NOTE: 애플리케이션 포드가 실행되고 있지 않은 경우 보안 컨텍스트 제약으로 인해 오류가 발생했을 수 있습니다. image:rhhc-scc-error.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"] 편집하여 오류를 수정하세요. `runAsUser` 그리고 `fsGroup` 의 필드 `statefuleset.apps/postgresql` 출력에 있는 uid를 갖는 객체 `oc get project` 아래와 같이 명령을 내립니다.image:rhhc-scc-fix.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+postgresql 앱은 실행 중이어야 하며 Amazon FSx ONTAP 스토리지로 지원되는 영구 볼륨을 사용해야 합니다.
+
+image:rhhc-postgres-running.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+image:rhhc-postgres-pvc.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **6. 데이터베이스를 생성하고 레코드를 추가합니다.**
+
+image:rhhc-postgres-db-create.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **7. ACS에 클러스터 추가**
+
+ACS에 로그인하세요.  클러스터를 선택하고 추가를 클릭합니다.  다른 것을 선택하고 kubeconfig 파일을 업로드하거나 붙여넣습니다.
+
+image:rhhc-acs-add-001.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+*다음*을 클릭하고 ACS의 기본 스토리지 클래스로 ontap-nas를 선택합니다.  *다음*을 클릭하고 세부 정보를 검토한 후 클러스터를 *추가*합니다.
+
+image:rhhc-acs-add-002.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **8. ACS에서 애플리케이션을 정의합니다.
+
+ACS에서 postgresql 애플리케이션을 정의합니다.  랜딩 페이지에서 *애플리케이션*, *정의*를 선택하고 적절한 세부 정보를 입력합니다.  *다음*을 두 번 클릭하고, 세부 정보를 검토한 후 *정의*를 클릭합니다.  해당 애플리케이션이 ACS에 추가됩니다.
+
+image:rhhc-acs-add-002.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **9. ACS**를 사용하여 스냅샷을 만듭니다.
+
+ACS에서 스냅샷을 만드는 방법은 여러 가지가 있습니다.  해당 페이지에서 애플리케이션을 선택하고, 애플리케이션의 세부 정보를 보여주는 스냅샷을 만들 수 있습니다.  스냅샷 만들기를 클릭하면 주문형 스냅샷을 만들거나 보호 정책을 구성할 수 있습니다.
+
+*스냅샷 만들기*를 클릭하고, 이름을 지정하고, 세부 정보를 검토한 다음 *스냅샷*을 클릭하면 간단히 주문형 스냅샷을 만들 수 있습니다.  작업이 완료되면 스냅샷 상태가 정상으로 변경됩니다.
+
+image:rhhc-snapshot-create.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+image:rhhc-snapshot-on-demand.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **10. postgresql 애플리케이션에서 데이터베이스를 삭제합니다.
+
+postgresql에 다시 로그인하여 사용 가능한 데이터베이스를 나열하고, 이전에 만든 데이터베이스를 삭제한 후 다시 나열하여 데이터베이스가 삭제되었는지 확인하세요.
+
+image:rhhc-postgres-db-delete.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **11. ACS**를 사용하여 스냅샷에서 복원
+
+스냅샷에서 애플리케이션을 복원하려면 ACS UI 랜딩 페이지로 이동하여 애플리케이션을 선택하고 복원을 선택하세요.  복원할 스냅샷이나 백업을 선택해야 합니다.  (일반적으로, 귀하가 구성한 정책에 따라 여러 개가 생성됩니다).  다음 화면에서 적절한 선택을 한 후 *복원*을 클릭하세요.  스냅샷에서 복원된 후 애플리케이션 상태가 복원 중에서 사용 가능으로 변경됩니다.
+
+image:rhhc-app-restore-001.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+image:rhhc-app-restore-002.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+image:rhhc-app-restore-003.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+
+==== **12. **스냅샷에서 앱이 복원되었는지 확인하세요**
+
+PostgreSQL 클라이언트에 로그인하면 이전에 가지고 있던 테이블과 테이블의 레코드를 볼 수 있습니다.  그게 다예요.  버튼 하나만 클릭하면 귀하의 애플리케이션이 이전 상태로 복원됩니다.  Astra Control을 통해 우리는 고객에게 이렇게 쉬운 서비스를 제공합니다.
+
+image:rhhc-app-restore-verify.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
