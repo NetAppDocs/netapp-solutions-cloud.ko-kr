@@ -57,7 +57,7 @@ AWS는 다음 구성에서 NetApp 스토리지를 지원합니다.
 * 보충 NFS 데이터 저장소로서의 FSx ONTAP
 
 
-자세한 내용을 보려면link:aws-guest.html["VMC용 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:aws-native-nfs-datastore-option.html["VMC에 대한 보충 NFS 데이터 저장소 옵션"] .
+자세한 내용을 보려면link:../vmware/vmw-aws-vmc-guest-storage.html["VMC용 게스트 연결 스토리지 옵션"] . 자세한 내용을 보려면link:../vmware/vmw-aws-vmc-nfs-ds-config.html["VMC에 대한 보충 NFS 데이터 저장소 옵션"] .
 
 
 

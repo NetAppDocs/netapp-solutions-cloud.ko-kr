@@ -41,7 +41,7 @@ NOTE: 게스트 내 스토리지는 Cloud Volumes ONTAP Azure VMware Solution에
 * 네트워크 연결을 검증하고 프라이빗 클라우드에 액세스합니다.
 
 
-자세한 내용을 보려면link:azure-setup.html["AVS 구성 단계"] .
+자세한 내용을 보려면link:../vmware/vmw-azure-avs-setup.html["AVS 구성 단계"] .
 
 
 
@@ -58,7 +58,7 @@ Azure는 다음 구성에서 NetApp 스토리지를 지원합니다.
 * 보조 NFS 데이터 저장소로서의 Azure NetApp Files (ANF)
 
 
-자세한 내용을 보려면link:azure-guest.html["AVS용 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:azure-native-nfs-datastore-option.html["AVS를 위한 보충 NFS 데이터 저장소 옵션"] .
+자세한 내용을 보려면link:../vmware/vmw-azure-avs-guest-storage.html["AVS용 게스트 연결 스토리지 옵션"] . 자세한 내용을 보려면link:../vmware/vmw-azure-avs-nfs-ds-config.html["AVS를 위한 보충 NFS 데이터 저장소 옵션"] .
 
 
 

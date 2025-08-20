@@ -36,9 +36,9 @@ NOTE: 게스트 내 스토리지는 Cloud Volumes ONTAP Azure VMware Solution에
 * 네트워크 연결을 검증하고 프라이빗 클라우드에 액세스합니다.
 
 
-자세한 내용을 보려면link:azure-setup.html["AVS 구성 단계"] .
+자세한 내용을 보려면link:../vmware/vmw-azure-avs-setup.html["AVS 구성 단계"] .
 
-자세한 내용을 보려면link:azure-setup.html["AVS 구성 단계"] .
+자세한 내용을 보려면link:../vmware/vmw-azure-avs-setup.html["AVS 구성 단계"] .
 
 --
 .GCP/GCVE
@@ -54,9 +54,9 @@ NOTE: 게스트 내 스토리지는 Cloud Volumes ONTAP 및 Google Cloud NetApp 
 * GCVE에 대한 개인 액세스 활성화
 
 
-자세한 내용을 보려면link:gcp-setup.html["GCVE 구성 단계"] .
+자세한 내용을 보려면link:../vmware/vmw-gcp-gcve-setup.html["GCVE 구성 단계"] .
 
-자세한 내용을 보려면link:gcp-setup.html["GCVE 구성 단계"] .
+자세한 내용을 보려면link:../vmware/vmw-gcp-gcve-setup.html["GCVE 구성 단계"] .
 
 --
 ====

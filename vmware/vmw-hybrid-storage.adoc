@@ -27,7 +27,7 @@ AWS는 다음 구성에서 NetApp 스토리지를 지원합니다.
 * 보충 NFS 데이터 저장소로서의 FSx ONTAP
 
 
-자세한 내용을 보려면link:aws-guest.html["VMC용 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:aws-native-nfs-datastore-option.html["VMC에 대한 보충 NFS 데이터 저장소 옵션"] .
+자세한 내용을 보려면link:../vmware/vmw-aws-vmc-guest-storage.html["VMC용 게스트 연결 스토리지 옵션"] . 자세한 내용을 보려면link:../vmware/vmw-aws-vmc-nfs-ds-config.html["VMC에 대한 보충 NFS 데이터 저장소 옵션"] .
 
 --
 .Azure / AVS
@@ -39,7 +39,7 @@ Azure는 다음 구성에서 NetApp 스토리지를 지원합니다.
 * 보조 NFS 데이터 저장소로서의 Azure NetApp Files (ANF)
 
 
-자세한 내용을 보려면link:azure-guest.html["AVS용 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:azure-native-nfs-datastore-option.html["AVS를 위한 보충 NFS 데이터 저장소 옵션"] .
+자세한 내용을 보려면link:../vmware/vmw-azure-avs-guest-storage.html["AVS용 게스트 연결 스토리지 옵션"] . 자세한 내용을 보려면link:../vmware/vmw-azure-avs-nfs-ds-config.html["AVS를 위한 보충 NFS 데이터 저장소 옵션"] .
 
 --
 .GCP/GCVE
@@ -51,7 +51,7 @@ Google Cloud는 다음 구성에서 NetApp 스토리지를 지원합니다.
 * Google Cloud NetApp Volumes (NetApp Volumes)를 보조 NFS 데이터 저장소로 사용
 
 
-자세한 내용을 보려면link:gcp-guest.html["GCVE를 위한 게스트 연결 스토리지 옵션"] .  자세한 내용을 보려면link:gcp-ncvs-datastore.html["GCVE에 대한 보충 NFS 데이터 저장소 옵션"] .
+자세한 내용을 보려면link:../vmware/vmw-gcp-gcve-guest-storage.html["GCVE를 위한 게스트 연결 스토리지 옵션"] . 자세한 내용을 보려면link:../vmware/vmw-gcp-gcve-nfs-ds-overview.html["GCVE에 대한 보충 NFS 데이터 저장소 옵션"] .
 
 더 자세히 알아보세요link:https://www.netapp.com/blog/cloud-volumes-service-google-cloud-vmware-engine/["Google Cloud NetApp Volumes 데이터 저장소 지원(NetApp 블로그)"^] 또는link:https://cloud.google.com/blog/products/compute/how-to-use-netapp-cvs-as-datastores-with-vmware-engine["Google Cloud NetApp Volumes Google Cloud VMware Engine의 데이터 저장소로 사용하는 방법(Google 블로그)"^]
 
