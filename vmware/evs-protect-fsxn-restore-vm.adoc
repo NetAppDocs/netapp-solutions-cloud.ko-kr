@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: vmware/evs-protect-fsxn-restore-vm.html 
+keywords: Amazon, AWS, EVS, Elastic VMware Service, ONTAP, FSx, iscsi 
+summary: 이 섹션에서는 백업에서 VM을 복원하는 단계를 설명합니다. 
+---
+= SnapCenter Plug-in for VMware vSphere로 보호되는 VM의 복원 절차
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 섹션에서는 백업에서 VM을 복원하는 단계를 설명합니다. SCV를 사용하면 vCenter 내에서 VM을 복원할 수 있으며, 이를 통해 VM을 원래 ESXi 호스트의 원래 데이터스토어로 복구(기존 콘텐츠 덮어쓰기)하거나, 삭제되거나 이름이 변경된 VM을 백업 복사본에서 복원하거나, 원래 ESXi 호스트의 다른 데이터스토어로 복원하거나, 동일한 vCenter에서 관리하는 다른 ESXi 호스트의 원래 데이터스토어로 복원하거나, 동일한 vCenter 환경 내의 다른 ESXi 호스트의 다른 데이터스토어로 복원할 수 있습니다.
+
+
+
+== 복원 작업 수행 단계
+
+복원 작업을 수행하려면 다음 단계를 수행합니다.
+
+. EVS vSphere 웹 클라이언트 GUI에서 "인벤토리 > 데이터스토어"로 이동하여 원하는 데이터스토어를 선택합니다. 그런 다음 "SnapCenter Plug-in for VMware vSphere" 섹션 아래의 "구성 > 백업"으로 이동합니다.
++
+image:evs-protect-fsxn-009.png["위 단계의 대화를 나타내는 그림"]
+
+. 백업을 두 번 클릭하면 해당 백업에 포함된 모든 VM이 표시됩니다. 목록에서 복원할 VM을 찾아 "Restore"를 선택합니다.
++
+image:evs-protect-fsxn-010.png["위 단계의 대화를 나타내는 그림"]
+
+. "범위 선택 페이지"에서 "복원 범위" 필드의 "전체 가상 머신"을 선택한 다음 "복원 위치"를 선택하고 백업을 마운트할 대상 ESXi 정보를 입력합니다.
+. 복원 작업 후 VM의 전원을 켜야 하는 경우 "VM 다시 시작" 확인란을 활성화합니다.
+. "Select Location page"에서 기본 위치를 선택하십시오.
++
+image:evs-protect-fsxn-011.png["위 단계의 대화를 나타내는 그림"]
+
+. "Summary" 페이지를 검토한 후 "Finish"를 선택하십시오.
++
+image:evs-protect-fsxn-012.png["위 단계의 대화를 나타내는 그림"]
+
+. 화면 하단의 "Recent Tasks"를 선택하여 작업 진행 상황을 모니터링합니다.
++
+image:evs-protect-fsxn-013.png["위 단계의 대화를 나타내는 그림"]
+
+
+
+
+NOTE: VM이 복원되더라도 이전 리소스 그룹에 자동으로 추가되지는 않습니다. 해당 VM을 보호하려면 수동으로 적절한 리소스 그룹에 추가해야 합니다.
+
+
+NOTE: 복원 작업은 개별 VM 수준에서도 트리거할 수 있습니다.
+
+
+
+== 삭제된 VM을 복원하는 단계
+
+삭제된 VM을 복원하는 것은 SCV를 사용하면 간단한 프로세스입니다.
+
+삭제된 VM의 복원 작업은 데이터 저장소 수준에서 수행할 수 있습니다.
+
+. 해당 데이터스토어로 이동하여 Configure > Backups를 선택합니다. 거기서 삭제된 VM을 선택하고 "Restore"를 선택합니다.
++
+image:evs-protect-fsxn-014.png["위 단계의 대화를 나타내는 그림"]
+
++
+image:evs-protect-fsxn-015.png["위 단계의 대화를 나타내는 그림"]
+
+. 다음 스크린샷 흐름은 VM을 대체 ESXi 호스트 및 다른 데이터 저장소로 복원하는 과정을 다룹니다.
++
+image:evs-protect-fsxn-016.png["위 단계의 대화를 나타내는 그림"]
+
++
+image:evs-protect-fsxn-017.png["위 단계의 대화를 나타내는 그림"]
+
++
+image:evs-protect-fsxn-018.png["위 단계의 대화를 나타내는 그림"]
+
++
+image:evs-protect-fsxn-019.png["위 단계의 대화를 나타내는 그림"]
+
++
+image:evs-protect-fsxn-020.png["위 단계의 대화를 나타내는 그림"]
+
+
+
+
+NOTE: 대상 데이터 저장소에는 충분한 여유 공간이 있어야 하며, "대체 위치로 복원" 필드에 지정된 vCenter는 DNS에서 확인 가능해야 합니다.
+
+
+NOTE: NFS 환경에서 복원 효율성을 높이려면 VMware vStorage API for Array Integration(VAAI)을 활성화하십시오.
+
+
+NOTE: 복원은 SnapMirror 타겟과 같은 보조 위치에서도 수행할 수 있습니다.
+
++ image:evs-protect-fsxn-021.png["위 단계의 대화를 나타내는 그림"]

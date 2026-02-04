@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: vmware/evs-protect-fsxn-configure.html 
+keywords: Amazon, AWS, EVS, Elastic VMware Service, ONTAP, FSx, iscsi 
+summary: 이 섹션에서는 VMware용 SnapCenter Plug-in 설정 단계를 설명합니다. 
+---
+= VMware용 SnapCenter Plug-in 구성 절차
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 섹션에서는 VMware용 SnapCenter 플러그인을 구성하는 단계를 설명합니다. 다음 섹션에서는 스토리지 추가, 백업 정책 생성 및 리소스 그룹 생성 방법을 자세히 설명합니다.
+
+
+
+== 스토리지 시스템 추가
+
+SVC를 사용하여 워크로드를 보호하는 다음 단계는 link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_add_storage_01.html["스토리지 시스템"]를 추가하는 것입니다. 스토리지를 추가하면 SCV가 vCenter 내에서 백업 및 복원 작업을 감지하고 관리할 수 있습니다. VM 백업 및 복원을 활성화하려면 FSx for NetApp ONTAP 관리 엔드포인트 또는 스토리지 가상 머신(SVM) 관리 엔드포인트 IP를 스토리지 시스템으로 포함하십시오.
+
+. EVS vCenter의 왼쪽 탐색 메뉴에서 "SnapCenter Plug-in for VMware"를 선택합니다.
+. "스토리지 시스템"을 선택하세요.
+. "추가"를 선택하여 FSx for ONTAP 세부 정보를 추가합니다.
+. "Credentials as the Authentication" 방법을 사용하고 사용자 이름과 암호로 FSxadmin을 입력합니다. 그런 다음 "Add"를 선택하여 설정을 저장합니다.
+
+
+image:evs-protect-fsxn-002.png["위 단계의 대화를 나타내는 그림"]
+
+
+NOTE: 파일 시스템이 추가되면 모든 SVM이 자동으로 추가됩니다.
+
+SCV 버전이 6.2인 경우 link:https://mysupport.netapp.com/site/products/all/details/scv/downloads-tab["SCV 지원 페이지"]로 이동하여 SCV 6.2P1 릴리스를 다운로드하십시오.
+
+
+
+== 백업 정책을 생성합니다
+
+견고한 백업 전략은 백업 일정, 백업 대상 데이터, 백업 보존 기간과 같은 핵심 요소를 정의해야 합니다. 스냅샷 복사본은 전체 데이터 저장소를 보호하기 위해 시간별 또는 일별로 예약할 수 있습니다. 이러한 방식으로 백업을 예약하면 데이터 저장소를 보호할 뿐만 아니라 해당 데이터 저장소에 포함된 VM 및 VMDK에 대한 백업 및 복원 작업도 지원합니다.
+
+가상 머신 및 데이터스토어 백업을 시작하기 전에 link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_create_backup_policies_for_vms_and_datastores.html["백업 정책"]과 리소스 그룹을 생성해야 합니다. 백업 정책은 백업 일정 및 보존 설정과 같은 매개변수를 지정합니다.
+
+다음은 백업 정책을 생성하는 단계입니다.
+
+. SCV의 왼쪽 탐색 메뉴로 이동하여 "정책"을 선택합니다.
+. 정책 페이지에서 "Create"를 선택하여 마법사를 시작하세요.
+. "New Backup Policy page"에서 정책 이름을 입력합니다.
+. 보존 기간, 백업 빈도 및 복제 설정을 지정하십시오.
+. Snapshot 잠금을 활성화하려면 "Locking Period" 확인란을 선택하십시오. 기본 및 보조 Snapshot 잠금 기간을 일/월/년으로 선택할 수 있습니다.
+
+
+
+NOTE: SnapMirror 정책에 정의된 보존 기간과 관계없이, 보조 스냅샷 복사본은 지정된 보조 스냅샷 잠금 기간이 만료될 때까지 그대로 유지됩니다.
+
+image:evs-protect-fsxn-003.png["위 단계의 대화를 나타내는 그림"]
+
+
+NOTE: VM 일관성 백업을 활성화하려면 VMware Tools가 설치되어 실행 중이어야 합니다. VM 일관성 확인란을 선택하면 VM이 먼저 정지된 다음 VMware가 VM 일관성 스냅샷(메모리 제외)을 수행하고, SnapCenter Plug-in for VMware vSphere가 백업 작업을 수행한 후 VM 작업이 재개됩니다.
+
+
+NOTE: 스냅샷 복사본을 보조 미러 또는 볼트 파일 시스템으로 복제하려면 관계를 미리 구성해야 합니다.
+
+image:evs-protect-fsxn-004.png["위 단계의 대화를 나타내는 그림"]
+
+정책이 생성되면 다음 단계는 백업해야 할 적절한 NFS 또는 iSCSI 데이터 저장소와 VM을 정의하는 리소스 그룹을 생성하는 것입니다.
+
+
+
+== 리소스 그룹을 생성합니다
+
+리소스 그룹은 보호가 필요한 VM과 데이터스토어를 담는 컨테이너 역할을 합니다. 리소스는 언제든지 리소스 그룹에 추가하거나 제거할 수 있으므로 백업 구성을 유연하게 관리할 수 있습니다.
+
+다음 단계를 사용하여 link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_create_resource_groups_for_vms_and_datastores.html["리소스 그룹"]을(를) 생성할 수 있습니다.
+
+. SCV의 왼쪽 탐색 창으로 이동하여 "리소스 그룹"을 선택합니다.
+. 리소스 그룹 페이지에서 "만들기"를 선택하여 리소스 그룹 생성 마법사를 시작합니다.
++
+
+NOTE: 리소스 그룹을 생성하는 또 다른 방법은 개별 VM 또는 데이터 저장소를 선택하고 해당 리소스만 포함하는 리소스 그룹을 생성하는 것입니다.
+
+. "Resources" 페이지에서 범위(VM 또는 데이터 저장소)와 데이터 센터를 선택합니다.
+. "디스크 스패닝" 페이지에서 "여러 데이터스토어에 걸쳐 여러 VMDK를 사용하는 가상 머신" 옵션을 선택합니다.
+. 다음으로 백업 정책을 연결합니다. 기존 정책을 선택하거나 새 백업 정책을 생성합니다.
+. "Schedules" 페이지에서 선택한 각 정책에 대한 백업 일정을 구성합니다.
+. 필요한 항목을 선택했으면 "완료"를 선택하세요. 그러면 새 리소스 그룹이 생성되어 리소스 그룹 목록에 추가됩니다.
+
+
+image:evs-protect-fsxn-005.png["위 단계의 대화를 나타내는 그림"]
+
+
+
+== 리소스 그룹 백업
+
+백업 작업은 리소스 그룹 내에 정의된 모든 리소스에 대해 실행됩니다. 리소스 그룹에 정책이 연결되어 있고 일정이 구성되어 있는 경우 백업은 해당 일정에 따라 자동으로 수행됩니다.
+
+. vCenter 웹 클라이언트 페이지의 왼쪽 탐색 창에서 "SnapCenter Plug-in for VMware"를 선택한 다음 "Resource Groups"를 선택합니다.
+. 리소스 그룹 페이지에서 지정된 리소스 그룹을 찾고 "지금 실행"을 선택하여 수동 백업을 시작하십시오.
++
+image:evs-protect-fsxn-006.png["위 단계의 대화를 나타내는 그림"]
+
+. 리소스 그룹에 여러 정책이 구성되어 있는 경우 "지금 백업" 대화 상자에서 백업 작업에 사용할 정책을 선택하십시오.
+. 백업을 시작하려면 "OK"를 선택하십시오.
+
+
+image:evs-protect-fsxn-007.png["위 단계의 대화를 나타내는 그림"]
+
+창 하단의 "Recent Tasks"를 선택하거나 대시보드에서 "Job Monitor"를 선택하여 작업 진행 상황을 모니터링합니다.
+
+
+NOTE: 백업 정책 생성, 리소스 그룹 구성 및 백업 작업 수행 프로세스는 NFS 및 iSCSI를 포함한 다양한 스토리지 프로토콜에서 일관적입니다.
+
+
+NOTE: 백업은 정책에 정의된 일정에 따라 수행됩니다.
+
+백업이 완료되면 드롭다운 목록에서 "SnapCenter Plug-in for VMware vSphere"를 선택한 다음 "복원"을 선택하여 데이터스토어 수준 또는 개별 VM에 대한 백업을 볼 수 있습니다.
+
+image:evs-protect-fsxn-008.png["위 단계의 대화를 나타내는 그림"]

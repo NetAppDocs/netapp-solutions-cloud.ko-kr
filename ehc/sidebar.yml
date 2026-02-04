@@ -99,6 +99,22 @@ entries:
       url: "/vmware/evs-mount-fsxn-iscsi.html"
     - title: 결론
       url: "/vmware/evs-mount-fsxn-conclusion.html"
+  - title: EVS용 FSx ONTAP 데이터 저장소 보호
+    entries:
+    - title: 소개
+      url: "/vmware/evs-protect-fsxn-intro.html"
+    - title: VMware용 SnapCenter 플러그인 설정
+      url: "/vmware/evs-protect-fsxn-setup-sc.html"
+    - title: VMware용 SnapCenter 플러그인 구성
+      url: "/vmware/evs-protect-fsxn-configure.html"
+    - title: 백업에서 VM 복원
+      url: "/vmware/evs-protect-fsxn-restore-vm.html"
+    - title: VMDK에서 게스트 파일 및 폴더를 복원합니다
+      url: "/vmware/evs-protect-fsxn-restore-guest-files.html"
+    - title: VMDK에서 데이터베이스 보호
+      url: "/vmware/evs-protect-fsxn-db.html"
+    - title: 결론
+      url: "/vmware/evs-protect-fsxn-conclusion.html"
 - title: Azure/AVS용 NetApp
   entries:
   - title: Azure용 NetApp 개요
@@ -126,7 +142,7 @@ entries:
       url: "/vmware/vmw-azure-avs-migrate-hcx.html"
 - title: GCP/GCVE용 NetApp
   entries:
-  - title: Google Cloud용 Netapp 개요
+  - title: NetApp for Google Cloud 개요
     pdf-filename: Google Cloud용 Netapp 개요
     url: "/vmware/vmw-gcp-gcve-overview.html"
   - title: GCP/GCVE에서 워크로드 보호

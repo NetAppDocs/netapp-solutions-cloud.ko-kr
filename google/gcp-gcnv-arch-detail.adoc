@@ -16,7 +16,7 @@ summary: 'CloudSQL, Google Cloud VMware Engine(GCVE), FileStore 등 다른 Googl
 [role="lead"]
 CloudSQL, Google Cloud VMware Engine(GCVE), FileStore와 같은 다른 Google Cloud 기본 서비스와 유사한 방식으로 Google Cloud NetApp Volumes 사용합니다. https://cloud.google.com/vpc/docs/private-services-access?hl=en_US["구글 공익광고"^] 서비스를 제공하기 위해.  PSA에서는 서비스가 서비스 생산자 프로젝트 내부에 구축됩니다. https://cloud.google.com/vpc/docs/vpc-peering?hl=en_US["VPC 네트워크 피어링"^] 서비스 소비자와 연결합니다.  서비스 제작자는 NetApp 에서 제공하고 운영하며, 서비스 소비자는 고객 프로젝트의 VPC로, Google Cloud NetApp Volumes 파일 공유에 액세스하려는 클라이언트를 호스팅합니다.
 
-다음 그림은 다음에서 참조됩니다. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/architecture?hl=en_US["건축 섹션"^] Google Cloud NetApp Volumes 설명서에서는 개략적인 보기를 보여줍니다.
+다음 그림은  https://docs.cloud.google.com/netapp/volumes/docs["Google Cloud NetApp Volumes 설명서"^]에서 참조한 것으로 전체적인 개요를 보여줍니다.
 
 image:ncvs-gc-001.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
