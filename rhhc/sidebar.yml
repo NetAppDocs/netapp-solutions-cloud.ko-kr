@@ -27,8 +27,6 @@ entries:
     url: "/openshift/os-op-setup.html"
   - title: VMware에서 컨테이너 워크로드 보호
     url: "/openshift/os-op-data-protection.html"
-  - title: VMware에서 컨테이너 워크로드 마이그레이션
-    url: "/openshift/os-op-data-migration.html"
 - title: 자체 관리 구성 요소를 갖춘 하이브리드 클라우드
   pdf-filename: Red Hat OpenShift 자체 관리 구성 요소를 사용한 하이브리드 클라우드(온프레미스/AWS/GCP/Azure)
   entries:
@@ -42,8 +40,6 @@ entries:
     url: "/openshift/os-sm-azure-setup.html"
   - title: AWS/GCP/Azure에서 컨테이너 워크로드 보호
     url: "/openshift/os-sm-data-protection.html"
-  - title: 컨테이너 워크로드를 AWS/GCP/Azure로 마이그레이션
-    url: "/openshift/os-sm-data-migration.html"
 - title: 공급자 관리 구성 요소를 갖춘 하이브리드 클라우드
   pdf-filename: Red Hat OpenShift 공급자 관리 구성 요소를 사용한 하이브리드 클라우드
   entries:
@@ -55,8 +51,6 @@ entries:
     url: "/openshift/os-pm-gcnv-setup.html"
   - title: AWS에서 컨테이너 워크로드 보호
     url: "/openshift/os-pm-aws-dp.html"
-  - title: AWS에서 컨테이너 워크로드 마이그레이션
-    url: "/openshift/os-pm-aws-data-migration.html"
   - title: 컨테이너 및 가상화를 위한 추가 ROSA 솔루션
     url: "/openshift/os-pm-rosa-additional.html"
 - title: Trident Protect를 사용하여 데이터 보호

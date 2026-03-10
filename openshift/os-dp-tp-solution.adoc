@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: openshift/os-dp-tp-solution.html 
 keywords: OpenShift, OCP, Trident, Trident-protect, NetApp ONTAP, Red Hat OpenShift, app data protection, Containers 
-summary: NetApp ONTAP 과 함께 Trident Protect를 사용한 Red Hat OpenShift 컨테이너 애플리케이션 데이터 보호 
+summary: Red Hat OpenShift 컨테이너 애플리케이션 데이터 보호, Trident Protect와 NetApp ONTAP를 사용 
 ---
 = Trident Protect를 사용한 OpenShift Container Platform의 컨테이너 앱에 대한 데이터 보호
 :hardbreaks:

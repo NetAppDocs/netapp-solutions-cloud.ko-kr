@@ -33,7 +33,7 @@ image:rhhc-osd-with-gcnv.png["입력/출력 대화 상자 또는 서면 내용�
 
 
 .OSD 클러스터에 Trident 설치(Helm 차트 사용)
-* Helm 차트를 사용하여 OSD 클러스터에 Trident 설치합니다.  나타내다link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html#critical-information-about-astra-trident-24-06["여기"] Helm Chart를 설치하는 방법에 대한 지침은 여기를 참조하세요.  헬름 차트를 찾을 수 있습니다link:https://github.com/NetApp/trident/tree/master/helm/trident-operator["여기"] .
+* Helm 차트를 사용하여 OSD 클러스터에 Trident를 설치하십시오. Helm 차트 설치 방법에 대한 지침은 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html["여기"]을 참조하십시오.
 
 
 .OSD 클러스터를 위한 NetApp Trident 와 NetApp Volumes 통합
