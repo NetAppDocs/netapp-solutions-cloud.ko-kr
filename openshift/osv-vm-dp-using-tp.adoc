@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: openshift/osv-vm-dp-using-tp.html 
-keywords: OpenShift, OCP, Trident, Trident protect, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization,Data Protection, Data Management for VMs, VM protection 
+keywords: OpenShift, OCP, Trident, Trident Protect, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization, Data Protection, Data Management for VMs, VM protection 
 summary: NetApp ONTAP 통한 Red Hat OpenShift Virtualization 데이터 보호 
 ---
-= Trident Protect를 사용하여 Red Hat OpenShift Virtualization에서 VM 보호
+= Trident Protect를 사용하여 Red Hat OpenShift Virtualization의 VM 보호
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,37 +14,37 @@ summary: NetApp ONTAP 통한 Red Hat OpenShift Virtualization 데이터 보호
 
 
 [role="lead"]
-스냅샷과 백업을 사용하여 OpenShift Virtualization에서 VM을 보호합니다.  이 절차에는 ONTAP S3 개체 스토리지를 사용하여 AppVault를 만들고, Kubernetes 리소스 개체, 영구 볼륨, 내부 이미지를 비롯한 VM 데이터를 캡처하도록 Trident Protect를 구성하고, 필요한 경우 데이터를 복원하는 작업이 포함됩니다.
+OpenShift Virtualization에서 스냅샷 및 백업을 사용하여 VM을 보호합니다. 이 절차에는 ONTAP S3 객체 스토리지를 사용하여 AppVault를 생성하고, Kubernetes 리소스 객체, 영구 볼륨 및 내부 이미지를 포함한 VM 데이터를 캡처하도록 Trident Protect를 구성하고, 필요할 때 데이터를 복원하는 과정이 포함됩니다.
 
 OpenShift 가상화 환경의 가상 머신은 OpenShift 컨테이너 플랫폼의 워커 노드에서 실행되는 컨테이너화된 애플리케이션입니다.  VM 메타데이터와 VM의 영구 디스크를 보호하는 것은 손실되거나 손상될 경우 복구할 수 있도록 하는 데 중요합니다.
 
-OpenShift Virtualization VM의 영구 디스크는 OpenShift 클러스터에 통합된 ONTAP 스토리지로 백업할 수 있습니다.link:https://docs.netapp.com/us-en/trident/["Trident CSI"] .  이 섹션에서는 다음을 사용합니다.link:https://docs.netapp.com/us-en/trident/trident-protect/learn-about-trident-protect.html["Trident 프로텍트"] 데이터 볼륨을 포함한 VM의 스냅샷과 백업을 ONTAP Object Storage에 생성합니다.
+OpenShift Virtualization VM의 영구 디스크는 link:https://docs.netapp.com/us-en/trident/["Trident CSI"]을 사용하여 OpenShift 클러스터에 통합된 ONTAP 스토리지로 백업할 수 있습니다. 이 섹션에서는 link:https://docs.netapp.com/us-en/trident/trident-protect/learn-about-trident-protect.html["Trident Protect"]를 사용하여 데이터 볼륨을 포함한 VM의 스냅샷 및 백업을 ONTAP 객체 스토리지에 생성합니다.
 
 필요한 경우 스냅샷이나 백업에서 복원합니다.
 
-Trident Protect를 사용하면 OpenShift 클러스터에서 애플리케이션과 VM의 스냅샷, 백업, 복원 및 재해 복구가 가능합니다.  OpenShift Virtualization VM의 경우 Trident Protect로 보호할 수 있는 데이터에는 VM과 연결된 Kubernetes 리소스 개체, 영구 볼륨, 내부 이미지가 포함됩니다.
+Trident Protect는 OpenShift 클러스터의 애플리케이션 및 VM에 대한 스냅샷, 백업, 복원 및 재해 복구를 지원합니다. OpenShift Virtualization VM의 경우, Trident Protect로 보호할 수 있는 데이터에는 VM과 연결된 Kubernetes 리소스 객체, 영구 볼륨 및 내부 이미지가 포함됩니다.
 
 **다음은 이 섹션의 예제에 사용된 다양한 구성 요소의 버전입니다.**
 
 * link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/installing_on_bare_metal/index["오픈시프트 클러스터 4.17"]
 * link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/virtualization/getting-started#tours-quick-starts_virt-getting-started["Red Hat에서 제공하는 OpenShift Virtualization Operator를 통해 설치된 OpenShift Virtualization"]
 * link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy.html["Trident 25.02"]
-* link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-installation.html["Trident 프로텍트 25.02"]
+* link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-installation.html["Trident Protect 25.02"]
 * link:https://docs.netapp.com/us-en/ontap/["ONTAP 9.16"]
 
 
 
 
-== 개체 저장소용 App Vault 만들기
+== 객체 스토리지를 위한 AppVault 생성
 
 .AppVault 만들기
 [%collapsible%open]
 ====
-애플리케이션이나 VM에 대한 스냅샷과 백업을 생성하기 전에 Trident Protect에서 스냅샷과 백업을 저장할 개체 스토리지를 구성해야 합니다.  이 작업은 버킷 CR을 사용하여 수행됩니다.  관리자만 버킷 CR을 만들고 구성할 수 있습니다.  Trident Protect에서는 버킷 CR을 AppVault라고 합니다.  AppVault 객체는 스토리지 버킷의 선언적 Kubernetes 워크플로 표현입니다.  AppVault CR에는 백업, 스냅샷, 복원 작업, SnapMirror 복제와 같은 보호 작업에 버킷을 사용하는 데 필요한 구성이 포함되어 있습니다.
+애플리케이션 또는 VM의 스냅샷 및 백업을 생성하기 전에 Trident Protect에서 스냅샷 및 백업을 저장할 오브젝트 스토리지를 구성해야 합니다. 이는 버킷 CR을 사용하여 수행됩니다. 버킷 CR은 관리자만 생성하고 구성할 수 있습니다. Trident Protect에서 버킷 CR은 AppVault라고 합니다. AppVault 오브젝트는 스토리지 버킷을 Kubernetes 워크플로에서 선언적으로 표현한 것입니다. AppVault CR에는 백업, 스냅샷, 복원 작업 및 SnapMirror 복제와 같은 보호 작업에 버킷을 사용하는 데 필요한 구성이 포함되어 있습니다.
 
-이 예에서는 ONTAP S3를 개체 스토리지로 사용하는 방법을 보여드리겠습니다.  ONTAP S3용 AppVault CR을 만드는 워크플로는 다음과 같습니다. 1.  ONTAP 클러스터의 SVM에 S3 객체 저장 서버를 생성합니다. 2.  Object Store Server에 버킷을 만듭니다. 3.  SVM에서 S3 사용자를 생성합니다.  액세스 키와 비밀 키를 안전한 곳에 보관하세요. 4.  OpenShift에서 ONTAP S3 자격 증명을 저장할 비밀을 만듭니다. 5.  ONTAP S3에 대한 AppVault 개체 만들기
+이 예제에서는 ONTAP S3를 객체 스토리지로 사용하는 방법을 보여드리겠습니다. ONTAP S3용 AppVault CR을 생성하는 워크플로는 다음과 같습니다. 1. ONTAP 클러스터의 SVM에 S3 객체 스토어 서버를 생성합니다. 2. 객체 스토어 서버에 버킷을 생성합니다. 3. SVM에 S3 사용자를 생성합니다. 액세스 키와 시크릿 키는 안전한 곳에 보관하십시오. 4. OpenShift에서 ONTAP S3 자격 증명을 저장할 시크릿을 생성합니다. 5. ONTAP S3용 AppVault 객체를 생성합니다.
 
-** ONTAP S3에 대한 Trident Protect AppVault 구성**
+**ONTAP S3용 Trident Protect AppVault 구성**
 
 [source, yaml]
 ----
@@ -137,9 +137,9 @@ image:rh-os-n-use-case-ocpv-tp-dp-007.png["vm, pods 및 pvc가 생성되었습�
 .앱 만들기
 [%collapsible%open]
 ====
-**VM에 대한 Trident Protect 앱 만들기**
+**VM용 Trident Protect 앱을 생성하세요**
 
-이 예에서 데모 네임스페이스에는 하나의 VM이 있으며, 앱을 생성할 때 네임스페이스의 모든 리소스가 포함됩니다.
+이 예에서 demo 네임스페이스에는 하나의 VM이 있으며 앱을 생성할 때 네임스페이스의 모든 리소스가 포함됩니다.
 
 [source, yaml]
 ----

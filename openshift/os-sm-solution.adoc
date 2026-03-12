@@ -16,7 +16,7 @@ summary:
 [role="lead"]
 고객은 현대화 여정의 어느 시점에 이르러 일부 선택된 워크로드나 모든 워크로드를 데이터 센터에서 클라우드로 이전해야 할 수도 있습니다.  기업은 다양한 이유로 클라우드에서 자체 관리형 OpenShift 컨테이너와 자체 관리형 NetApp 스토리지를 사용하기로 선택할 수 있습니다.  데이터 센터에서 컨테이너 워크로드를 마이그레이션하기 위한 성공적인 프로덕션 준비 환경을 구축하려면 클라우드에서 Red Hat OpenShift 컨테이너 플랫폼(OCP)을 계획하고 배포해야 합니다.  OCP 클러스터는 데이터 센터의 VMware 또는 Bare Metal에 배포할 수 있으며, 클라우드 환경의 AWS, Azure 또는 Google Cloud에 배포할 수 있습니다.
 
-NetApp Cloud Volumes ONTAP 스토리지는 AWS, Azure 및 Google Cloud에서 컨테이너를 배포할 때 데이터 보호, 안정성 및 유연성을 제공합니다.  Trident 고객의 상태 저장 애플리케이션을 위해 지속적인 Cloud Volumes ONTAP 스토리지를 사용하는 동적 스토리지 프로비저너 역할을 합니다.  Trident Protect는 데이터 보호, 마이그레이션, 비즈니스 연속성과 같은 상태 저장 애플리케이션의 데이터 관리 요구 사항을 충족하는 데 사용할 수 있습니다.
+NetApp Cloud Volumes ONTAP 스토리지는 AWS, Azure 및 Google Cloud의 컨테이너 배포 환경에 데이터 보호, 안정성 및 유연성을 제공합니다. Trident는 고객의 상태 저장 애플리케이션에 필요한 영구 Cloud Volumes ONTAP 스토리지를 활용하는 동적 스토리지 프로비저너 역할을 합니다. Trident Protect는 데이터 보호, 마이그레이션 및 비즈니스 연속성과 같은 상태 저장 애플리케이션의 데이터 관리 요구 사항에 사용할 수 있습니다.
 
 
 

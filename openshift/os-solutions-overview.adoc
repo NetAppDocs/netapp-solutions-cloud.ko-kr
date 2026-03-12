@@ -61,6 +61,6 @@ image:rhhc-trident-features.png["입력/출력 대화 상자 또는 서면 내�
 
 NOTE: 애플리케이션 데이터에는 사용자 데이터 외에도 Kubernetes 객체가 포함됩니다. 다음은 몇 가지 예입니다. - Pod 사양, PVC, 배포, 서비스와 같은 Kubernetes 객체 - 구성 맵 및 비밀과 같은 사용자 지정 구성 객체 - 스냅샷 복사본, 백업, 복제본과 같은 영구 데이터 - CR 및 CRD와 같은 사용자 지정 리소스
 
-** NetApp Trident Protect**는 NetApp 에서 유지 관리하는 오픈 소스 무료 소프트웨어로 제공되며, NetApp ONTAP 스토리지 시스템과 NetApp Trident CSI 스토리지 프로비저너가 지원하는 상태 저장 Kubernetes 애플리케이션의 기능과 가용성을 향상시키는 고급 애플리케이션 데이터 관리 기능을 제공합니다.  Trident Protect는 퍼블릭 클라우드와 온프레미스 환경에서 컨테이너화된 워크로드의 관리, 보호 및 이동을 간소화합니다.  또한 API와 CLI를 통해 자동화 기능도 제공합니다.
+**NetApp Trident Protect**는 NetApp Trident에 무료 애드온으로 제공되며, NetApp ONTAP 스토리지 시스템을 기반으로 하는 스테이트풀 Kubernetes 애플리케이션의 기능과 가용성을 향상시키는 고급 애플리케이션 데이터 관리 기능을 제공합니다. Trident Protect는 퍼블릭 클라우드와 온프레미스 환경 모두에서 컨테이너화된 워크로드의 관리, 보호 및 이동을 간소화합니다. 또한 API 및 CLI를 통해 강력한 자동화 기능을 제공합니다.
 
 이 참조 문서는 Trident Protect를 사용하여 RedHat OpenShift 플랫폼에 배포된 컨테이너 기반 애플리케이션의 데이터 보호에 대한 검증을 제공합니다.  또한 이 솔루션은 컨테이너 플랫폼을 관리하기 위한 Red Hat Advanced Cluster Management(ACM)의 배포 및 사용에 대한 높은 수준의 세부 정보를 제공합니다.  또한 이 문서에서는 Trident CSI 프로비저너를 사용하여 NetApp 스토리지를 Red Hat OpenShift 컨테이너 플랫폼과 통합하는 방법에 대한 세부 정보를 강조합니다.

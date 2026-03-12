@@ -1050,24 +1050,11 @@
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">개인정보 보호정책</block>
   <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
   <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
-  <block id="827c397eb9e39fb213ec280407a48dec" category="doc">Trident Protect를 사용한 OpenShift Container Platform의 컨테이너 앱에 대한 데이터 보호</block>
-  <block id="edcbdc40f2075d0e5e1b6f988ee3f107" category="paragraph">이 참조 문서 섹션에서는 Trident Protect를 사용하여 컨테이너 앱의 스냅샷과 백업을 만드는 방법에 대한 세부 정보를 제공합니다.  NetApp Trident Protect는 NetApp ONTAP 스토리지 시스템과 NetApp Trident CSI 스토리지 프로비저너가 지원하는 상태 저장 Kubernetes 애플리케이션의 기능과 가용성을 향상시키는 고급 애플리케이션 데이터 관리 기능을 제공합니다.  Trident Protect는 애플리케이션 스냅샷과 백업을 생성합니다. 즉, 영구 볼륨에 있는 애플리케이션 데이터의 스냅샷과 백업이 생성될 뿐만 아니라 애플리케이션 메타데이터의 스냅샷과 백업도 생성됩니다.  Trident Protect에서 생성된 스냅샷과 백업은 다음 개체 스토리지에 저장하여 나중에 복원할 수 있습니다.</block>
   <block id="128edc3ff8c2d69c9c76b866643314ec" category="list-text">AWS S3</block>
   <block id="2b3e8f910d66604cd77f93b333670468" category="list-text">Azure Blob 저장소</block>
   <block id="833c2c211a541e50ad94433664e4b5c1" category="list-text">구글 클라우드 스토리지</block>
-  <block id="00f74bdffd46877a420bb7800c4b2bbc" category="list-text">온탭 S3</block>
   <block id="684bd3b292fe41f5fcee6f80cd2303d2" category="list-text">스토리지그리드</block>
-  <block id="9d870199f6a8a818cc8c7aed36d27ddd" category="list-text">다른 S3 호환 스토리지</block>
-  <block id="bd468b702049c3ccb4283d1af8219098" category="paragraph">Trident Protect는 역할 기반 액세스 제어(RBAC)의 Kubernetes 모델을 사용합니다.  기본적으로 Trident Protect는 trident-protect라는 단일 시스템 네임스페이스와 관련 기본 서비스 계정을 제공합니다.  사용자나 특정 보안 요구 사항이 많은 조직이 있는 경우 Trident Protect의 RBAC 기능을 사용하여 리소스와 네임스페이스에 대한 액세스를 보다 세부적으로 제어할 수 있습니다.</block>
-  <block id="593761100422aee4bdc18b693f31d86b" category="inline-link-macro">Trident 프로텍트 문서</block>
-  <block id="6ea33daa5fcdf9d0fecc7982f4f4de22" category="paragraph">Trident Protect의 RBAC에 대한 추가 정보는 다음에서 찾을 수 있습니다.<block ref="a28ba634d587e14259fa3234da741257" category="inline-link-macro-rx"></block></block>
   <block id="77077178d2636ad1c97d4fa40810b09c" category="admonition">클러스터 관리자는 기본 trident-protect 네임스페이스의 리소스에 액세스할 수 있으며 다른 모든 네임스페이스의 리소스에도 액세스할 수 있습니다.  사용자는 trident-protect 네임스페이스에서 스냅샷 및 백업 CR과 같은 애플리케이션 데이터 관리 사용자 정의 리소스(CR)를 생성할 수 없습니다.  가장 좋은 방법은 사용자가 애플리케이션 네임스페이스에서 해당 CR을 만드는 것입니다.</block>
-  <block id="cff8366cdf90cce5179a3c4dab0162fc" category="paragraph">Trident Protect는 설명서에 제공된 지침을 사용하여 설치할 수 있습니다.<block ref="dff37de6321a388f6a9f366069d1c616" category="inline-link-macro-rx"></block> 이 섹션에서는 Trident Protect를 사용하여 컨테이너 애플리케이션의 데이터 보호 및 애플리케이션 복원 워크플로를 보여줍니다. 1.  스냅샷 생성(예약된 시간에 따라) 2.  스냅샷에서 복원(동일한 네임스페이스 및 다른 네임스페이스로 복원) 3.  백업 생성 4.  백업에서 복원</block>
-  <block id="5aa0dfe1002dfe6bce0026bf5a097872" category="example-title">필수 조건</block>
-  <block id="db2582f5c12f79366e50b0b1c33e436a" category="paragraph">애플리케이션의 스냅샷과 백업을 생성하기 전에 Trident Protect에서 스냅샷과 백업을 저장할 개체 스토리지를 구성해야 합니다.  이 작업은 버킷 CR을 사용하여 수행됩니다.  관리자만 버킷 CR을 만들고 구성할 수 있습니다.  Trident Protect에서는 버킷 CR을 AppVault라고 합니다.  AppVault 객체는 스토리지 버킷의 선언적 Kubernetes 워크플로 표현입니다.  AppVault CR에는 백업, 스냅샷, 복원 작업, SnapMirror 복제와 같은 보호 작업에 버킷을 사용하는 데 필요한 구성이 포함되어 있습니다.</block>
-  <block id="20e0e1d713d2f39f16898ab621ce4a16" category="paragraph">이 예에서는 ONTAP S3를 개체 스토리지로 사용하는 방법을 보여드리겠습니다.  ONTAP S3용 AppVault CR을 만드는 워크플로는 다음과 같습니다. 1.  ONTAP 클러스터의 SVM에 S3 객체 저장 서버를 생성합니다. 2.  Object Store Server에 버킷을 만듭니다. 3.  SVM에서 S3 사용자를 생성합니다.  액세스 키와 비밀 키를 안전한 곳에 보관하세요. 4.  OpenShift에서 ONTAP S3 자격 증명을 저장할 비밀을 만듭니다. 5.  ONTAP S3에 대한 AppVault 개체 만들기</block>
-  <block id="a5ac9b5456b97ca447f18f063406daea" category="paragraph">** ONTAP S3에 대한 Trident Protect AppVault 구성**</block>
-  <block id="bd1afc269899c4e78031d3d1d12daf48" category="paragraph">***AppVault로 ONTAP S3를 사용하여 Trident Protect를 구성하기 위한 샘플 yaml 파일***</block>
   <block id="77eca8e8a34078d4ab5e1426aa3c7b95" category="inline-image-macro">AppVault가 생성되었습니다</block>
   <block id="99e64ee8057602da05e4fc20864fd73a" category="paragraph"><block ref="99e64ee8057602da05e4fc20864fd73a" category="inline-image-macro-rx" type="image"></block></block>
   <block id="fa37f49663bbe03e71087c889d796170" category="paragraph">***postgresql 앱 설치를 위한 샘플 yaml 파일***</block>
@@ -1125,7 +1112,6 @@
   <block id="fd9f92784bc399dc66c9df193834ba31" category="inline-image-macro">다른 네임스페이스로 복원</block>
   <block id="7979e429db1539c82fac2038cccfaec8" category="paragraph"><block ref="7979e429db1539c82fac2038cccfaec8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1feba18e02bb6b30cf78f60ff40109bc" category="example-title">애플리케이션 마이그레이션</block>
-  <block id="ac9659386fec91dffc11d4570f197323" category="paragraph">다른 클러스터로 애플리케이션을 복제하거나 마이그레이션하려면(클러스터 간 복제 수행) 소스 클러스터에서 백업을 만든 다음, 해당 백업을 다른 클러스터로 복원합니다.  대상 클러스터에 Trident Protect가 설치되어 있는지 확인하세요.</block>
   <block id="5bfe132071d2779ce50bf6f281183b6b" category="paragraph">소스 클러스터에서 아래 이미지에 표시된 단계를 수행합니다.</block>
   <block id="d0fa8f36f5ce0a018afa9098138e35b3" category="paragraph"><block ref="d0fa8f36f5ce0a018afa9098138e35b3" category="inline-image-macro-rx" type="image"></block></block>
   <block id="109202cbb9aac0e5ab4f8fa105441221" category="paragraph">소스 클러스터에서 대상 클러스터로 컨텍스트를 전환합니다.  그런 다음 대상 클러스터 컨텍스트에서 AppVault에 액세스할 수 있는지 확인하고 대상 클러스터에서 AppVault 콘텐츠를 가져옵니다.</block>
@@ -1515,7 +1501,6 @@
   <block id="abdf2aa21aa2b6f5d115b03c182a0b0b" category="list-text">백엔드와 스토리지 클래스를 만듭니다.  지침을 참조하세요<block ref="e128541cde7fad4b75ad1c7ebfcc5826" category="inline-link-macro-rx"></block> .</block>
   <block id="0733a4864ff0a27098003f35528fda51" category="doc">하이브리드 클라우드에서 Red Hat OpenShift 컨테이너 플랫폼 워크로드를 지원하는 NetApp 솔루션</block>
   <block id="7f224be1115f0425cbeb3e707e64be2a" category="paragraph">고객은 현대화 여정의 어느 시점에 이르러 일부 선택된 워크로드나 모든 워크로드를 데이터 센터에서 클라우드로 이전해야 할 수도 있습니다.  기업은 다양한 이유로 클라우드에서 자체 관리형 OpenShift 컨테이너와 자체 관리형 NetApp 스토리지를 사용하기로 선택할 수 있습니다.  데이터 센터에서 컨테이너 워크로드를 마이그레이션하기 위한 성공적인 프로덕션 준비 환경을 구축하려면 클라우드에서 Red Hat OpenShift 컨테이너 플랫폼(OCP)을 계획하고 배포해야 합니다.  OCP 클러스터는 데이터 센터의 VMware 또는 Bare Metal에 배포할 수 있으며, 클라우드 환경의 AWS, Azure 또는 Google Cloud에 배포할 수 있습니다.</block>
-  <block id="591d8e954b49b2f030aae131ad819dc1" category="paragraph">NetApp Cloud Volumes ONTAP 스토리지는 AWS, Azure 및 Google Cloud에서 컨테이너를 배포할 때 데이터 보호, 안정성 및 유연성을 제공합니다.  Trident 고객의 상태 저장 애플리케이션을 위해 지속적인 Cloud Volumes ONTAP 스토리지를 사용하는 동적 스토리지 프로비저너 역할을 합니다.  Trident Protect는 데이터 보호, 마이그레이션, 비즈니스 연속성과 같은 상태 저장 애플리케이션의 데이터 관리 요구 사항을 충족하는 데 사용할 수 있습니다.</block>
   <block id="20dd61a40cd059dbff34a02f8dd1ee36" category="section-title">Trident Protect를 사용하여 하이브리드 클라우드에서 OpenShift Container 워크로드를 위한 데이터 보호 및 마이그레이션 솔루션</block>
   <block id="b3d41cd16fa04392bdd614936bf0823d" category="paragraph">온프레미스 및 AWS<block ref="845cace67d09969df5a2d358ed8ed04a" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b807961c3142b4c3306576ca5da77290" category="paragraph">온프레미스 및 Google Cloud<block ref="e1070536ee843d6376c8ed3a46eccf0d" category="inline-image-macro-rx" type="image"></block></block>
@@ -1539,7 +1524,6 @@
   <block id="25e2d7f2959b9dedca2b0da1c32c8325" category="paragraph"><block ref="25e2d7f2959b9dedca2b0da1c32c8325" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e5c4a3945e0cdaa7b705b00128180df4" category="paragraph">비즈니스에 중요한 컨테이너 작업에는 지속적인 볼륨 이상이 필요합니다.  데이터 관리 요구 사항에는 애플리케이션 쿠버네티스 객체의 보호 및 마이그레이션도 필요합니다.</block>
   <block id="e57b3f1bdaee7a2b21647555142e9653" category="admonition">애플리케이션 데이터에는 사용자 데이터 외에도 Kubernetes 객체가 포함됩니다. 다음은 몇 가지 예입니다. - Pod 사양, PVC, 배포, 서비스와 같은 Kubernetes 객체 - 구성 맵 및 비밀과 같은 사용자 지정 구성 객체 - 스냅샷 복사본, 백업, 복제본과 같은 영구 데이터 - CR 및 CRD와 같은 사용자 지정 리소스</block>
-  <block id="96d8c821c5ebb60bdae10226cb5715e9" category="paragraph">** NetApp Trident Protect**는 NetApp 에서 유지 관리하는 오픈 소스 무료 소프트웨어로 제공되며, NetApp ONTAP 스토리지 시스템과 NetApp Trident CSI 스토리지 프로비저너가 지원하는 상태 저장 Kubernetes 애플리케이션의 기능과 가용성을 향상시키는 고급 애플리케이션 데이터 관리 기능을 제공합니다.  Trident Protect는 퍼블릭 클라우드와 온프레미스 환경에서 컨테이너화된 워크로드의 관리, 보호 및 이동을 간소화합니다.  또한 API와 CLI를 통해 자동화 기능도 제공합니다.</block>
   <block id="76a61af83baaa891692e5199cb27152d" category="paragraph">이 참조 문서는 Trident Protect를 사용하여 RedHat OpenShift 플랫폼에 배포된 컨테이너 기반 애플리케이션의 데이터 보호에 대한 검증을 제공합니다.  또한 이 솔루션은 컨테이너 플랫폼을 관리하기 위한 Red Hat Advanced Cluster Management(ACM)의 배포 및 사용에 대한 높은 수준의 세부 정보를 제공합니다.  또한 이 문서에서는 Trident CSI 프로비저너를 사용하여 NetApp 스토리지를 Red Hat OpenShift 컨테이너 플랫폼과 통합하는 방법에 대한 세부 정보를 강조합니다.</block>
   <block id="7e9f968a139a25a62b6f7f581469c718" category="doc">추가 문서</block>
   <block id="2958dbcd62d37cb8d2dae92d4bd5ddaf" category="paragraph">참고할 수 있는 추가 문서는 다음과 같습니다.</block>
@@ -1660,26 +1644,17 @@
   <block id="cba8b033a05e59ab8229f6c91cf17c9a" category="cell">온프레미스 및 Azure의 OpenShift 4.13.25</block>
   <block id="d1d18b481bde9c866759ee41f30dbafe" category="cell">Trident 프로텍트 23.10</block>
   <block id="eeaf1836a10a1c281451e90f85037328" category="summary">NetApp ONTAP 통한 Red Hat OpenShift Virtualization 데이터 보호</block>
-  <block id="1821a63ecd868360f33ee8c307c19f29" category="doc">Trident Protect를 사용하여 Red Hat OpenShift Virtualization에서 VM 보호</block>
-  <block id="880438dc3c158f0520f9576a507cb60f" category="paragraph">스냅샷과 백업을 사용하여 OpenShift Virtualization에서 VM을 보호합니다.  이 절차에는 ONTAP S3 개체 스토리지를 사용하여 AppVault를 만들고, Kubernetes 리소스 개체, 영구 볼륨, 내부 이미지를 비롯한 VM 데이터를 캡처하도록 Trident Protect를 구성하고, 필요한 경우 데이터를 복원하는 작업이 포함됩니다.</block>
   <block id="ae4c2d0da7b1da91fd7f98644678ccf9" category="paragraph">OpenShift 가상화 환경의 가상 머신은 OpenShift 컨테이너 플랫폼의 워커 노드에서 실행되는 컨테이너화된 애플리케이션입니다.  VM 메타데이터와 VM의 영구 디스크를 보호하는 것은 손실되거나 손상될 경우 복구할 수 있도록 하는 데 중요합니다.</block>
-  <block id="cb1f1e88b6db83dc715d1cb1d8733445" category="inline-link-macro">Trident 프로텍트</block>
-  <block id="e33e8d48f0bb799b37b5bc749487254d" category="paragraph">OpenShift Virtualization VM의 영구 디스크는 OpenShift 클러스터에 통합된 ONTAP 스토리지로 백업할 수 있습니다.<block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block> .  이 섹션에서는 다음을 사용합니다.<block ref="cc24e09f500ab5b39acb9ba4de3f5622" category="inline-link-macro-rx"></block> 데이터 볼륨을 포함한 VM의 스냅샷과 백업을 ONTAP Object Storage에 생성합니다.</block>
   <block id="cfb19c3733743fd549ce0c727fedef08" category="paragraph">필요한 경우 스냅샷이나 백업에서 복원합니다.</block>
-  <block id="c086ef24cd8b21f804c162916c382ae8" category="paragraph">Trident Protect를 사용하면 OpenShift 클러스터에서 애플리케이션과 VM의 스냅샷, 백업, 복원 및 재해 복구가 가능합니다.  OpenShift Virtualization VM의 경우 Trident Protect로 보호할 수 있는 데이터에는 VM과 연결된 Kubernetes 리소스 개체, 영구 볼륨, 내부 이미지가 포함됩니다.</block>
   <block id="8029f49e67976ee4be8e5ee35ae01297" category="inline-link-macro">오픈시프트 클러스터 4.17</block>
   <block id="200698ac6537b28ad9734722a73080db" category="list-text"><block ref="200698ac6537b28ad9734722a73080db" category="inline-link-macro-rx"></block></block>
   <block id="91ca05f7383e5c31b9bdd1a91c8e3618" category="inline-link-macro">Red Hat에서 제공하는 OpenShift Virtualization Operator를 통해 설치된 OpenShift Virtualization</block>
   <block id="287f7b64542d2f7312b8d3de9b3f8b26" category="list-text"><block ref="287f7b64542d2f7312b8d3de9b3f8b26" category="inline-link-macro-rx"></block></block>
   <block id="a1862e00d8111386cdf238bd23bb97db" category="inline-link-macro">Trident 25.02</block>
   <block id="ff6395262d82836eedf127f3a80c2ce7" category="list-text"><block ref="ff6395262d82836eedf127f3a80c2ce7" category="inline-link-macro-rx"></block></block>
-  <block id="8646f7af8fba1737c1ced6f2d0eed098" category="inline-link-macro">Trident 프로텍트 25.02</block>
-  <block id="45317a3a74be40b0ff3578e7b5297766" category="list-text"><block ref="45317a3a74be40b0ff3578e7b5297766" category="inline-link-macro-rx"></block></block>
   <block id="8c1ba5eb61420c0029961110f20d7829" category="inline-link-macro">ONTAP 9.16</block>
   <block id="a13c7db7d74afd839261d6b5eef45b76" category="list-text"><block ref="a13c7db7d74afd839261d6b5eef45b76" category="inline-link-macro-rx"></block></block>
-  <block id="9e2fd9553f3b1f1f9aa36beca4f46a7f" category="section-title">개체 저장소용 App Vault 만들기</block>
   <block id="e17a719a6366dd11d450cd1e2c5967de" category="example-title">AppVault 만들기</block>
-  <block id="ad701f18604247a6a058dd775e3fc022" category="paragraph">애플리케이션이나 VM에 대한 스냅샷과 백업을 생성하기 전에 Trident Protect에서 스냅샷과 백업을 저장할 개체 스토리지를 구성해야 합니다.  이 작업은 버킷 CR을 사용하여 수행됩니다.  관리자만 버킷 CR을 만들고 구성할 수 있습니다.  Trident Protect에서는 버킷 CR을 AppVault라고 합니다.  AppVault 객체는 스토리지 버킷의 선언적 Kubernetes 워크플로 표현입니다.  AppVault CR에는 백업, 스냅샷, 복원 작업, SnapMirror 복제와 같은 보호 작업에 버킷을 사용하는 데 필요한 구성이 포함되어 있습니다.</block>
   <block id="37a9b7cb85e77fd6a74d8009cdd8a7df" category="inline-image-macro">ONTAP S3 Appvault가 생성되었습니다.</block>
   <block id="6afc7e89d60452ea0a1961d489ba04e1" category="paragraph"><block ref="6afc7e89d60452ea0a1961d489ba04e1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="947f19e597d1f0b50f7169331bdb939d" category="section-title">OpenShift Virtualization에서 VM 만들기</block>
@@ -1701,8 +1676,6 @@
   <block id="bdb7ca310f573681391786bf3cb42689" category="paragraph"><block ref="bdb7ca310f573681391786bf3cb42689" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0f2ed001ca108c8ae69e0de13c18a4e2" category="section-title">앱 만들기</block>
   <block id="0309bfa11ebaa855df6d24af0acfb503" category="example-title">앱 만들기</block>
-  <block id="fdb727d66243e25346b3d13832ab432c" category="paragraph">**VM에 대한 Trident Protect 앱 만들기**</block>
-  <block id="b4558b01953ba19496b47e3314b4c464" category="paragraph">이 예에서 데모 네임스페이스에는 하나의 VM이 있으며, 앱을 생성할 때 네임스페이스의 모든 리소스가 포함됩니다.</block>
   <block id="42d4770af6ec88890eee6837918615e4" category="paragraph"><block ref="42d4770af6ec88890eee6837918615e4" category="inline-image-macro-rx" type="image"></block></block>
   <block id="eb24a14eb30ab2003b56933052e232da" category="section-title">백업을 만들어 앱을 보호하세요</block>
   <block id="d7a327e7174cff863fc2c9361a4701e3" category="paragraph">**주문형 백업 만들기**</block>
@@ -6298,4 +6271,32 @@
   <block id="7c98717ab04ebf34dcbe0fefff52872d" category="list-text">Trident Protect를 사용하여 애플리케이션을 보호하고 온프레미스와 Google Cloud OpenShift 클러스터 간의 마이그레이션을 지원하세요.</block>
   <block id="736aad8fe23e80679fa1d298df3389ce" category="list-text">Trident Protect를 사용하여 애플리케이션을 보호하고 온프레미스와 Azure의 OpenShift 클러스터 간의 마이그레이션을 지원하세요.</block>
   <block id="46e27a6c0657da974b589beef2923e6a" category="cell">Trident Server 및 Client 23.10.0</block>
+  <block id="333d08489ccd2f75b43398000919c646" category="doc">Trident Protect를 사용하여 OpenShift Container Platform의 컨테이너 앱 데이터 보호</block>
+  <block id="9a16bd40352143335ee5dfb757e4c19a" category="paragraph">참조 문서의 이 섹션에서는 Trident Protect를 사용하여 Container Apps의 스냅샷 및 백업을 생성하는 방법에 대한 자세한 내용을 제공합니다. NetApp Trident Protect는 NetApp ONTAP 스토리지 시스템과 NetApp Trident CSI 스토리지 프로비저너를 기반으로 하는 스테이트풀 Kubernetes 애플리케이션의 기능과 가용성을 향상시키는 고급 애플리케이션 데이터 관리 기능을 제공합니다. Trident Protect는 애플리케이션 스냅샷 및 백업을 생성합니다. 즉, 영구 볼륨의 애플리케이션 데이터뿐만 아니라 애플리케이션 메타데이터에 대한 스냅샷 및 백업이 생성됩니다. Trident Protect에서 생성된 스냅샷 및 백업은 다음 객체 스토리지 중 하나에 저장하고 나중에 복원할 수 있습니다.</block>
+  <block id="1716834171e243de0f898a67621b6624" category="list-text">ONTAP S3</block>
+  <block id="31ac988c349d1f5f985fd6ce76f443de" category="list-text">기타 S3 호환 스토리지</block>
+  <block id="36901dfc82465bc11f1e7a5c8da2b87c" category="paragraph">Trident Protect는 Kubernetes 모델의 역할 기반 액세스 제어(RBAC)를 사용합니다. 기본적으로 Trident Protect는 trident-protect라는 단일 시스템 네임스페이스와 해당 기본 서비스 계정을 제공합니다. 사용자 수가 많거나 특정 보안 요구 사항이 있는 조직의 경우 Trident Protect의 RBAC 기능을 활용하여 리소스 및 네임스페이스에 대한 액세스 제어를 더욱 세밀하게 제어할 수 있습니다.</block>
+  <block id="5ec3b68db6f1825ef893a3df02e8cb74" category="inline-link-macro">Trident Protect 문서</block>
+  <block id="6a07237587bfd3c979290d5c5d6eec76" category="paragraph">Trident Protect의 RBAC에 대한 추가 정보는 <block ref="7ac04a6075def9e7f9091f150a129bb1" category="inline-link-macro-rx"></block>에서 확인할 수 있습니다.</block>
+  <block id="28ad3cbe8e37064567b635359b30741a" category="paragraph">Trident Protect는 설명서<block ref="dff37de6321a388f6a9f366069d1c616" category="inline-link-macro-rx"></block>에 제공된 지침을 사용하여 설치할 수 있습니다. 이 섹션에서는 Trident Protect를 사용한 컨테이너 애플리케이션의 데이터 보호 및 애플리케이션 복원 워크플로를 보여줍니다. 1. 스냅샷 생성(필요 시 또는 예약) 2. 스냅샷에서 복원(동일 및 다른 네임스페이스로 복원) 3. 백업 생성 4. 백업에서 복원</block>
+  <block id="925335f81021de4d22fde55ae7f0e86a" category="example-title">필수 조건</block>
+  <block id="7eeb8623512e21f038eb6a2ea827a56b" category="paragraph">애플리케이션의 스냅샷 및 백업을 생성하기 전에 Trident Protect에서 스냅샷과 백업을 저장할 오브젝트 스토리지를 구성해야 합니다. 이는 버킷 CR을 사용하여 수행됩니다. 관리자만 버킷 CR을 생성하고 구성할 수 있습니다. Trident Protect에서 버킷 CR은 AppVault라고 합니다. AppVault 오브젝트는 스토리지 버킷을 Kubernetes 워크플로에서 선언적으로 표현한 것입니다. AppVault CR에는 백업, 스냅샷, 복원 작업 및 SnapMirror 복제와 같은 보호 작업에 버킷을 사용하는 데 필요한 구성이 포함되어 있습니다.</block>
+  <block id="97f6123a338dea2594279f461e1c9e0f" category="paragraph">이 예제에서는 ONTAP S3를 객체 스토리지로 사용하는 방법을 보여드리겠습니다. ONTAP S3용 AppVault CR을 생성하는 워크플로는 다음과 같습니다. 1. ONTAP 클러스터의 SVM에 S3 객체 스토어 서버를 생성합니다. 2. 객체 스토어 서버에 버킷을 생성합니다. 3. SVM에 S3 사용자를 생성합니다. 액세스 키와 시크릿 키는 안전한 곳에 보관하십시오. 4. OpenShift에서 ONTAP S3 자격 증명을 저장할 시크릿을 생성합니다. 5. ONTAP S3용 AppVault 객체를 생성합니다.</block>
+  <block id="079dddd4d4443155dd6786175af87e1e" category="paragraph">**ONTAP S3용 Trident Protect AppVault 구성**</block>
+  <block id="5324d14fcbf898dd0b8d98f59d4c0439" category="paragraph">***ONTAP S3를 AppVault로 사용하여 Trident Protect를 구성하기 위한 샘플 YAML 파일***</block>
+  <block id="edd622a730a22890bd9bf7cd7ab7243d" category="paragraph">애플리케이션을 다른 클러스터로 복제하거나 마이그레이션하려면(클러스터 간 복제 수행) 소스 클러스터에서 백업을 생성한 다음 다른 클러스터에 백업을 복원하십시오. 타겟 클러스터에 Trident Protect가 설치되어 있는지 확인하십시오.</block>
+  <block id="adc086d9123d822f0c1a5e8e0d48838f" category="paragraph">NetApp Cloud Volumes ONTAP 스토리지는 AWS, Azure 및 Google Cloud의 컨테이너 배포 환경에 데이터 보호, 안정성 및 유연성을 제공합니다. Trident는 고객의 상태 저장 애플리케이션에 필요한 영구 Cloud Volumes ONTAP 스토리지를 활용하는 동적 스토리지 프로비저너 역할을 합니다. Trident Protect는 데이터 보호, 마이그레이션 및 비즈니스 연속성과 같은 상태 저장 애플리케이션의 데이터 관리 요구 사항에 사용할 수 있습니다.</block>
+  <block id="d5a257afe1d00e613abc72b67128d1f7" category="paragraph">**NetApp Trident Protect**는 NetApp Trident에 무료 애드온으로 제공되며, NetApp ONTAP 스토리지 시스템을 기반으로 하는 스테이트풀 Kubernetes 애플리케이션의 기능과 가용성을 향상시키는 고급 애플리케이션 데이터 관리 기능을 제공합니다. Trident Protect는 퍼블릭 클라우드와 온프레미스 환경 모두에서 컨테이너화된 워크로드의 관리, 보호 및 이동을 간소화합니다. 또한 API 및 CLI를 통해 강력한 자동화 기능을 제공합니다.</block>
+  <block id="b9f9d8ab7728b19c689309af7e3aefef" category="doc">Trident Protect를 사용하여 Red Hat OpenShift Virtualization의 VM 보호</block>
+  <block id="5e3143bd977259b090756be0ae84c61a" category="paragraph">OpenShift Virtualization에서 스냅샷 및 백업을 사용하여 VM을 보호합니다. 이 절차에는 ONTAP S3 객체 스토리지를 사용하여 AppVault를 생성하고, Kubernetes 리소스 객체, 영구 볼륨 및 내부 이미지를 포함한 VM 데이터를 캡처하도록 Trident Protect를 구성하고, 필요할 때 데이터를 복원하는 과정이 포함됩니다.</block>
+  <block id="9b6a034e6854c5f27feb3ac185829f8d" category="inline-link-macro">Trident Protect</block>
+  <block id="080e432aa82bfcadf9084afad9710448" category="paragraph">OpenShift Virtualization VM의 영구 디스크는 <block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block>을 사용하여 OpenShift 클러스터에 통합된 ONTAP 스토리지로 백업할 수 있습니다. 이 섹션에서는 <block ref="e549df9ba6f12288cca9d79527f10372" category="inline-link-macro-rx"></block>를 사용하여 데이터 볼륨을 포함한 VM의 스냅샷 및 백업을 ONTAP 객체 스토리지에 생성합니다.</block>
+  <block id="100379c773d540ecfc53d3a0a63b5152" category="paragraph">Trident Protect는 OpenShift 클러스터의 애플리케이션 및 VM에 대한 스냅샷, 백업, 복원 및 재해 복구를 지원합니다. OpenShift Virtualization VM의 경우, Trident Protect로 보호할 수 있는 데이터에는 VM과 연결된 Kubernetes 리소스 객체, 영구 볼륨 및 내부 이미지가 포함됩니다.</block>
+  <block id="858d1bbfede21b3edba173e16575d1b2" category="inline-link-macro">Trident Protect 25.02</block>
+  <block id="9d466dd3378ec2773ed896c1894ca7b0" category="list-text"><block ref="9d466dd3378ec2773ed896c1894ca7b0" category="inline-link-macro-rx"></block></block>
+  <block id="93fde5d46a0022e4b894b3c9e48e94b2" category="section-title">객체 스토리지를 위한 AppVault 생성</block>
+  <block id="0f416a09579bf81300f0a692b94b90e7" category="paragraph">애플리케이션 또는 VM의 스냅샷 및 백업을 생성하기 전에 Trident Protect에서 스냅샷 및 백업을 저장할 오브젝트 스토리지를 구성해야 합니다. 이는 버킷 CR을 사용하여 수행됩니다. 버킷 CR은 관리자만 생성하고 구성할 수 있습니다. Trident Protect에서 버킷 CR은 AppVault라고 합니다. AppVault 오브젝트는 스토리지 버킷을 Kubernetes 워크플로에서 선언적으로 표현한 것입니다. AppVault CR에는 백업, 스냅샷, 복원 작업 및 SnapMirror 복제와 같은 보호 작업에 버킷을 사용하는 데 필요한 구성이 포함되어 있습니다.</block>
+  <block id="fd38eb32a683cd3c6fbbddac9bc45566" category="paragraph">이 예제에서는 ONTAP S3를 객체 스토리지로 사용하는 방법을 보여드리겠습니다. ONTAP S3용 AppVault CR을 생성하는 워크플로는 다음과 같습니다. 1. ONTAP 클러스터의 SVM에 S3 객체 스토어 서버를 생성합니다. 2. 객체 스토어 서버에 버킷을 생성합니다. 3. SVM에 S3 사용자를 생성합니다. 액세스 키와 시크릿 키는 안전한 곳에 보관하십시오. 4. OpenShift에서 ONTAP S3 자격 증명을 저장할 시크릿을 생성합니다. 5. ONTAP S3용 AppVault 객체를 생성합니다.</block>
+  <block id="744a96e9ce909d310b032af09b7da629" category="paragraph">**VM용 Trident Protect 앱을 생성하세요**</block>
+  <block id="21dae0abbe9dd81128eefb291ac19e82" category="paragraph">이 예에서 demo 네임스페이스에는 하나의 VM이 있으며 앱을 생성할 때 네임스페이스의 모든 리소스가 포함됩니다.</block>
 </blocks>
