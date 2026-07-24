@@ -35,6 +35,7 @@ Trident Protect는 OpenShift 클러스터의 애플리케이션 및 VM에 대한
 
 
 
+[[create-appvault-for-object-storage]]
 == 객체 스토리지를 위한 AppVault 생성
 
 .AppVault 만들기
@@ -105,6 +106,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-008.png["ONTAP S3 Appvault가 생성되었습�
 ====
 
 
+[[create-a-vm-in-openshift-virtualization]]
 == OpenShift Virtualization에서 VM 만들기
 
 .OpenShift Virtualization에서 VM 만들기
@@ -132,6 +134,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-007.png["vm, pods 및 pvc가 생성되었습�
 ====
 
 
+[[create-an-app]]
 == 앱 만들기
 
 .앱 만들기
@@ -163,6 +166,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-009.png["앱이 생성되었습니다"]
 ====
 
 
+[[protect-the-app-by-creating-a-backup]]
 == 백업을 만들어 앱을 보호하세요
 
 .백업 만들기
@@ -217,6 +221,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-017.png["수요에 따라 일정에 따라 백
 ====
 
 
+[[restore-from-backup]]
 == 백업에서 복원
 
 .백업에서 복원
@@ -301,6 +306,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-023.png["새 네임스페이스의 VM"]
 ====
 
 
+[[protect-the-app-using-snapshots]]
 == 스냅샷을 사용하여 앱 보호
 
 .스냅샷 만들기
@@ -373,6 +379,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-026.png["예약된 스냅샷"]
 ====
 
 
+[[restore-from-snapshot]]
 == 스냅샷에서 복원
 
 .스냅샷에서 복원
@@ -455,6 +462,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-032.png["새 네임스페이스에서 VM이 �
 ====
 
 
+[[restore-a-specific-vm]]
 == 특정 VM 복원
 
 .네임스페이스에서 특정 VM을 선택하여 스냅샷/백업을 생성하고 복원합니다.
@@ -548,6 +556,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-038.png["centos vm 생성됨"]
 ====
 
 
+[[video-demonstration]]
 == 비디오 데모
 
 다음 비디오는 스냅샷을 사용하여 VM을 보호하는 방법을 보여줍니다.

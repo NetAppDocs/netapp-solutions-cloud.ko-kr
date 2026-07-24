@@ -18,12 +18,14 @@ Google Cloud NetApp Volumes 에 대한 모든 관리 작업은 API를 통해 수
 
 
 
+[[identity-and-access-management]]
 == ID 및 액세스 관리
 
 ID 및 액세스 관리(https://cloud.google.com/iam/docs/overview["그래요"^] )은 Google Cloud 프로젝트 인스턴스에 대한 인증(로그인) 및 권한 부여(사용 권한)를 제어할 수 있는 표준 서비스입니다.  Google IAM은 권한 부여 및 해제에 대한 전체 감사 추적을 제공합니다.  현재 Google Cloud NetApp Volumes 제어 평면 감사를 제공하지 않습니다.
 
 
 
+[[authorizationpermission-overview]]
 === 권한/허가 개요
 
 IAM은 Google Cloud NetApp Volumes 대한 기본 제공 세부적인 권한을 제공합니다.  당신은 찾을 수 있습니다 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["여기에서 세부적인 권한의 전체 목록을 확인하세요."^] .
@@ -41,6 +43,7 @@ IAM 사용자가 Google Cloud NetApp Volumes 관리할 수 있도록 적절한 �
 
 
 
+[[service-accounts]]
 === 서비스 계정
 
 스크립트를 통해 Google Cloud NetApp Volumes API 호출을 수행하려면 https://registry.terraform.io/providers/NetApp/netapp-gcp/latest/docs["테라폼"^] , 서비스 계정을 생성해야 합니다. `roles/netappcloudvolumes.admin` 역할.  이 서비스 계정을 사용하면 두 가지 방법으로 Google Cloud NetApp Volumes API 요청을 인증하는 데 필요한 JWT 토큰을 생성할 수 있습니다.
@@ -53,6 +56,7 @@ IAM 사용자가 Google Cloud NetApp Volumes 관리할 수 있도록 적절한 �
 
 
 
+[[google-cloud-netapp-volumes-api]]
 == Google Cloud NetApp Volumes API
 
 Google Cloud NetApp Volumes API는 기본 네트워크 전송으로 HTTPS(TLSv1.2)를 사용하는 REST 기반 API를 사용합니다.  최신 API 정의를 찾을 수 있습니다 https://cloudvolumesgcp-api.netapp.com/swagger.json["여기"^] API 사용 방법에 대한 정보 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/api?hl=en_US["Google 클라우드 문서의 Cloud Volumes API"^] .
@@ -61,12 +65,14 @@ API 엔드포인트는 NetApp 에서 표준 HTTPS(TLSv1.2) 기능을 사용하�
 
 
 
+[[jwt-tokens]]
 === JWT 토큰
 
 API에 대한 인증은 JWT 베어러 토큰을 사용하여 수행됩니다.(https://datatracker.ietf.org/doc/html/rfc7519["RFC-7519"^] ).  유효한 JWT 토큰은 Google Cloud IAM 인증을 사용하여 얻어야 합니다.  이 작업은 서비스 계정 JSON 키를 제공하여 IAM에서 토큰을 가져와서 수행해야 합니다.
 
 
 
+[[audit-logging]]
 == 감사 로깅
 
 현재 사용자가 접근할 수 있는 제어 평면 감사 로그가 없습니다.

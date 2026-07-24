@@ -18,6 +18,8 @@ Azure는 기본 Azure NetApp Files (ANF) 서비스 또는 Cloud Volumes ONTAP (C
 
 
 
+[[azure-netapp-files-anf]]
+[[anf]]
 == Azure NetApp Files (ANF)
 
 Azure netApp Files는 엔터프라이즈급 데이터 관리 및 저장 기능을 Azure에 제공하여 워크로드와 애플리케이션을 손쉽게 관리할 수 있도록 해줍니다.  워크로드를 클라우드로 마이그레이션하여 성능 저하 없이 실행하세요.
@@ -28,6 +30,7 @@ Azure netApp Files는 장애물을 제거하여 모든 파일 기반 애플리�
 
 
 
+[[azure-netapp-files-anf-as-guest-connected-storage]]
 === 게스트 연결 스토리지로서의 Azure NetApp Files (ANF)
 
 .Azure VMware 솔루션(AVS)을 사용하여 Azure NetApp Files 구성
@@ -100,6 +103,8 @@ image:azure-anf-guest-009.png["입력/출력 대화 상자 또는 서면 내용�
 ====
 
 
+[[cloud-volumes-ontap-cvo]]
+[[azure-cvo]]
 == Cloud Volumes ONTAP (CVO)
 
 클라우드 볼륨 ONTAP 또는 CVO는 NetApp의 ONTAP 스토리지 소프트웨어를 기반으로 구축된 업계 최고의 클라우드 데이터 관리 솔루션으로, Amazon Web Services(AWS), Microsoft Azure 및 Google Cloud Platform(GCP)에서 기본적으로 제공됩니다.
@@ -112,6 +117,7 @@ CVO는 설계상 클라우드에서 가장 까다로운 애플리케이션도 �
 
 
 
+[[cloud-volumes-ontap-cvo-as-guest-connected-storage]]
 === 게스트 연결 스토리지로서의 Cloud Volumes ONTAP (CVO)
 
 .Azure에 새로운 Cloud Volumes ONTAP 배포

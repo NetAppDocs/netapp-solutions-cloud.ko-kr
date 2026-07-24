@@ -18,6 +18,7 @@ summary: NetApp ONTAP 통한 Red Hat OpenShift 컨테이너 애플리케이션 �
 
 
 
+[[list-all-backups]]
 == 모든 백업 나열
 
 OC CLI 도구나 Velero CLI 도구를 사용하여 모든 백업 CR을 나열할 수 있습니다.  Velero CLI를 지침에 따라 다운로드하세요.link:https://velero.io/docs/v1.3.0/basic-install/#install-the-cli["Velero 문서"] .
@@ -26,6 +27,7 @@ image:redhat-openshift-oadp-delete-001.png["목록 백업"]
 
 
 
+[[deleting-a-backup]]
 == 백업 삭제
 
 OC CLI 도구를 사용하면 개체 스토리지 데이터를 삭제하지 않고도 백업 CR을 삭제할 수 있습니다.  백업은 CLI/콘솔 출력에서 제거됩니다.  하지만 해당 백업은 개체 스토리지에서 제거되지 않으므로 CLI/콘솔 출력에 다시 나타납니다.
@@ -38,6 +40,7 @@ image:redhat-openshift-oadp-delete-003.png["백업 및 연관된 개체 스토�
 
 
 
+[[deleting-the-restore]]
 == 복원 삭제
 
 OC CLI 또는 Velero CLI를 사용하여 CR 개체 복원을 삭제할 수 있습니다.

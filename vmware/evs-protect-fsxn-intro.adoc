@@ -18,6 +18,7 @@ summary: '이 가이드에서는 NetApp SnapCenter® Plug-in for VMware vSphere(
 
 
 
+[[introduction]]
 == 소개
 
 Amazon FSx for NetApp ONTAP(FSx for ONTAP) 기반 Amazon Elastic VMware Service(Amazon EVS)용 보조 데이터스토어는 nConnect 활용, Amazon Virtual Private Cloud(Amazon VPC) 피어링, 데이터스토어 마운트당 여러 네트워크 연결 사용과 같은 고성능 워크로드와 스토리지 집약적인 워크로드를 모두 실행하는 데 탁월한 솔루션을 제공합니다.
@@ -26,24 +27,28 @@ Amazon FSx for NetApp ONTAP(FSx for ONTAP) 기반 Amazon Elastic VMware Service(
 
 
 
+[[overview]]
 == 개요
 
 조직이 규모를 확장하고 환경을 통합함에 따라 워크로드와 기본 스토리지를 보호해야 할 필요성이 점점 더 중요해집니다. SCV를 사용하면 Amazon EVS vSphere 클라이언트에서 데이터스토어와 가상 머신을 직접 백업할 수 있습니다.
 
 
 
+[[purpose-of-this-guide]]
 == 이 가이드의 목적
 
 이 가이드에서는 SCV를 사용하여 Amazon EVS용 FSx for ONTAP 데이터스토어를 보호하는 방법을 안내합니다. VM 및 데이터베이스 보호 시나리오와 복원 방법도 함께 제공됩니다.
 
 
 
+[[audience]]
 == 대상
 
 이 튜토리얼은 VMware vSphere, Amazon EVS, AWS 콘솔, FSx for ONTAP 에 익숙한 클라우드 아키텍트와 클라우드 관리자를 대상으로 합니다.
 
 
 
+[[high-level-steps-for-deployment-and-configuration]]
 == 배포 및 구성을 위한 고급 단계
 
 다음은 Amazon FSx for NetApp ONTAP에서 VM 및 데이터 저장소를 보호하기 위해 SnapCenter Plug-in for VMware vSphere를 배포하고 구성하는 주요 단계입니다.

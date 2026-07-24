@@ -34,6 +34,7 @@ image:rhhc-storage-opt-pod2vol.png["Pod와 ONTAP 볼륨의 관계"]
 
 
 
+[[container-storage-interface-csi-options]]
 == 컨테이너 스토리지 인터페이스(CSI) 옵션
 
 vSphere 환경에서 고객은 ONTAP 과 통합할 VMware CSI 드라이버 및/또는 Trident CSI를 선택할 수 있습니다.  VMware CSI를 사용하면 영구 볼륨이 로컬 SCSI 디스크로 사용되는 반면, Trident 사용하면 네트워크로 사용됩니다.
@@ -42,6 +43,7 @@ VMware CSI는 ONTAP 에서 RWX 액세스 모드를 지원하지 않으므로, RW
 
 
 
+[[vmware-csi-supports]]
 === VMware CSI 지원
 
 * 코어 블록 기반 데이터 저장소(FC, FCoE, iSCSI, NVMeoF)
@@ -51,6 +53,7 @@ VMware CSI는 ONTAP 에서 RWX 액세스 모드를 지원하지 않으므로, RW
 
 
 
+[[trident-has-following-drivers-to-support-ontap]]
 === Trident ONTAP 지원하기 위해 다음과 같은 드라이버를 보유하고 있습니다.
 
 * 온탑산(전용권)

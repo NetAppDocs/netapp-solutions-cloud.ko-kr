@@ -18,6 +18,7 @@ summary: 이 섹션에서는 VMware용 SnapCenter Plug-in 설정 단계를 설�
 
 
 
+[[prerequisites]]
 == 필수 조건
 
 시작하기 전에 다음 사전 요구 사항이 필요합니다.
@@ -33,6 +34,7 @@ NOTE: SCV는 무료로 이용할 수 있습니다.
 
 
 
+[[setting-up-the-snapcenter-plug-in-for-vmware]]
 == VMware용 SnapCenter 플러그인 설정
 
 가상 머신과 이를 호스팅하는 NFS/iSCSI 기반 데이터스토어를 보호하려면 SCV를 배포해야 합니다. 간단한 OVF 가져오기입니다.

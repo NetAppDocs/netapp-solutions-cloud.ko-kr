@@ -24,6 +24,7 @@ image:dr-draas-vmfs-030.png["입력/출력 대화 상자 또는 서면 내용을
 
 
 
+[[getting-started]]
 == 시작하기
 
 BlueXP disaster recovery 시작하려면 BlueXP 콘솔을 사용한 다음 서비스에 액세스하세요.
@@ -56,6 +57,7 @@ NOTE: 이 문서를 작성하는 시점에는 온프레미스 간 VMFS 데이터
 
 
 
+[[bluexp-disaster-recovery-configuration]]
 == BlueXP disaster recovery 구성
 
 재해 복구를 준비하는 첫 번째 단계는 온프레미스 vCenter 및 스토리지 리소스를 검색하여 BlueXP disaster recovery 에 추가하는 것입니다.
@@ -81,6 +83,7 @@ vCenter가 추가되면 자동 검색이 실행됩니다.
 
 
 
+[[configuring-storage-replication-between-source-and-destination-site]]
 == 소스 사이트와 대상 사이트 간 스토리지 복제 구성
 
 SnapMirror ONTAP 스냅샷을 활용하여 한 위치에서 다른 위치로의 데이터 전송을 관리합니다.  처음에는 소스 볼륨의 스냅샷을 기반으로 한 전체 복사본이 대상에 복사되어 기준 동기화를 수행합니다.  소스에서 데이터가 변경되면 새로운 스냅샷이 생성되어 기준 스냅샷과 비교됩니다.  변경된 것으로 확인된 블록은 대상에 복제되고, 최신 스냅샷이 현재 기준선 또는 최신 공통 스냅샷이 됩니다.  이를 통해 프로세스를 반복하고 증분 업데이트를 대상에 전송할 수 있습니다.
@@ -91,6 +94,7 @@ SnapMirror 관계를 끊으면 대상 볼륨을 쓸 수 있게 되며 일반적�
 
 
 
+[[how-to-set-it-up-for-vmware-disaster-recovery]]
 == VMware 재해 복구를 설정하는 방법
 
 SnapMirror 복제를 생성하는 프로세스는 모든 애플리케이션에서 동일하게 유지됩니다.  이 과정은 수동이거나 자동화될 수 있습니다.  가장 쉬운 방법은 BlueXP 활용하여 SnapMirror 복제를 구성하는 것입니다. 즉, 환경의 소스 ONTAP 시스템을 대상 환경으로 간단히 끌어서 놓아 나머지 프로세스를 안내하는 마법사를 실행하는 것입니다.
@@ -113,6 +117,7 @@ NOTE: 위의 접근 방식 외에도 ONTAP CLI나 시스템 관리자를 통해 
 
 
 
+[[what-can-bluexp-disaster-recovery-do-for-you]]
 == BlueXP disaster recovery 귀사를 위해 무엇을 해드릴 수 있나요?
 
 소스 사이트와 대상 사이트가 추가되면 BlueXP disaster recovery 자동으로 심층 검색을 수행하고 관련 메타데이터와 함께 VM을 표시합니다.  BlueXP disaster recovery 은 VM에서 사용하는 네트워크와 포트 그룹을 자동으로 감지하여 채웁니다.
@@ -189,6 +194,7 @@ image:dr-draas-vmfs-023.png["입력/출력 대화 상자 또는 서면 내용을
 
 
 
+[[what-happens-during-a-failover-or-test-failover-operation]]
 == 장애 조치 또는 테스트 장애 조치 작업 중에는 무슨 일이 일어나나요?
 
 테스트 장애 조치 작업 중에 BlueXP disaster recovery 최신 스냅샷 복사본이나 대상 볼륨의 선택한 스냅샷을 사용하여 대상 ONTAP 스토리지 시스템에 FlexClone 볼륨을 생성합니다.

@@ -18,6 +18,7 @@ NetApp 각 하이퍼스케일러의 VMware 환경에 제공하는 솔루션에 �
 
 
 
+[[netapp-solutions-for-vmware-environments]]
 == VMware 환경을 위한 NetApp 솔루션
 
 하이브리드 클라우드 모델이나 "클라우드 우선" 모델에서 운영하는 경우, NetApp 클라우드 또는 하이브리드 클라우드 모델에서 워크로드를 관리하는 가장 일반적인 사용 사례를 해결하는 다양한 솔루션을 제공합니다.

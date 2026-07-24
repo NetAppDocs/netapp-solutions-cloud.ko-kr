@@ -18,12 +18,14 @@ Veeam Backup & Replication은 VMware Cloud의 데이터를 보호하기 위한 �
 
 
 
+[[overview]]
 == 개요
 
 VMware Cloud(AWS 내)는 NFS 데이터 저장소를 보조 스토리지로 사용할 수 있도록 지원하고, FSx ONTAP SDDC 클러스터의 ESXi 호스트 수에 관계없이 확장 가능한 클라우드 애플리케이션용 대량의 데이터를 저장해야 하는 고객을 위한 안전한 솔루션입니다.  이 통합 AWS 스토리지 서비스는 기존의 모든 NetApp ONTAP 기능과 함께 매우 효율적인 스토리지를 제공합니다.
 
 
 
+[[use-cases]]
 === 사용 사례
 
 이 솔루션은 다음과 같은 사용 사례를 해결합니다.
@@ -35,6 +37,7 @@ VMware Cloud(AWS 내)는 NFS 데이터 저장소를 보조 스토리지로 사�
 
 
 
+[[nfs-datastores-using-amazon-fsx-ontap]]
 === Amazon FSx ONTAP 사용한 NFS 데이터 저장소
 
 이 솔루션의 모든 가상 머신은 FSx ONTAP 보조 NFS 데이터 저장소에 있습니다.  FSx ONTAP NFS 데이터 저장소의 보완 수단으로 사용하면 여러 가지 이점이 있습니다.  예를 들어, 다음을 수행할 수 있습니다.
@@ -82,6 +85,7 @@ VMware Cloud(AWS 내)는 NFS 데이터 저장소를 보조 스토리지로 사�
 ====
 
 
+[[high-level-architecture]]
 == 고수준 아키텍처
 
 이 솔루션의 테스트/검증은 최종 배포 환경과 일치할 수도 있고 일치하지 않을 수도 있는 실험실에서 수행되었습니다.  자세한 내용은 다음 섹션을 참조하세요.
@@ -106,6 +110,7 @@ image:aws-vmc-veeam-037.png["솔루션 아키텍처 다이어그램"]
 ====
 
 
+[[solution-deployment]]
 == 솔루션 배포
 
 이 솔루션에서는 AWS의 VMware Cloud SDDC에서 SQL Server, Oracle, Windows 및 Linux 파일 서버 가상 머신의 백업과 복구를 수행하기 위해 Veeam Backup and Replication 소프트웨어를 활용하는 솔루션을 배포하고 검증하기 위한 자세한 지침을 제공합니다.  이 솔루션의 가상 머신은 FSx ONTAP 에서 호스팅되는 보조 NFS 데이터 저장소에 있습니다.  또한, Veeam 백업 저장소에 사용될 iSCSI 볼륨을 호스팅하기 위해 별도의 FSx ONTAP 파일 시스템이 사용됩니다.
@@ -120,6 +125,7 @@ AWS에서 VMware Cloud와 함께 Veeam Backup and Replication을 사용할 때�
 
 
 
+[[deploy-veeam-proxy-server]]
 === Veeam 프록시 서버 배포
 
 Veeam 프록시 서버는 Veeam Backup & Replication 소프트웨어의 구성 요소로, 소스와 백업 또는 복제 대상 사이의 중개자 역할을 합니다.  프록시 서버는 로컬에서 데이터를 처리하여 백업 작업 중에 데이터 전송을 최적화하고 가속화하는 데 도움이 되며, VMware vStorage API for Data Protection을 사용하거나 직접 스토리지에 액세스하여 다양한 전송 모드를 사용하여 데이터에 액세스할 수 있습니다.
@@ -178,6 +184,7 @@ image:aws-vmc-veeam-010.png["네트워크 트래픽 규칙 구성"]
 ====
 
 
+[[configure-storage-and-backup-repositories]]
 === 저장소 및 백업 저장소 구성
 
 기본 Veeam 백업 서버와 Veeam 프록시 서버는 직접 연결된 스토리지 형태의 백업 저장소에 액세스할 수 있습니다.  이 섹션에서는 FSx ONTAP 파일 시스템을 만드는 방법, Veeam 서버에 iSCSI LUN을 마운트하는 방법, 백업 저장소를 만드는 방법을 다룹니다.
@@ -278,6 +285,7 @@ image:aws-vmc-veeam-016.png["마운트 서버를 선택하세요"]
 ====
 
 
+[[configure-veeam-backup-jobs]]
 === Veeam 백업 작업 구성
 
 백업 작업은 이전 섹션의 백업 저장소를 활용하여 만들어야 합니다.  백업 작업을 만드는 것은 모든 스토리지 관리자의 일반적인 업무이며, 여기서는 모든 단계를 다루지 않습니다.  Veeam에서 백업 작업을 만드는 방법에 대한 자세한 내용은 다음을 참조하세요. https://www.veeam.com/documentation-guides-datasheets.html?productId=8&version=product%3A8%2F221["Veeam 도움말 센터 기술 문서"^] .
@@ -307,6 +315,7 @@ image:aws-vmc-veeam-018.png["장기 보존 정책"]
 ====
 
 
+[[restore-application-vms-with-veeam-full-restore]]
 === Veeam 전체 복원을 사용하여 애플리케이션 VM 복원
 
 Veeam을 사용하여 전체 복원을 수행하는 것은 애플리케이션 복원을 수행하는 첫 번째 단계입니다.  전원이 켜진 VM이 완전히 복원되었고 모든 서비스가 정상적으로 실행되고 있는지 검증했습니다.
@@ -315,6 +324,7 @@ Veeam을 사용하여 전체 복원을 수행하는 것은 애플리케이션 �
 
 
 
+[[restore-sql-server-databases]]
 === SQL Server 데이터베이스 복원
 
 Veeam Backup & Replication은 SQL Server 데이터베이스를 복원하기 위한 여러 가지 옵션을 제공합니다.  이 검증을 위해 Instant Recovery가 포함된 Veeam Explorer for SQL Server를 사용하여 SQL Server 데이터베이스를 복원했습니다.  SQL Server 즉시 복구는 전체 데이터베이스 복원을 기다리지 않고도 SQL Server 데이터베이스를 빠르게 복원할 수 있는 기능입니다.  이러한 신속한 복구 프로세스는 가동 중지 시간을 최소화하고 비즈니스 연속성을 보장합니다.  작동 원리는 다음과 같습니다.
@@ -360,6 +370,7 @@ Veeam Explorer를 사용하여 SQL Server 복원 작업을 수행하는 방법�
 
 
 
+[[restore-oracle-databases-with-veeam-explorer]]
 === Veeam Explorer를 사용하여 Oracle 데이터베이스 복원
 
 Oracle 데이터베이스용 Veeam Explorer는 표준 Oracle 데이터베이스 복원을 수행하거나 Instant Recovery를 사용하여 중단 없는 복원을 수행하는 기능을 제공합니다.  또한 빠른 액세스를 위한 데이터베이스 게시, Data Guard 데이터베이스 복구 및 RMAN 백업에서의 복원도 지원합니다.
@@ -443,6 +454,7 @@ image:aws-vmc-veeam-036.png["목록에서 복원 지점을 선택하세요"]
 ====
 
 
+[[conclusion]]
 == 결론
 
 VMware Cloud는 비즈니스에 중요한 애플리케이션을 실행하고 중요한 데이터를 저장하기 위한 강력한 플랫폼입니다.  사이버 위협과 데이터 손실로부터 보호하고 비즈니스 연속성을 보장하기 위해 VMware Cloud에 의존하는 기업에게는 안전한 데이터 보호 솔루션이 필수적입니다.  안정적이고 견고한 데이터 보호 솔루션을 선택하면 기업은 무슨 일이 있어도 중요한 데이터가 안전하게 보호된다는 확신을 가질 수 있습니다.
@@ -451,6 +463,7 @@ VMware Cloud는 비즈니스에 중요한 애플리케이션을 실행하고 중
 
 
 
+[[additional-information]]
 == 추가 정보
 
 이 솔루션에 제시된 기술에 대해 자세히 알아보려면 다음 추가 정보를 참조하세요.

@@ -22,6 +22,7 @@ NetApp NFS 구현은 프로토콜에 대한 황금 표준으로 간주되며 수
 
 
 
+[[default-local-unix-users-and-groups]]
 == 기본 로컬 UNIX 사용자 및 그룹
 
 Google Cloud NetApp Volumes 다양한 기본 기능을 위한 여러 개의 기본 UNIX 사용자와 그룹이 포함되어 있습니다.  현재 이러한 사용자와 그룹은 수정하거나 삭제할 수 없습니다.  현재 Google Cloud NetApp Volumes 에 새로운 로컬 사용자와 그룹을 추가할 수 없습니다.  기본 사용자 및 그룹 이외의 UNIX 사용자 및 그룹은 외부 LDAP 이름 서비스를 통해 제공되어야 합니다.
@@ -50,6 +51,7 @@ NOTE: NFSv4.1을 사용하는 경우 NFS 클라이언트에서 디렉토리 나�
 
 
 
+[[the-root-user]]
 == 루트 사용자
 
 Linux에서 루트 계정은 Linux 기반 파일 시스템의 모든 명령, 파일, 폴더에 액세스할 수 있습니다.  이 계정의 강력한 기능 때문에 보안 모범 사례에서는 종종 루트 사용자를 비활성화하거나 어떤 방식으로든 제한해야 합니다.  NFS 내보내기에서 루트 사용자가 파일과 폴더에 대해 가지는 권한은 내보내기 정책 및 규칙과 루트 스쿼시라는 개념을 통해 Google Cloud NetApp Volumes 에서 제어할 수 있습니다.
@@ -58,6 +60,7 @@ Linux에서 루트 계정은 Linux 기반 파일 시스템의 모든 명령, 파
 
 
 
+[[the-anonymous-user]]
 == 익명의 사용자
 
 익명(anon) 사용자 ID는 유효한 NFS 자격 증명 없이 도착한 클라이언트 요청에 매핑되는 UNIX 사용자 ID 또는 사용자 이름을 지정합니다.  루트 스쿼싱이 사용되는 경우 루트 사용자가 포함될 수 있습니다.  Google Cloud NetApp Volumes 의 익명 사용자는 65534입니다.
@@ -68,6 +71,7 @@ UID 65534에 대한 Linux 및 Google Cloud NetApp Volumes 사용자 이름이 �
 
 
 
+[[access-controlexports]]
 == 접근 제어/수출
 
 NFS 마운트에 대한 초기 내보내기/공유 액세스는 내보내기 정책에 포함된 호스트 기반 내보내기 정책 규칙을 통해 제어됩니다.  NFS 공유를 마운트하기 위한 액세스와 호스트에 허용되는 액세스 수준을 허용하기 위해 호스트 IP, 호스트 이름, 서브넷, 넷그룹 또는 도메인이 정의됩니다.  내보내기 정책 규칙 구성 옵션은 Google Cloud NetApp Volumes 수준에 따라 달라집니다.
@@ -85,12 +89,14 @@ NetApp Volumes-SW의 경우 다음 옵션을 사용하여 내보내기 정책 �
 
 
 
+[[change-ownership-chown-and-change-group-chgrp]]
 == 소유권 변경(chown) 및 그룹 변경(chgrp)
 
 Google Cloud NetApp Volumes 의 NFS에서는 루트 사용자만 파일 및 폴더에서 chown/chgrp를 실행할 수 있습니다.  다른 사용자는 다음을 봅니다. `Operation not permitted` 오류가 발생합니다. 자신이 소유한 파일에도 오류가 발생합니다.  뿌리 호박을 사용하는 경우(섹션 "<<루트 사용자>> "), 루트는 루트가 아닌 사용자에게 압류되고 chown 및 chgrp에 액세스할 수 없습니다.  현재 Google Cloud NetApp Volumes 에는 루트가 아닌 사용자에게 chown 및 chgrp를 허용하는 해결 방법이 없습니다.  소유권 변경이 필요한 경우 이중 프로토콜 볼륨을 사용하고 보안 스타일을 NTFS로 설정하여 Windows 측에서 권한을 제어하는 것을 고려하세요.
 
 
 
+[[permission-management]]
 == 권한 관리
 
 Google Cloud NetApp Volumes UNIX 보안 스타일을 사용하는 볼륨에 대한 NFS 클라이언트의 권한을 제어하기 위해 두 가지 모드 비트(rwx의 경우 644, 777 등)와 NFSv4.1 ACL을 모두 지원합니다.  이러한 권한 관리에는 표준 권한 관리(예: chmod, chown 또는 nfs4_setfacl)가 사용되며 이를 지원하는 모든 Linux 클라이언트에서 작동합니다.
@@ -99,6 +105,7 @@ Google Cloud NetApp Volumes UNIX 보안 스타일을 사용하는 볼륨에 대�
 
 
 
+[[providing-granular-acls-for-nfsv3]]
 === NFSv3에 대한 세분화된 ACL 제공
 
 모드 비트 권한은 의미론상 소유자, 그룹 및 기타 모든 사람에게만 적용됩니다. 즉, 기본 NFSv3에 대한 세부적인 사용자 액세스 제어가 없습니다.  Google Cloud NetApp Volumes POSIX ACL이나 확장된 속성(예: chattr)을 지원하지 않으므로 세분화된 ACL은 NFSv3를 사용하는 다음 시나리오에서만 가능합니다.
@@ -141,12 +148,14 @@ Google Cloud NetApp Volumes UNIX 보안 스타일을 사용하는 볼륨에 대�
 
 
 
+[[nfsv3-user-and-group-ids]]
 == NFSv3 사용자 및 그룹 ID
 
 NFSv3 사용자 및 그룹 ID는 이름이 아닌 숫자 ID로 전송됩니다.  Google Cloud NetApp Volumes NFSv3에서 이러한 숫자 ID에 대한 사용자 이름을 확인하지 않으며, UNIX 보안 스타일 볼륨은 모드 비트만 사용합니다.  NFSv4.1 ACL이 있는 경우 ACL을 제대로 확인하려면 숫자 ID 조회 및/또는 이름 문자열 조회가 필요합니다. 이는 NFSv3를 사용하는 경우에도 마찬가지입니다.  NTFS 보안 스타일 볼륨을 사용하는 경우 Google Cloud NetApp Volumes 숫자 ID를 유효한 UNIX 사용자로 확인한 다음 유효한 Windows 사용자에 매핑하여 액세스 권한을 협상해야 합니다.
 
 
 
+[[security-limitations-of-nfsv3-user-and-group-ids]]
 === NFSv3 사용자 및 그룹 ID의 보안 제한 사항
 
 NFSv3를 사용하면 클라이언트와 서버는 숫자 ID로 읽기 또는 쓰기를 시도하는 사용자가 유효한 사용자인지 확인할 필요가 없습니다. 그저 암묵적으로 신뢰될 뿐입니다.  숫자 ID를 스푸핑하는 것만으로도 파일 시스템이 잠재적인 침해 위험에 노출됩니다.  이러한 보안 취약점을 방지하기 위해 Google Cloud NetApp Volumes 에는 몇 가지 옵션이 있습니다.
@@ -161,6 +170,7 @@ NFSv3를 사용하면 클라이언트와 서버는 숫자 ID로 읽기 또는 �
 
 
 
+[[nfsv4-1]]
 == NFSv4.1
 
 NFSv4.1은 다음과 같은 이유로 NFSv3에 비해 더 높은 보안과 안정성을 제공합니다.
@@ -175,12 +185,14 @@ NFSv4.1은 다음과 같은 이유로 NFSv3에 비해 더 높은 보안과 안�
 
 
 
+[[nfsv4-1-dependencies]]
 === NFSv4.1 종속성
 
 NFSv4.1에는 추가 보안 기능이 있기 때문에 NFSv3를 사용하는 데 필요하지 않은 일부 외부 종속성이 있습니다(SMB가 Active Directory와 같은 종속성을 요구하는 것과 유사).
 
 
 
+[[nfsv4-1-acls]]
 === NFSv4.1 ACL
 
 Google Cloud NetApp Volumes NFSv4.x ACL에 대한 지원을 제공하며, 이는 다음과 같은 일반 POSIX 스타일 권한에 비해 뚜렷한 이점을 제공합니다.
@@ -194,12 +206,14 @@ Google Cloud NetApp Volumes NFSv4.x ACL에 대한 지원을 제공하며, 이는
 
 
 
+[[compatibility-between-nfsv4-1-acls-and-smb-clients]]
 === NFSv4.1 ACL과 SMB 클라이언트 간 호환성
 
 NFSv4 ACL은 Windows 파일 수준 ACL(NTFS ACL)과 다르지만 기능은 비슷합니다.  그러나 다중 프로토콜 NAS 환경에서 NFSv4.1 ACL이 있고 이중 프로토콜 액세스(동일한 데이터 세트에서 NFS와 SMB)를 사용하는 경우 SMB2.0 이상을 사용하는 클라이언트는 Windows 보안 탭에서 ACL을 보거나 관리할 수 없습니다.
 
 
 
+[[how-nfsv4-1-acls-work]]
 === NFSv4.1 ACL 작동 방식
 
 참고로, 다음 용어가 정의되어 있습니다.
@@ -234,12 +248,14 @@ NFSv4 요청의 결과로 파일이나 디렉토리가 생성되는 경우, 결�
 
 
 
+[[ace-permissions]]
 === ACE 권한
 
 NFSv4.1 ACL 권한은 대문자와 소문자로 구성된 일련의 문자 값을 사용합니다(예: `rxtncy` ) 접근을 제어합니다.  이러한 문자 값에 대한 자세한 내용은 다음을 참조하세요. https://www.osc.edu/book/export/html/4523["방법: NFSv4 ACL 사용"^] .
 
 
 
+[[nfsv4-1-acl-behavior-with-umask-and-acl-inheritance]]
 === umask 및 ACL 상속을 사용한 NFSv4.1 ACL 동작
 
 http://linux.die.net/man/5/nfs4_acl["NFSv4 ACL은 ACL 상속을 제공하는 기능을 제공합니다."^] . ACL 상속은 NFSv4.1 ACL이 설정된 개체 아래에 생성된 파일이나 폴더가 해당 구성에 따라 ACL을 상속할 수 있음을 의미합니다. http://linux.die.net/man/5/nfs4_acl["ACL 상속 플래그"^] .
@@ -248,6 +264,7 @@ https://man7.org/linux/man-pages/man2/umask.2.html["우마스크"^]관리자 상
 
 
 
+[[acl-formatting]]
 === ACL 포맷팅
 
 NFSv4.1 ACL에는 특정 형식이 있습니다.  다음 예는 파일에 설정된 ACE입니다.
@@ -272,6 +289,7 @@ Scanning ACE string 'A:: user@rwaDxtTnNcCy' failed.
 ....
 
 
+[[explicit-deny]]
 === 명시적 거부
 
 NFSv4.1 권한에는 OWNER, GROUP, EVERYONE에 대한 명시적 DENY 속성이 포함될 수 있습니다.  그 이유는 NFSv4.1 ACL이 기본적으로 거부되기 때문입니다. 즉, ACE에서 ACL을 명시적으로 허가하지 않으면 거부됩니다.  명시적 DENY 속성은 명시적이든 아니든 모든 ACCESS ACE보다 우선합니다.
@@ -303,6 +321,7 @@ D::EVERYONE@:waDTC
 
 
 
+[[nfsv4-1-id-domain-mapping-dependencies]]
 === NFSv4.1 ID 도메인 매핑 종속성
 
 NFSv4.1은 ID 도메인 매핑 논리를 보안 계층으로 활용하여 NFSv4.1 마운트에 액세스하려는 사용자가 주장한 사람인지 확인하는 데 도움을 줍니다.  이러한 경우 NFSv4.1 클라이언트에서 제공되는 사용자 이름과 그룹 이름은 이름 문자열을 추가하여 Google Cloud NetApp Volumes 인스턴스로 전송됩니다.  해당 사용자 이름/그룹 이름과 ID 문자열 조합이 일치하지 않으면 사용자 및/또는 그룹은 지정된 기본 nobody 사용자로 압축됩니다. `/etc/idmapd.conf` 클라이언트의 파일.
@@ -348,6 +367,7 @@ drwxrwxrwx 7 root   root         4096 Feb  3 12:06 ..
 
 
 
+[[kerberos-dependencies]]
 === Kerberos 종속성
 
 NFS와 함께 Kerberos를 사용하려면 Google Cloud NetApp Volumes 에 다음이 있어야 합니다.
@@ -360,6 +380,7 @@ NFS와 함께 Kerberos를 사용하려면 Google Cloud NetApp Volumes 에 다음
 
 
 
+[[nfsv4-1-and-the-nobody-usergroup]]
 === NFSv4.1 및 nobody 사용자/그룹
 
 NFSv4.1 구성에서 가장 흔히 나타나는 문제 중 하나는 파일이나 폴더가 목록에 표시되는 경우입니다. `ls` 소유한 것으로서 `user:group` 의 조합 `nobody:nobody` .
@@ -422,6 +443,7 @@ May 19 13:15:05 centos7 nfsidmap[17534]: nss_getpwnam: name 'nobody' does not ma
 
 
 
+[[viewing-name-id-strings-for-nfsv4-1-on-clients]]
 === 클라이언트에서 NFSv4.1에 대한 이름 ID 문자열 보기
 
 NFSv4.1을 사용하는 경우 이전에 설명한 대로 NFS 작업 중에 이름-문자열 매핑이 수행됩니다.

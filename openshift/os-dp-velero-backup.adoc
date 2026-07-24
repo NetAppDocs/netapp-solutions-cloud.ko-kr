@@ -18,6 +18,7 @@ summary: NetApp ONTAP 통한 Red Hat OpenShift 컨테이너 애플리케이션 �
 
 
 
+[[steps-to-create-a-backup-of-an-app]]
 == 앱 백업을 만드는 단계
 
 앱의 주문형 백업(앱 메타데이터 및 앱의 영구 볼륨)을 생성하려면 **백업** 탭을 클릭하여 백업 사용자 정의 리소스(CR)를 생성합니다.  백업 CR을 생성하기 위한 샘플 yaml이 제공됩니다.  이 yaml을 사용하면 앱과 지정된 네임스페이스의 영구 저장소가 백업됩니다.  추가 매개변수는 표시된 대로 설정할 수 있습니다.link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr.html["선적 서류 비치"] .
@@ -48,6 +49,7 @@ image:redhat-openshift-oadp-backup-002.png["S3의 백업 객체"]
 
 
 
+[[creating-scheduled-backups-for-apps]]
 == 앱에 대한 예약된 백업 생성
 
 일정에 따라 백업을 만들려면 일정 CR을 만들어야 합니다.  일정은 백업을 만들고 싶은 시간을 지정할 수 있게 해주는 Cron 표현식입니다.  일정 CR을 만드는 샘플 YAML은 아래와 같습니다.

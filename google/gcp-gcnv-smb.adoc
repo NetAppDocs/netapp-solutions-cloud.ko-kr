@@ -20,6 +20,7 @@ Google Cloud NetApp Volumes 프로토콜의 SMB 2.1 및 3.x 버전을 지원합�
 
 
 
+[[access-controlsmb-shares]]
 == 접근 제어/SMB 공유
 
 * Windows 사용자 이름이 Google Cloud NetApp Volumes 볼륨에 대한 액세스를 요청하면 Google Cloud NetApp Volumes Google Cloud NetApp Volumes 관리자가 구성한 방법을 사용하여 UNIX 사용자 이름을 찾습니다.
@@ -65,6 +66,7 @@ Address:  10. xxx.0. x
 
 
 
+[[using-smb-name-aliases]]
 === SMB 이름 별칭 사용
 
 어떤 경우에는 최종 사용자가 Google Cloud NetApp Volumes 에 사용 중인 머신 계정 이름을 아는 것이 보안 문제가 될 수 있습니다.  다른 경우에는 최종 사용자에게 더 간단한 액세스 경로를 제공하고 싶을 수도 있습니다.  이런 경우 SMB 별칭을 만들 수 있습니다.
@@ -93,6 +95,7 @@ image:ncvs-gc-009.png["입력/출력 대화 상자 또는 서면 내용을 나�
 
 
 
+[[smb-authentication-dialects]]
 === SMB 인증 방언
 
 Google Cloud NetApp Volumes 다음을 지원합니다. https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/8df1a501-ce4e-4287-8848-5f1d4733e280["방언"^] SMB 인증의 경우:
@@ -111,10 +114,12 @@ Active Directory에서 지원되는 인증 수준을 구성/보기 위한 정보
 
 
 
+[[permission-models]]
 == 권한 모델
 
 
 
+[[ntfsfile-permissions]]
 === NTFS/파일 권한
 
 NTFS 권한은 NTFS 논리를 따르는 파일 시스템의 파일과 폴더에 적용되는 권한입니다.  NTFS 권한을 적용할 수 있습니다. `Basic` 또는 `Advanced` 그리고 설정할 수 있습니다 `Allow` 또는 `Deny` 접근 제어를 위해.
@@ -138,6 +143,7 @@ NTFS 권한은 Windows SMB 클라이언트에서 제어됩니다.
 
 
 
+[[share-permissions]]
 === 공유 권한
 
 공유 권한은 NTFS 권한(읽기/변경/모든 권한만 해당)보다 일반적이며 SMB 공유에 대한 초기 항목을 제어합니다. 이는 NFS 내보내기 정책 규칙의 작동 방식과 유사합니다.
@@ -163,6 +169,7 @@ image:ncvs-gc-011.png["입력/출력 대화 상자 또는 서면 내용을 나�
 
 
 
+[[smb-share-security-features]]
 == SMB 공유 보안 기능
 
 Google Cloud NetApp Volumes 에서 SMB 액세스 권한이 있는 볼륨을 처음 만들면 해당 볼륨을 보호하기 위한 일련의 선택 사항이 제공됩니다.
@@ -184,6 +191,7 @@ image:ncvs-gc-012.png["입력/출력 대화 상자 또는 서면 내용을 나�
 
 
 
+[[default-hidden-shares]]
 == 기본 숨겨진 공유
 
 Google Cloud NetApp Volumes 에서 SMB 서버가 생성되면 https://library.netapp.com/ecmdocs/ECMP1366834/html/GUID-5B56B12D-219C-4E23-B3F8-1CB1C4F619CE.html["숨겨진 관리 공유"^] ($ 명명 규칙을 사용하여) 데이터 볼륨 SMB 공유에 추가로 생성됩니다.  여기에는 C$(네임스페이스 액세스)와 IPC$(프로그램 간 통신을 위한 명명된 파이프 공유, 예: Microsoft Management Console(MMC) 액세스에 사용되는 원격 프로시저 호출(RPC))가 포함됩니다.
@@ -194,6 +202,7 @@ C$ 공유는 기본적으로 BUILTIN/Administrators 액세스를 허용하지만
 
 
 
+[[accounts-with-localbuiltin-administratorbackup-rights]]
 == 로컬/BUILTIN 관리자/백업 권한이 있는 계정
 
 Google Cloud NetApp Volumes SMB 서버는 특정 도메인 사용자 및 그룹에 액세스 권한을 적용하는 로컬 그룹(예: BUILTIN\Administrators)이 있다는 점에서 일반 Windows SMB 서버와 비슷한 기능을 유지합니다.
@@ -238,6 +247,7 @@ image:ncvs-gc-016.png["입력/출력 대화 상자 또는 서면 내용을 나�
 
 
 
+[[mmccomputer-management-access]]
 == MMC/컴퓨터 관리 액세스
 
 Google Cloud NetApp Volumes 의 SMB 액세스는 컴퓨터 관리 MMC에 대한 연결을 제공하여 공유 항목을 보고, 공유 ACL을 관리하고, SMB 세션을 보고 관리하고 파일을 열 수 있도록 해줍니다.
@@ -282,6 +292,7 @@ image:ncvs-gc-018.png["입력/출력 대화 상자 또는 서면 내용을 나�
 |===
 
 
+[[smb-server-security-information]]
 == SMB 서버 보안 정보
 
 Google Cloud NetApp Volumes 의 SMB 서버는 Kerberos 클록 오차, 티켓 수명, 암호화 등을 포함하여 SMB 연결에 대한 보안 정책을 정의하는 일련의 옵션을 사용합니다.

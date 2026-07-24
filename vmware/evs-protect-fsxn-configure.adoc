@@ -18,6 +18,7 @@ summary: 이 섹션에서는 VMware용 SnapCenter Plug-in 설정 단계를 설�
 
 
 
+[[adding-the-storage-system]]
 == 스토리지 시스템 추가
 
 SVC를 사용하여 워크로드를 보호하는 다음 단계는 link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_add_storage_01.html["스토리지 시스템"]를 추가하는 것입니다. 스토리지를 추가하면 SCV가 vCenter 내에서 백업 및 복원 작업을 감지하고 관리할 수 있습니다. VM 백업 및 복원을 활성화하려면 FSx for NetApp ONTAP 관리 엔드포인트 또는 스토리지 가상 머신(SVM) 관리 엔드포인트 IP를 스토리지 시스템으로 포함하십시오.
@@ -37,6 +38,7 @@ SCV 버전이 6.2인 경우 link:https://mysupport.netapp.com/site/products/all/
 
 
 
+[[create-a-backup-policy]]
 == 백업 정책을 생성합니다
 
 견고한 백업 전략은 백업 일정, 백업 대상 데이터, 백업 보존 기간과 같은 핵심 요소를 정의해야 합니다. 스냅샷 복사본은 전체 데이터 저장소를 보호하기 위해 시간별 또는 일별로 예약할 수 있습니다. 이러한 방식으로 백업을 예약하면 데이터 저장소를 보호할 뿐만 아니라 해당 데이터 저장소에 포함된 VM 및 VMDK에 대한 백업 및 복원 작업도 지원합니다.
@@ -69,6 +71,7 @@ image:evs-protect-fsxn-004.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[create-a-resource-group]]
 == 리소스 그룹을 생성합니다
 
 리소스 그룹은 보호가 필요한 VM과 데이터스토어를 담는 컨테이너 역할을 합니다. 리소스는 언제든지 리소스 그룹에 추가하거나 제거할 수 있으므로 백업 구성을 유연하게 관리할 수 있습니다.
@@ -92,6 +95,7 @@ image:evs-protect-fsxn-005.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[backing-up-resource-groups]]
 == 리소스 그룹 백업
 
 백업 작업은 리소스 그룹 내에 정의된 모든 리소스에 대해 실행됩니다. 리소스 그룹에 정책이 연결되어 있고 일정이 구성되어 있는 경우 백업은 해당 일정에 따라 자동으로 수행됩니다.

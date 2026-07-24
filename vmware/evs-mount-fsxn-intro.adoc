@@ -18,6 +18,7 @@ summary: '이 문서에서는 FSx for ONTAP 파일 시스템을 생성하고 이
 
 
 
+[[introduction]]
 == 소개
 
 기존 온프레미스 VMware 투자를 통해 AWS에서 복사본을 마이그레이션, 버스팅, 확장 또는 보호(백업, 재해 복구)하여 배포를 현대화할 수 있는 효율적이고 비용 효율적인 방법을 찾고 있는 조직은 여러 가지 과제에 직면했습니다.  Amazon Elastic VMware Service(Amazon EVS)가 출시되면서 이제 Amazon Virtual Private Cloud(VPC)에서 VMware Cloud Foundation(VCF)을 직접 실행할 수 있는 기본 AWS 서비스가 제공됩니다.
@@ -30,24 +31,28 @@ Amazon EVS는 강력한 이점을 제공하지만, 기본 하이퍼 컨버지드
 
 
 
+[[overview]]
 == 개요
 
 이 문서에서는 FSx for ONTAP 파일 시스템을 생성하고 이를 Amazon EVS와 함께 사용할 iSCSI(인터넷 소형 컴퓨터 시스템 인터페이스) 또는 NFS(네트워크 파일 시스템) 데이터 저장소로 연결하는 방법에 대한 자세한 단계를 설명합니다.
 
 
 
+[[purpose-of-this-guide]]
 == 이 가이드의 목적
 
 이 가이드에서는 Amazon EVS를 위한 FSx for ONTAP 데이터 저장소를 설정하는 방법에 대한 지침을 제공하며, 모범 사례, 지원 요구 사항, 크기 고려 사항 및 통합을 계획, 설계 및 구현하는 데 도움이 되는 기타 정보를 제공합니다.
 
 
 
+[[audience]]
 == 대상
 
 이 튜토리얼은 VMware vSphere, Amazon EVS, AWS 콘솔, FSx for ONTAP 에 익숙한 클라우드 아키텍트와 클라우드 관리자를 대상으로 합니다.
 
 
 
+[[high-level-architecture]]
 == 고수준 아키텍처
 
 이 섹션에서는 Amazon EVS의 데이터 저장소로 FSx for ONTAP 사용하기 위한 솔루션 아키텍처에 대한 개요를 설명합니다.

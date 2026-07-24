@@ -20,12 +20,14 @@ Google Cloud NetApp Volumes 의 일반 아키텍처는 제어 평면과 데이�
 
 
 
+[[control-plane]]
 == 제어 평면
 
 Google Cloud NetApp Volumes 의 제어 평면은 Google Cloud NetApp Volumes 관리자와 NetApp 기본 자동화 소프트웨어가 관리하는 백엔드 인프라입니다.  이 플레인은 최종 사용자에게 완전히 투명하며 네트워킹, 스토리지 하드웨어, 소프트웨어 업데이트 등을 포함하여 Google Cloud NetApp Volumes 와 같은 클라우드 상주 솔루션에 가치를 제공하는 데 도움이 됩니다.
 
 
 
+[[data-plane]]
 == 데이터 플레인
 
 Google Cloud NetApp Volumes 의 데이터 플레인에는 실제 데이터 볼륨과 전반적인 Google Cloud NetApp Volumes 구성(액세스 제어, Kerberos 인증 등)이 포함됩니다.  데이터 플레인은 전적으로 Google Cloud NetApp Volumes 플랫폼의 최종 사용자와 소비자의 제어를 받습니다.

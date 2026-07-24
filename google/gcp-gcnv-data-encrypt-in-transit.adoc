@@ -18,6 +18,7 @@ summary: 전송 중인 데이터는 NAS 프로토콜 계층에서 암호화될 �
 
 
 
+[[google-cloud-network]]
 == 구글 클라우드 네트워크
 
 Google Cloud는 네트워크 수준에서 트래픽을 암호화합니다. https://cloud.google.com/security/encryption-in-transit["전송 중 암호화"^] Google 문서에서.  "Google Cloud NetApp Volumes 아키텍처" 섹션에서 언급한 대로, Google Cloud NetApp Volumes NetApp 제어하는 PSA 제작자 프로젝트에서 제공됩니다.
@@ -28,12 +29,14 @@ NetApp Volumes-Performance의 데이터 경로는 네트워크 계층에서 완�
 
 
 
+[[nas-protocols]]
 == NAS 프로토콜
 
 NFS 및 SMB NAS 프로토콜은 프로토콜 계층에서 선택적 전송 암호화를 제공합니다.
 
 
 
+[[smb-encryption]]
 === SMB 암호화
 
 https://docs.microsoft.com/en-us/windows-server/storage/file-server/smb-security["SMB 암호화"^]SMB 데이터의 종단 간 암호화를 제공하고 신뢰할 수 없는 네트워크에서 발생하는 도청으로부터 데이터를 보호합니다.  클라이언트/서버 데이터 연결(SMB3.x 지원 클라이언트에서만 사용 가능)과 서버/도메인 컨트롤러 인증 모두에 대해 암호화를 활성화할 수 있습니다.
@@ -44,6 +47,7 @@ Google Cloud NetApp Volumes SMB 암호화를 위해 RC4-HMAC, AES-128-CTS-HMAC-S
 
 
 
+[[nfsv4-1-kerberos]]
 === NFSv4.1 케르베로스
 
 NFSv4.1의 경우 NetApp Volumes-Performance는 다음에 설명된 대로 Kerberos 인증을 제공합니다. https://datatracker.ietf.org/doc/html/rfc7530["RFC7530"^] 볼륨별로 Kerberos를 활성화할 수 있습니다.

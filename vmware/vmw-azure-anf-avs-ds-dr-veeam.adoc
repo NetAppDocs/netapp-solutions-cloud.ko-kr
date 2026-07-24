@@ -18,6 +18,7 @@ Azure NetApp Files (ANF) 데이터 저장소는 스토리지를 컴퓨팅에서 
 
 
 
+[[overview]]
 == 개요
 
 Azure NetApp Files (ANF) 볼륨 기반 NFS 데이터 저장소는 VM 복제 기능을 제공하는 검증된 타사 솔루션을 사용하여 온프레미스에서 데이터를 복제하는 데 사용할 수 있습니다.  Azure NetApp Files 데이터 저장소를 추가하면 저장소를 수용하기 위해 엄청난 양의 ESXi 호스트를 사용하여 Azure VMware Solution SDDC를 구축하는 것보다 비용 최적화된 배포가 가능해집니다.  이런 접근 방식을 "파일럿 라이트 클러스터"라고 합니다.  파일럿 라이트 클러스터는 Azure NetApp Files 데이터 저장소 용량과 함께 최소 AVS 호스트 구성(AVS 노드 3개)입니다.
@@ -26,6 +27,7 @@ Azure NetApp Files (ANF) 볼륨 기반 NFS 데이터 저장소는 VM 복제 기�
 
 
 
+[[purposes-of-this-document]]
 == 이 문서의 목적
 
 이 문서에서는 Veeam 백업 및 복제와 함께 Azure NetApp Files 데이터 저장소를 사용하여 Veeam VM 복제 소프트웨어 기능을 사용하여 온-프레미스 VMware VM에 대한 재해 복구를 AVS(Virtual Private Network)로 설정하는 방법을 설명합니다.
@@ -40,10 +42,12 @@ image:dr-veeam-anf-001.png["입력/출력 대화 상자 또는 서면 내용을 
 
 
 
+[[solution-deployment]]
 == 솔루션 배포
 
 
 
+[[high-level-steps]]
 === 높은 수준의 단계
 
 . Veeam Backup and Replication 소프트웨어는 적절한 네트워크 연결을 갖춘 온프레미스 환경에서 실행됩니다.
@@ -58,6 +62,7 @@ image:dr-veeam-anf-001.png["입력/출력 대화 상자 또는 서면 내용을 
 
 
 
+[[pre-requisites-for-veeam-vm-replication-to-avs-and-anf-datastores]]
 === AVS 및 ANF 데이터 저장소에 대한 Veeam VM 복제를 위한 필수 구성 요소
 
 . Veeam Backup & Replication 백업 VM이 소스와 대상 AVS SDDC 클러스터에 연결되어 있는지 확인하세요.
@@ -69,6 +74,7 @@ image:dr-veeam-anf-001.png["입력/출력 대화 상자 또는 서면 내용을 
 
 
 
+[[deployment-details]]
 === 배포 세부 정보
 
 .1단계: VM 복제
@@ -225,6 +231,7 @@ image:dr-veeam-anf-022.png["입력/출력 대화 상자 또는 서면 내용을 
 ====
 
 
+[[conclusion]]
 == 결론
 
 Azure NetApp Files 데이터 저장소 기능을 사용하면 Veeam이나 검증된 타사 도구가 VM 복제본만을 수용하기 위해 대규모 클러스터를 구축하는 대신 파일럿 라이트 클러스터를 활용하여 저비용 DR 솔루션을 제공할 수 있습니다.  이를 통해 맞춤형 재해 복구 계획을 효과적으로 처리하고 사내 기존 백업 제품을 재해 복구에 재사용하여 사내 재해 복구 데이터 센터를 종료하고 클라우드 기반 재해 복구를 구현할 수 있습니다.  재해 발생 시 버튼을 클릭하여 장애 조치를 취하거나 재해가 발생하면 자동으로 장애 조치를 취할 수 있습니다.

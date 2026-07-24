@@ -22,6 +22,7 @@ VMware vSphere를 사용하면 NetApp ONTAP 도구에서 데이터 저장소를 
 
 
 
+[[data-protection-and-migration-solution-for-openshift-container-workloads-using-trident-protect]]
 == Trident Protect를 사용한 OpenShift Container 워크로드를 위한 데이터 보호 및 마이그레이션 솔루션
 
 image:rhhc-on-premises.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]

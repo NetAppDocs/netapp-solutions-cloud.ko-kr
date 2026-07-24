@@ -18,6 +18,7 @@ summary: '이 섹션에서는 SnapCenter for SQL(SCSQL)을 사용하여 VMware V
 
 
 
+[[setting-up-scsql]]
 == SCSQL 설정
 
 VMDK의 데이터베이스를 보호하기 위해 SCSQL을 사용하는 설정은 다음과 같습니다.
@@ -49,6 +50,7 @@ image:evs-protect-fsxn-027.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[setting-up-a-backup-policy]]
 == 백업 정책 설정
 
 다음 단계에서는 백업 정책을 설정하는 방법을 보여줍니다.
@@ -81,6 +83,7 @@ image:evs-protect-fsxn-032.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[monitoring-a-backup]]
 == 백업 모니터링
 
 백업 정책을 설정한 후에는 백업 작업이 진행되는 동안 모니터링할 수 있습니다. 지금 백업을 클릭하여 필요에 따라 백업 작업을 실행하거나 예약된 백업 정책이 실행될 때까지 기다리면 됩니다.
@@ -94,6 +97,7 @@ image:evs-protect-fsxn-033.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[restore-of-databases-residing-on-the-vmdks]]
 == VMDK에 상주하는 데이터베이스 복원
 
 VMDK의 데이터베이스를 특정 시점으로 복원할 수 있습니다.

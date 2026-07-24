@@ -18,18 +18,21 @@ NetApp 의 Azure VMware Solution(AVS)을 위한 하이브리드 멀티클라우�
 
 
 
+[[supplemental-datastores]]
 == 보충 데이터 저장소
 
 .Azure NetApp Files 사용한 Azure VMware 솔루션 보충 데이터 저장소 개요
 video::8c5ddb30-6c31-4cde-86e2-b01200effbd6[panopto,width=360]
 
 
+[[disaster-recovery]]
 == 재해 복구
 
 .Cloud Volumes ONTAP, SnapCenter 및 JetStream을 사용한 Azure VMware 솔루션 DR
 video::5cd19888-8314-4cfc-ba30-b01200efff4f[panopto,width=360]
 
 
+[[migration-workflows-hcx]]
 == 마이그레이션 워크플로(HCX)
 
 .AVS 및 ANF를 위한 VMware HCX를 사용한 콜드 마이그레이션 데모

@@ -18,12 +18,14 @@ summary: 이 솔루션에서 SnapCenter SQL Server 및 Oracle 애플리케이션
 
 
 
+[[technology]]
 == 기술
 
 이 솔루션에는 NetApp, VMware, Amazon Web Services(AWS), Veeam의 혁신적인 기술이 포함되어 있습니다.
 
 
 
+[[vmware]]
 === VMware
 
 .VMware 클라우드 파운데이션
@@ -70,6 +72,7 @@ VMware NSX에 대한 자세한 내용은 다음을 참조하세요. https://docs
 ====
 
 
+[[netapp]]
 === NetApp
 
 .NetApp ONTAP
@@ -107,6 +110,7 @@ NetApp SnapCenter 에 대한 자세한 내용은 다음을 참조하세요. http
 ====
 
 
+[[third-party-data-protection]]
 === 제3자 데이터 보호
 
 .Veeam 백업 및 복제
@@ -119,6 +123,7 @@ Veeam Backup & Replication에 대한 자세한 내용은 다음을 참조하세�
 ====
 
 
+[[public-cloud]]
 === 퍼블릭 클라우드
 
 .AWS ID 및 액세스 관리
@@ -151,6 +156,7 @@ Amazon FSx ONTAP 에 대한 자세한 내용은 다음을 참조하세요. https
 ====
 
 
+[[overview-aws-guest-connected-storage-disaster-recovery]]
 == 개요 - AWS 게스트 연결 스토리지 재해 복구
 
 이 섹션에서는 사용자가 NetApp 및 VMware와 함께 사용하기 위해 온프레미스 및 클라우드 환경을 확인, 구성 및 검증하는 데 도움이 되는 지침을 제공합니다.  특히 이 솔루션은 온프레미스 ONTAP AFF 와 클라우드용 VMware Cloud 및 AWS FSx ONTAP 사용한 VMware 게스트 연결 사용 사례에 중점을 둡니다.  이 솔루션은 재해 복구 시나리오에서 Oracle과 MS SQL의 두 가지 애플리케이션을 통해 시연됩니다.
@@ -436,6 +442,7 @@ NOTE: vCloud Director를 사용하는 경우 기본 vCenter Server에서 포트 
 ====
 
 
+[[networking]]
 == 네트워킹
 
 이 솔루션을 사용하려면 NetApp SyncMirror 작업을 수행하기 위해 온프레미스 ONTAP 클러스터에서 AWS FSx ONTAP 상호 연결 클러스터 네트워크 주소로의 성공적인 통신이 필요합니다.  또한 Veeam 백업 서버는 AWS S3 버킷에 액세스할 수 있어야 합니다.  인터넷 전송을 사용하는 대신 기존 VPN이나 Direct Connect 링크를 S3 버킷에 대한 개인 링크로 사용할 수 있습니다.
@@ -558,6 +565,7 @@ VM 게스트 스토리지 네트워크의 경우 일반적으로 포트 그룹�
 ====
 
 
+[[storage]]
 == 스토리지
 
 NetApp AFF A-Series 시스템은 클라우드를 활용한 유연한 데이터 관리 옵션을 갖춘 고성능 스토리지 인프라를 제공하여 다양한 기업 시나리오를 충족합니다.  이 솔루션에서는 ONTAP AFF A300 기본 온프레미스 스토리지 시스템으로 사용했습니다.
@@ -638,6 +646,7 @@ VMware Cloud SDDC에는 두 개의 VSAN 데이터 저장소가 함께 제공됩�
 ====
 
 
+[[compute]]
 == 컴퓨팅
 
 VMware vSphere는 데이터 센터와 모든 주요 클라우드 공급업체에서 가상화된 인프라를 제공합니다.  이 생태계는 가상화된 컴퓨팅이 위치에 관계없이 일관성을 유지하는 재해 복구 시나리오에 이상적입니다.  이 솔루션은 데이터 센터 위치와 AWS의 VMware Cloud 모두에서 VMware 가상화 컴퓨팅 리소스를 사용합니다.
@@ -660,6 +669,7 @@ image:dr-vmc-aws-009.png["입력/출력 대화 상자 또는 서면 내용을 �
 ====
 
 
+[[bluexp-backup-and-recovery-tools]]
 == BlueXP backup and recovery 도구
 
 AWS에서 실행되는 VMware Cloud Volume 서비스로 애플리케이션 VM과 데이터베이스 볼륨을 장애 조치하려면 SnapCenter Server와 Veeam Backup and Replication Server의 실행 인스턴스를 설치하고 구성해야 했습니다.  장애 조치가 완료된 후에는 온프레미스 데이터 센터로의 장애 복구를 계획하고 실행할 때까지 정상적인 백업 작업을 재개하도록 이러한 도구도 구성해야 합니다.

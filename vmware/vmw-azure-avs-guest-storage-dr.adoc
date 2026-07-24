@@ -18,6 +18,7 @@ summary: 클라우드로 재해 복구를 수행하는 것은 랜섬웨어와 �
 
 
 
+[[overview]]
 == 개요
 
  This covers application data; however, what about the actual VMs themselves. Disaster recovery should cover all dependent components, including virtual machines, VMDKs, application data, and more. To accomplish this, SnapMirror along with Jetstream can be used to seamlessly recover workloads replicated from on-premises to Cloud Volumes ONTAP while using vSAN storage for VM VMDKs.
@@ -27,6 +28,7 @@ image:dr-cvo-avs-001.png["입력/출력 대화 상자 또는 서면 내용을 �
 
 
 
+[[assumptions]]
 == 가정
 
 이 문서는 애플리케이션 데이터를 위한 게스트 내부 스토리지(게스트 연결이라고도 함)에 초점을 맞추고 있으며, 온프레미스 환경에서는 애플리케이션과 일관된 백업을 위해 SnapCenter 사용한다고 가정합니다.
@@ -41,10 +43,12 @@ NOTE: 온프레미스 데이터 센터를 Azure에 연결하는 데에는 여러
 
 
 
+[[deploying-the-dr-solution]]
 == DR 솔루션 배포
 
 
 
+[[solution-deployment-overview]]
 === 솔루션 배포 개요
 
 . SnapCenter 사용하여 필요한 RPO 요구 사항을 충족하는 애플리케이션 데이터를 백업하세요.
@@ -66,6 +70,7 @@ NOTE: 온프레미스 데이터 센터를 Azure에 연결하는 데에는 여러
 
 
 
+[[deployment-details]]
 === 배포 세부 정보
 
 .Azure에서 CVO를 구성하고 볼륨을 CVO에 복제합니다.
@@ -424,6 +429,7 @@ NOTE: 역방향 재동기화 작업 후에 기본 및 보조 저장소의 역할
 ====
 
 
+[[benefits-of-this-solution]]
 == 이 솔루션의 이점
 
 * SnapMirror 의 효율적이고 탄력적인 복제를 사용합니다.

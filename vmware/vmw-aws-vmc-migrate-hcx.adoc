@@ -18,6 +18,7 @@ Amazon FSx ONTAP 의 보충 NFS 데이터 저장소를 갖춘 Amazon Web Service
 
 
 
+[[overview-migrating-virtual-machines-with-vmware-hcx-fsx-ontap-supplemental-datastores-and-vmware-cloud]]
 == 개요: VMware HCX, FSx ONTAP 추가 데이터 저장소 및 VMware Cloud를 사용하여 가상 머신 마이그레이션
 
 VMware HCX는 기본적으로 클라우드 전반의 워크로드 마이그레이션, 워크로드 리밸런싱, 비즈니스 연속성을 간소화하도록 설계된 모빌리티 플랫폼입니다.  이 솔루션은 AWS의 VMware Cloud에 포함되어 있으며, 워크로드를 마이그레이션하는 다양한 방법을 제공하며 재해 복구(DR) 작업에 사용할 수 있습니다.
@@ -68,6 +69,7 @@ image:fsx-hcx-001.png["입력/출력 대화 상자 또는 서면 내용을 나�
 ====
 
 
+[[solution-deployment]]
 == 솔루션 배포
 
 이 솔루션의 배포를 완료하려면 다음 단계를 따르세요.
@@ -318,12 +320,14 @@ NOTE: 대상 VMC FSx ONTAP 데이터 저장소에는 마이그레이션을 수�
 ====
 
 
+[[conclusion]]
 == 결론
 
 온프레미스의 모든 유형/공급업체 스토리지에 있는 데이터를 포함하여 모든 클라우드 또는 하이브리드 클라우드를 타겟으로 삼는지 여부에 관계없이 Amazon FSx ONTAP 과 HCX는 데이터 요구 사항을 애플리케이션 계층에 원활하게 전달하여 TCO를 줄이는 동시에 워크로드를 배포하고 마이그레이션할 수 있는 탁월한 옵션을 제공합니다.  어떤 사용 사례에서든 FSx ONTAP 데이터 저장소와 함께 VMC를 선택하면 클라우드의 이점을 빠르게 실현하고, 온프레미스와 여러 클라우드에서 일관된 인프라와 운영을 구현하고, 워크로드를 양방향으로 이동시키고, 엔터프라이즈급 용량과 성능을 확보할 수 있습니다.  이는 VMware vSphere 복제, VMware vMotion 또는 NFC 복사를 사용하여 스토리지를 연결하고 VM을 마이그레이션하는 데 사용되는 익숙한 프로세스 및 절차와 동일합니다.
 
 
 
+[[takeaways]]
 == 테이크아웃
 
 이 문서의 주요 내용은 다음과 같습니다.
@@ -335,6 +339,7 @@ NOTE: 대상 VMC FSx ONTAP 데이터 저장소에는 마이그레이션을 수�
 
 
 
+[[where-to-find-additional-information]]
 == 추가 정보를 찾을 수 있는 곳
 
 이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 웹사이트 링크를 참조하세요.

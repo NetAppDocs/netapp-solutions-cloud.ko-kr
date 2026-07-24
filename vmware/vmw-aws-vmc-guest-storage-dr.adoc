@@ -18,6 +18,7 @@ summary: '검증된 재해 복구(DR) 환경과 계획은 조직이 주요 비�
 
 
 
+[[overview]]
 == 개요
 
 NetApp VMware와 오랫동안 통합을 이루어 왔으며, 이는 수만 명의 고객이 가상화 환경을 위한 스토리지 파트너로 NetApp 선택한 것에서 입증됩니다.  이러한 통합은 클라우드의 게스트 연결 옵션과 최근 NFS 데이터 저장소와의 통합에서도 계속됩니다.  이 솔루션은 일반적으로 게스트 연결 스토리지라고 하는 사용 사례에 초점을 맞춥니다.
@@ -28,6 +29,7 @@ image:dr-vmc-aws-001.png["입력/출력 대화 상자 또는 서면 내용을 �
 
 
 
+[[assumptions-pre-requisites-and-component-overview]]
 == 가정, 전제 조건 및 구성 요소 개요
 
 이 솔루션을 배포하기 전에 구성 요소 개요, 솔루션을 배포하는 데 필요한 사전 요구 사항, 이 솔루션을 문서화하는 데 필요한 가정 사항을 검토하세요.
@@ -36,6 +38,7 @@ link:vmw-aws-vmc-dr-prereqs.html["DR 솔루션 요구 사항, 사전 요구 사�
 
 
 
+[[performing-dr-with-snapcenter]]
 == SnapCenter 사용하여 DR 수행
 
 이 솔루션에서 SnapCenter SQL Server 및 Oracle 애플리케이션 데이터에 대한 애플리케이션 일관성 스냅샷을 제공합니다.  이 구성은 SnapMirror 기술과 함께 온프레미스 AFF 와 FSx ONTAP 클러스터 간에 고속 데이터 복제를 제공합니다.  또한, Veeam Backup & Replication은 가상 머신에 대한 백업 및 복원 기능을 제공합니다.
@@ -46,6 +49,8 @@ link:vmw-aws-vmc-dr-prereqs.html["DR 솔루션 요구 사항, 사전 요구 사�
 
 
 
+[[configure-snapmirror-relationships-and-retention-schedules]]
+[[config-snapmirror]]
 === SnapMirror 관계 및 보존 일정 구성
 
 SnapCenter 장기 보관 및 보존 목적으로 기본 스토리지 시스템(기본 > 미러) 및 보조 스토리지 시스템(기본 > 볼트) 내의 SnapMirror 관계를 업데이트할 수 있습니다.  이를 위해 SnapMirror 사용하여 대상 볼륨과 소스 볼륨 간의 데이터 복제 관계를 설정하고 초기화해야 합니다.
@@ -215,6 +220,7 @@ FSx-Dest::> snapmirror initialize -destination-path DestSVM:DestVol
 ====
 
 
+[[deploy-and-configure-windows-snapcenter-server-on-premises]]
 === 온프레미스에 Windows SnapCenter 서버를 배포하고 구성합니다.
 
 .온프레미스에 Windows SnapCenter 서버 배포
@@ -315,6 +321,7 @@ Oracle 리소스를 백업하려면 다음을 따르세요. https://docs.netapp.
 ====
 
 
+[[deploy-and-configure-veeam-backup-server]]
 === Veeam 백업 서버 배포 및 구성
 
 Veeam Backup & Replication 소프트웨어는 Veeam 스케일아웃 백업 저장소(SOBR)를 사용하여 애플리케이션 가상 머신을 백업하고 백업 사본을 Amazon S3 버킷에 보관하는 솔루션에 사용됩니다.  이 솔루션에서는 Veeam이 Windows 서버에 배포됩니다.  Veeam 배포에 대한 구체적인 지침은 다음을 참조하세요. https://www.veeam.com/documentation-guides-datasheets.html["Veeam 도움말 센터 기술 문서"^] .
@@ -421,6 +428,7 @@ Veeam을 구성하는 마지막 단계는 새로 만든 SOBR을 백업 대상으
 ====
 
 
+[[bluexp-backup-and-recovery-tools-and-configuration]]
 === BlueXP backup and recovery 도구와 구성
 
 AWS에서 실행되는 VMware Cloud Volume 서비스로 애플리케이션 VM 및 데이터베이스 볼륨의 장애 조치를 수행하려면 SnapCenter Server와 Veeam Backup and Replication Server의 실행 인스턴스를 설치하고 구성해야 합니다.  장애 조치가 완료된 후에는 온프레미스 데이터 센터로의 장애 복구를 계획하고 실행할 때까지 정상적인 백업 작업을 재개하도록 이러한 도구를 구성해야 합니다.
@@ -474,6 +482,7 @@ Veeam을 사용하여 VM을 복원하는 방법에 대한 자세한 내용은 �
 ====
 
 
+[[snapcenter-database-backup-for-disaster-recovery]]
 === 재해 복구를 위한 SnapCenter 데이터베이스 백업
 
 SnapCenter 사용하면 재해 발생 시 SnapCenter 서버를 복구할 목적으로 기본 MySQL 데이터베이스와 구성 데이터를 백업하고 복구할 수 있습니다.  우리 솔루션의 경우, VPC에 있는 AWS EC2 인스턴스에서 SnapCenter 데이터베이스와 구성을 복구했습니다.  SnapCenter 의 재해 복구에 대한 자세한 내용은 다음을 참조하세요. https://docs.netapp.com/us-en/snapcenter/index.html["이 링크"^] .
@@ -582,6 +591,7 @@ xcopy c:\SC_Backups\SnapCenter_DR \\10.61.181.185\snapcenter_dr /O /X /E /H /K
 ====
 
 
+[[failover]]
 === 장애 조치
 
 .재해는 1차 현장에서 발생합니다.
@@ -651,6 +661,8 @@ NOTE: 추가 절차에 대한 의견을 참조하세요.
 ====
 
 
+[[restore-application-vms-with-veeam-full-restore]]
+[[restore-veeam-full]]
 === Veeam 전체 복원을 사용하여 애플리케이션 VM 복원
 
 .백업 저장소를 만들고 S3에서 백업을 가져옵니다.
@@ -742,6 +754,7 @@ image:dr-vmc-aws-067.png["입력/출력 대화 상자 또는 서면 내용을 �
 ====
 
 
+[[restore-sql-server-application-data]]
 === SQL Server 애플리케이션 데이터 복원
 
 다음 프로세스에서는 온프레미스 사이트를 작동 불가능하게 만드는 재해가 발생한 경우 AWS의 VMware Cloud Services에서 SQL Server를 복구하는 방법에 대한 지침을 제공합니다.
@@ -857,6 +870,7 @@ image:dr-vmc-aws-076.png["입력/출력 대화 상자 또는 서면 내용을 �
 ====
 
 
+[[restore-oracle-application-data]]
 === Oracle 애플리케이션 데이터 복원
 
 다음 프로세스에서는 온프레미스 사이트를 작동 불가능하게 만드는 재해가 발생한 경우 AWS의 VMware Cloud Services에서 Oracle 애플리케이션 데이터를 복구하는 방법에 대한 지침을 제공합니다.
@@ -934,6 +948,7 @@ NOTE: 재부팅 시에도 NFS 마운트를 유지하려면 다음을 편집하�
 ====
 
 
+[[failback]]
 === 장애 복구
 
 이 솔루션에 설명된 장애 조치 프로세스를 성공적으로 완료하면 SnapCenter 와 Veeam은 AWS에서 실행되는 백업 기능을 재개하고 FSx ONTAP 이제 원래 온프레미스 데이터 센터와 기존 SnapMirror 관계가 없는 기본 스토리지로 지정됩니다.  온프레미스에서 정상 기능이 재개된 후에는 이 문서에 설명된 것과 동일한 프로세스를 사용하여 데이터를 온프레미스 ONTAP 스토리지 시스템으로 다시 미러링할 수 있습니다.
@@ -944,6 +959,7 @@ NOTE: 재부팅 시에도 NFS 마운트를 유지하려면 다음을 편집하�
 
 
 
+[[conclusion]]
 == 결론
 
 이 문서에 제시된 사용 사례는 NetApp 과 VMware 간의 통합을 강조하는 검증된 재해 복구 기술에 초점을 맞춥니다.  NetApp ONTAP 스토리지 시스템은 검증된 데이터 미러링 기술을 제공하여 조직이 온프레미스와 주요 클라우드 공급업체가 제공하는 ONTAP 기술을 아우르는 재해 복구 솔루션을 설계할 수 있도록 지원합니다.

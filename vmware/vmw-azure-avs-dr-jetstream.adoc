@@ -64,6 +64,7 @@ NOTE: 규정된 도메인의 수와 내용은 평균 IOPS, 총 용량, 우선순
 
 
 
+[[install-jetstream-dr-in-on-premises-datacenter]]
 == 온프레미스 데이터 센터에 JetStream DR 설치
 
 JetStream DR 소프트웨어는 JetStream DR 관리 서버 가상 어플라이언스(MSA), DR 가상 어플라이언스(DRVA), 호스트 구성 요소(I/O 필터 패키지)의 세 가지 주요 구성 요소로 구성됩니다.  MSA는 컴퓨팅 클러스터에 호스트 구성 요소를 설치하고 구성한 다음 JetStream DR 소프트웨어를 관리하는 데 사용됩니다.  다음 목록은 설치 과정에 대한 간략한 설명을 제공합니다.
@@ -125,6 +126,7 @@ NOTE: 장애 조치 실행 설명서를 구성하여 VM을 그룹화(복구 그�
 ====
 
 
+[[install-jetstream-dr-for-avs-in-an-azure-vmware-solution-private-cloud-using-the-run-command]]
 == 실행 명령을 사용하여 Azure VMware Solution 프라이빗 클라우드에 AVS용 JetStream DR 설치
 
 복구 사이트(AVS)의 모범 사례는 미리 3노드 파일럿 라이트 클러스터를 만드는 것입니다.  이를 통해 다음 항목을 포함하여 복구 사이트 인프라를 미리 구성할 수 있습니다.
@@ -186,6 +188,7 @@ image:vmware-dr-018.png["입력/출력 대화 상자 또는 서면 내용을 나
 ====
 
 
+[[performing-failover-failback]]
 == 장애 조치/장애 복구 수행
 
 .장애 조치(Failover)/장애 복구(Failback)를 수행하는 방법
@@ -238,6 +241,7 @@ NOTE: 복구 사이트에서 VM을 일시 중지한 후 보호 사이트에서 �
 ====
 
 
+[[ransomeware-recovery]]
 == 랜섬웨어 복구
 
 랜섬웨어로부터 복구하는 것은 힘든 일일 수 있습니다.  특히, IT 조직에서는 안전한 복귀 지점을 결정하기 어려울 수 있으며, 일단 결정한 후에는 복구된 워크로드가 재발하는 공격(잠복 맬웨어 또는 취약한 애플리케이션을 통한 공격)으로부터 안전하게 보호되는지 확인하는 방법도 어려울 수 있습니다.

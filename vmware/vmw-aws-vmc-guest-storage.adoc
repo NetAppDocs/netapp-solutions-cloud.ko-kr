@@ -18,6 +18,7 @@ AWS는 기본 FSx 서비스(FSx ONTAP) 또는 Cloud Volumes ONTAP (CVO)를 통�
 
 
 
+[[fsx-ontap]]
 == FSx ONTAP
 
 Amazon FSx ONTAP NetApp의 인기 있는 ONTAP 파일 시스템을 기반으로 높은 안정성, 확장성, 고성능, 다양한 기능을 갖춘 파일 스토리지를 제공하는 완전 관리형 서비스입니다.  FSx ONTAP NetApp 파일 시스템의 친숙한 기능, 성능, 기능 및 API 운영과 완벽하게 관리되는 AWS 서비스의 민첩성, 확장성 및 단순성을 결합합니다.
@@ -30,6 +31,7 @@ FSx ONTAP 완벽하게 관리되는 백업과 지역 간 재해 복구 지원을
 
 
 
+[[fsx-ontap-as-guest-connected-storage]]
 === 게스트 연결 스토리지로서의 FSx ONTAP
 
 .VMware Cloud on AWS를 사용하여 Amazon FSx ONTAP 구성
@@ -273,6 +275,8 @@ image:aws-fsx-guest-032.png["입력/출력 대화 상자 또는 서면 내용을
 ====
 
 
+[[cloud-volumes-ontap-cvo]]
+[[aws-cvo]]
 == Cloud Volumes ONTAP (CVO)
 
 클라우드 볼륨 ONTAP 또는 CVO는 NetApp의 ONTAP 스토리지 소프트웨어를 기반으로 구축된 업계 최고의 클라우드 데이터 관리 솔루션으로, Amazon Web Services(AWS), Microsoft Azure 및 Google Cloud Platform(GCP)에서 기본적으로 제공됩니다.
@@ -285,6 +289,7 @@ CVO는 설계상 클라우드에서 가장 까다로운 애플리케이션도 �
 
 
 
+[[cloud-volumes-ontap-cvo-as-guest-connected-storage]]
 === 게스트 연결 스토리지로서의 Cloud Volumes ONTAP (CVO)
 
 .AWS에 새로운 Cloud Volumes ONTAP 인스턴스 배포(직접 해보기)

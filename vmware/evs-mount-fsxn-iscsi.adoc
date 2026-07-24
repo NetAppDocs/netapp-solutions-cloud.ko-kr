@@ -18,12 +18,14 @@ summary: 이 섹션에서는 FSx for ONTAP 을 사용하여 iSCSI 데이터 저�
 
 
 
+[[prerequisites]]
 == 필수 조건
 
 FSx for ONTAP iSCSI 데이터 저장소로 프로비저닝하고 연결하기 전에 먼저 Amazon EVS 가상화 환경을 배포해야 합니다.  자세한 내용은 Amazon EVS 시작하기 가이드 문서를 참조하세요.  이 섹션에서는 FSx for ONTAP 파일 시스템을 배포했다고 가정합니다. 적절한 단계는 위의 자세한 접근 방식 섹션을 참조하세요.
 
 
 
+[[high-level-deployment-steps]]
 == 고수준 배포 단계
 
 Amazon EVS의 iSCSI 데이터 저장소로 사용하기 위해 FSx for ONTAP 파일 시스템을 배포하고 두 서비스 간의 연결을 설정하는 데는 다음 단계가 포함됩니다.
@@ -36,6 +38,7 @@ Amazon EVS의 iSCSI 데이터 저장소로 사용하기 위해 FSx for ONTAP 파
 
 
 
+[[add-iscsi-network-adapter]]
 == iSCSI 네트워크 어댑터 추가
 
 다음 단계는 사용자 환경의 각 ESXi 호스트에서 수행해야 합니다.
@@ -52,6 +55,7 @@ image:evs-mount-fsxn-026.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[create-an-fsx-for-ontap-volume]]
 == ONTAP 볼륨에 대한 FSx 생성
 
 . AWS 콘솔로 이동하여 FSx for ONTAP 파일 시스템 페이지로 들어가서 "볼륨 생성"을 클릭합니다.
@@ -113,6 +117,7 @@ image:evs-mount-fsxn-030.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[create-a-lun-igroup-and-mapping-the-lun]]
 == LUN, igroup 생성 및 LUN 매핑
 
 이 섹션에서는 vSphere에 디스크로 나타날 LUN을 만드는 방법을 보여줍니다.  또한 LUN에 액세스할 수 있는 이니시에이터 목록인 이니시에이터 그룹(igroup)을 만드는 방법도 보여드리겠습니다.  igroup은 vSphere ESXi 호스트에서 LUN에 대한 액세스를 허용합니다.  마지막으로 igroup을 LUN에 매핑하는 방법을 보여드리겠습니다.
@@ -149,6 +154,7 @@ fsx       /vol/DemoDS02/lun1              online  mapped   vmware     1.80TB
 
 
 
+[[obtain-iscsi-configuration-information-from-the-svm]]
 == SVM에서 iSCSI 구성 정보 가져오기
 
 . iSCSI show를 실행하고 대상 이름을 기록합니다.  이는 FSx for ONTAP 디스크의 vSphere 검색에 사용됩니다(참고: 이 대상 이름은 SVM에 고유합니다).
@@ -173,6 +179,7 @@ fsx     iscsi_2   10.0.10.227
 
 
 
+[[discover-the-fsx-for-ontap-iscsi-server]]
 == FSx for ONTAP iSCSI 서버를 찾아보세요
 
 이제 LUN이 매핑되었으므로 SVM의 FSx for ONTAP iSCSI 서버를 검색할 수 있습니다.  SDDC에 있는 각 ESXi 호스트에 대해 여기에 나열된 단계를 반복해야 합니다.
@@ -194,6 +201,7 @@ image:evs-mount-fsxn-032.png["위 단계의 대화를 나타내는 그림"]
 
 
 
+[[create-an-iscsi-datastore]]
 == iSCSI 데이터 저장소 만들기
 
 이제 iSCSI 서버를 발견했으므로 iSCSI 데이터 저장소를 만들 수 있습니다.

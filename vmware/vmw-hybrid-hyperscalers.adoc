@@ -32,6 +32,8 @@ NOTE: 특정 하이퍼스케일러의 기능을 보려면 해당 하이퍼스케
 
 
 
+[[vmware-in-the-hyperscalers-configuration]]
+[[config]]
 == 하이퍼스케일러 구성의 VMware
 
 온프레미스와 마찬가지로, VM을 만들고 마이그레이션하기 위한 성공적인 프로덕션 준비 환경을 위해서는 클라우드 기반 가상화 환경을 계획하는 것이 중요합니다.
@@ -90,6 +92,8 @@ NOTE: 게스트 내 스토리지는 Cloud Volumes ONTAP 및 Google Cloud NetApp 
 ====
 
 
+[[netapp-storage-options]]
+[[datastore]]
 == NetApp 스토리지 옵션
 
 NetApp 스토리지는 3대 주요 하이퍼스케일러 내에서 게스트 연결 또는 보조 NFS 데이터 저장소로 등 여러 가지 방법으로 활용할 수 있습니다.
@@ -139,6 +143,8 @@ Google Cloud는 다음 구성에서 NetApp 스토리지를 지원합니다.
 ====
 
 
+[[netapp-vmware-cloud-solutions]]
+[[solutions]]
 == NetApp / VMware 클라우드 솔루션
 
 NetApp 및 VMware 클라우드 솔루션을 사용하면 많은 사용 사례를 원하는 하이퍼스케일러에 간편하게 배포할 수 있습니다.  VMware는 주요 클라우드 워크로드 사용 사례를 다음과 같이 정의합니다.

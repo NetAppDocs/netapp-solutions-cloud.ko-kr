@@ -23,6 +23,7 @@ NOTE: NetApp Volumes-SW를 사용하려면 Active Directory 서버가 동일한 
 
 
 
+[[active-directory-credentials]]
 == Active Directory 자격 증명
 
 NFS용 SMB 또는 LDAP가 활성화된 경우 Google Cloud NetApp Volumes Active Directory 컨트롤러와 상호 작용하여 인증에 사용할 머신 계정 개체를 생성합니다.  이는 Windows SMB 클라이언트가 도메인에 가입하고 Active Directory의 조직 단위(OU)에 대한 동일한 액세스 권한을 요구하는 방식과 다르지 않습니다.
@@ -31,6 +32,7 @@ NFS용 SMB 또는 LDAP가 활성화된 경우 Google Cloud NetApp Volumes Active
 
 
 
+[[permissions-needed-to-create-smb-machine-accounts]]
 === SMB 머신 계정을 생성하는 데 필요한 권한
 
 Active Directory에 Google Cloud NetApp Volumes 머신 객체를 추가하려면 도메인에 대한 관리 권한이 있거나 https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/delegating-administration-by-using-ou-objects["머신 계정 객체를 생성하고 수정하기 위한 위임된 권한"^] 지정된 OU에 대한 것이 필요합니다.  Active Directory의 제어 위임 마법사를 사용하여 다음 액세스 권한이 제공되는 컴퓨터 개체의 생성/삭제에 대한 사용자 액세스 권한을 제공하는 사용자 지정 작업을 만들어 이 작업을 수행할 수 있습니다.
@@ -48,6 +50,7 @@ NOTE: Active Directory 도메인에 전달되는 사용자 이름과 비밀번�
 
 
 
+[[active-directory-connection-details]]
 == Active Directory 연결 세부 정보
 
  https://docs.cloud.google.com/netapp/volumes/docs/configure-and-use/active-directory/about-ad["Active Directory 연결 세부 정보"^]는 관리자가 다음과 같은 컴퓨터 계정 배치를 위한 특정 Active Directory 스키마 정보를 제공할 수 있도록 지침을 제공합니다.
@@ -66,6 +69,7 @@ NOTE: 기본적으로 대부분의 Windows 서버는 약한 암호(예: DES 또�
 
 
 
+[[kerberos-realm-details]]
 == Kerberos 영역 세부 정보
 
 이 옵션은 SMB 서버에는 적용되지 않습니다.  오히려 Google Cloud NetApp Volumes 시스템에 대한 NFS Kerberos를 구성할 때 사용됩니다.  이러한 세부 정보가 채워지면 NFS Kerberos 영역이 구성되고(Linux의 krb5.conf 파일과 유사) Google Cloud NetApp Volumes 볼륨 생성 시 NFS Kerberos가 지정되면 Active Directory 연결이 NFS Kerberos 배포 센터(KDC) 역할을 하므로 이 영역이 사용됩니다.
@@ -75,6 +79,7 @@ NOTE: 현재 Windows가 아닌 KDC는 Google Cloud NetApp Volumes 와 함께 사
 
 
 
+[[region]]
 == 지역
 
 지역을 사용하면 Active Directory 연결이 있는 위치를 지정할 수 있습니다.  이 지역은 Google Cloud NetApp Volumes 볼륨과 동일한 지역이어야 합니다.
@@ -84,6 +89,7 @@ NOTE: 현재 Windows가 아닌 KDC는 Google Cloud NetApp Volumes 와 함께 사
 
 
 
+[[backup-users]]
 == 백업 사용자
 
 이 옵션을 사용하면 Google Cloud NetApp Volumes 볼륨에 대한 백업 권한이 있는 Windows 사용자를 지정할 수 있습니다.  일부 애플리케이션이 NAS 볼륨의 데이터를 올바르게 백업하고 복원하려면 백업 권한(SeBackupPrivilege)이 필요합니다.  이 사용자는 볼륨의 데이터에 대한 높은 수준의 액세스 권한을 가지고 있으므로 다음을 고려해야 합니다. https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/audit-audit-the-use-of-backup-and-restore-privilege["해당 사용자 액세스에 대한 감사 활성화"^] .  이 기능을 활성화하면 감사 이벤트가 이벤트 뷰어 > Windows 로그 > 보안에 표시됩니다.
@@ -92,6 +98,7 @@ image:ncvs-gc-019.png["입력/출력 대화 상자 또는 서면 내용을 나�
 
 
 
+[[security-privilege-users]]
 == 보안 권한 사용자
 
 이 옵션을 사용하면 Google Cloud NetApp Volumes 볼륨에 대한 보안 수정 권한이 있는 Windows 사용자를 지정할 수 있습니다.  일부 애플리케이션에는 보안 권한(SeSecurityPrivilege)이 필요합니다.(https://docs.netapp.com/us-en/ontap/smb-hyper-v-sql/add-sesecurityprivilege-user-account-task.html["SQL Server와 같은"^] ) 설치 중에 권한을 올바르게 설정하세요.  보안 로그를 관리하려면 이 권한이 필요합니다.  이 권한은 SeBackupPrivilege만큼 강력하지는 않지만 NetApp 다음을 권장합니다. https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/basic-audit-privilege-use["사용자의 사용자 액세스 감사"^] 필요한 경우 이 권한 수준을 사용합니다.
@@ -100,6 +107,8 @@ image:ncvs-gc-019.png["입력/출력 대화 상자 또는 서면 내용을 나�
 
 
 
+[[how-google-cloud-netapp-volumes-shows-up-in-active-directory]]
+[[how-cloud-volumes-service-shows-up-in-active-directory]]
 == Google Cloud NetApp Volumes Active Directory에 표시되는 방식
 
 Google Cloud NetApp Volumes Active Directory에 일반 머신 계정 개체로 표시됩니다.  명명 규칙은 다음과 같습니다.

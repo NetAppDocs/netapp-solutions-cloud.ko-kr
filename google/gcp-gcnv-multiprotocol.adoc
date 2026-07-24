@@ -18,6 +18,7 @@ Google Cloud NetApp Volumes 적절한 액세스 권한을 유지하면서 SMB �
 
 
 
+[[access-control]]
 == 접근 제어
 
 * *공유 접근 제어.*  어떤 클라이언트 및/또는 사용자와 그룹이 NAS 공유에 액세스할 수 있는지 확인합니다.  NFS의 경우, 내보내기 정책과 규칙은 클라이언트의 내보내기 액세스를 제어합니다.  NFS 내보내기는 Google Cloud NetApp Volumes 인스턴스에서 관리됩니다.  SMB는 CIFS/SMB 공유와 공유 ACL을 활용하여 사용자 및 그룹 수준에서 보다 세부적인 제어를 제공합니다.  https://library.netapp.com/ecmdocs/ECMP1401220/html/GUID-C1772CDF-8AEE-422B-AB87-CFCB7E50FF94.html [MMC/Computer Management^]를 사용하여 SMB 클라이언트에서 공유 수준 ACL을 구성할 수 있습니다. Google Cloud NetApp Volumes 인스턴스에 대한 관리자 권한이 있는 계정이 필요합니다(링크:gcp-gcnv-smb.html#로컬/BUILTIN 관리자/백업 권한이 있는 계정["로컬/BUILTIN 관리자/백업 권한이 있는 계정"] 섹션 참조).
@@ -28,6 +29,7 @@ NFS와 SMB 모두에 데이터를 제공하는 볼륨에 대한 액세스 제어
 
 
 
+[[user-mapping]]
 == 사용자 매핑
 
 클라이언트가 볼륨에 액세스하면 Google Cloud NetApp Volumes 들어오는 사용자를 반대 방향의 유효한 사용자에 매핑하려고 시도합니다.  이는 프로토콜 전반에 걸쳐 적절한 액세스가 이루어졌는지 확인하고 액세스를 요청한 사용자가 실제로 주장하는 사람인지 확인하는 데 필요합니다.
@@ -40,6 +42,7 @@ NFS와 SMB 모두에 데이터를 제공하는 볼륨에 대한 액세스 제어
 
 
 
+[[permission-model]]
 == 권한 모델
 
 이중 프로토콜 설정을 사용하는 경우 Google Cloud NetApp Volumes 볼륨의 보안 스타일을 활용하여 ACL 유형을 결정합니다.  이러한 보안 스타일은 지정된 NAS 프로토콜에 따라 설정되며, 이중 프로토콜의 경우 Google Cloud NetApp Volumes 볼륨을 생성할 때 선택합니다.

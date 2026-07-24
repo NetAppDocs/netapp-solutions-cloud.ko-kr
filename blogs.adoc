@@ -18,6 +18,7 @@ ONTAP 스토리지를 NetApp 클라우드 솔루션과 통합하기 위한 실�
 
 
 
+[[vmware-integration-with-aws-and-amazon-fsx-for-ontap]]
 == AWS 및 Amazon FSx for ONTAP 과 VMware 통합
 
 * link:https://bluexp.netapp.com/blog/aws-fsxn-blg-migrate-vmware-to-amazon-ec2-iscsi-based-fsx-for-ontap["Amazon EC2 및 Amazon FSx ONTAP iSCSI 프로토콜을 사용하여 VMware VM을 AWS로 마이그레이션"]
@@ -28,6 +29,7 @@ ONTAP 스토리지를 NetApp 클라우드 솔루션과 통합하기 위한 실�
 
 
 
+[[azure-vmware-solution]]
 == Azure VMware 솔루션
 
 * link:https://www.netapp.com/blog/vmware-optimize-storage-workloads/["모든 클라우드에서 스토리지 및 데이터 집약적인 VMware 워크로드 최적화"]
@@ -36,6 +38,7 @@ ONTAP 스토리지를 NetApp 클라우드 솔루션과 통합하기 위한 실�
 
 
 
+[[google-cloud-vmware-engine]]
 == 구글 클라우드 VMware 엔진
 
 * link:https://www.netapp.com/blog/cloud-volumes-service-google-cloud-vmware-engine/["Google Cloud VMware Engine( NetApp )에 대한 Google Cloud Google Cloud NetApp Volumes 데이터 저장소 지원"]
@@ -45,6 +48,7 @@ ONTAP 스토리지를 NetApp 클라우드 솔루션과 통합하기 위한 실�
 
 
 
+[[data-protection-and-management]]
 == 데이터 보호 및 관리
 
 * link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/3-2-1-Data-Protection-for-VMware-with-SnapCenter-Plug-in-and-BlueXP-backup-and/ba-p/446180["SnapCenter 플러그인과 BlueXP Backup and Recovery for VM을 통한 VMware용 3-2-1 데이터 보호"]
@@ -53,6 +57,7 @@ ONTAP 스토리지를 NetApp 클라우드 솔루션과 통합하기 위한 실�
 
 
 
+[[netapp-for-openshift-container-workloads]]
 == OpenShift 컨테이너 워크로드를 위한 NetApp
 
 * link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/NetApp-ONTAP-doubles-up-as-storage-for-logs-in-Red-Hat-OpenShift-Container/ba-p/449280["NetApp ONTAP Red Hat OpenShift 컨테이너 플랫폼의 로그 저장소로도 사용됩니다."]
@@ -60,6 +65,7 @@ ONTAP 스토리지를 NetApp 클라우드 솔루션과 통합하기 위한 실�
 
 
 
+[[vmware-sovereign-cloud]]
 == VMware Sovereign Cloud
 
 * link:https://blogs.vmware.com/cloud/2021/10/06/vmware-sovereign-cloud/["새로운 Sovereign Cloud 이니셔티브 소개"]

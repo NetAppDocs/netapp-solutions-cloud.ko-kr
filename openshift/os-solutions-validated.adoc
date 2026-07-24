@@ -31,6 +31,7 @@ summary:
 
 
 
+[[scenario-1-data-protection-and-migration-within-the-on-premises-environment-using-trident-protect]]
 == 시나리오 1: Trident Protect를 사용한 온프레미스 환경 내 데이터 보호 및 마이그레이션
 
 **온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 NetApp 스토리지**
@@ -40,12 +41,14 @@ summary:
 
 
 
+[[scenario-1]]
 === 시나리오 1
 
 image:rhhc-on-premises.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
 
 
+[[scenario-2-data-protection-and-migration-from-the-on-premises-environment-to-aws-environment-using-trident-protect]]
 == 시나리오 2: Trident Protect를 사용하여 온프레미스 환경에서 AWS 환경으로의 데이터 보호 및 마이그레이션
 
 **온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **AWS 클라우드: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지**
@@ -55,12 +58,14 @@ image:rhhc-on-premises.png["입력/출력 대화 상자 또는 서면 내용을 
 
 
 
+[[scenario-2]]
 === 시나리오 2
 
 image:rhhc-self-managed-aws.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
 
 
+[[scenario-3-data-protection-and-migration-from-the-on-premises-environment-to-aws-environment]]
 == 시나리오 3: 온프레미스 환경에서 AWS 환경으로의 데이터 보호 및 마이그레이션
 
 **온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **AWS 클라우드: 공급자 관리형 OpenShift 클러스터(ROSA) 및 공급자 관리형 스토리지(FSx ONTAP)**
@@ -71,12 +76,14 @@ image:rhhc-self-managed-aws.png["입력/출력 대화 상자 또는 서면 내�
 
 
 
+[[scenario-3]]
 === 시나리오 3
 
 image:rhhc-rosa-with-fsxn.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
 
 
+[[scenario-4-data-protection-and-migration-from-the-on-premises-environment-to-gcp-environment-using-trident-protect]]
 === 시나리오 4: Trident Protect를 사용하여 온프레미스 환경에서 GCP 환경으로의 데이터 보호 및 마이그레이션
 
 **온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **Google Cloud: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지**
@@ -90,6 +97,7 @@ MetroCluster 구성에서 ONTAP 사용할 때의 고려 사항은 다음을 참�
 
 
 
+[[scenario-5-data-protection-and-migration-from-the-on-premises-environment-to-azure-environment-using-trident-protect]]
 === 시나리오 5: Trident Protect를 사용하여 온프레미스 환경에서 Azure 환경으로의 데이터 보호 및 마이그레이션
 
 **온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **Azure Cloud: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지**

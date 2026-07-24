@@ -29,6 +29,7 @@ summary: 데이터 보안 방법을 이해하기 위한 첫 번째 단계는 위
 
 
 
+[[ensuring-secure-logins]]
 == 안전한 로그인 보장
 
 중요한 인프라 구성 요소를 보호할 때 승인된 사용자만 로그인하여 환경을 관리할 수 있도록 하는 것이 중요합니다.  악의적인 행위자가 관리자 자격 증명을 침해하면 성에 접근할 수 있는 열쇠를 손에 넣고 구성 변경, 볼륨 및 백업 삭제, 백도어 생성 또는 스냅샷 일정 비활성화 등 원하는 작업을 모두 수행할 수 있습니다.
@@ -39,12 +40,14 @@ Google Cloud용 Google Cloud NetApp Volumes StaaS(Storage as a Service)의 난�
 
 
 
+[[cluster-administration-and-upgrades]]
 == 클러스터 관리 및 업그레이드
 
 잠재적인 보안 위험이 있는 두 가지 영역으로는 클러스터 관리(악의적인 행위자가 관리자 액세스 권한을 갖는 경우 발생)와 업그레이드(소프트웨어 이미지가 손상된 경우 발생)가 있습니다.
 
 
 
+[[storage-administration-protection]]
 === 스토리지 관리 보호
 
 서비스로 제공되는 스토리지는 클라우드 데이터 센터 외부의 최종 사용자가 액세스할 수 없도록 하여 관리자가 노출될 수 있는 추가적인 위험을 제거합니다.  대신, 고객이 데이터 액세스 플레인에 대해서만 구성이 수행됩니다.  각 테넌트는 자체 볼륨을 관리하며, 어떤 테넌트도 다른 Google Cloud NetApp Volumes 인스턴스에 접속할 수 없습니다.  서비스는 자동화로 관리되며, 섹션에 설명된 프로세스를 통해 시스템에 대한 액세스 권한이 부여된 매우 소수의 신뢰할 수 있는 관리자 목록이 있습니다.link:gcp-gcnv-service-operation.html["서비스 운영."]
@@ -53,6 +56,7 @@ NetApp Volumes-Performance 서비스 유형은 지역에 장애가 발생할 경
 
 
 
+[[service-upgrades]]
 === 서비스 업그레이드
 
 업데이트는 취약한 시스템을 보호하는 데 도움이 됩니다.  각 업데이트에는 공격 표면을 최소화하는 보안 강화 및 버그 수정이 제공됩니다.  소프트웨어 업데이트는 중앙 저장소에서 다운로드되고, 업데이트가 허용되기 전에 검증을 거쳐 공식 이미지가 사용되었는지, 그리고 악의적인 행위자에 의해 업그레이드가 손상되지 않았는지 확인합니다.
@@ -63,6 +67,7 @@ Google Cloud NetApp Volumes 사용하면 클라우드 제공업체 팀이 업데
 
 
 
+[[securing-data-at-rest]]
 == 저장 중인 데이터 보안
 
 디스크가 도난당하거나 반환되거나 다른 용도로 사용되는 경우를 대비해 저장 데이터 암호화는 중요한 역할을 합니다.  Google Cloud NetApp Volumes 의 데이터는 소프트웨어 기반 암호화를 사용하여 저장 상태에서 보호됩니다.
@@ -79,6 +84,7 @@ NetApp Volumes-Performance에 대한 KMS 구성 방법에 대한 자세한 내�
 
 
 
+[[securing-data-in-flight]]
 === 비행 중 데이터 보안
 
 저장 중인 데이터를 보호하는 것 외에도 Google Cloud NetApp Volumes 인스턴스와 클라이언트 또는 복제 대상 간에 데이터가 전송되는 동안에도 데이터를 보호할 수 있어야 합니다.  Google Cloud NetApp Volumes Kerberos를 사용한 SMB 암호화, 패킷 서명/봉인, 데이터 전송의 종단 간 암호화를 위한 NFS Kerberos 5p와 같은 암호화 방법을 사용하여 NAS 프로토콜을 통해 전송 중인 데이터에 대한 암호화를 제공합니다.
@@ -91,6 +97,7 @@ NAS 프로토콜 암호화에 대한 정보는 다음 섹션을 참조하세요.
 
 
 
+[[users-and-groups-for-nas-permissions]]
 == NAS 권한에 대한 사용자 및 그룹
 
 클라우드에서 데이터를 보호하는 데는 적절한 사용자 및 그룹 인증이 필요합니다. 즉, 데이터에 액세스하는 사용자가 해당 환경에서 실제 사용자인지 확인하고 그룹에 유효한 사용자가 포함되어 있는지 확인해야 합니다.  이러한 사용자와 그룹은 저장 시스템의 파일과 폴더에 대한 초기 공유 및 내보내기 액세스 권한과 권한 검증을 제공합니다.
@@ -102,6 +109,7 @@ NOTE: 현재 Google Cloud NetApp Volumes 에서는 LDAP 기능을 위해 Active 
 
 
 
+[[detection-prevention-and-mitigation-of-ransomware-malware-and-viruses]]
 == 랜섬웨어, 맬웨어 및 바이러스의 탐지, 예방 및 완화
 
 랜섬웨어, 맬웨어, 바이러스는 관리자에게 지속적인 위협이며, 이러한 위협을 탐지, 예방, 완화하는 것이 기업 조직의 최우선 과제입니다.  중요한 데이터 세트에 대한 단일 랜섬웨어 공격은 잠재적으로 수백만 달러의 손실을 초래할 수 있으므로 위험을 최소화하기 위해 할 수 있는 모든 조치를 취하는 것이 좋습니다.
@@ -126,6 +134,7 @@ Google Cloud NetApp Volumes 에서는 스냅샷 지원이 추가 비용(스냅�
 
 
 
+[[immutable-snapshot-copies]]
 === 변경 불가능한 스냅샷 복사본
 
 Google Cloud NetApp Volumes 기본적으로 사용자 지정 일정에 따라 생성되는 변경 불가능한 읽기 전용 스냅샷 복사본을 제공하여 데이터가 삭제되거나 전체 볼륨이 랜섬웨어 공격을 받은 경우 신속한 특정 시점 복구가 가능합니다.  스냅샷은 이전의 좋은 스냅샷 사본으로 빠르게 복원되며 스냅샷 일정과 RTO/RPO의 보존 기간을 기반으로 데이터 손실을 최소화합니다.  스냅샷 기술을 사용하면 성능에 미치는 영향이 미미합니다.
@@ -134,6 +143,7 @@ Google Cloud NetApp Volumes 의 스냅샷 복사본은 읽기 전용이므로 �
 
 
 
+[[backups-and-restores]]
 === 백업 및 복원
 
 Google Cloud NetApp Volumes 표준 NAS 클라이언트 백업 기능(NFS 또는 SMB를 통한 백업 등)을 제공합니다.
@@ -146,6 +156,7 @@ Google Cloud NetApp Volumes 표준 NAS 클라이언트 백업 기능(NFS 또는 
 
 
 
+[[cross-region-replication]]
 === 지역 간 복제
 
 NetApp Volumes-Performance를 사용하면 Google 네트워크에서 실행되는 복제에 사용되는 특정 인터페이스를 사용하여 NetApp 에서 제어하는 백엔드 서비스 네트워크에서 TLS1.2 AES 256 GCM 암호화를 사용하여 데이터 보호 및 보관 사용 사례를 위해 Google Cloud 지역 전체에서 볼륨을 안전하게 복제할 수 있습니다.  기본(소스) 볼륨에는 활성 프로덕션 데이터가 포함되어 있으며 보조(대상) 볼륨에 복제되어 기본 데이터 세트의 정확한 복제본을 제공합니다.
@@ -160,6 +171,8 @@ NetApp Volumes-Performance를 사용하면 Google 네트워크에서 실행되�
 
 
 
+[[google-cloud-netapp-volumes-backup]]
+[[cloud-volumes-service-backup]]
 === Google Cloud NetApp Volumes 백업
 
 Google Cloud NetApp Volumes 높은 데이터 내구성을 제공하지만 외부 이벤트로 인해 데이터가 손실될 수 있습니다.  바이러스나 랜섬웨어와 같은 보안 이벤트가 발생하는 경우, 적절한 시기에 데이터 액세스를 재개하기 위해 백업과 복원이 매우 중요합니다.  관리자가 실수로 Google Cloud NetApp Volumes 볼륨을 삭제할 수 있습니다.  또는 사용자가 단순히 여러 달 동안 데이터의 백업 버전을 보관하고 싶어하고 볼륨 내부에 추가 스냅샷 복사 공간을 유지하는 것이 비용 문제가 될 수도 있습니다.  최근 몇 주 동안의 백업 버전을 보관하여 손실된 데이터를 복원하는 가장 좋은 방법은 스냅샷 복사본이지만, 해당 복사본은 볼륨 내부에 저장되어 있으며 볼륨이 사라지면 손실됩니다.

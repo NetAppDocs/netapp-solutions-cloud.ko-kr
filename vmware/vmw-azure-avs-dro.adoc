@@ -18,6 +18,7 @@ summary:
 
 
 
+[[overview]]
 == 개요
 
 Azure NetApp 파일(ANF) 교차 지역 볼륨 복제를 사용하면 기본 AVS 사이트의 NFS 데이터 저장소로 Azure NetApp 파일 볼륨을 사용하여 Azure VMware Solution(AVS) SDDC 사이트에서 실행되는 VMware 워크로드를 대상 복구 지역의 지정된 보조 AVS 사이트로 복제할 수 있습니다.
@@ -28,6 +29,7 @@ image:azure-dro-001.png["입력/출력 대화 상자 또는 서면 내용을 나
 
 
 
+[[prerequisites-and-general-recommendations]]
 === 필수 조건 및 일반 권장 사항
 
 * 복제 피어링을 생성하여 지역 간 복제를 활성화했는지 확인하세요. 보다 https://learn.microsoft.com/en-us/azure/azure-netapp-files/cross-region-replication-create-peering["Azure NetApp Files 대한 볼륨 복제 만들기"^] .
@@ -42,10 +44,12 @@ NOTE: 카스케이딩 및 팬인, 팬아웃 토폴로지는 지원되지 않습�
 
 
 
+[[getting-started]]
 == 시작하기
 
 
 
+[[deploy-azure-vmware-solution]]
 === Azure VMware 솔루션 배포
 
 그만큼 https://learn.microsoft.com/en-us/azure/azure-vmware/introduction["Azure VMware 솔루션"^] (AVS)는 Microsoft Azure 퍼블릭 클라우드 내에서 완벽한 기능을 갖춘 VMware SDDC를 제공하는 하이브리드 클라우드 서비스입니다.  AVS는 Microsoft에서 완벽하게 관리하고 지원하며 VMware에서 검증한 자체 솔루션으로, Azure 인프라를 사용합니다.  따라서 고객은 컴퓨팅 가상화를 위해 VMware ESXi, 하이퍼 컨버지드 스토리지를 위해 vSAN, 네트워킹 및 보안을 위해 NSX를 얻는 동시에 Microsoft Azure의 글로벌 입지, 동급 최고의 데이터 센터 시설, 풍부한 기본 Azure 서비스 및 솔루션 생태계와의 근접성을 활용할 수 있습니다.  Azure VMware Solution SDDC와 Azure NetApp Files 결합하면 최소한의 네트워크 지연으로 최고의 성능을 제공합니다.
@@ -57,6 +61,7 @@ NOTE: 초기 릴리스에서는 DRO가 기존 AVS SDDC 클러스터를 지원합
 
 
 
+[[provision-and-configure-azure-netapp-files]]
 === Azure NetApp Files 프로비저닝 및 구성
 
 https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction["Azure NetApp Files"^]고성능, 엔터프라이즈급, 계량형 파일 저장 서비스입니다.  이 단계를 따르세요 https://learn.microsoft.com/en-us/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal["링크"^] AVS 프라이빗 클라우드 배포를 최적화하기 위해 Azure NetApp Files NFS 데이터 저장소로 프로비저닝하고 구성합니다.
@@ -76,6 +81,7 @@ NOTE: 지역 간 복제 관계는 전제 조건이며 미리 만들어야 합니
 
 
 
+[[dro-installation]]
 == DRO 설치
 
 DRO를 시작하려면 지정된 Azure 가상 머신에서 Ubuntu 운영 체제를 사용하고 필수 구성 요소를 충족하는지 확인하세요.  그런 다음 패키지를 설치하세요.
@@ -129,6 +135,7 @@ image:azure-dro-003.png["입력/출력 대화 상자 또는 서면 내용을 나
 
 
 
+[[dro-configuration]]
 == DRO 구성
 
 Azure NetApp Files 와 AVS가 올바르게 구성된 후 DRO를 구성하여 기본 AVS 사이트에서 보조 AVS 사이트로 워크로드를 복구하는 작업을 자동화할 수 있습니다.  NetApp 보조 AVS 사이트에 DRO 에이전트를 배포하고 ExpressRoute 게이트웨이 연결을 구성하여 DRO 에이전트가 네트워크를 통해 적절한 AVS 및 Azure NetApp Files 구성 요소와 통신할 수 있도록 권장합니다.
@@ -202,6 +209,7 @@ image:azure-dro-008.png["입력/출력 대화 상자 또는 서면 내용을 나
 
 
 
+[[resource-groupings]]
 === 리소스 그룹화
 
 플랫폼을 추가한 후 복구하려는 VM을 리소스 그룹으로 그룹화합니다.  DRO 리소스 그룹을 사용하면 종속된 VM 세트를 부팅 순서, 부팅 지연, 복구 시 실행할 수 있는 선택적 애플리케이션 유효성 검사가 포함된 논리적 그룹으로 그룹화할 수 있습니다.
@@ -233,6 +241,7 @@ image:azure-dro-011.png["입력/출력 대화 상자 또는 서면 내용을 나
 
 
 
+[[replication-plans]]
 === 복제 계획
 
 재해 발생 시 애플리케이션을 복구할 계획이 있어야 합니다.  드롭다운에서 소스 및 대상 vCenter 플랫폼을 선택하고, 이 계획에 포함할 리소스 그룹을 선택하고, 애플리케이션을 복원하고 전원을 켜는 방법(예: 도메인 컨트롤러, 1계층, 2계층 등)에 대한 그룹화도 포함합니다.  설계도는 종종 청사진이라고도 불립니다.  복구 계획을 정의하려면 복제 계획 탭으로 이동하여 *새 복제 계획*을 클릭합니다.
@@ -298,6 +307,7 @@ Azure Portal에서 복제 상태가 읽기/쓰기 볼륨으로 보조 사이트 
 
 
 
+[[ransomware-recovery]]
 === 랜섬웨어 복구
 
 랜섬웨어로부터 복구하는 것은 힘든 일일 수 있습니다.  특히, IT 조직에서는 안전한 복귀 지점이 어디인지 정확히 파악하기 어려울 수 있으며, 이를 파악한 후에도 복구된 워크로드가 재발하는 공격(예: 잠복 맬웨어 또는 취약한 애플리케이션을 통한 공격)으로부터 어떻게 보호될지 확실히 알아내는 것도 어려울 수 있습니다.
@@ -306,6 +316,7 @@ DRO는 조직이 사용 가능한 모든 시점에서 복구할 수 있도록 �
 
 
 
+[[conclusion]]
 == 결론
 
 Azure NetApp Files 및 Azure VMware 재해 복구 솔루션은 다음과 같은 이점을 제공합니다.
@@ -322,6 +333,7 @@ Azure NetApp Files 및 Azure VMware 재해 복구 솔루션은 다음과 같은 
 
 
 
+[[where-to-find-additional-information]]
 === 추가 정보를 찾을 수 있는 곳
 
 이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹사이트를 검토하세요.

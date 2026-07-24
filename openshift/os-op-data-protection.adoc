@@ -24,6 +24,7 @@ Trident Protect를 사용하여 컨테이너 워크로드를 보호하고 마이
 
 
 
+[[business-continuity-with-metrocluster]]
 == MetroCluster 통한 비즈니스 연속성
 
 ONTAP 용 하드웨어 플랫폼의 대부분은 장치 장애로부터 보호하는 고가용성 기능을 갖추고 있어 재해 복구를 수행할 필요가 없습니다.  하지만 화재나 기타 재해로부터 보호하고 RPO가 0이고 RTO가 낮은 상태로 사업을 계속하려면 종종 MetroCluster 솔루션이 사용됩니다.
