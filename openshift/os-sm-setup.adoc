@@ -57,7 +57,7 @@ NOTE: 커넥터는 클라우드 환경에도 설치될 수 있습니다.  나타
 .OCP 클러스터에 Trident 설치
 [%collapsible%open]
 ====
-* Helm을 사용하여 Trident Operator를 배포합니다.  지침을 참조하세요link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html["여기"]
+* Helm을 사용하여 Trident Operator를 배포하십시오. 지침을 참조하십시오 link:https://docs.netapp.com/us-en/trident/trident-install/kubernetes-deploy-helm.html["여기"]
 * 백엔드와 스토리지 클래스를 만듭니다.  지침을 참조하세요link:https://docs.netapp.com/us-en/trident/trident-use/backends.html["여기"] .
 
 

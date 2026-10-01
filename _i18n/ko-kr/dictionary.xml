@@ -763,7 +763,6 @@
   <block id="7c47e0b7c3aa389a1b437364885d5562" category="section-title">랜섬웨어, 맬웨어 및 바이러스의 탐지, 예방 및 완화</block>
   <block id="b647cba0e4b0ad0f479019e47713c5a2" category="paragraph">랜섬웨어, 맬웨어, 바이러스는 관리자에게 지속적인 위협이며, 이러한 위협을 탐지, 예방, 완화하는 것이 기업 조직의 최우선 과제입니다.  중요한 데이터 세트에 대한 단일 랜섬웨어 공격은 잠재적으로 수백만 달러의 손실을 초래할 수 있으므로 위험을 최소화하기 위해 할 수 있는 모든 조치를 취하는 것이 좋습니다.</block>
   <block id="ba1e21a6e8310b88e0349770718e717c" category="inline-link">자동 랜섬웨어 감지</block>
-  <block id="8e7e5d01647fe0a67d0797b935b9f119" category="paragraph">현재 Google Cloud NetApp Volumes 바이러스 백신 보호와 같은 기본 감지 또는 예방 조치가 포함되어 있지 않습니다.<block ref="2ed126fbf9f5caf3d13a90f230e3475a" category="inline-link-rx"></block> 정기적인 스냅샷 일정을 활성화하면 랜섬웨어 이벤트에서 빠르게 복구할 수 있는 방법이 있습니다.  스냅샷 복사본은 변경 불가능하며 파일 시스템에서 변경된 블록에 대한 읽기 전용 포인터로, 거의 즉각적으로 실행되고 성능에 미치는 영향이 최소화되며 데이터가 변경되거나 삭제될 때만 공간을 사용합니다.  원하는 허용 가능한 복구 지점 목표(RPO)/복구 시간 목표(RTO)에 맞춰 스냅샷 복사 일정을 설정할 수 있으며 볼륨당 최대 1,024개의 스냅샷 복사본을 보관할 수 있습니다.</block>
   <block id="e9c1c7d4ca860adb553d87c2c1d9ef35" category="inline-link">랜섬웨어에 대한 NetApp 솔루션</block>
   <block id="da0aff4a3a0e415528322dcd0e029033" category="paragraph">Google Cloud NetApp Volumes 에서는 스냅샷 지원이 추가 비용(스냅샷 복사본에 보관된 변경된 블록/데이터에 대한 데이터 저장 비용 제외) 없이 제공되며, 랜섬웨어 공격이 발생하는 경우 공격이 발생하기 전의 스냅샷 복사본으로 롤백하는 데 사용할 수 있습니다.  스냅샷 복원은 몇 초 만에 완료되며, 복원 후에는 평소처럼 데이터를 제공할 수 있습니다. 자세한 내용은 다음을 참조하세요. <block ref="e347ba4858ee244fead32d2fe59a64dd" category="inline-link-rx"></block> .</block>
   <block id="7994d1312e8f4fe2cdf2f7e13347d8bf" category="paragraph">랜섬웨어가 비즈니스에 영향을 미치지 않도록 방지하려면 다음 중 하나 이상을 포함하는 다층적 접근 방식이 필요합니다.</block>
@@ -1363,7 +1362,6 @@
   <block id="5c9914884527913b8fccd217cc6c8b11" category="list-text">SVM의 저장소에 액세스하기 위해 NAS 데이터 lif를 구성합니다.</block>
   <block id="7becc4cb9c4df5e8d5cb90ed1d181394" category="example-title">OCP 클러스터에 NetApp Trident 설치</block>
   <block id="f086eaa0b9f8b360a31c94f637c0d0b4" category="list-text">허브, 소스 및 대상 클러스터의 세 클러스터 모두에 NetApp Trident 설치합니다.</block>
-  <block id="388489f610963550b7669f0a1294b958" category="list-text">지침을 참조하세요<block ref="36ef4218bf5578859a7215d49db6401a" category="inline-link-macro-rx"></block> .</block>
   <block id="c80ffbf15474d7b48c471b4be5c7eea6" category="list-text">ontap-nas에 대한 스토리지 백엔드를 만듭니다.</block>
   <block id="29dfff8b62823a687037af3caba8bde0" category="list-text">ontap-nas에 대한 스토리지 클래스를 생성합니다.</block>
   <block id="fe08b5c40bfe5b7863acf09f47c11ead" category="list-text">지침을 참조하세요<block ref="47bb97b6990d3b753197dd96a1c60fd2" category="inline-link-macro-rx"></block> .</block>
@@ -1397,12 +1395,8 @@
   <block id="bb2978b82e7eef8973a778154ed9d1d8" category="list-title">OpenShift GitOps(Argo CD)를 사용하여 애플리케이션 배포</block>
   <block id="391500fa73fe756b6e5639d4be254f9b" category="list-text">클러스터에 OpenShift GitOps 운영자를 설치합니다.  지침을 참조하세요<block ref="0f28c06b874e8771e180b718b2d11a08" category="inline-link-macro-rx"></block> .</block>
   <block id="2f32c13166e5bf78897d9948ab7ba878" category="list-text">클러스터에 대한 새로운 Argo CD 인스턴스를 설정합니다.  지침을 참조하세요<block ref="92e97978dfa95fc31fba8b02ddee3516" category="inline-link-macro-rx"></block> .</block>
-  <block id="b7781fedfdcd02533b20ec30008e8c95" category="paragraph">Argo CD의 콘솔을 열고 앱을 배포합니다.  예를 들어, Helm Chart와 Argo CD를 사용하여 Jenkins 앱을 배포할 수 있습니다.  애플리케이션을 생성할 때 다음 세부 정보가 제공되었습니다. 프로젝트: 기본 클러스터:<block ref="0e402c247a3de942bf87e4c3280917d7" category="inline-link-rx"></block> (따옴표 없이) 네임스페이스: Jenkins Helm 차트의 URL:<block ref="3892714f2795b82116173cd1047a3c6f" category="inline-link-rx"></block> (따옴표 없이)</block>
   <block id="7d6d4165ad5f6730731dde0ccade66be" category="doc">Red Hat OpenShift 워크로드를 위한 추가 NetApp 하이브리드 멀티클라우드 솔루션</block>
   <block id="8f1d3df73fb3b1a1a98cb44ce73c8c9a" category="section-title">추가 솔루션</block>
-  <block id="8ac7a0ac8f2870d764a9efcc443bf3ee" category="paragraph">추가 솔루션은 다음과 같이 다른 섹션에서 사용할 수 있습니다.</block>
-  <block id="8b0bbd26aff0a512cebd343d29e00e63" category="paragraph">Red Hat OpenShift Container 솔루션에 대해서는 다음을 참조하세요.<block ref="07a16d44ecae0bf68d6e3c6abdf05911" category="inline-link-macro-rx"></block> .</block>
-  <block id="50b2cc60cb96007f44cb841746d28595" category="paragraph">온프레미스 Red Hat OpenShift Virtualization 솔루션의 경우 다음을 참조하세요.<block ref="57414b3e62f60b97baf7d0cbd278b947" category="inline-link-macro-rx"></block> .</block>
   <block id="9b2f9698f9a33314b6eb0d86eb8929c9" category="doc">AWS에서 관리형 Red Hat OpenShift 컨테이너 플랫폼 배포 및 구성</block>
   <block id="3565891e510e1bc556749261f658f387" category="paragraph">이 섹션에서는 AWS(ROSA)에서 관리형 Red Hat OpenShift 클러스터를 설정하는 고급 워크플로를 설명합니다.  Trident 가 영구 볼륨을 제공하기 위해 스토리지 백엔드로 관리형 Amazon FSx for NetApp ONTAP (FSx ONTAP )을 사용하는 방법을 보여줍니다.  BlueXP 사용하여 AWS에 FSx ONTAP 을 배포하는 방법에 대한 세부 정보가 제공됩니다.  또한, ROSA 클러스터의 상태 저장 애플리케이션에 대한 데이터 보호 및 마이그레이션 활동을 수행하기 위해 BlueXP 와 OpenShift GitOps(Argo CD)를 사용하는 방법에 대한 세부 정보도 제공됩니다.</block>
   <block id="05001e23d20cbe914608cbcc87fde0dd" category="paragraph">다음은 AWS에 배포되고 FSx ONTAP 백엔드 스토리지로 사용하는 ROSA 클러스터를 보여주는 다이어그램입니다.</block>
@@ -1414,7 +1408,6 @@
   <block id="c772e08c8d32e90026f0270b4ddc07bd" category="list-text">BlueXP 에서 VPC에 FSx ONTAP 설치합니다.  나타내다<block ref="34abba7bef53102fd63639b9b9679762" category="inline-link-macro-rx"></block> BlueXP 계정을 생성하고 시작하려면 여기를 클릭하세요.  나타내다<block ref="2295d3162905f9dd45d3ca6c8a209ad1" category="inline-link-macro-rx"></block> FSx ONTAP 설치하기 위해서.  나타내다<block ref="34abba7bef53102fd63639b9b9679762" category="inline-link-macro-rx"></block> AWS에서 FSx ONTAP 관리하기 위한 커넥터를 생성합니다.</block>
   <block id="e80e4c833595d16693cb89be6ffa0411" category="list-text">AWS를 사용하여 FSx ONTAP 배포합니다.  나타내다<block ref="96729d098c0f6096edb6c44f431ce934" category="inline-link-macro-rx"></block> AWS 콘솔을 사용하여 배포합니다.</block>
   <block id="f8f96d37b9a3120cb1bb4a037d8195bd" category="list-title">ROSA 클러스터에 Trident 설치(Helm 차트 사용)</block>
-  <block id="ff3710c8bf724ede6526287dfac6f8d1" category="list-text">Helm 차트를 사용하여 ROSA 클러스터에 Trident 설치합니다.  설명서 링크를 참조하세요: https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html [여기].</block>
   <block id="394171ccfa7f71c4d145fcb031f5e0f0" category="video-title">ROSA 클러스터를 위한 Trident 와 FSx ONTAP 통합</block>
   <block id="d2242c1d3590ac352f814cc4b918d194" category="admonition">OpenShift GitOps를 사용하면 ApplicationSet을 사용하여 ArgoCD에 등록되는 모든 관리형 클러스터에 Trident CSI를 배포할 수 있습니다.</block>
   <block id="446519470075d42f3e6a84ab289a0c4c" category="paragraph"><block ref="446519470075d42f3e6a84ab289a0c4c" category="inline-image-macro-rx" type="image"></block></block>
@@ -1473,8 +1466,6 @@
   <block id="b4678d952e7b7f5b0d0e37cb5eb2a551" category="list-text">Google Cloud에 커넥터를 설치합니다.  지침을 참조하세요<block ref="95c699608f5df2c39b69d68c4999b1f7" category="inline-link-rx"></block> .</block>
   <block id="b5c0dfafe4740b9adef3023b57371d1f" category="list-text">커넥터를 사용하여 Google Cloud에 CVO 인스턴스를 배포합니다.  여기의 지침을 참조하세요.<block ref="5dcb8b1a71fb2a60478c95bc49e22d2b" category="inline-link-rx"></block></block>
   <block id="54b406cf5b62748c3b1ce04f8b7986a0" category="list-title">GCP의 OCP 클러스터에 Trident 설치</block>
-  <block id="4a6c241c8b53a8cf70cd2a3797f918d5" category="list-text">Trident 배포하는 방법은 다음과 같이 다양합니다.<block ref="df28848dc0c60e349970187bfd75a0df" category="inline-link-rx"></block> .</block>
-  <block id="e02f24b76d5608c9d8a2a84930ffaf18" category="list-text">이 프로젝트의 경우 Trident Operator를 수동으로 배포하여 지침을 사용하여 Trident 설치했습니다.<block ref="759d5b54b27f85c8d55e8e3510853fad" category="inline-link-rx"></block> .</block>
   <block id="1391b6e8cd7f7081b132c1fadddbb7ff" category="list-text">백엔드와 스토리지 클래스를 생성합니다.  지침을 참조하세요<block ref="e128541cde7fad4b75ad1c7ebfcc5826" category="inline-link-macro-rx"></block> .</block>
   <block id="3a2a264571e0b55c89cc93a5273f71f0" category="paragraph">[밑줄]#*데모 영상*#</block>
   <block id="111ca5ccfeeed94213d6de50c5fd43cd" category="video-title">Google Cloud Platform에 OpenShift 클러스터 설치</block>
@@ -1497,7 +1488,6 @@
   <block id="75cbb3865e297e8d229f20aefa0bc024" category="list-text">커넥터를 사용하여 AWS에 CVO 인스턴스를 배포합니다.  지침을 참조하세요<block ref="789a1549fecc83ae6bfb4929c9c8d23c" category="inline-link-macro-rx"></block> .</block>
   <block id="2b71954d9c6d4c94a1ae68bbecd1cce4" category="admonition">커넥터는 클라우드 환경에도 설치될 수 있습니다.  나타내다<block ref="0631eaff036ce3419223357fb2a90da7" category="inline-link-macro-rx"></block> 추가 정보를 원하시면.</block>
   <block id="5cd43ece896d33db0e600df05998994b" category="example-title">OCP 클러스터에 Trident 설치</block>
-  <block id="201de1e883240abf227c15e36805365c" category="list-text">Helm을 사용하여 Trident Operator를 배포합니다.  지침을 참조하세요<block ref="2b02799a23e3b4104fc737b9e328001b" category="inline-link-macro-rx"></block></block>
   <block id="abdf2aa21aa2b6f5d115b03c182a0b0b" category="list-text">백엔드와 스토리지 클래스를 만듭니다.  지침을 참조하세요<block ref="e128541cde7fad4b75ad1c7ebfcc5826" category="inline-link-macro-rx"></block> .</block>
   <block id="0733a4864ff0a27098003f35528fda51" category="doc">하이브리드 클라우드에서 Red Hat OpenShift 컨테이너 플랫폼 워크로드를 지원하는 NetApp 솔루션</block>
   <block id="7f224be1115f0425cbeb3e707e64be2a" category="paragraph">고객은 현대화 여정의 어느 시점에 이르러 일부 선택된 워크로드나 모든 워크로드를 데이터 센터에서 클라우드로 이전해야 할 수도 있습니다.  기업은 다양한 이유로 클라우드에서 자체 관리형 OpenShift 컨테이너와 자체 관리형 NetApp 스토리지를 사용하기로 선택할 수 있습니다.  데이터 센터에서 컨테이너 워크로드를 마이그레이션하기 위한 성공적인 프로덕션 준비 환경을 구축하려면 클라우드에서 Red Hat OpenShift 컨테이너 플랫폼(OCP)을 계획하고 배포해야 합니다.  OCP 클러스터는 데이터 센터의 VMware 또는 Bare Metal에 배포할 수 있으며, 클라우드 환경의 AWS, Azure 또는 Google Cloud에 배포할 수 있습니다.</block>
@@ -1546,7 +1536,6 @@
   <block id="8c9552895e8b32d168c001c8cb0d41ac" category="inline-link-macro">NetApp 베르다</block>
   <block id="c9201dcf5ef4e81010385777c2b0eefd" category="list-text"><block ref="c2f5b2c54b56c4b456371849b6825da6" category="inline-link-macro-rx"></block>- Verda(오픈 소스)에는 인기 있는 클라우드 네이티브 데이터 집약형 애플리케이션을 위한 참조 실행 후크 컬렉션이 있습니다.</block>
   <block id="1273c8a63109161e6fd1f18d6998523f" category="inline-link-macro">NetApp BlueXP</block>
-  <block id="b0fea8555edb70fb5a01c464b6a09cbb" category="list-text"><block ref="b0fea8555edb70fb5a01c464b6a09cbb" category="inline-link-macro-rx"></block></block>
   <block id="d2154db2b88b25388e0f4a7a9080bfc9" category="inline-link-macro">AWS의 Red Hat OpenShift 서비스</block>
   <block id="ca0553647614febb5dfa86b86874cf2f" category="list-text"><block ref="ca0553647614febb5dfa86b86874cf2f" category="inline-link-macro-rx"></block></block>
   <block id="f51b423dfa48d00e66fde30840ade1ae" category="list-text"><block ref="f51b423dfa48d00e66fde30840ade1ae" category="inline-link-macro-rx"></block></block>
@@ -1651,7 +1640,6 @@
   <block id="91ca05f7383e5c31b9bdd1a91c8e3618" category="inline-link-macro">Red Hat에서 제공하는 OpenShift Virtualization Operator를 통해 설치된 OpenShift Virtualization</block>
   <block id="287f7b64542d2f7312b8d3de9b3f8b26" category="list-text"><block ref="287f7b64542d2f7312b8d3de9b3f8b26" category="inline-link-macro-rx"></block></block>
   <block id="a1862e00d8111386cdf238bd23bb97db" category="inline-link-macro">Trident 25.02</block>
-  <block id="ff6395262d82836eedf127f3a80c2ce7" category="list-text"><block ref="ff6395262d82836eedf127f3a80c2ce7" category="inline-link-macro-rx"></block></block>
   <block id="8c1ba5eb61420c0029961110f20d7829" category="inline-link-macro">ONTAP 9.16</block>
   <block id="a13c7db7d74afd839261d6b5eef45b76" category="list-text"><block ref="a13c7db7d74afd839261d6b5eef45b76" category="inline-link-macro-rx"></block></block>
   <block id="e17a719a6366dd11d450cd1e2c5967de" category="example-title">AppVault 만들기</block>
@@ -2652,7 +2640,6 @@
   <block id="4dad49c9583060929c06d355e24a683a" category="paragraph">SnapCenter 서버와 Veeam Backup &amp; Replication 서버는 VMware Cloud SDDC에 설치하거나 VMware Cloud 환경에 네트워크로 연결된 VPC에 있는 EC2 인스턴스에 설치할 수 있습니다.</block>
   <block id="f709ed2f05802131924f53cb483d0216" category="example-title">SnapCenter 서버</block>
   <block id="257b2c5a413bf4e187ebd89c8a363827" category="inline-link-macro">NetApp 문서 센터</block>
-  <block id="2bd8e8f9848a7635d56bcd86b9ad4c8f" category="paragraph">SnapCenter software NetApp 지원 사이트에서 구할 수 있으며 도메인이나 작업 그룹에 있는 Microsoft Windows 시스템에 설치할 수 있습니다.  자세한 계획 가이드와 설치 지침은 다음에서 확인할 수 있습니다.<block ref="a00f6e57d5c269a935cd1b0491cebb83" category="inline-link-macro-rx"></block> .</block>
   <block id="d099bc9c6d34500d99c2caac0e6df36c" category="paragraph">SnapCenter software 다음에서 찾을 수 있습니다.<block ref="6c76039d71cd5c9473efac721f24ac89" category="inline-link-rx"></block> .</block>
   <block id="42c8c901c8d4c00c90f9f66d69df3cdb" category="example-title">Veeam 백업 및 복제 서버</block>
   <block id="5a8e524620f781b94c018014370aad68" category="paragraph">AWS의 VMware Cloud에 있는 Windows 서버나 EC2 인스턴스에 Veeam Backup &amp; Replication 서버를 설치할 수 있습니다.  자세한 구현 지침은 다음을 참조하세요.<block ref="1e2565ba3e6473b62b1909934037e810" category="inline-link-rx"></block> .</block>
@@ -5152,7 +5139,6 @@
   <block id="65bdc0673006b33d0c876e18a9a98787" category="paragraph">참고: 프라이빗 클라우드 생성에는 30분에서 2시간이 걸릴 수 있습니다.</block>
   <block id="d77d7a022616e70a9987aa0974241779" category="paragraph">프라이빗 클라우드가 프로비저닝되면 높은 처리량과 낮은 지연 시간의 데이터 경로 연결을 위해 프라이빗 클라우드에 대한 개인 액세스를 구성합니다.</block>
   <block id="256431e41a96deb49bcd86b1ca56393e" category="inline-link-macro">GCP 문서</block>
-  <block id="25c43a619d8b9de4b1318cc0ef868e1e" category="paragraph">이렇게 하면 Cloud Volumes ONTAP 인스턴스가 실행되는 VPC 네트워크가 GCVE Private Cloud와 통신할 수 있습니다.  그렇게 하려면 다음을 따르세요.<block ref="9cd64b8fb1b43e7f674c1b78b2a86f74" category="inline-link-macro-rx"></block> .  Cloud Volume Service의 경우 테넌트 호스트 프로젝트 간에 일회성 피어링을 수행하여 VMware Engine과 Google Cloud NetApp Volumes 간의 연결을 설정합니다.  자세한 단계는 다음을 따르세요.<block ref="04a9f04edfdd7b0a53da57f015378c5a" category="inline-link-macro-rx"></block> .</block>
   <block id="dbb7052e552a198a0de3cccc0edf23c8" category="paragraph"><block ref="dbb7052e552a198a0de3cccc0edf23c8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5c3eb3a1c6330fe124fc0706cbdd91df" category="paragraph">CloudOwner@gve.local 사용자를 사용하여 vCenter에 Sign in .  자격 증명에 액세스하려면 VMware Engine 포털로 이동하고, 리소스로 이동한 다음 적절한 프라이빗 클라우드를 선택하세요.  기본 정보 섹션에서 vCenter 로그인 정보(vCenter Server, HCX Manager) 또는 NSX-T 로그인 정보(NSX Manager)에 대한 보기 링크를 클릭합니다.</block>
   <block id="59979b9402f6e7e20880098f4f30a2ea" category="paragraph"><block ref="59979b9402f6e7e20880098f4f30a2ea" category="inline-image-macro-rx" type="image"></block></block>
@@ -6263,7 +6249,6 @@
   <block id="a6ea0f83e096fd36f6e1b528691f7fac" category="inline-link-macro">Trident Protect를 사용하여 컨테이너 앱을 보호하고 마이그레이션하세요.</block>
   <block id="503a6eea13f2000ade7b8f73b47f6126" category="paragraph">Trident Protect를 사용하여 컨테이너 워크로드를 보호하고 마이그레이션하는 방법에 대한 자세한 내용은 다음 섹션을 참조하십시오. - <block ref="f825d2a6feac66171ea153caddf5efc4" category="inline-link-macro-rx"></block></block>
   <block id="23a222c2ec8017930655b74b88cf5d9a" category="paragraph">Trident Protect 데이터 보호 기능에 대한 자세한 내용은 <block ref="8a7b93525889199f21bea5877c33c6b6" category="inline-link-macro-rx"></block>에서 확인할 수 있습니다.</block>
-  <block id="d8120e353c8e4658602b826c12e8cbeb" category="list-text">Helm 차트를 사용하여 OSD 클러스터에 Trident를 설치하십시오. Helm 차트 설치 방법에 대한 지침은 <block ref="2b02799a23e3b4104fc737b9e328001b" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
   <block id="c1a7cd61e139ae5874159d51ca345518" category="paragraph"><block ref="c1a7cd61e139ae5874159d51ca345518" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f02cfb11445a691de846b7334e503c85" category="paragraph">이 솔루션은 OpenShift Container Platform(OCP), OpenShift Advanced Cluster Manager(ACM), NetApp ONTAP, NetApp BlueXP 및 NetApp Trident Protect를 사용한 마이그레이션 및 중앙 집중식 데이터 보호 기능을 테스트하고 검증합니다.</block>
   <block id="4b45368310338985e587391cd7cdfd12" category="list-text">Trident Protect를 사용하여 애플리케이션을 보호하고 온프레미스 클러스터 간의 마이그레이션을 지원하십시오.</block>
@@ -6299,4 +6284,25 @@
   <block id="fd38eb32a683cd3c6fbbddac9bc45566" category="paragraph">이 예제에서는 ONTAP S3를 객체 스토리지로 사용하는 방법을 보여드리겠습니다. ONTAP S3용 AppVault CR을 생성하는 워크플로는 다음과 같습니다. 1. ONTAP 클러스터의 SVM에 S3 객체 스토어 서버를 생성합니다. 2. 객체 스토어 서버에 버킷을 생성합니다. 3. SVM에 S3 사용자를 생성합니다. 액세스 키와 시크릿 키는 안전한 곳에 보관하십시오. 4. OpenShift에서 ONTAP S3 자격 증명을 저장할 시크릿을 생성합니다. 5. ONTAP S3용 AppVault 객체를 생성합니다.</block>
   <block id="744a96e9ce909d310b032af09b7da629" category="paragraph">**VM용 Trident Protect 앱을 생성하세요**</block>
   <block id="21dae0abbe9dd81128eefb291ac19e82" category="paragraph">이 예에서 demo 네임스페이스에는 하나의 VM이 있으며 앱을 생성할 때 네임스페이스의 모든 리소스가 포함됩니다.</block>
+  <block id="66e29676cc17f1b237cb12b7c20e16a5" category="paragraph">Google Cloud NetApp Volumes는 현재 바이러스 백신 보호<block ref="bddcb578ed294fa8025db7b407da8f3a" category="inline-link-rx"></block> 등 기본 탐지 또는 예방 조치를 포함하고 있지 않지만, 정기적인 스냅샷 일정을 활성화하여 랜섬웨어 이벤트로부터 신속하게 복구할 수 있습니다. 스냅샷 복사본은 변경 불가능하며 파일 시스템의 변경된 블록을 가리키는 읽기 전용 포인터로, 거의 즉각적으로 생성되고 성능에 미치는 영향이 최소화되며 데이터가 변경되거나 삭제될 때만 공간을 사용합니다. 원하는 복구 시점 목표(RPO)/복구 시간 목표(RTO)에 맞춰 스냅샷 복사본 일정을 설정할 수 있으며, 볼륨당 최대 1,024개의 스냅샷 복사본을 유지할 수 있습니다.</block>
+  <block id="c0958db78ab7cfc45f60cd6816dcc758" category="list-text">지침을 참조하십시오 <block ref="e8daab74ee066621c67289d4e9f38ac4" category="inline-link-macro-rx"></block>.</block>
+  <block id="f443fc5ae6007854fc841199d43d2837" category="list-text">Helm 차트를 사용하여 OSD 클러스터에 Trident를 설치하십시오. Helm 차트 설치 방법에 대한 지침은 <block ref="848b2b8257ca6819c05e0f382c2d6d55" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="a1eb350126c0a41cd549961292e7292c" category="paragraph">Argo CD 콘솔을 열고 애플리케이션을 배포합니다. 예를 들어, Helm 차트를 사용하여 Jenkins 애플리케이션을 Argo CD로 배포할 수 있습니다. 애플리케이션을 생성할 때 다음과 같은 세부 정보가 제공됩니다. 프로젝트: default 클러스터: +<block ref="deba6a806b792d600cb2f2a2e2b742e2" category="inline-link-rx"></block>(따옴표 제외) 네임스페이스: Jenkins Helm 차트 URL: +<block ref="815a905839f03d7c02e2bca544825ced" category="inline-link-rx"></block>(따옴표 제외)</block>
+  <block id="498027a99a638c649854afd400901256" category="paragraph">다음 추가 해결 방법을 참조하십시오.</block>
+  <block id="35ffb469adc60261a8ea13c0281e1cc4" category="inline-link-macro">온프레미스 Red Hat OpenShift 컨테이너 솔루션</block>
+  <block id="b35552dab737c9605914f9bb675804b5" category="list-text"><block ref="b35552dab737c9605914f9bb675804b5" category="inline-link-macro-rx"></block></block>
+  <block id="6d1708b280dc650dc72995f314390278" category="inline-link-macro">Red Hat OpenShift Service on AWS 컨테이너 솔루션</block>
+  <block id="cb7142f258bbf6eb70946fffffae7d0e" category="list-text"><block ref="cb7142f258bbf6eb70946fffffae7d0e" category="inline-link-macro-rx"></block></block>
+  <block id="68009b4b91a37788ca9e18ba5f55c1b0" category="inline-link-macro">온프레미스 Red Hat OpenShift 가상화 솔루션</block>
+  <block id="6a5d9b5d4f54921161de7ab83930c5d3" category="list-text"><block ref="6a5d9b5d4f54921161de7ab83930c5d3" category="inline-link-macro-rx"></block></block>
+  <block id="ca9189c00f60df72fe6986def5bf9c65" category="inline-link-macro">Red Hat OpenShift Service on AWS 가상화 솔루션</block>
+  <block id="68d207e6440748013b2a1cf4e83200e3" category="list-text"><block ref="68d207e6440748013b2a1cf4e83200e3" category="inline-link-macro-rx"></block></block>
+  <block id="36c7900f13682ac80c67eeb196548ff4" category="list-text">Helm 차트를 사용하여 ROSA 클러스터에 Trident를 설치합니다. 문서 링크 참조: https://docs.netapp.com/us-en/trident/trident-install/kubernetes-deploy-helm.html[여기^].</block>
+  <block id="282025b5b19344c8e277116127efe10a" category="list-text">그림과 같이 Trident를 배포하는 방법은 여러 가지가 있습니다<block ref="a513e33196701a0875db01e145416086" category="inline-link-rx"></block>.</block>
+  <block id="8b92be9389cce6edfc4c001f1db14964" category="list-text">이 프로젝트에서는 지침<block ref="0984860e46f3ed8718676caeb88662f6" category="inline-link-rx"></block>을 사용하여 Trident Operator를 수동으로 배포함으로써 Trident를 설치했습니다.</block>
+  <block id="38d6382e9e736693ef209aef9d7c37ca" category="list-text">Helm을 사용하여 Trident Operator를 배포하십시오. 지침을 참조하십시오 <block ref="2ff93a5b15d1fa89110d690cb53d85fd" category="inline-link-macro-rx"></block></block>
+  <block id="79ba8743942daea465ff28416e07cbd7" category="list-text"><block ref="79ba8743942daea465ff28416e07cbd7" category="inline-link-macro-rx"></block></block>
+  <block id="f553be2d93d2e2e12265c808c5b01c02" category="list-text"><block ref="f553be2d93d2e2e12265c808c5b01c02" category="inline-link-macro-rx"></block></block>
+  <block id="af84bbf7cdb0d0e716f2513d0d3f363f" category="paragraph">SnapCenter 소프트웨어는 NetApp Support 사이트에서 제공되며, 도메인 또는 워크그룹에 속한 Microsoft Windows 시스템에 설치할 수 있습니다. 자세한 계획 가이드 및 설치 지침은 <block ref="85cbe5bd6e949acc06321919c4679a05" category="inline-link-macro-rx"></block>에서 확인할 수 있습니다.</block>
+  <block id="660febd0d05e3ca3fc12d156de67c555" category="paragraph">이렇게 하면 Cloud Volumes ONTAP 인스턴스가 실행되는 VPC 네트워크가 GCVE 프라이빗 클라우드와 통신할 수 있게 됩니다. 이를 위해 다음 <block ref="12bbd3d08aba9fc22ed45e2726d3faff" category="inline-link-macro-rx"></block>을 따르십시오. Cloud Volume Service의 경우, 테넌트 호스트 프로젝트 간에 일회성 피어링을 수행하여 VMware Engine과 Google Cloud NetApp Volumes 간의 연결을 설정하십시오. 자세한 단계는 이 <block ref="04a9f04edfdd7b0a53da57f015378c5a" category="inline-link-macro-rx"></block>를 따르십시오.</block>
 </blocks>

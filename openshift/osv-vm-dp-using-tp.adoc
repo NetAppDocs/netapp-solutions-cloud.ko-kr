@@ -28,7 +28,7 @@ Trident Protect는 OpenShift 클러스터의 애플리케이션 및 VM에 대한
 
 * link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/installing_on_bare_metal/index["오픈시프트 클러스터 4.17"]
 * link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/virtualization/getting-started#tours-quick-starts_virt-getting-started["Red Hat에서 제공하는 OpenShift Virtualization Operator를 통해 설치된 OpenShift Virtualization"]
-* link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy.html["Trident 25.02"]
+* link:https://docs.netapp.com/us-en/trident/trident-install/kubernetes-deploy.html["Trident 25.02"]
 * link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-installation.html["Trident Protect 25.02"]
 * link:https://docs.netapp.com/us-en/ontap/["ONTAP 9.16"]
 
