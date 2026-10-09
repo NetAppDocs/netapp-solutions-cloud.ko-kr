@@ -199,7 +199,6 @@
   <block id="81740fc5dc59e6749304f806bc2a6457" category="paragraph">ID 및 액세스 관리<block ref="3e7f3b73b3f103986fbe162302b5e57e" category="inline-link-rx"></block> )은 Google Cloud 프로젝트 인스턴스에 대한 인증(로그인) 및 권한 부여(사용 권한)를 제어할 수 있는 표준 서비스입니다.  Google IAM은 권한 부여 및 해제에 대한 전체 감사 추적을 제공합니다.  현재 Google Cloud NetApp Volumes 제어 평면 감사를 제공하지 않습니다.</block>
   <block id="697308a09680ed006fe009f5a90fd74c" category="section-title">권한/허가 개요</block>
   <block id="cb5b383a5c27210bdf8f2fd443c68ebb" category="inline-link">여기에서 세부적인 권한의 전체 목록을 확인하세요.</block>
-  <block id="6017ae2fccf12b1024e37a6c128d8606" category="paragraph">IAM은 Google Cloud NetApp Volumes 대한 기본 제공 세부적인 권한을 제공합니다.  당신은 찾을 수 있습니다<block ref="fefbe49b0be12af5b957eff3a3dc2826" category="inline-link-rx"></block> .</block>
   <block id="f6c6a3fb346fa0197c1eeba05a4736c6" category="paragraph">IAM은 또한 다음과 같은 두 가지 미리 정의된 역할을 제공합니다.<block ref="4a5395c87dd91b3242056f83b7cedb9b" prefix=" " category="inline-code"></block> 그리고<block ref="d8cd72eb52281636a72e12ef877b62f8" prefix=" " category="inline-code"></block> .  이러한 역할은 특정 사용자나 서비스 계정에 할당될 수 있습니다.</block>
   <block id="701f37b0f984021bc8766709abd2e243" category="paragraph">IAM 사용자가 Google Cloud NetApp Volumes 관리할 수 있도록 적절한 역할과 권한을 할당합니다.</block>
   <block id="010558e705f1d93db66b5a129431b39d" category="paragraph">세분화된 권한을 사용하는 예는 다음과 같습니다.</block>
@@ -214,11 +213,9 @@
   <block id="9d8270b5a4616fc246d5f96cccc9f61e" category="inline-link">애플리케이션 기본 자격 증명</block>
   <block id="c1f48ac217f6b993bda4f82835777177" category="list-text">사용<block ref="09540132e155f93461287a2e21a4e25d" category="inline-link-rx"></block> ~와 함께<block ref="4d4344aa5ad9d43d63ab2f068115cadb" prefix=" " category="inline-code"></block> .  코드(스크립트, Terraform 등)는 다음과 같이 실행됩니다.<block ref="ffba44c35d88772fc8c63157b8dc0cf7" category="inline-link-rx"></block> 서비스 계정을 가장하여 권한을 얻습니다.  이러한 접근 방식은 Google의 보안 모범 사례를 반영합니다.</block>
   <block id="01aa2fa55c64df5a4122b637c9ababc7" category="inline-link">서비스 계정 및 개인 키 생성</block>
-  <block id="00aa2e143f3d3b00e94456b23d239a8d" category="paragraph">보다<block ref="5d862676de2107050ea35e71368d2326" category="inline-link-rx"></block> 자세한 내용은 Google 클라우드 문서를 참조하세요.</block>
   <block id="5a050c17599c5930f4bd371509e3de0b" category="section-title">Google Cloud NetApp Volumes API</block>
   <block id="6c92285fa6d3e827b198d120ea3ac674" category="inline-link">여기</block>
   <block id="d06e940dcf329e87ca49cb2a665f5fd8" category="inline-link">Google 클라우드 문서의 Cloud Volumes API</block>
-  <block id="1878d6e8683fe4315da88b36b3355885" category="paragraph">Google Cloud NetApp Volumes API는 기본 네트워크 전송으로 HTTPS(TLSv1.2)를 사용하는 REST 기반 API를 사용합니다.  최신 API 정의를 찾을 수 있습니다<block ref="d30245d84ac801bb5beeb0b65de1621d" category="inline-link-rx"></block> API 사용 방법에 대한 정보<block ref="00c944b7c7739b905457d5d21be6a7ef" category="inline-link-rx"></block> .</block>
   <block id="de13c3e3b25af602f2652dd51a503a8a" category="paragraph">API 엔드포인트는 NetApp 에서 표준 HTTPS(TLSv1.2) 기능을 사용하여 운영 및 보안됩니다.</block>
   <block id="56ebd33e81a27d6c3c78f2f67f2d3c1a" category="inline-link">RFC-7519</block>
   <block id="f2c16a4802323f9b9c1ac55acf92645f" category="paragraph">API에 대한 인증은 JWT 베어러 토큰을 사용하여 수행됩니다.<block ref="89a64c0d993ae56a4af8e7ccde6ee59e" category="inline-link-rx"></block> ).  유효한 JWT 토큰은 Google Cloud IAM 인증을 사용하여 얻어야 합니다.  이 작업은 서비스 계정 JSON 키를 제공하여 IAM에서 토큰을 가져와서 수행해야 합니다.</block>
@@ -231,7 +228,6 @@
   <block id="e23c4fadd8e7d70663bc3393bca7d576" category="inline-link">Google 키 관리 서비스(KMS).</block>
   <block id="387ccb6d293c8d2f51b2730c375c3f3a" category="paragraph">2021년 11월부터 고객 관리 암호화 키(CMEK) 기능 미리보기가 제공되었습니다.  이를 통해 볼륨별 키를 호스팅되는 프로젝트별, 지역별 마스터 키로 암호화할 수 있습니다.<block ref="145d140dc09dde7f8aacc53f1269c2de" category="inline-link-rx"></block> KMS를 사용하면 외부 키 관리자를 연결할 수 있습니다.</block>
   <block id="1988a6b2308f38718c8100c2e344eb5c" category="inline-link">고객 관리 암호화 키 설정</block>
-  <block id="80919fe0003689b6f2053a832e698bed" category="paragraph">NetApp Volumes-Performance에 대한 KMS 구성에 대한 자세한 내용은 다음을 참조하세요.<block ref="a0d8b07d63b271255da3bba6f51651a4" category="inline-link-rx"></block> .</block>
   <block id="13a2c7416db43025d8318ec9db325859" category="summary">전송 중인 데이터는 NAS 프로토콜 계층에서 암호화될 수 있으며, Google Cloud 네트워크 자체도 다음 섹션에서 설명하는 대로 암호화됩니다.</block>
   <block id="f7ccd4455f141bba37dd989458bfd1f3" category="doc">전송 중 데이터 암호화</block>
   <block id="8de1715de3864b137091fa8f6d71053f" category="section-title">구글 클라우드 네트워크</block>
@@ -290,7 +286,6 @@
   <block id="33186704f78f73f32736a9ba7f8ddc85" category="inline-link">개인 서비스 접근</block>
   <block id="d769b3949691460e5b25c0d385c61927" category="paragraph">Google Cloud NetApp Volumes Google Cloud를 활용합니다.<block ref="466f20229cc0e1fa2efa2b4b45528417" category="inline-link-rx"></block> 뼈대.  이 프레임워크에서 사용자는 Google Cloud NetApp Volumes 에 연결할 수 있습니다.  이 프레임워크는 다른 Google Cloud 서비스와 마찬가지로 서비스 네트워킹 및 VPC 피어링 구조를 사용하여 테넌트 간의 완전한 격리를 보장합니다.</block>
   <block id="f45215d23f419191c6b4331e425757a7" category="inline-link">Google Cloud NetApp Volumes 아키텍처</block>
-  <block id="0a65eb81a65b359aa2905e35e6b00afa" category="paragraph">Google Cloud NetApp Volumes 의 아키텍처 개요는 다음을 참조하세요.<block ref="cba55a50539be72da0573fd9697d0496" category="inline-link-rx"></block> .</block>
   <block id="c962313b808aa3db69b0976b1f2196e0" category="paragraph">사용자 VPC(독립형 또는 공유)는 볼륨을 호스팅하는 Google Cloud NetApp Volumes 관리 테넌트 프로젝트 내의 VPC에 피어링됩니다.</block>
   <block id="c356112c0b6176522ae6ddd610e26f46" category="paragraph"><block ref="c356112c0b6176522ae6ddd610e26f46" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bb3e8b148cb277fcb0da06055d968b33" category="paragraph">위 그림은 세 개의 VPC 네트워크가 Google Cloud NetApp Volumes 에 연결되고 여러 Compute Engine VM(GCE1-7)이 볼륨을 공유하는 프로젝트(가운데에 있는 NetApp Volumes 소비자 프로젝트)를 보여줍니다.</block>
@@ -303,20 +298,14 @@
   <block id="c5381dc540506dbb210e2d300554e4cd" category="doc">방화벽</block>
   <block id="1ca8ae2f3c716798a4609b8149e15819" category="paragraph">Google Cloud NetApp Volumes NFS 및 SMB 공유를 제공하기 위해 여러 TCP 포트를 노출합니다.</block>
   <block id="8ace993e6a8c37342617dbf22185890a" category="inline-link">NFS 액세스에 필요한 포트</block>
-  <block id="c56328227fc3affbe6ed0ef4ba04f494" category="list-text"><block ref="c56328227fc3affbe6ed0ef4ba04f494" category="inline-link-rx"></block></block>
   <block id="259c7a7ef42d8165caa2c0238cb6f9fe" category="inline-link">SMB 접속에 필요한 포트</block>
-  <block id="c6563340810489dd712f25c2644eaed8" category="list-text"><block ref="c6563340810489dd712f25c2644eaed8" category="inline-link-rx"></block></block>
   <block id="48e54afcf03ca45bfe38f6b7ff58764a" category="inline-link">구성됨</block>
   <block id="2957bc03d53f1be7c11d427906ed1479" category="inline-link">DNS 기반 DC 검색</block>
-  <block id="150a343c955aa3114dca2e9c39571ad8" category="paragraph">또한 SMB, Kerberos를 포함한 LDAP가 있는 NFS 및 이중 프로토콜 구성에는 Windows Active Directory 도메인에 대한 액세스가 필요합니다.  Active Directory 연결은 다음과 같아야 합니다.<block ref="10ec0b3d8ec2c3b73be0dd7483e61c9e" category="inline-link-rx"></block> 지역별로.  Active Directory 도메인 컨트롤러(DC)는 다음을 사용하여 식별됩니다.<block ref="821541d595f9fee8c67d91aa5da861b4" category="inline-link-rx"></block> 지정된 DNS 서버를 사용합니다.  반환된 모든 DC가 사용됩니다.  Active Directory 사이트를 지정하여 적격 DC 목록을 제한할 수 있습니다.</block>
   <block id="ca1d4de011b09139ac8c8ef3d189d7c1" category="inline-link">Google Cloud NetApp Volumes 온보딩</block>
-  <block id="95a8374f4bcd742d499aad34cafe1002" category="paragraph">Google Cloud NetApp Volumes CIDR 범위에 할당된 IP 주소로 접근합니다.<block ref="3102e8199e828cb030b6f0ade5fc2cec" prefix=" " category="inline-code"></block> 명령하는 동안<block ref="4d60cbd91c94dc622fba57d0c44f1434" category="inline-link-rx"></block> .  이 CIDR을 소스 주소로 사용하여 Active Directory 도메인 컨트롤러에 대한 인바운드 방화벽을 구성할 수 있습니다.</block>
   <block id="790e80bea359c6183bfa1accf7191266" category="inline-link">여기에 언급된 대로 Google Cloud NetApp Volumes CIDR에 포트를 노출합니다.</block>
-  <block id="7f41939d847e8d805d7a804af23b2a27" category="paragraph">Active Directory 도메인 컨트롤러는<block ref="2cccb2782a2832ca8bbe47638498a0df" category="inline-link-rx"></block> .</block>
   <block id="45180739160b415b1990f5cb7991510e" category="summary">Google Cloud NetApp Volumes 적절한 이중 프로토콜 액세스 권한을 유지하면서 SMB 및 NFS 클라이언트 모두와 동일한 데이터 세트를 공유할 수 있는 기능을 제공합니다.  이는 프로토콜 간의 ID 매핑을 조정하고 중앙 집중식 백엔드 LDAP 서버를 사용하여 UNIX ID를 Google Cloud NetApp Volumes 에 제공함으로써 수행됩니다.  Windows Active Directory를 사용하면 Windows 사용자와 UNIX 사용자 모두에게 사용 편의성을 제공할 수 있습니다.</block>
   <block id="d27d01220b09abd6dc8be87dd2b7f8d4" category="doc">듀얼 프로토콜/멀티 프로토콜</block>
   <block id="9a5ba82ef925964774fad34d380585ce" category="inline-link">듀얼 프로토콜</block>
-  <block id="b50318d3a304c26da00ae1027be58139" category="paragraph">Google Cloud NetApp Volumes 적절한 액세스 권한을 유지하면서 SMB 및 NFS 클라이언트 모두에 동일한 데이터 세트를 공유하는 기능을 제공합니다.<block ref="090248040bf8d7cbf59e0f5bcb2aeb23" category="inline-link-rx"></block> ).  이는 프로토콜 간의 ID 매핑을 조정하고 중앙 집중식 백엔드 LDAP 서버를 사용하여 UNIX ID를 Google Cloud NetApp Volumes 에 제공함으로써 수행됩니다.  Windows Active Directory를 사용하면 Windows 사용자와 UNIX 사용자 모두에게 사용 편의성을 제공할 수 있습니다.</block>
   <block id="65bd83537129be15c8027ec94bec5bd3" category="section-title">접근 제어</block>
   <block id="95fddd88222c03f51f45d2771f2d4c3e" category="list-text">*공유 접근 제어.*  어떤 클라이언트 및/또는 사용자와 그룹이 NAS 공유에 액세스할 수 있는지 확인합니다.  NFS의 경우, 내보내기 정책과 규칙은 클라이언트의 내보내기 액세스를 제어합니다.  NFS 내보내기는 Google Cloud NetApp Volumes 인스턴스에서 관리됩니다.  SMB는 CIFS/SMB 공유와 공유 ACL을 활용하여 사용자 및 그룹 수준에서 보다 세부적인 제어를 제공합니다.  https://library.netapp.com/ecmdocs/ECMP1401220/html/GUID-C1772CDF-8AEE-422B-AB87-CFCB7E50FF94.html [MMC/Computer Management^]를 사용하여 SMB 클라이언트에서 공유 수준 ACL을 구성할 수 있습니다. Google Cloud NetApp Volumes 인스턴스에 대한 관리자 권한이 있는 계정이 필요합니다(링크:gcp-gcnv-smb.html#로컬/BUILTIN 관리자/백업 권한이 있는 계정["로컬/BUILTIN 관리자/백업 권한이 있는 계정"] 섹션 참조).</block>
   <block id="1020ac8238c0e64a401514745b8a3c6a" category="list-text">*파일 접근 제어.*  파일 또는 폴더 수준에서 권한을 제어하며 항상 NAS 클라이언트에서 관리합니다.  NFS 클라이언트는 기존 모드 비트(rwx) 또는 NFSv4 ACL을 활용할 수 있습니다.  SMB 클라이언트는 NTFS 권한을 활용합니다.</block>
@@ -326,7 +315,6 @@
   <block id="611d073e39b052e50653f2fa6af258a4" category="paragraph">예를 들어, Windows 사용자가 다음과 같은 경우<block ref="8ff32489f92f33416694be8fdc2d4c22" prefix=" " category="inline-code"></block> SMB를 통해 UNIX 권한이 있는 볼륨에 액세스를 시도하면 Google Cloud NetApp Volumes 검색을 수행하여 해당 UNIX 사용자를 찾습니다.<block ref="8ff32489f92f33416694be8fdc2d4c22" prefix=" " category="inline-code"></block> .  만약 존재한다면 Windows 사용자로 SMB 공유에 쓰여진 파일<block ref="8ff32489f92f33416694be8fdc2d4c22" prefix=" " category="inline-code"></block> UNIX 사용자로 나타납니다<block ref="8ff32489f92f33416694be8fdc2d4c22" prefix=" " category="inline-code"></block> NFS 클라이언트에서.</block>
   <block id="393d975e81d9b4843c9b49ccd2ca2260" category="paragraph">또는 UNIX 사용자가 다음과 같은 경우<block ref="8ff32489f92f33416694be8fdc2d4c22" prefix=" " category="inline-code"></block> Windows 권한으로 Google Cloud NetApp Volumes 볼륨에 액세스를 시도하는 경우 UNIX 사용자는 유효한 Windows 사용자에 매핑할 수 있어야 합니다.  그렇지 않으면 볼륨에 대한 액세스가 거부됩니다.</block>
   <block id="98b9b81e4ad07f5198dd8381a0c5d43c" category="inline-link">AD 연결 생성</block>
-  <block id="d6210f83492bb730b32d0e719a1d5100" category="paragraph">현재 LDAP를 사용한 외부 UNIX ID 관리에는 Active Directory만 지원됩니다.  이 서비스에 대한 액세스 구성에 대한 자세한 내용은 다음을 참조하세요.<block ref="cfe0f81fca904ab10d3dcbbfceb0f3de" category="inline-link-rx"></block> .</block>
   <block id="7fc7c5bf3cd7f453807f2e17dc846957" category="section-title">권한 모델</block>
   <block id="13482a0eb1323b96c6546041137979ae" category="paragraph">이중 프로토콜 설정을 사용하는 경우 Google Cloud NetApp Volumes 볼륨의 보안 스타일을 활용하여 ACL 유형을 결정합니다.  이러한 보안 스타일은 지정된 NAS 프로토콜에 따라 설정되며, 이중 프로토콜의 경우 Google Cloud NetApp Volumes 볼륨을 생성할 때 선택합니다.</block>
   <block id="0b9faf8bcb94c68c4ee8f98d45f29950" category="list-text">NFS만 사용하는 경우 Google Cloud NetApp Volumes 볼륨은 UNIX 권한을 사용합니다.</block>
@@ -362,7 +350,6 @@
   <block id="2ba9bd625eb476e5c1994e5789fad447" category="paragraph">NFS Kerberos 머신 계정의 경우, 암호 재설정은 KDC와 새로운 키탭이 생성되거나 교환될 때만 이루어집니다.  현재 Google Cloud NetApp Volumes 에서는 이 작업을 수행할 수 없습니다.</block>
   <block id="7631991924ea0015e269781ad88bd8d3" category="section-title">LDAP 및 Kerberos와 함께 사용할 네트워크 포트</block>
   <block id="21397599322549c299d83a1cbb38a0f7" category="inline-link">보안 고려 사항에 대한 Google Cloud NetApp Volumes 문서</block>
-  <block id="fe96b11ce81de7035bdeb96d278a21e8" category="paragraph">LDAP와 Kerberos를 사용하는 경우 해당 서비스에서 사용 중인 네트워크 포트를 확인해야 합니다.  Google Cloud NetApp Volumes 에서 사용 중인 포트의 전체 목록은 다음에서 찾을 수 있습니다.<block ref="a1a947bbdab8a5e81052f39c5cde8450" category="inline-link-rx"></block> .</block>
   <block id="2363dee608bcd9f6ce7f980bfdad5789" category="section-title">LDAP</block>
   <block id="5c0101644255b467391ef8f462285e79" category="paragraph">Google Cloud NetApp Volumes LDAP 클라이언트 역할을 하며 UNIX ID에 대한 사용자 및 그룹 조회를 위해 표준 LDAP 검색 쿼리를 사용합니다.  Google Cloud NetApp Volumes 에서 제공하는 표준 기본 사용자 이외의 사용자와 그룹을 사용하려면 LDAP가 필요합니다.  사용자 주체(예: user1@domain.com)와 함께 NFS Kerberos를 사용하려는 경우에도 LDAP가 필요합니다.  현재는 Microsoft Active Directory를 사용하는 LDAP만 지원됩니다.</block>
   <block id="2eaa173e56517db74fb0eb92806a0877" category="inline-link">RFC-2307-비스</block>
@@ -510,7 +497,6 @@
   <block id="e3aa134886f9dad39f14489844fe7763" category="paragraph">Active Directory DNS를 구성하여 DNS 레코드를 업데이트할 수 있는 서버를 제한할 수 있습니다. 자세한 내용은 다음을 참조하세요. <block ref="1abda701cc77717e0b1a0b391ec2fed8" category="inline-link-rx"></block> .</block>
   <block id="77a367610488d0d5f598baef5fe08af2" category="paragraph">Google 프로젝트 내의 리소스는 기본적으로 Google Cloud DNS를 사용하며, 이는 Active Directory DNS와 연결되지 않습니다.  Cloud DNS를 사용하는 클라이언트는 Google Cloud NetApp Volumes 에서 반환된 UNC 경로를 확인할 수 없습니다.  Active Directory 도메인에 가입된 Windows 클라이언트는 Active Directory DNS를 사용하도록 구성되며 이러한 UNC 경로를 확인할 수 있습니다.</block>
   <block id="71870bac7a9267067ab69566f75d36c3" category="inline-link">내 클라이언트가 SMB NetBIOS 이름을 확인할 수 없는 이유는 무엇입니까?</block>
-  <block id="b0ffc266c9e05cd7ae80810305b932bf" category="paragraph">클라이언트를 Active Directory에 가입시키려면 Active Directory DNS를 사용하도록 DNS 구성을 구성해야 합니다.  선택적으로 Cloud DNS를 구성하여 Active Directory DNS로 요청을 전달할 수 있습니다.  보다<block ref="d568657413aac86de4b237a9edcddc2d" category="inline-link-rx"></block> 자세한 내용은.</block>
   <block id="390be5e7c4211504834e8d91d6a6061d" category="admonition">Google Cloud NetApp Volumes 현재 DNSSEC를 지원하지 않으며 DNS 쿼리는 일반 텍스트로 수행됩니다.</block>
   <block id="c3a18bc4fd14cf11bc551540f29f6375" category="section-title">파일 접근 감사</block>
   <block id="5269393c158aac157a76a2be03b26beb" category="paragraph">현재 Google Cloud NetApp Volumes 에서는 지원되지 않습니다.</block>
@@ -581,7 +567,6 @@
   <block id="13640bb94453faf76256f49439337e2e" category="paragraph">권한 * 읽기-데이터(파일) / 목록-디렉토리(디렉토리) * 쓰기-데이터(파일) / 파일 생성(디렉토리) * 추가-데이터(파일) / 하위 디렉토리 생성(디렉토리) * 실행(파일) / 디렉토리 변경(디렉토리) * 삭제 * 자식 삭제 * 읽기-속성 * 쓰기-속성 * 읽기-지정된-속성 * 쓰기-지정된-속성 * 읽기-ACL * 쓰기-ACL * 쓰기-소유자 * 동기화</block>
   <block id="0bfe97b6a2010bf8a46c30c256d9bc67" category="paragraph">마지막으로, NFS 그룹 멤버십(NFSv3 및 NFSV4.x 모두)은 RPC 패킷 제한에 따라 AUTH_SYS의 기본 최대값인 16으로 제한됩니다.  NFS Kerberos는 최대 32개의 그룹을 제공하고 NFSv4 ACL은 세분화된 사용자 및 그룹 ACL(ACE당 최대 1024개 항목)을 통해 이러한 제한을 제거합니다.</block>
   <block id="27aabeb671232f388e6288cf9395fda9" category="inline-link">NFS 볼륨 생성 및 관리</block>
-  <block id="cd51481df622ddeb05665086c2992c8a" category="paragraph">또한, Google Cloud NetApp Volumes 최대 32개까지 지원되는 그룹을 확장하는 확장 그룹 지원을 제공합니다.  이렇게 하려면 유효한 UNIX 사용자 및 그룹 ID가 포함된 LDAP 서버에 대한 LDAP 연결이 필요합니다.  이를 구성하는 방법에 대한 자세한 내용은 다음을 참조하세요.<block ref="744e76592290230cb7381c9b8a5414da" category="inline-link-rx"></block> Google 문서에서.</block>
   <block id="75812520c9040a205064d0d2cb2263e9" category="section-title">NFSv3 사용자 및 그룹 ID</block>
   <block id="e23ce9bfde06ded9ca5f1ec420e3e4a2" category="paragraph">NFSv3 사용자 및 그룹 ID는 이름이 아닌 숫자 ID로 전송됩니다.  Google Cloud NetApp Volumes NFSv3에서 이러한 숫자 ID에 대한 사용자 이름을 확인하지 않으며, UNIX 보안 스타일 볼륨은 모드 비트만 사용합니다.  NFSv4.1 ACL이 있는 경우 ACL을 제대로 확인하려면 숫자 ID 조회 및/또는 이름 문자열 조회가 필요합니다. 이는 NFSv3를 사용하는 경우에도 마찬가지입니다.  NTFS 보안 스타일 볼륨을 사용하는 경우 Google Cloud NetApp Volumes 숫자 ID를 유효한 UNIX 사용자로 확인한 다음 유효한 Windows 사용자에 매핑하여 액세스 권한을 협상해야 합니다.</block>
   <block id="c88acee1e86a1d4e088392362c04bb3b" category="section-title">NFSv3 사용자 및 그룹 ID의 보안 제한 사항</block>
@@ -701,7 +686,6 @@
   <block id="4d2ef14e4102cfdaf3dcdc699f690e5e" category="doc">TR-4918: 보안 개요 - Google Cloud의 Google Cloud NetApp Volumes</block>
   <block id="09f7873d6f07efaef82aef2b95f42e0a" category="paragraph">올리버 크라우스, 저스틴 파리시, NetApp</block>
   <block id="bdb90f0be8f1c9cf725354745457ab5b" category="inline-link">Google Cloud NetApp Volumes Google Cloud에서 제공됩니다.</block>
-  <block id="f3ac9013dce64aa8e9e6ee1926fe27e9" category="paragraph">특히 스토리지 관리자가 인프라를 제어할 수 없는 클라우드의 경우 보안은 클라우드 제공업체가 제공하는 서비스에 데이터를 신뢰하는 데 가장 중요합니다.  이 문서는 보안 제공에 대한 개요입니다.<block ref="e634ef9ab7edcd838f9cb9f940d37abd" category="inline-link-rx"></block> .</block>
   <block id="f2b84afd0523a6df7547c404aa3647d8" category="section-title">대상 청중</block>
   <block id="07cb2152cb24dc6225ff2216fddf688c" category="paragraph">이 문서의 대상 독자는 다음과 같은 역할을 포함하되 이에 국한되지 않습니다.</block>
   <block id="3487d2ed085064f5b68318d25038bcd6" category="list-text">클라우드 제공업체</block>
@@ -748,7 +732,6 @@
   <block id="b114edcfa107ab9d459e2e75aea2cfdb" category="inline-link">FIPS 140-2 인증 #4144</block>
   <block id="3374b040a85dfd8ddec01a0ef96dd634" category="list-text">NetApp Volumes-Performance의 경우 볼륨별 키는 Google Cloud NetApp Volumes 에 내장된 키 관리자에 저장되며, 이 키 관리자는 NetApp ONTAP CryptoMod를 사용하여 AES-256 암호화 키를 생성합니다.  CryptoMod는 CMVP FIPS 140-2 검증 모듈 목록에 등재되어 있습니다. 보다<block ref="c8bf3ef21e8efdca1f27a1e57e809607" category="inline-link-rx"></block> .</block>
   <block id="154ec0034e65441130b13084062c4df1" category="paragraph">2021년 11월부터 NetApp Volumes-Performance에 대한 고객 관리 암호화(CMEK) 기능 미리보기가 제공되었습니다.  이 기능을 사용하면 Google 키 관리 서비스(KMS)에 호스팅된 프로젝트별, 지역별 마스터 키로 볼륨별 키를 암호화할 수 있습니다.  KMS를 사용하면 외부 키 관리자를 연결할 수 있습니다.</block>
-  <block id="098b1d6b3a2c912e9418d9bd7bd0ace5" category="paragraph">NetApp Volumes-Performance에 대한 KMS 구성 방법에 대한 자세한 내용은<block ref="d6b1d417b1e49e8b2597ce034a78102f" category="inline-link-rx"></block> .</block>
   <block id="3c3e0a595a0e42acadb044bf92289ca4" category="paragraph">아키텍처에 대한 자세한 내용은 섹션을 참조하세요.<block ref="ffbdea7f3a518bcd82cd5723e9c330c2" category="inline-link-macro-rx"></block></block>
   <block id="fb787119808b111e9df5553be31361c8" category="section-title">비행 중 데이터 보안</block>
   <block id="af400683e6fc984e8c8d9860ca78901a" category="paragraph">저장 중인 데이터를 보호하는 것 외에도 Google Cloud NetApp Volumes 인스턴스와 클라이언트 또는 복제 대상 간에 데이터가 전송되는 동안에도 데이터를 보호할 수 있어야 합니다.  Google Cloud NetApp Volumes Kerberos를 사용한 SMB 암호화, 패킷 서명/봉인, 데이터 전송의 종단 간 암호화를 위한 NFS Kerberos 5p와 같은 암호화 방법을 사용하여 NAS 프로토콜을 통해 전송 중인 데이터에 대한 암호화를 제공합니다.</block>
@@ -781,9 +764,7 @@
   <block id="9b641219ac63451505f5a25a887038d4" category="section-title">백업 및 복원</block>
   <block id="2dedc2f1d87bec49faa2129203dbfb16" category="paragraph">Google Cloud NetApp Volumes 표준 NAS 클라이언트 백업 기능(NFS 또는 SMB를 통한 백업 등)을 제공합니다.</block>
   <block id="0d69441d7fc21e56d3cf2eb944fbf6c1" category="inline-link">볼륨 복제</block>
-  <block id="c14840d0169ee3753ed197a89a30000f" category="list-text">NetApp Volumes-Performance는 다른 NetApp Volumes-Performance 볼륨에 대한 지역 간 볼륨 복제 기능을 제공합니다.  자세한 내용은 다음을 참조하세요.<block ref="ec408a29560fd662bec08bf50f9ff3d6" category="inline-link-rx"></block> Google Cloud NetApp Volumes 문서에서.</block>
   <block id="161b127f579db2727ace94e4fb6f9e5b" category="inline-link">클라우드 백업</block>
-  <block id="a482be934e169c3d841f1d76c324c0b4" category="list-text">NetApp Volumes-SW는 서비스 기반 볼륨 백업/복원 기능을 제공합니다.  자세한 내용은 다음을 참조하세요.<block ref="2377dc7e4548195ed704b70f3ce6250c" category="inline-link-rx"></block> Google Cloud NetApp Volumes 문서에서.</block>
   <block id="56a32ac982c7663e59f24c58cfb673d6" category="paragraph">볼륨 복제는 랜섬웨어 이벤트를 포함한 재해 발생 시 빠른 장애 조치를 위해 소스 볼륨의 정확한 사본을 제공합니다.</block>
   <block id="ae2679a66d07f8c7efd50d972a34a112" category="section-title">지역 간 복제</block>
   <block id="304acb700a2a141ad239279043fc11c8" category="paragraph">NetApp Volumes-Performance를 사용하면 Google 네트워크에서 실행되는 복제에 사용되는 특정 인터페이스를 사용하여 NetApp 에서 제어하는 백엔드 서비스 네트워크에서 TLS1.2 AES 256 GCM 암호화를 사용하여 데이터 보호 및 보관 사용 사례를 위해 Google Cloud 지역 전체에서 볼륨을 안전하게 복제할 수 있습니다.  기본(소스) 볼륨에는 활성 프로덕션 데이터가 포함되어 있으며 보조(대상) 볼륨에 복제되어 기본 데이터 세트의 정확한 복제본을 제공합니다.</block>
@@ -791,20 +772,15 @@
   <block id="fd25283b48ea77209e43fe9173df1354" category="paragraph">파일과 폴더에 대한 모든 권한은 보조 볼륨에 복제되지만 공유 액세스 권한(예: 내보내기 정책 및 규칙 또는 SMB 공유 및 공유 ACL)은 별도로 처리해야 합니다.  사이트 장애 조치(failover)의 경우 대상 사이트는 동일한 이름 서비스와 Active Directory 도메인 연결을 활용하여 사용자 및 그룹 ID와 권한을 일관되게 처리해야 합니다.  재해 발생 시 복제 관계를 끊고 보조 볼륨을 읽기-쓰기로 변환하여 보조 볼륨을 장애 조치 대상으로 사용할 수 있습니다.</block>
   <block id="61643d6093acad9955cb0fcad9f822ff" category="paragraph">볼륨 복제본은 읽기 전용이므로 바이러스에 의해 데이터가 감염되거나 랜섬웨어에 의해 기본 데이터 세트가 암호화된 경우 데이터를 빠르게 복구할 수 있도록 데이터의 변경 불가능한 복사본을 오프사이트에 제공합니다.  읽기 전용 데이터는 암호화되지 않지만, 기본 볼륨이 영향을 받고 복제가 발생하면 감염된 블록도 복제됩니다.  영향을 받지 않은 이전 스냅샷 복사본을 사용하여 복구할 수 있지만, 공격이 얼마나 빨리 감지되는지에 따라 SLA가 약속된 RTO/RPO 범위를 벗어날 수 있습니다.</block>
   <block id="fe62647cc35dde214e0df1ae1fe9d0ab" category="inline-link">보안 고려 사항</block>
-  <block id="8300934434804a35f73de998d81b2f86" category="paragraph">또한 Google Cloud의 지역 간 복제(CRR) 관리를 통해 볼륨 삭제, 스냅샷 삭제 또는 스냅샷 일정 변경과 같은 악의적인 관리 작업을 방지할 수 있습니다.  이 작업은 볼륨 관리자(소스 볼륨을 삭제할 수 있지만 미러를 해제할 수 없으므로 대상 볼륨을 삭제할 수 없음)와 CRR 관리자(볼륨 작업을 수행할 수 없음)를 분리하는 사용자 지정 역할을 생성하여 수행됩니다.  보다<block ref="bf2a9ccb864ad3a1fa1ddc1fec02a961" category="inline-link-rx"></block> 각 관리자 그룹에서 허용하는 권한에 대한 자세한 내용은 Google Cloud NetApp Volumes 문서를 참조하세요.</block>
   <block id="a3939482489144f13163a459115dbbcd" category="section-title">Google Cloud NetApp Volumes 백업</block>
   <block id="2dc7fc04753aaa49b4bf772c0c1f695d" category="paragraph">Google Cloud NetApp Volumes 높은 데이터 내구성을 제공하지만 외부 이벤트로 인해 데이터가 손실될 수 있습니다.  바이러스나 랜섬웨어와 같은 보안 이벤트가 발생하는 경우, 적절한 시기에 데이터 액세스를 재개하기 위해 백업과 복원이 매우 중요합니다.  관리자가 실수로 Google Cloud NetApp Volumes 볼륨을 삭제할 수 있습니다.  또는 사용자가 단순히 여러 달 동안 데이터의 백업 버전을 보관하고 싶어하고 볼륨 내부에 추가 스냅샷 복사 공간을 유지하는 것이 비용 문제가 될 수도 있습니다.  최근 몇 주 동안의 백업 버전을 보관하여 손실된 데이터를 복원하는 가장 좋은 방법은 스냅샷 복사본이지만, 해당 복사본은 볼륨 내부에 저장되어 있으며 볼륨이 사라지면 손실됩니다.</block>
-  <block id="8cd0c838a8016f1037d9493b4a1847ad" category="paragraph">이러한 모든 이유로 Google Cloud NetApp Volumes 다음을 통해 백업 서비스를 제공합니다.<block ref="2d0b2078e1ba78afa4bfe46e351b1c55" category="inline-link-rx"></block> .</block>
   <block id="8389c9ad906100251ea59ef1e8774e79" category="paragraph">Google Cloud NetApp Volumes 백업은 Google Cloud Storage(GCS)에 볼륨 사본을 생성합니다.  볼륨 내에 저장된 실제 데이터만 백업하며, 여유 공간은 백업하지 않습니다.  이 백업은 영구적으로 증분적으로 작동합니다. 즉, 볼륨 콘텐츠를 한 번 전송한 후 변경된 데이터만 계속 백업합니다.  여러 개의 전체 백업을 거치는 기존 백업 개념과 비교했을 때, 이 방식은 백업 스토리지 용량을 대폭 절약하여 비용을 절감합니다.  백업 공간의 월별 가격은 볼륨에 비해 낮으므로 백업 버전을 더 오랫동안 보관하기에 이상적인 곳입니다.</block>
   <block id="143c3951f491257c9fa5310ecca4e048" category="paragraph">사용자는 Google Cloud NetApp Volumes 백업을 사용하여 동일한 지역 내의 동일 볼륨이나 다른 볼륨에 모든 백업 버전을 복원할 수 있습니다.  소스 볼륨이 삭제되더라도 백업 데이터는 보존되며 독립적으로 관리(예: 삭제)해야 합니다.</block>
   <block id="5d491dac182b8c113a01484a72490d52" category="inline-link">Google Cloud NetApp Volumes 백업 설명서</block>
   <block id="be7923d42a302a1a86fdaa9f096fde63" category="inline-link">지원되는 최대 백업 버전 수</block>
   <block id="59aab28b54594c59dab8d19afd9478e4" category="inline-link">가격</block>
-  <block id="cdbc43a8138c14783a6723f01c5e87ae" category="paragraph">Google Cloud NetApp Volumes 백업은 옵션으로 Google Cloud NetApp Volumes 에 내장되어 있습니다.  사용자는 볼륨별로 Google Cloud NetApp Volumes 백업을 활성화하여 보호할 볼륨을 결정할 수 있습니다.  를 참조하십시오<block ref="4812e70da090be5e24e330690c5ac1c8" category="inline-link-rx"></block> 백업에 대한 정보는<block ref="d724a11e2928bd8489b8ad8fe1eac94b" category="inline-link-rx"></block> , 일정 및<block ref="31e05107512c82ef17df4f5c4b3fe0bd" category="inline-link-rx"></block> .</block>
   <block id="571c10683f858f3573f00adbc7eb5629" category="paragraph">프로젝트의 모든 백업 데이터는 GCS 버킷에 저장됩니다. 이 버킷은 서비스에서 관리하며 사용자에게는 보이지 않습니다.  각 프로젝트는 다른 버킷을 사용합니다.  현재 버킷은 Google Cloud NetApp Volumes 볼륨과 동일한 지역에 있지만 더 많은 옵션에 대해 논의 중입니다.  최신 상태를 확인하려면 설명서를 참조하세요.</block>
   <block id="cb32e4c0d75252d9857fe4c2e3c75b52" category="paragraph">Google Cloud NetApp Volumes 버킷에서 GCS로 데이터를 전송하는 데는 HTTPS 및 TLS1.2를 사용하는 서비스 내부 Google 네트워크가 사용됩니다.  저장된 데이터는 Google에서 관리하는 키를 사용하여 암호화됩니다.</block>
-  <block id="5e467dce18f46b1803b06097fae60b82" category="inline-link">역할/netappcloudvolumes.admin</block>
-  <block id="2817c2e3af860825100653bdcc2056b2" category="paragraph">Google Cloud NetApp Volumes 백업을 관리하려면(백업 생성, 삭제 및 복원) 사용자에게 다음 권한이 있어야 합니다.<block ref="595f329bf934dbc7996bb735e9664896" category="inline-link-rx"></block> 역할.</block>
   <block id="36a54db2e7b0de784b30ce8c6c865249" category="summary">Google Cloud의 Google Cloud NetApp Volumes 기본적으로 데이터를 보호하는 다양한 방법을 제공합니다.</block>
   <block id="d79d43bad8a042f8063f7942dc0fd710" category="doc">Google Cloud의 Google Cloud NetApp Volumes 데이터를 보호하는 방법</block>
   <block id="9967209a1408f78f781d93dd0cdf88c4" category="section-title">보안 아키텍처 및 테넌시 모델</block>
@@ -858,10 +834,8 @@
   <block id="ee69241049506ca93a3a1cd627e44851" category="inline-link">고객 계약</block>
   <block id="15655a5f67808f893102ffa3cbde3b01" category="inline-link">고객 Data Processing 추가 조항</block>
   <block id="cd0ae90a69c7d21d42b18252b9e1707d" category="inline-link">표준 계약 조항</block>
-  <block id="de315e46a9bdf4936de71254f87d2fe0" category="paragraph">당사의 개인정보 보호 및 GDPR 준수에 대한 약속은 다양한 곳에서 확인할 수 있습니다.<block ref="c2118342007d8714fcb1b4f6106c575c" category="inline-link-rx"></block> , 우리의 것과 같은<block ref="7f657124cd056ea8e74c57dcafd4df75" category="inline-link-rx"></block> , 여기에는 다음이 포함됩니다.<block ref="85bd1a4ed188bfd53fcaef2fb6e1962a" category="inline-link-rx"></block> 유럽 위원회가 제공함.  이러한 약속은 회사 행동 강령에 명시된 핵심 가치에 뒷받침되는 개인정보 보호정책에서도 명시되어 있습니다.</block>
   <block id="599e7197321e9ab772426d7187714f67" category="summary">SMB는 Microsoft에서 개발한 네트워크 파일 공유 프로토콜로, 이더넷 네트워크를 통해 여러 SMB 클라이언트에 중앙 집중식 사용자/그룹 인증, 권한, 잠금 및 파일 공유 기능을 제공합니다.</block>
   <block id="b4fdd997b1f33e0d4c6964444c2bf399" category="doc">중소기업</block>
-  <block id="e0a515b0910f55d3d1d5adda978e8e4f" category="paragraph"><block ref="395dbbdb78e4ae6be8daf8ab2b7828a7" category="inline-link-rx"></block>Microsoft에서 개발한 네트워크 파일 공유 프로토콜로, 이더넷 네트워크를 통해 여러 SMB 클라이언트에 중앙 집중식 사용자/그룹 인증, 권한, 잠금 및 파일 공유 기능을 제공합니다.  파일과 폴더는 공유를 통해 클라이언트에게 제공되며, 다양한 공유 속성으로 구성될 수 있으며 공유 수준 권한을 통해 액세스 제어를 제공합니다.  SMB는 Windows, Apple, Linux 클라이언트를 포함하여 해당 프로토콜을 지원하는 모든 클라이언트에 제공될 수 있습니다.</block>
   <block id="e1a78df8b16354acdfe7518c1e26ef4b" category="paragraph">Google Cloud NetApp Volumes 프로토콜의 SMB 2.1 및 3.x 버전을 지원합니다.</block>
   <block id="cc4a835dfb2ac9e7ba402c068a4ef9a0" category="section-title">접근 제어/SMB 공유</block>
   <block id="dbb8fb6d5296551c85f5d41e0f6e9c86" category="list-text">Windows 사용자 이름이 Google Cloud NetApp Volumes 볼륨에 대한 액세스를 요청하면 Google Cloud NetApp Volumes Google Cloud NetApp Volumes 관리자가 구성한 방법을 사용하여 UNIX 사용자 이름을 찾습니다.</block>
@@ -2004,8 +1978,6 @@
   <block id="ae4e918956cc077491dbbd3abc0d2578" category="doc">추가 정보 및 연락처 정보</block>
   <block id="7d5b957cd473f6eaf5ad335a9c63c4ff" category="paragraph">이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹사이트를 검토하세요.</block>
   <block id="b139dc75096fdff040ba553bbafe1914" category="list-text">Google Cloud Google Cloud NetApp Volumes Cloud 설명서</block>
-  <block id="6e0173c8a46418c9ee6c916c7c275ef8" category="inline-link"><block ref="6e0173c8a46418c9ee6c916c7c275ef8" category="inline-link-rx"></block></block>
-  <block id="8e65fc49f8ebbf3d9cc9651ce7940654" category="paragraph"><block ref="8e65fc49f8ebbf3d9cc9651ce7940654" category="inline-link-rx"></block></block>
   <block id="0e8aec42089c0c73812fa42d1888b3c8" category="list-text">Google 개인 서비스 액세스</block>
   <block id="75956b9ee748b806549eeec3c9a81192" category="inline-link"><block ref="75956b9ee748b806549eeec3c9a81192" category="inline-link-rx"></block></block>
   <block id="6c84917a571a2282fd9fb2a6f058a11e" category="paragraph"><block ref="6c84917a571a2282fd9fb2a6f058a11e" category="inline-link-rx"></block></block>
@@ -3260,7 +3232,6 @@
   <block id="3b020916a45973167bc70cb4517bd8c8" category="inline-link-macro">시스템 간 데이터 복제 설정</block>
   <block id="091112e3dbffea1fef77b4b6bbcec4d3" category="paragraph">재해 복구나 마이그레이션 목적으로 온프레미스 환경에서 클라우드로 볼륨을 복제하려면 사이트 간 VPN이나 DirectConnect를 사용하여 AWS에 대한 네트워크 연결을 설정합니다.  온프레미스에서 Cloud Volumes ONTAP 으로 데이터를 복제하는 내용은 이 문서의 범위를 벗어납니다.  온프레미스와 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 다음을 참조하세요.<block ref="79828109910805ccc09752d766afaae3" category="inline-link-macro-rx"></block> .</block>
   <block id="9eb931a836eecf8e743b47b449c70bc5" category="inline-link-macro">Cloud Volumes ONTAP 사이저</block>
-  <block id="c4fab68ae07564acd6ecd9b911dfff79" category="admonition">사용하세요<block ref="c41f5eb5365f7790c86bbe0d764bfcac" category="inline-link-macro-rx"></block> Cloud Volumes ONTAP 인스턴스의 크기를 정확하게 조정합니다.  또한 온프레미스 성능을 모니터링하여 Cloud Volumes ONTAP 사이저의 입력으로 사용합니다.</block>
   <block id="44ca838e7d04a1071dc78602ef005cb3" category="list-text">NetApp Cloud Central에 로그인하면 Fabric View 화면이 표시됩니다.  Cloud Volumes ONTAP 탭을 찾아 Cloud Manager로 이동을 선택합니다.  로그인 후 Canvas 화면이 표시됩니다.</block>
   <block id="1e2def99ab1b59e5aee88b27c7dd5935" category="paragraph"><block ref="1e2def99ab1b59e5aee88b27c7dd5935" category="inline-image-macro-rx" type="image"></block></block>
   <block id="613b8a42b8ee051cdae0288a52604a55" category="list-text">클라우드 관리자 홈페이지에서 작업 환경 추가를 클릭한 다음 클라우드로 AWS를 선택하고 시스템 구성 유형을 선택합니다.</block>
@@ -4237,7 +4208,6 @@
   <block id="1d583a1a8ff1ca8ae3360c7e33ecd984" category="example-title">Azure에 새로운 Cloud Volumes ONTAP 배포</block>
   <block id="ed1019c297fadb83e87437230788320c" category="paragraph">Cloud Volumes ONTAP 공유 및 LUN은 Azure VMware Solution SDDC 환경에서 생성된 VM에서 마운트할 수 있습니다.  Cloud Volumes ONTAP iSCSI, SMB, NFS 프로토콜을 지원하므로 볼륨을 Linux 클라이언트와 Windows 클라이언트에도 마운트할 수 있습니다.  Cloud Volumes ONTAP 볼륨은 몇 가지 간단한 단계로 설정할 수 있습니다.</block>
   <block id="e9cac40069a313b824541cda06c18a06" category="paragraph">재해 복구나 마이그레이션 목적으로 온프레미스 환경에서 클라우드로 볼륨을 복제하려면 사이트 간 VPN이나 ExpressRoute를 사용하여 Azure에 대한 네트워크 연결을 설정합니다.  온프레미스에서 Cloud Volumes ONTAP 으로 데이터를 복제하는 내용은 이 문서의 범위를 벗어납니다.  온프레미스와 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 다음을 참조하세요.<block ref="79828109910805ccc09752d766afaae3" category="inline-link-macro-rx"></block> .</block>
-  <block id="165fc07e6910d8748be18ecaaab5392d" category="admonition">사용<block ref="c41f5eb5365f7790c86bbe0d764bfcac" category="inline-link-macro-rx"></block> Cloud Volumes ONTAP 인스턴스의 크기를 정확하게 조정합니다.  또한 Cloud Volumes ONTAP 사이저의 입력으로 사용하기 위해 온프레미스 성능도 모니터링합니다.</block>
   <block id="a1d02afc571062ee1235156b645846f8" category="list-text">NetApp Cloud Central에 로그인하면 Fabric View 화면이 표시됩니다.  Cloud Volumes ONTAP 탭을 찾아 Cloud Manager로 이동을 선택합니다.  로그인 후 Canvas 화면이 표시됩니다.</block>
   <block id="a49badfbc2c50cb8abf0648164a81886" category="paragraph"><block ref="a49badfbc2c50cb8abf0648164a81886" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5f067fbf4a3196796318f7e878eaa2a3" category="list-text">클라우드 관리자 홈페이지에서 작업 환경 추가를 클릭한 다음 클라우드로 Microsoft Azure를 선택하고 시스템 구성 유형을 선택합니다.</block>
@@ -4674,7 +4644,6 @@
   <block id="7894c4e3b60b17efdad1b2066f1ee6f3" category="list-text">Veeam Backup &amp; Replication 백업 VM이 소스 및 대상 GCVE 클러스터 모두에서 Veeam Proxy 서버 VM에 연결되어 있는지 확인하세요.</block>
   <block id="4410cc25d34f7193e5fc1ae1b1486db6" category="paragraph">사용자는 VMware Engine Cloud 콘솔 UI 내의 VPC 네트워크 피어링 또는 개인 연결 페이지를 사용하여 GCVE 프라이빗 클라우드와 NetApp Volumes 프로젝트 간에 피어링 연결을 만들어야 합니다.</block>
   <block id="a79a1455e0624744a0bc225884f308a8" category="inline-link">VMware Engine 권한 상승</block>
-  <block id="2ad7c328d4b680b40c716e7b6f6169fd" category="admonition">Veeam Backup and Replication 인벤토리에 GCVE vCenter 서버를 추가할 때 Veeam은 상승된 권한을 가진 GCVE 솔루션 사용자 계정을 필요로 합니다.  자세한 내용은 Google Cloud Platform(GCP) 문서를 참조하세요.<block ref="c1de17de872adba851dbf9d076e5ec43" category="inline-link-rx"></block> .</block>
   <block id="9d77b7b7188100af6b67ee9f69a27e2b" category="inline-link">고려 사항 및 제한 사항</block>
   <block id="70afa39a98378028fc4fe18eb066d8a2" category="paragraph">추가 정보는 다음을 참조하세요.<block ref="b523b283e70ab01aa034b19addeb76af" category="inline-link-rx"></block> Veeam Backup &amp; Replication 설명서에서.</block>
   <block id="8388066510b59c8d3387373b6969a7af" category="section-title">배포 단계</block>
@@ -4942,7 +4911,6 @@
   <block id="3d1a06f98a1c133a8a0c74cc4222e23b" category="list-text">볼륨 크기와 프로토콜 유형을 지정합니다.  이 테스트에서는 SMB가 사용되었습니다.</block>
   <block id="d59b182c892310aea09811264c017dee" category="paragraph"><block ref="d59b182c892310aea09811264c017dee" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cbde2df6a7c89370edc449dc5705d30c" category="inline-link-macro">지침</block>
-  <block id="c6c41df7e1a1198643bd276cb63ef4b5" category="paragraph">힌트: VPC 피어링이 수행되지 않은 경우 팝업 버튼이 표시되어 피어링 명령을 안내합니다.  Cloud Shell 세션을 열고 적절한 명령을 실행하여 VPC를 Google Cloud NetApp Volumes 프로듀서와 피어링합니다.  VPC 피어링을 미리 준비하기로 결정한 경우 다음을 참조하세요.<block ref="3b4469537a7b14dcfd28e3d301600ff6" category="inline-link-macro-rx"></block> .</block>
   <block id="73f95524a17725d96bf42bf8198a28c7" category="paragraph"><block ref="73f95524a17725d96bf42bf8198a28c7" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5f26f1ead5eb52f9dd141c71f2e621ec" category="paragraph"><block ref="5f26f1ead5eb52f9dd141c71f2e621ec" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4990031dcfbd871d95ce4ae0321e7156" category="paragraph">SMB 볼륨을 마운트하려면 다음을 수행하세요.</block>
@@ -5049,8 +5017,6 @@
   <block id="cc7538adb5f65b8e12ceeea77a9fe2b4" category="inline-link"><block ref="cc7538adb5f65b8e12ceeea77a9fe2b4" category="inline-link-rx"></block></block>
   <block id="c403f0f0cd3710f7ff6a40c31193feef" category="paragraph"><block ref="c403f0f0cd3710f7ff6a40c31193feef" category="inline-link-rx"></block></block>
   <block id="19e28367f565bf74c0b929f09ffdeb90" category="list-text">Cloud Volume Service 설명서</block>
-  <block id="87a450a8cc5c8bc3aa98266544b13aeb" category="inline-link"><block ref="87a450a8cc5c8bc3aa98266544b13aeb" category="inline-link-rx"></block></block>
-  <block id="bc99ee2635f4933c3a1ae1a2d397722f" category="paragraph"><block ref="bc99ee2635f4933c3a1ae1a2d397722f" category="inline-link-rx"></block></block>
   <block id="92cbc7969081067fa7972b77f8b4c803" category="inline-link"><block ref="92cbc7969081067fa7972b77f8b4c803" category="inline-link-rx"></block></block>
   <block id="dccf3c5043aaab19b4c6eed2cd51be7e" category="paragraph"><block ref="dccf3c5043aaab19b4c6eed2cd51be7e" category="inline-link-rx"></block></block>
   <block id="8e646994c77aca8ec3e51297698897ab" category="summary">현재 데이터 보호 요구 사항을 위해 Veeam을 사용하고 있는 고객은 해당 솔루션을 계속 사용하여 워크로드를 GCVE로 마이그레이션하고 Google Cloud NetApp Volumes NFS 데이터 저장소의 이점을 누리고 있습니다.</block>
@@ -5097,12 +5063,9 @@
   <block id="4b709fe90ad1f22d6597222ba5bf211e" category="section-title">GCVE에서 Google Cloud NetApp Volumes (NetApp Volumes)의 NFS 데이터 저장소를 마운트하기 위한 배포 단계</block>
   <block id="b2b2500e5ac4be0aa0eebd11e1e2213f" category="example-title">NetApp 볼륨 프로비저닝-성능 볼륨</block>
   <block id="aa4c7c45a6f8058db33abfdb3c13122c" category="inline-link-macro">Google Cloud Console 사용</block>
-  <block id="06cc57ef2fb1f7cc541876ed541bdfa3" category="inline-link-macro">NetApp BlueXP 포털 또는 API 사용</block>
-  <block id="b5da8f8b590d8d00ff48b523979a1840" category="paragraph">Google Cloud NetApp Volumes 볼륨은 다음 중 하나로 프로비저닝될 수 있습니다.<block ref="0beb29edbd200a8e1a7829716a36a1c5" category="inline-link-macro-rx"></block> <block ref="deefdf7aceb221b5aa34627c3ed5425f" category="inline-link-macro-rx"></block></block>
   <block id="4e411d5ed2592bc4ca242e64cb7f9186" category="example-title">NetApp Volumes 볼륨을 삭제할 수 없음으로 표시</block>
   <block id="a1192d97e3edb993b1143a5c6e63b950" category="inline-image-macro">NetApp 볼륨 삭제 불가 옵션</block>
   <block id="2f4970f700f71764030682ac3fccec7b" category="inline-link-macro">NFS 볼륨 생성</block>
-  <block id="e6827f6cccfd222d670853aee39482bd" category="paragraph">VM이 실행되는 동안 볼륨이 실수로 삭제되는 것을 방지하려면 아래 스크린샷에 표시된 대로 볼륨을 삭제할 수 없음으로 표시해야 합니다. <block ref="3985850308d7a5a20bb1435c0d6cb728" category="inline-image-macro-rx" type="image"></block> 자세한 내용은 다음을 참조하세요.<block ref="3c3943aac8a82fc401a825d72b8ce909" category="inline-link-macro-rx"></block> 선적 서류 비치.</block>
   <block id="4fdb8eccdfd8efe5a225b4fb77b59808" category="example-title">NetApp Volumes Tenant VPC에 대한 GCVE의 개인 연결이 있는지 확인하세요.</block>
   <block id="5869986e7860a605ef636fe89f5ec914" category="inline-link-macro">개인 서비스 액세스를 설정하는 방법</block>
   <block id="9bbcebf9b19a6f5afe766e077bb460bc" category="paragraph">NFS 데이터 저장소를 마운트하려면 GCVE와 NetApp 볼륨 프로젝트 사이에 개인 연결이 있어야 합니다.  자세한 내용은 다음을 참조하세요.<block ref="80db979a388944e99548c1ab943bf1c9" category="inline-link-macro-rx"></block></block>
@@ -5113,7 +5076,6 @@
   <block id="65cc8127fe1b919327fba84ecb3a56f3" category="admonition">vSphere 호스트는 Google에서 관리되므로 NFS vSphere API for Array Integration(VAAI) vSphere Installation Bundle(VIB)을 설치할 수 없습니다.  가상 볼륨(vVol)에 대한 지원이 필요하면 알려주시기 바랍니다.  Jumbo Frames를 사용하고 싶으시다면 다음을 참조하세요.<block ref="1aed01f13efb6ca82e14bdeed2aecafd" category="inline-link-macro-rx"></block></block>
   <block id="513300fdc0bb213ac4ed46843ff3a05e" category="section-title">Google Cloud NetApp Volumes 통한 비용 절감</block>
   <block id="f294342aa71551905185899001dac18d" category="inline-link-macro">NetApp ROI 계산기</block>
-  <block id="3777ea272458516a2513fad67dd48d2e" category="paragraph">GCVE에서 스토리지 요구 사항에 대한 Google Cloud NetApp Volumes 잠재적 절감에 대해 자세히 알아보려면 다음을 확인하세요.<block ref="4b034931b1f465c160674bfcd2413eb6" category="inline-link-macro-rx"></block></block>
   <block id="8a65075e73c1f173820f496a08f45d2e" category="section-title">참조 링크</block>
   <block id="b30ed1ba49503a66ab67998cbd0c158e" category="inline-link-macro">Google 블로그 - NetApp Volumes를 Google Cloud VMware Engine의 데이터 저장소로 사용하는 방법</block>
   <block id="7580e7e1cff336c204a57fa973548649" category="list-text"><block ref="7580e7e1cff336c204a57fa973548649" category="inline-link-macro-rx"></block></block>
@@ -5381,8 +5343,6 @@
   <block id="6c302d6f69fc91f2572712f003676d83" category="list-text">*만들기*를 클릭하여 정책 생성을 완료하세요.</block>
   <block id="b376eb1d1a81946ce7cc5b483b394614" category="example-title">Amazon Web Services에 데이터 저장소 백업</block>
   <block id="0683dcf442cdbe8d60b5c07d40f32d46" category="paragraph">마지막 단계는 개별 데이터 저장소와 가상 머신에 대한 데이터 보호를 활성화하는 것입니다.  다음 단계에서는 AWS에 대한 백업을 활성화하는 방법을 설명합니다.</block>
-  <block id="1d5ad62b9217b4a3f085f517534f40bb" category="inline-link">Amazon Web Services에 데이터 저장소 백업</block>
-  <block id="aaa6437baaeb74798cea1dbc99d2449d" category="paragraph">자세한 내용은 다음을 참조하세요.<block ref="1515dd2e0ceefc55442eaf374717c8c0" category="inline-link-rx"></block> .</block>
   <block id="ea304a58f425305bd76d96e195240e41" category="list-text">가상 머신을 위한 BlueXP backup and recovery 메인 페이지에서 백업할 데이터 저장소의 설정 드롭다운에 액세스하여 *백업 활성화*를 선택합니다.</block>
   <block id="addf19ca5aa2245b4311a5fda42a2a57" category="inline-image-macro">백업 활성화</block>
   <block id="499f0b0f60bcd76722da4a70b9aaf3e0" category="paragraph"><block ref="499f0b0f60bcd76722da4a70b9aaf3e0" category="inline-image-macro-rx" type="image"></block></block>
@@ -5428,7 +5388,6 @@
   <block id="d8d9151889f2e5c47ace43970e545363" category="section-title">BlueXP backup and recovery 통해 가상 머신 복원</block>
   <block id="c6c605b662ef94c68391b5451e95455d" category="paragraph">가상 머신을 위한 BlueXP backup and recovery 사용하면 가상 머신을 원래 위치로 복원할 수 있습니다.  복원 기능은 BlueXP 웹 콘솔을 통해 접근합니다.</block>
   <block id="ffa1e37a2c6478ff157a0a7d25a607e9" category="inline-link">클라우드에서 가상 머신 데이터 복원</block>
-  <block id="94b974f7ab5ca99392d1041601e87897" category="paragraph">자세한 내용은 다음을 참조하세요.<block ref="238147c8f6c3fb89d6b3eb28f713b9cf" category="inline-link-rx"></block> .</block>
   <block id="51dac82a8b88ae2579c7783d71b88447" category="example-title">BlueXP backup and recovery 에서 가상 머신 복원</block>
   <block id="d2b7af1fe2cbeff098166770c3666278" category="paragraph">BlueXP backup and recovery 에서 가상 머신을 복원하려면 다음 단계를 완료하세요.</block>
   <block id="37f8e514cc85f6be4997337d7410cb05" category="list-text">*보호 &gt; 백업 및 복구 &gt; 가상 머신*으로 이동한 후 가상 머신을 클릭하면 복원 가능한 가상 머신 목록을 볼 수 있습니다.</block>
@@ -6306,4 +6265,43 @@
   <block id="af84bbf7cdb0d0e716f2513d0d3f363f" category="paragraph">SnapCenter 소프트웨어는 NetApp Support 사이트에서 제공되며, 도메인 또는 워크그룹에 속한 Microsoft Windows 시스템에 설치할 수 있습니다. 자세한 계획 가이드 및 설치 지침은 <block ref="85cbe5bd6e949acc06321919c4679a05" category="inline-link-macro-rx"></block>에서 확인할 수 있습니다.</block>
   <block id="660febd0d05e3ca3fc12d156de67c555" category="paragraph">이렇게 하면 Cloud Volumes ONTAP 인스턴스가 실행되는 VPC 네트워크가 GCVE 프라이빗 클라우드와 통신할 수 있게 됩니다. 이를 위해 다음 <block ref="12bbd3d08aba9fc22ed45e2726d3faff" category="inline-link-macro-rx"></block>을 따르십시오. Cloud Volume Service의 경우, 테넌트 호스트 프로젝트 간에 일회성 피어링을 수행하여 VMware Engine과 Google Cloud NetApp Volumes 간의 연결을 설정하십시오. 자세한 단계는 이 <block ref="04a9f04edfdd7b0a53da57f015378c5a" category="inline-link-macro-rx"></block>를 따르십시오.</block>
   <block id="7c8e515cd2bd78ee1fbac514c4d45244" category="summary">SnapCenter 애플리케이션 정합성 보장 스냅샷, FSx ONTAP으로의 SnapMirror 복제 및 VM용 Veeam Backup and Replication을 사용하는 재해 복구 솔루션에 대한 요구 사항 및 계획을 검토합니다.</block>
+  <block id="b36747eb0bfcbc622631bdfc2cd45c34" category="paragraph">IAM은 Google Cloud NetApp Volumes에 대한 세분화된 기본 권한을 제공합니다. 다음을 확인할 수 있습니다<block ref="c921bf901dddf111d51f3ca11ebb3758" category="inline-link-rx"></block>.</block>
+  <block id="f6e881812da5bcc4bc56f17e0a9efefe" category="paragraph">자세한 내용은 Google 클라우드 문서에서 <block ref="425630f1395332bc899e13b5d33f2dfc" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
+  <block id="5e150fd1be685088404e3913c3b5fc99" category="paragraph">Google Cloud NetApp Volumes API는 HTTPS(TLSv1.2)를 기본 네트워크 전송으로 사용하여 REST 기반 API를 사용합니다. 최신 API 정의 및 API 사용 방법에 대한 정보는 <block ref="71065174542273e86ee0a3bd68707913" category="inline-link-rx"></block>에서 확인할 수 있습니다.</block>
+  <block id="d2091fd6da268e315fd0274dff01e894" category="paragraph">NetApp Volumes-Performance용 KMS 구성에 대한 자세한 내용은 <block ref="52de797e3ab557bd79aafd630810a4f6" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
+  <block id="09da72f3d03852ba02b0235f67a13074" category="paragraph">Google Cloud용 Google Cloud NetApp Volumes의 아키텍처 개요는 다음을 참조하십시오<block ref="06d0a114a020b0eac37c779d88a8f538" category="inline-link-rx"></block>.</block>
+  <block id="be992a12452544053b7ed07d393d9ef6" category="list-text"><block ref="be992a12452544053b7ed07d393d9ef6" category="inline-link-rx"></block></block>
+  <block id="b255fa1d5813191b06e4065d03875844" category="list-text"><block ref="b255fa1d5813191b06e4065d03875844" category="inline-link-rx"></block></block>
+  <block id="fdb7c080be516e6b5b443a9283b85c77" category="paragraph">또한 SMB, Kerberos를 포함한 LDAP를 사용하는 NFS 및 이중 프로토콜 구성에는 Windows Active Directory 도메인에 대한 액세스가 필요합니다. Active Directory 연결은 <block ref="896179457f645f0e3f6cb1c95e5794c6" category="inline-link-rx"></block>지역별로 설정해야 합니다. Active Directory 도메인 컨트롤러(DC)는 <block ref="821541d595f9fee8c67d91aa5da861b4" category="inline-link-rx"></block>지정된 DNS 서버를 사용하여 식별됩니다. 반환된 DC 중 하나가 사용됩니다. Active Directory 사이트를 지정하여 사용 가능한 DC 목록을 제한할 수 있습니다.</block>
+  <block id="105a24761a880116931655fd55b0edfe" category="paragraph">Google Cloud NetApp Volumes는<block ref="d3356eff130c7e2105a2d6272585b462" category="inline-link-rx"></block> 동안<block ref="3102e8199e828cb030b6f0ade5fc2cec" prefix=" " category="inline-code"></block> 명령으로 할당된 CIDR 범위의 IP 주소를 사용하여 연결합니다. 이 CIDR을 소스 주소로 사용하여 Active Directory 도메인 컨트롤러에 대한 인바운드 방화벽을 구성할 수 있습니다.</block>
+  <block id="0211b37faec477e8d239e11447ea62a7" category="paragraph">Active Directory 도메인 컨트롤러는 다음 조건을 충족해야 합니다<block ref="575896959423e325a6823b57b0e39074" category="inline-link-rx"></block>.</block>
+  <block id="e83ff0b15bcbc08e4801bdf54d20a918" category="paragraph">Google Cloud NetApp Volumes는 적절한 액세스 권한을 유지하면서 SMB 및 NFS 클라이언트 모두에 동일한 데이터 세트를 공유할 수 있는 기능을 제공합니다 <block ref="d74de619a70142fe66893ac7951e2cef" category="inline-link-rx"></block>). 이는 프로토콜 간의 ID 매핑을 조정하고 중앙 집중식 백엔드 LDAP 서버를 사용하여 Google Cloud NetApp Volumes에 UNIX ID를 제공함으로써 수행됩니다. 사용 편의성을 위해 Windows Active Directory를 사용하여 Windows 및 UNIX 사용자를 모두 제공할 수 있습니다.</block>
+  <block id="417619245e97a4c559f6aa114ac4c6a7" category="paragraph">현재 LDAP를 사용한 외부 UNIX ID 관리에는 Active Directory만 지원됩니다. 이 서비스에 대한 액세스 구성에 대한 자세한 내용은 <block ref="dfe9370affc5d95d2754a9770468a3af" category="inline-link-rx"></block>을 참조하십시오.</block>
+  <block id="34c73887c8ca5af568f919282b064806" category="paragraph">LDAP 및 Kerberos를 사용할 때는 이러한 서비스에서 사용하는 네트워크 포트를 확인해야 합니다. Google Cloud NetApp Volumes에서 사용하는 포트의 전체 목록은 <block ref="be3bbfed6882e06dc634324fa507b18c" category="inline-link-rx"></block>에서 확인할 수 있습니다.</block>
+  <block id="103f838c96ca5931f973da211c98f6b1" category="paragraph">클라이언트를 Active Directory에 연결하려면 Active Directory DNS를 사용하도록 클라이언트의 DNS 구성을 설정해야 합니다. 선택적으로 Cloud DNS가 요청을 Active Directory DNS로 전달하도록 구성할 수 있습니다. 자세한 내용은 <block ref="587991784cb355a0eb29ce58bfef68aa" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
+  <block id="a444650f1f4057bc1dafe76bf83d7abb" category="paragraph">또한 Google Cloud NetApp Volumes는 최대 지원 그룹을 32개까지 확장할 수 있는 확장된 그룹 지원을 제공합니다. 이를 위해서는 유효한 UNIX 사용자 및 그룹 ID가 포함된 LDAP 서버에 대한 LDAP 연결이 필요합니다. 이를 구성하는 방법에 대한 자세한 내용은 Google 설명서에서 <block ref="b2378ec9cb26e127a2b574fd875ee25b" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
+  <block id="c62a7145f91f791822ccc0464bfb45f5" category="paragraph">특히 스토리지 관리자가 인프라를 제어할 수 없는 클라우드 환경에서 보안은 클라우드 제공업체가 제공하는 서비스에 데이터를 안심하고 맡기기 위해 가장 중요합니다. 이 문서는 <block ref="acedeed8ca3fbd66dd473f52263137d9" category="inline-link-rx"></block>에서 제공하는 보안 서비스에 대한 개요입니다.</block>
+  <block id="0ae4fc49051e7c96aa476556b3229843" category="paragraph">NetApp Volumes-Performance용 KMS 구성 방법에 대한 자세한 내용은 다음을 참조하십시오<block ref="67ccef626c6bc6d77b983529dd380b9c" category="inline-link-rx"></block>.</block>
+  <block id="10e5d92c39895bde312534c4a833e932" category="list-text">NetApp Volumes-Performance는 다른 NetApp Volumes-Performance 볼륨으로의 리전 간 볼륨 복제를 제공합니다. 자세한 내용은 Google Cloud NetApp Volumes 설명서에서 <block ref="fd29f1b0b840743dbcc9493b4ea1c90b" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
+  <block id="66cb341ac2ce8b8df10a1ed5c02e0a1b" category="list-text">NetApp Volumes-SW는 서비스에서 기본적으로 볼륨 백업/복원 기능을 제공합니다. 자세한 내용은 Google Cloud NetApp Volumes 설명서의 <block ref="37ed30ceace44d6396bf9f3adb3449cd" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
+  <block id="91cdb5cae2c3d129611a37a4baa80165" category="paragraph">또한 Google Cloud의 교차 리전 복제(CRR) 관리를 통해 볼륨 삭제, 스냅샷 삭제 또는 스냅샷 일정 변경 등 악의적인 관리 작업을 방지할 수 있습니다. 이를 위해 소스 볼륨은 삭제할 수 있지만 미러를 끊을 수 없어 대상 볼륨을 삭제할 수 없는 볼륨 관리자와 볼륨 작업을 전혀 수행할 수 없는 CRR 관리자를 분리하는 사용자 지정 역할을 생성합니다. 각 관리자 그룹에 허용되는 권한에 대해서는 Google Cloud NetApp Volumes 설명서의 <block ref="e0f3f513e9be2ea4501ba158b5ec1cee" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
+  <block id="c9c4f88ef710bb4ef518e0fa6a039a34" category="paragraph">이러한 모든 이유로 Google Cloud NetApp Volumes는 <block ref="03a2fe0b70e7766422442b54071e045c" category="inline-link-rx"></block>을(를) 통해 백업 서비스를 제공합니다.</block>
+  <block id="8de0b3a4bbda97289df81113e65195e1" category="paragraph">Google Cloud NetApp Volumes 백업은 옵션으로 Google Cloud NetApp Volumes에 기본 제공됩니다. 사용자는 볼륨별로 Google Cloud NetApp Volumes 백업을 활성화하여 보호할 볼륨을 결정할 수 있습니다. 백업, <block ref="1a817bd0c6ee52f3af84d26f42d1ea0b" category="inline-link-rx"></block>, 예약 및 <block ref="cfd075c3d2672251915e363199a2b3b9" category="inline-link-rx"></block>에 대한 자세한 내용은 <block ref="d61a55c866624d0c221b4018798281ce" category="inline-link-rx"></block>을 참조하십시오.</block>
+  <block id="04bf1a6a0250bc9d4cba09ee34106dfc" category="inline-link">roles/netapp.admin</block>
+  <block id="a47907f5da7d5a4f67c4f26014ab39d0" category="paragraph">Google Cloud NetApp Volumes 백업을 관리(백업 생성, 삭제 및 복원)하려면 사용자에게 <block ref="b0996c918d9534e68ba51c12b3eddbb5" category="inline-link-rx"></block> 역할이 있어야 합니다.</block>
+  <block id="4fdf5f42fa6f4acd085ef17175ce8d67" category="paragraph">개인 정보 보호 및 GDPR 준수에 대한 당사의 약속은 유럽 위원회가 제공하는 <block ref="85bd1a4ed188bfd53fcaef2fb6e1962a" category="inline-link-rx"></block>이 포함된 당사<block ref="7f657124cd056ea8e74c57dcafd4df75" category="inline-link-rx"></block> 등 여러 <block ref="ab381948ba7e35be45ee77ce31c2a640" category="inline-link-rx"></block>에서 확인하실 수 있습니다. 당사는 또한 기업 행동 강령에 명시된 핵심 가치를 바탕으로 개인 정보 보호 정책에서도 이러한 약속을 이행합니다.</block>
+  <block id="c8f76ad201b1047d88408eca0ee3b7a0" category="paragraph"><block ref="00d6e38b0a2ab6f711bdb616e77147ec" category="inline-link-rx"></block>는 Microsoft에서 개발한 네트워크 파일 공유 프로토콜로, 이더넷 네트워크를 통해 여러 SMB 클라이언트에 중앙 집중식 사용자/그룹 인증, 권한, 잠금 및 파일 공유를 제공합니다. 파일과 폴더는 공유를 통해 클라이언트에 제공되며, 이는 다양한 공유 속성으로 구성할 수 있고 공유 수준 권한을 통해 액세스 제어를 제공합니다. SMB는 Windows, Apple, Linux 클라이언트 등 프로토콜 지원을 제공하는 모든 클라이언트에 제공될 수 있습니다.</block>
+  <block id="b84bc4b4d68b094803843c3a54706c72" category="inline-link"><block ref="b84bc4b4d68b094803843c3a54706c72" category="inline-link-rx"></block></block>
+  <block id="70fbf9f2e73296319b3e24ea21921ce6" category="paragraph"><block ref="70fbf9f2e73296319b3e24ea21921ce6" category="inline-link-rx"></block></block>
+  <block id="b8b0401801f33bbaedf4a9d58293bfe7" category="admonition"><block ref="e0b4b4cf842a9a667da82f6f60322bd0" category="inline-link-macro-rx"></block>을(를) 사용하여 Cloud Volumes ONTAP 인스턴스의 크기를 정확하게 조정하십시오. 또한 온프레미스 성능을 모니터링하여 Cloud Volumes ONTAP 크기 조정 도구의 입력값으로 활용하십시오.</block>
+  <block id="a58da883b2fde0b1a8c17050adf73cf8" category="admonition"><block ref="e0b4b4cf842a9a667da82f6f60322bd0" category="inline-link-macro-rx"></block>을(를) 사용하여 Cloud Volumes ONTAP 인스턴스의 크기를 정확하게 조정하십시오. 또한 온프레미스 성능을 모니터링하여 Cloud Volumes ONTAP sizer의 입력으로 사용하십시오.</block>
+  <block id="49e2960c6d69b0be95c0b505087357c7" category="admonition">Veeam Backup and Replication 인벤토리에 GCVE vCenter 서버를 추가하려면 Veeam에 상승된 권한이 있는 GCVE 솔루션 사용자 계정이 필요합니다. 자세한 내용은 Google Cloud Platform(GCP) 설명서를 참조하십시오<block ref="78169957ed18b5e842ec2dc9f84b6305" category="inline-link-rx"></block>.</block>
+  <block id="0e76cc02855fa6f00bdb679c4f4be435" category="paragraph">힌트: VPC 피어링이 아직 수행되지 않은 경우, 피어링 명령을 안내하는 팝업 버튼이 표시됩니다. Cloud Shell 세션을 열고 적절한 명령을 실행하여 VPC를 Google Cloud NetApp Volumes producer와 피어링하십시오. VPC 피어링을 미리 준비하기로 결정한 경우, 다음 <block ref="70d65797916d0cb2be60942ccfb93833" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="0ce2335e480afcc1b0c3f69cd381f107" category="inline-link-macro">Google Cloud CLI 또는 API 사용</block>
+  <block id="fef8888837fd88caec8327443527f069" category="paragraph">Google Cloud NetApp Volumes 볼륨은 <block ref="0a83464c769af198bc5319f8da255d41" category="inline-link-macro-rx"></block> <block ref="7bbbcf3979cc5f4f1cf29ecd1a0df5f0" category="inline-link-macro-rx"></block>을(를) 통해 프로비저닝할 수 있습니다.</block>
+  <block id="fbcaa95291782f50a92452bac6415122" category="paragraph">가상 머신이 실행 중인 동안 볼륨이 실수로 삭제되는 것을 방지하려면 아래 스크린샷과 같이 볼륨을 삭제할 수 없도록 표시하십시오. <block ref="3985850308d7a5a20bb1435c0d6cb728" category="inline-image-macro-rx" type="image"></block> 자세한 내용은 <block ref="9bdb43588110582535ff26d180d03d46" category="inline-link-macro-rx"></block> 설명서를 참조하십시오.</block>
+  <block id="fa03c56942c8a9669a263a23fe0e5623" category="paragraph">GCVE 스토리지 요구 사항에 맞춰 Google Cloud NetApp Volumes를 사용하여 얻을 수 있는 잠재적 비용 절감 효과에 대한 자세한 내용은 다음을 확인하십시오. <block ref="e9c9fa668a264c434551068a3f98dd07" category="inline-link-macro-rx"></block></block>
+  <block id="d20800ec3a640eb8116268213843541a" category="inline-link">VMware 워크로드 백업</block>
+  <block id="55457fd2a146b1a9975a978c0a85420c" category="paragraph">자세한 내용은 다음을 참조하십시오<block ref="25682a6e5e8d6eabcc83860d625c84b6" category="inline-link-rx"></block>.</block>
+  <block id="7268afda6855d1969a1bca2a7f29d4e8" category="paragraph">자세한 내용은 <block ref="983a2e651837ee711af9347ffcffa05a" category="inline-link-rx"></block>을(를) 참조하십시오.</block>
 </blocks>

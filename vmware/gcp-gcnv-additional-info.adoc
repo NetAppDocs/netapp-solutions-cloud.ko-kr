@@ -18,7 +18,7 @@ summary:
 
 * Google Cloud Google Cloud NetApp Volumes Cloud 설명서
 +
-https://cloud.google.com/architecture/partners/netapp-cloud-volumes/["https://cloud.google.com/architecture/partners/netapp-cloud-volumes/"^]
+https://docs.cloud.google.com/netapp/volumes/docs/discover/overview["https://docs.cloud.google.com/netapp/volumes/docs/discover/overview"^]
 
 * Google 개인 서비스 액세스
 +

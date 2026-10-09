@@ -16,7 +16,7 @@ summary: 특히 스토리지 관리자가 인프라를 제어할 수 없는 클�
 올리버 크라우스, 저스틴 파리시, NetApp
 
 [role="lead"]
-특히 스토리지 관리자가 인프라를 제어할 수 없는 클라우드의 경우 보안은 클라우드 제공업체가 제공하는 서비스에 데이터를 신뢰하는 데 가장 중요합니다.  이 문서는 보안 제공에 대한 개요입니다. https://cloud.netapp.com/cloud-volumes-service-for-gcp["Google Cloud NetApp Volumes Google Cloud에서 제공됩니다."^] .
+특히 스토리지 관리자가 인프라를 제어할 수 없는 클라우드 환경에서 보안은 클라우드 제공업체가 제공하는 서비스에 데이터를 안심하고 맡기기 위해 가장 중요합니다. 이 문서는  https://www.netapp.com/google-cloud/netapp-volumes/["Google Cloud NetApp Volumes Google Cloud에서 제공됩니다."^]에서 제공하는 보안 서비스에 대한 개요입니다.
 
 
 

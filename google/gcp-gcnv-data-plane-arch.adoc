@@ -16,7 +16,7 @@ summary: Google Cloud NetApp Volumes Google Cloud 프라이빗 서비스 액세�
 [role="lead"]
 Google Cloud NetApp Volumes Google Cloud를 활용합니다. https://cloud.google.com/vpc/docs/configure-private-services-access["개인 서비스 접근"^] 뼈대.  이 프레임워크에서 사용자는 Google Cloud NetApp Volumes 에 연결할 수 있습니다.  이 프레임워크는 다른 Google Cloud 서비스와 마찬가지로 서비스 네트워킹 및 VPC 피어링 구조를 사용하여 테넌트 간의 완전한 격리를 보장합니다.
 
-Google Cloud NetApp Volumes 의 아키텍처 개요는 다음을 참조하세요. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/architecture["Google Cloud NetApp Volumes 아키텍처"^] .
+Google Cloud용 Google Cloud NetApp Volumes의 아키텍처 개요는 다음을 참조하십시오 https://docs.cloud.google.com/netapp/volumes/docs/discover/overview#netapp_volumes_architecture["Google Cloud NetApp Volumes 아키텍처"^].
 
 사용자 VPC(독립형 또는 공유)는 볼륨을 호스팅하는 Google Cloud NetApp Volumes 관리 테넌트 프로젝트 내의 VPC에 피어링됩니다.
 

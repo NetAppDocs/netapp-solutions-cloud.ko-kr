@@ -22,4 +22,4 @@ Google Cloud NetApp Volumes 의 모든 볼륨은 AES-256 암호화를 사용하�
 
 2021년 11월부터 고객 관리 암호화 키(CMEK) 기능 미리보기가 제공되었습니다.  이를 통해 볼륨별 키를 호스팅되는 프로젝트별, 지역별 마스터 키로 암호화할 수 있습니다. https://cloud.google.com/kms/docs["Google 키 관리 서비스(KMS)."^] KMS를 사용하면 외부 키 관리자를 연결할 수 있습니다.
 
-NetApp Volumes-Performance에 대한 KMS 구성에 대한 자세한 내용은 다음을 참조하세요. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/customer-managed-keys?hl=en_US["고객 관리 암호화 키 설정"^] .
+NetApp Volumes-Performance용 KMS 구성에 대한 자세한 내용은  https://docs.cloud.google.com/netapp/volumes/docs/configure-and-use/cmek/cmek-overview["고객 관리 암호화 키 설정"^]을(를) 참조하십시오.

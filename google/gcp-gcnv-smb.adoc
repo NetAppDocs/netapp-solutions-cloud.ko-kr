@@ -14,7 +14,7 @@ summary: SMB는 Microsoft에서 개발한 네트워크 파일 공유 프로토�
 
 
 [role="lead"]
-https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831795(v=ws.11)["중소기업"^]Microsoft에서 개발한 네트워크 파일 공유 프로토콜로, 이더넷 네트워크를 통해 여러 SMB 클라이언트에 중앙 집중식 사용자/그룹 인증, 권한, 잠금 및 파일 공유 기능을 제공합니다.  파일과 폴더는 공유를 통해 클라이언트에게 제공되며, 다양한 공유 속성으로 구성될 수 있으며 공유 수준 권한을 통해 액세스 제어를 제공합니다.  SMB는 Windows, Apple, Linux 클라이언트를 포함하여 해당 프로토콜을 지원하는 모든 클라이언트에 제공될 수 있습니다.
+https://learn.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview["중소기업"^]는 Microsoft에서 개발한 네트워크 파일 공유 프로토콜로, 이더넷 네트워크를 통해 여러 SMB 클라이언트에 중앙 집중식 사용자/그룹 인증, 권한, 잠금 및 파일 공유를 제공합니다. 파일과 폴더는 공유를 통해 클라이언트에 제공되며, 이는 다양한 공유 속성으로 구성할 수 있고 공유 수준 권한을 통해 액세스 제어를 제공합니다. SMB는 Windows, Apple, Linux 클라이언트 등 프로토콜 지원을 제공하는 모든 클라이언트에 제공될 수 있습니다.
 
 Google Cloud NetApp Volumes 프로토콜의 SMB 2.1 및 3.x 버전을 지원합니다.
 

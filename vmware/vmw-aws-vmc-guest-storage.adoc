@@ -300,7 +300,7 @@ Cloud Volumes ONTAP 공유 및 LUN은 AWS SDDC 환경에서 VMware Cloud에서 �
 재해 복구나 마이그레이션 목적으로 온프레미스 환경에서 클라우드로 볼륨을 복제하려면 사이트 간 VPN이나 DirectConnect를 사용하여 AWS에 대한 네트워크 연결을 설정합니다.  온프레미스에서 Cloud Volumes ONTAP 으로 데이터를 복제하는 내용은 이 문서의 범위를 벗어납니다.  온프레미스와 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 다음을 참조하세요.link:https://docs.netapp.com/us-en/occm/task_replicating_data.html#setting-up-data-replication-between-systems["시스템 간 데이터 복제 설정"] .
 
 
-NOTE: 사용하세요link:https://cloud.netapp.com/cvo-sizer["Cloud Volumes ONTAP 사이저"] Cloud Volumes ONTAP 인스턴스의 크기를 정확하게 조정합니다.  또한 온프레미스 성능을 모니터링하여 Cloud Volumes ONTAP 사이저의 입력으로 사용합니다.
+NOTE: link:https://bluexp.netapp.com/cvo-sizer["Cloud Volumes ONTAP 사이저"^]을(를) 사용하여 Cloud Volumes ONTAP 인스턴스의 크기를 정확하게 조정하십시오. 또한 온프레미스 성능을 모니터링하여 Cloud Volumes ONTAP 크기 조정 도구의 입력값으로 활용하십시오.
 
 . NetApp Cloud Central에 로그인하면 Fabric View 화면이 표시됩니다.  Cloud Volumes ONTAP 탭을 찾아 Cloud Manager로 이동을 선택합니다.  로그인 후 Canvas 화면이 표시됩니다.
 

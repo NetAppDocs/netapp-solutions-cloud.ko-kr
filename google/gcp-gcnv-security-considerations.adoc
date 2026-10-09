@@ -78,7 +78,7 @@ Google Cloud NetApp Volumes 사용하면 클라우드 제공업체 팀이 업데
 
 2021년 11월부터 NetApp Volumes-Performance에 대한 고객 관리 암호화(CMEK) 기능 미리보기가 제공되었습니다.  이 기능을 사용하면 Google 키 관리 서비스(KMS)에 호스팅된 프로젝트별, 지역별 마스터 키로 볼륨별 키를 암호화할 수 있습니다.  KMS를 사용하면 외부 키 관리자를 연결할 수 있습니다.
 
-NetApp Volumes-Performance에 대한 KMS 구성 방법에 대한 자세한 내용은 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/customer-managed-keys?hl=en_US["Google Cloud NetApp Volumes 문서를 참조하세요."^] .
+NetApp Volumes-Performance용 KMS 구성 방법에 대한 자세한 내용은 다음을 참조하십시오 https://docs.cloud.google.com/netapp/volumes/docs/configure-and-use/cmek/cmek-overview["Google Cloud NetApp Volumes 문서를 참조하세요."^].
 
 아키텍처에 대한 자세한 내용은 섹션을 참조하세요.link:gcp-gcnv-arch-detail.html["Google Cloud NetApp Volumes 아키텍처."]
 
@@ -148,8 +148,8 @@ Google Cloud NetApp Volumes 의 스냅샷 복사본은 읽기 전용이므로 �
 
 Google Cloud NetApp Volumes 표준 NAS 클라이언트 백업 기능(NFS 또는 SMB를 통한 백업 등)을 제공합니다.
 
-* NetApp Volumes-Performance는 다른 NetApp Volumes-Performance 볼륨에 대한 지역 간 볼륨 복제 기능을 제공합니다.  자세한 내용은 다음을 참조하세요. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/volume-replication?hl=en_US["볼륨 복제"^] Google Cloud NetApp Volumes 문서에서.
-* NetApp Volumes-SW는 서비스 기반 볼륨 백업/복원 기능을 제공합니다.  자세한 내용은 다음을 참조하세요. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/back-up?hl=en_US["클라우드 백업"^] Google Cloud NetApp Volumes 문서에서.
+* NetApp Volumes-Performance는 다른 NetApp Volumes-Performance 볼륨으로의 리전 간 볼륨 복제를 제공합니다. 자세한 내용은 Google Cloud NetApp Volumes 설명서에서  https://docs.cloud.google.com/netapp/volumes/docs/protect-data/about-volume-replication["볼륨 복제"^]을(를) 참조하십시오.
+* NetApp Volumes-SW는 서비스에서 기본적으로 볼륨 백업/복원 기능을 제공합니다. 자세한 내용은 Google Cloud NetApp Volumes 설명서의  https://docs.cloud.google.com/netapp/volumes/docs/protect-data/about-backups["클라우드 백업"^]을(를) 참조하십시오.
 
 
 볼륨 복제는 랜섬웨어 이벤트를 포함한 재해 발생 시 빠른 장애 조치를 위해 소스 볼륨의 정확한 사본을 제공합니다.
@@ -167,7 +167,7 @@ NetApp Volumes-Performance를 사용하면 Google 네트워크에서 실행되�
 
 볼륨 복제본은 읽기 전용이므로 바이러스에 의해 데이터가 감염되거나 랜섬웨어에 의해 기본 데이터 세트가 암호화된 경우 데이터를 빠르게 복구할 수 있도록 데이터의 변경 불가능한 복사본을 오프사이트에 제공합니다.  읽기 전용 데이터는 암호화되지 않지만, 기본 볼륨이 영향을 받고 복제가 발생하면 감염된 블록도 복제됩니다.  영향을 받지 않은 이전 스냅샷 복사본을 사용하여 복구할 수 있지만, 공격이 얼마나 빨리 감지되는지에 따라 SLA가 약속된 RTO/RPO 범위를 벗어날 수 있습니다.
 
-또한 Google Cloud의 지역 간 복제(CRR) 관리를 통해 볼륨 삭제, 스냅샷 삭제 또는 스냅샷 일정 변경과 같은 악의적인 관리 작업을 방지할 수 있습니다.  이 작업은 볼륨 관리자(소스 볼륨을 삭제할 수 있지만 미러를 해제할 수 없으므로 대상 볼륨을 삭제할 수 없음)와 CRR 관리자(볼륨 작업을 수행할 수 없음)를 분리하는 사용자 지정 역할을 생성하여 수행됩니다.  보다 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["보안 고려 사항"^] 각 관리자 그룹에서 허용하는 권한에 대한 자세한 내용은 Google Cloud NetApp Volumes 문서를 참조하세요.
+또한 Google Cloud의 교차 리전 복제(CRR) 관리를 통해 볼륨 삭제, 스냅샷 삭제 또는 스냅샷 일정 변경 등 악의적인 관리 작업을 방지할 수 있습니다. 이를 위해 소스 볼륨은 삭제할 수 있지만 미러를 끊을 수 없어 대상 볼륨을 삭제할 수 없는 볼륨 관리자와 볼륨 작업을 전혀 수행할 수 없는 CRR 관리자를 분리하는 사용자 지정 역할을 생성합니다. 각 관리자 그룹에 허용되는 권한에 대해서는 Google Cloud NetApp Volumes 설명서의  https://docs.cloud.google.com/netapp/volumes/docs/plan-and-prepare/iam["보안 고려 사항"^]을(를) 참조하십시오.
 
 
 
@@ -177,16 +177,16 @@ NetApp Volumes-Performance를 사용하면 Google 네트워크에서 실행되�
 
 Google Cloud NetApp Volumes 높은 데이터 내구성을 제공하지만 외부 이벤트로 인해 데이터가 손실될 수 있습니다.  바이러스나 랜섬웨어와 같은 보안 이벤트가 발생하는 경우, 적절한 시기에 데이터 액세스를 재개하기 위해 백업과 복원이 매우 중요합니다.  관리자가 실수로 Google Cloud NetApp Volumes 볼륨을 삭제할 수 있습니다.  또는 사용자가 단순히 여러 달 동안 데이터의 백업 버전을 보관하고 싶어하고 볼륨 내부에 추가 스냅샷 복사 공간을 유지하는 것이 비용 문제가 될 수도 있습니다.  최근 몇 주 동안의 백업 버전을 보관하여 손실된 데이터를 복원하는 가장 좋은 방법은 스냅샷 복사본이지만, 해당 복사본은 볼륨 내부에 저장되어 있으며 볼륨이 사라지면 손실됩니다.
 
-이러한 모든 이유로 Google Cloud NetApp Volumes 다음을 통해 백업 서비스를 제공합니다. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/back-up?hl=en_US["Google Cloud NetApp Volumes 백업"^] .
+이러한 모든 이유로 Google Cloud NetApp Volumes는  https://docs.cloud.google.com/netapp/volumes/docs/protect-data/about-backups["Google Cloud NetApp Volumes 백업"^]을(를) 통해 백업 서비스를 제공합니다.
 
 Google Cloud NetApp Volumes 백업은 Google Cloud Storage(GCS)에 볼륨 사본을 생성합니다.  볼륨 내에 저장된 실제 데이터만 백업하며, 여유 공간은 백업하지 않습니다.  이 백업은 영구적으로 증분적으로 작동합니다. 즉, 볼륨 콘텐츠를 한 번 전송한 후 변경된 데이터만 계속 백업합니다.  여러 개의 전체 백업을 거치는 기존 백업 개념과 비교했을 때, 이 방식은 백업 스토리지 용량을 대폭 절약하여 비용을 절감합니다.  백업 공간의 월별 가격은 볼륨에 비해 낮으므로 백업 버전을 더 오랫동안 보관하기에 이상적인 곳입니다.
 
 사용자는 Google Cloud NetApp Volumes 백업을 사용하여 동일한 지역 내의 동일 볼륨이나 다른 볼륨에 모든 백업 버전을 복원할 수 있습니다.  소스 볼륨이 삭제되더라도 백업 데이터는 보존되며 독립적으로 관리(예: 삭제)해야 합니다.
 
-Google Cloud NetApp Volumes 백업은 옵션으로 Google Cloud NetApp Volumes 에 내장되어 있습니다.  사용자는 볼륨별로 Google Cloud NetApp Volumes 백업을 활성화하여 보호할 볼륨을 결정할 수 있습니다.  를 참조하십시오 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/back-up?hl=en_US["Google Cloud NetApp Volumes 백업 설명서"^] 백업에 대한 정보는 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/resource-limits-quotas?hl=en_US["지원되는 최대 백업 버전 수"^] , 일정 및 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/costs?hl=en_US["가격"^] .
+Google Cloud NetApp Volumes 백업은 옵션으로 Google Cloud NetApp Volumes에 기본 제공됩니다. 사용자는 볼륨별로 Google Cloud NetApp Volumes 백업을 활성화하여 보호할 볼륨을 결정할 수 있습니다. 백업,  https://docs.cloud.google.com/netapp/volumes/docs/quotas["지원되는 최대 백업 버전 수"^], 예약 및  https://cloud.google.com/netapp/volumes/pricing["가격"^]에 대한 자세한 내용은  https://docs.cloud.google.com/netapp/volumes/docs/protect-data/about-backups["Google Cloud NetApp Volumes 백업 설명서"^]을 참조하십시오.
 
 프로젝트의 모든 백업 데이터는 GCS 버킷에 저장됩니다. 이 버킷은 서비스에서 관리하며 사용자에게는 보이지 않습니다.  각 프로젝트는 다른 버킷을 사용합니다.  현재 버킷은 Google Cloud NetApp Volumes 볼륨과 동일한 지역에 있지만 더 많은 옵션에 대해 논의 중입니다.  최신 상태를 확인하려면 설명서를 참조하세요.
 
 Google Cloud NetApp Volumes 버킷에서 GCS로 데이터를 전송하는 데는 HTTPS 및 TLS1.2를 사용하는 서비스 내부 Google 네트워크가 사용됩니다.  저장된 데이터는 Google에서 관리하는 키를 사용하여 암호화됩니다.
 
-Google Cloud NetApp Volumes 백업을 관리하려면(백업 생성, 삭제 및 복원) 사용자에게 다음 권한이 있어야 합니다. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["역할/netappcloudvolumes.admin"^] 역할.
+Google Cloud NetApp Volumes 백업을 관리(백업 생성, 삭제 및 복원)하려면 사용자에게  https://docs.cloud.google.com/netapp/volumes/docs/plan-and-prepare/iam["roles/netapp.admin"^] 역할이 있어야 합니다.
