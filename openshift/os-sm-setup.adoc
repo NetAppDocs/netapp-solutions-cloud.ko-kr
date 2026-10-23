@@ -37,7 +37,7 @@ image:rhhc-self-managed-aws.png["입력/출력 대화 상자 또는 서면 내�
 ACM(고급 클러스터 관리) 마법사를 사용하여 AWS에서 OpenShift 클러스터를 만듭니다.  지침을 참조하세요link:https://docs.openshift.com/dedicated/osd_install_access_delete_cluster/creating-an-aws-cluster.html["여기"] .
 
 
-NOTE: OpenShift Hybrid Cloud 콘솔에서 AWS에 클러스터를 생성할 수도 있습니다.  나타내다link:https://docs.openshift.com/container-platform/4.10/installing/installing_aws/installing-aws-default.html["여기"] 지침을 보려면 클릭하세요.
+NOTE: OpenShift 하이브리드 클라우드 콘솔에서 AWS에 클러스터를 생성할 수도 있습니다. 자세한 지침은 link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.10/html/installing/installing-on-aws["여기"^]을(를) 참조하십시오.
 
 
 TIP: ACM을 사용하여 클러스터를 생성할 때, 양식 보기에서 세부 정보를 입력한 후 yaml 파일을 편집하여 설치를 사용자 정의할 수 있습니다.  클러스터가 생성된 후에는 문제 해결이나 추가적인 수동 구성을 위해 클러스터 노드에 ssh 로그인할 수 있습니다.  설치 중에 제공한 ssh 키와 사용자 이름 core를 사용하여 로그인합니다.

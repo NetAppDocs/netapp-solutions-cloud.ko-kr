@@ -55,7 +55,7 @@ image:rhhc-default-storage-class.png["입력/출력 대화 상자 또는 서면 
 
 .OpenShift GitOps(Argo CD)를 사용하여 애플리케이션 배포
 * 클러스터에 OpenShift GitOps 운영자를 설치합니다.  지침을 참조하세요link:https://docs.openshift.com/container-platform/4.10/cicd/gitops/installing-openshift-gitops.html["여기"] .
-* 클러스터에 대한 새로운 Argo CD 인스턴스를 설정합니다.  지침을 참조하세요link:https://docs.openshift.com/container-platform/4.10/cicd/gitops/setting-up-argocd-instance.html["여기"] .
+* SetUp 클러스터용 새 Argo CD 인스턴스를 설정하십시오. 지침 link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.10/html/cicd/gitops#gitops-argo-cd-installation_setting-up-argocd-instance["여기"^]을 참조하십시오.
 
 
 Argo CD 콘솔을 열고 애플리케이션을 배포합니다. 예를 들어, Helm 차트를 사용하여 Jenkins 애플리케이션을 Argo CD로 배포할 수 있습니다. 애플리케이션을 생성할 때 다음과 같은 세부 정보가 제공됩니다. 프로젝트: default 클러스터: +'https://kubernetes.default.svc'+[](따옴표 제외) 네임스페이스: Jenkins Helm 차트 URL: +'https://charts.bitnami.com/bitnami'+[](따옴표 제외)

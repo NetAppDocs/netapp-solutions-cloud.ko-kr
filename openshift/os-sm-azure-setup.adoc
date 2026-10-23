@@ -28,10 +28,10 @@ NOTE: Azure에 Red Hat OpenShift Container 플랫폼 클러스터를 배포하�
 .CLI에서 Azure에 OCP 클러스터를 설치합니다.
 [%collapsible%open]
 ====
-* 명시된 모든 전제 조건을 충족했는지 확인하세요.link:https://docs.openshift.com/container-platform/4.13/installing/installing_azure/installing-azure-vnet.html["여기"] .
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.10/html-single/installing/index#installing-azure-vnet["여기"^]에 명시된 모든 필수 조건을 충족했는지 확인하십시오.
 * VPN, 서브넷, 네트워크 보안 그룹, 개인 DNS 영역을 만듭니다.  VPN 게이트웨이와 사이트 간 VPN 연결을 생성합니다.
 * 온프레미스와 Azure 간의 VPN 연결을 위해 pfsense VM을 생성하고 구성했습니다.  지침은 다음을 참조하세요.link:https://docs.netgate.com/pfsense/en/latest/recipes/ipsec-s2s-psk.html["여기"] .
-* 설치 프로그램과 풀 시크릿을 얻고 설명서에 제공된 단계에 따라 클러스터를 배포합니다.link:https://docs.openshift.com/container-platform/4.13/installing/installing_azure/installing-azure-vnet.html["여기"] .
+* 설치 프로그램과 풀 시크릿을 확보하고 설명서에 제공된 단계에 따라 클러스터를 배포하십시오 link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.10/html-single/installing/index#installing-azure-vnet["여기"^].
 * 클러스터 설치가 완료되고 kubeconfig 파일과 클러스터 콘솔에 로그인할 수 있는 사용자 이름과 비밀번호가 제공됩니다.
 
 

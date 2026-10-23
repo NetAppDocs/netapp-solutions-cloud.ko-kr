@@ -70,7 +70,7 @@ Google Cloud NetApp Volumes LDAP 클라이언트 역할을 하며 UNIX ID에 대
 
 Active Directory를 UNIX LDAP 서버로 사용하려면 UNIX ID에 사용하려는 사용자와 그룹에 필요한 UNIX 특성을 채워야 합니다.  Google Cloud NetApp Volumes 속성을 기반으로 쿼리하는 기본 LDAP 스키마 템플릿을 사용합니다. https://tools.ietf.org/id/draft-howard-rfc2307bis-01.txt["RFC-2307-비스"^] .  결과적으로, 다음 표는 사용자 및 그룹에 대해 채워야 하는 최소한의 필수 Active Directory 특성과 각 특성의 용도를 보여줍니다.
 
-Active Directory에서 LDAP 특성을 설정하는 방법에 대한 자세한 내용은 다음을 참조하세요. https://cloud.google.com/architecture/partners/netapp-cloud-volumes/managing-dual-protocol-access["이중 프로토콜 액세스 관리."^]
+Active Directory에서 LDAP 속성을 설정하는 방법에 대한 자세한 내용은 다음을 참조하십시오. https://docs.cloud.google.com/netapp/volumes/docs/configure-and-use/active-directory/ad-ldap-access["이중 프로토콜 액세스 관리."^]
 
 |===
 | 기인하다 | 그것이 하는 일 

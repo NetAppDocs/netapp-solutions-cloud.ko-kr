@@ -37,7 +37,7 @@ image:rhhc-on-premises.png["입력/출력 대화 상자 또는 서면 내용을 
 .VMware vSphere(Hub 클러스터)에 OpenShift Container Platform 클러스터 배포 및 구성
 [%collapsible%open]
 ====
-지침을 참조하세요.link:https://docs.openshift.com/container-platform/4.17/installing/installing_vsphere/installing-vsphere-assisted-installer.html["지원 배치"] OCP 클러스터를 배포하는 방법.
+OCP 클러스터를 배포하는 link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/installing_on_vmware_vsphere/installing-vsphere-assisted-installer["지원 배치"^] 방법에 대한 지침을 참조하십시오.
 
 
 TIP: 다음 사항을 기억하세요. - 설치 프로그램에 제공할 ssh 공개 키와 개인 키를 생성하세요.  이러한 키는 필요한 경우 마스터 및 워커 노드에 로그인하는 데 사용됩니다.  - 지원 설치 프로그램에서 설치 프로그램을 다운로드하세요.  이 프로그램은 마스터 및 워커 노드에 대해 VMware vSphere 환경에서 생성한 VM을 부팅하는 데 사용됩니다.  - VM은 최소한의 CPU, 메모리, 하드 디스크 요구 사항을 가져야 합니다.  (vm create 명령을 참조하세요.link:https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2024/html/installing_openshift_container_platform_with_the_assisted_installer/installing-on-vsphere["이것"] (이 정보를 제공하는 마스터 및 워커 노드에 대한 페이지) - 모든 VM에서 diskUUID를 활성화해야 합니다.  - 마스터용으로 최소 3개의 노드와 워커용으로 3개의 노드를 만듭니다.  - 설치 프로그램에서 발견되면 VMware vSphere 통합 토글 버튼을 켭니다.
