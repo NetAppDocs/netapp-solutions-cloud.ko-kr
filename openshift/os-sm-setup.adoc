@@ -34,7 +34,7 @@ image:rhhc-self-managed-aws.png["입력/출력 대화 상자 또는 서면 내�
 * VPC에 대한 Route 53 개인 호스팅 영역과 DNS 확인자를 만듭니다.
 
 
-ACM(고급 클러스터 관리) 마법사를 사용하여 AWS에서 OpenShift 클러스터를 만듭니다.  지침을 참조하세요link:https://docs.openshift.com/dedicated/osd_install_access_delete_cluster/creating-an-aws-cluster.html["여기"] .
+Advanced Cluster Management(ACM) 마법사에서 AWS에 OpenShift 클러스터를 생성하십시오. 지침 link:https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_aws/osd-creating-a-cluster-on-aws["여기"^]을 참조하십시오.
 
 
 NOTE: OpenShift 하이브리드 클라우드 콘솔에서 AWS에 클러스터를 생성할 수도 있습니다. 자세한 지침은 link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.10/html/installing/installing-on-aws["여기"^]을(를) 참조하십시오.

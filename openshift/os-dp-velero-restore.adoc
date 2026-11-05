@@ -28,7 +28,7 @@ image:redhat-openshift-oadp-app-deleted-001.png["앱이 삭제되었습니다"]
 .동일한 네임스페이스로 복원
 [%collapsible%open]
 ====
-방금 만든 백업에서 복원하려면 복원 사용자 지정 리소스(CR)를 만들어야 합니다.  이름을 지정하고, 복원하려는 백업의 이름을 지정한 다음 restorePVs를 true로 설정해야 합니다.  추가 매개변수는 표시된 대로 설정할 수 있습니다.link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications.html["선적 서류 비치"] .  만들기 버튼을 클릭하세요.
+방금 생성한 백업에서 복원하려면 Restore Custom Resource(CR)를 생성해야 합니다. 이름을 지정하고, 복원할 백업의 이름을 지정한 다음, restorePVs를 true로 설정해야 합니다. 추가 매개변수는 link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#restoring-applications["선적 서류 비치"^]에 표시된 대로 설정할 수 있습니다. Create 버튼을 클릭합니다.
 
 image:redhat-openshift-oadp-restore-001.png["CR 생성 복원"]
 

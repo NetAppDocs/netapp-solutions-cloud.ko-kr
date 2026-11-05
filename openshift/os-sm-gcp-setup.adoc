@@ -26,7 +26,7 @@ NOTE: GCP에 Red Hat OpenShift Container 플랫폼 클러스터를 배포하는 
 설정 과정은 다음 단계로 나눌 수 있습니다.
 
 .CLI에서 GCP에 OCP 클러스터 설치
-* 명시된 모든 전제 조건을 충족했는지 확인하세요.link:https://docs.openshift.com/container-platform/4.13/installing/installing_gcp/installing-gcp-default.html["여기"] .
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/installing_on_google_cloud/index#installing-gcp-default["여기"^]에 명시된 모든 필수 조건을 충족했는지 확인하십시오.
 * 온프레미스와 GCP 간의 VPN 연결을 위해 pfsense VM을 생성하고 구성했습니다.  지침은 다음을 참조하세요. https://docs.netgate.com/pfsense/en/latest/recipes/ipsec-s2s-psk.html["여기"] .
 +
 ** pfsense의 원격 게이트웨이 주소는 Google Cloud Platform에서 VPN 게이트웨이를 생성한 후에만 구성할 수 있습니다.
@@ -36,7 +36,7 @@ NOTE: GCP에 Red Hat OpenShift Container 플랫폼 클러스터를 배포하는 
 
 * 이제 GCP에 OpenShift 클러스터를 설치합니다.
 +
-** 설치 프로그램과 풀 시크릿을 얻고 설명서에 제공된 단계에 따라 클러스터를 배포합니다. https://docs.openshift.com/container-platform/4.13/installing/installing_gcp/installing-gcp-default.html["여기"] .
+** 설치 프로그램과 풀 시크릿을 얻은 후, 설명서에 제공된 단계에 따라 클러스터를 배포하십시오 https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/installing_on_google_cloud/index#installing-gcp-default["여기"^].
 ** 설치하면 Google Cloud Platform에 VPC 네트워크가 생성됩니다.  또한 Cloud DNS에 개인 영역을 만들고 A 레코드를 추가합니다.
 +
 *** VPC 네트워크의 CIDR 블록 주소를 사용하여 pfsense를 구성하고 VPN 연결을 설정합니다.  방화벽이 올바르게 설정되었는지 확인하세요.

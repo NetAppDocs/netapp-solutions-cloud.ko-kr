@@ -24,7 +24,7 @@ image:rhhc-osd-with-gcnv.png["입력/출력 대화 상자 또는 서면 내용�
 
 .Google Cloud에 OSD 클러스터 설치
 * 클러스터에 기존 VPC를 사용하려면 OSD 클러스터에 대한 VPC, 두 개의 서브넷, 클라우드 라우터, 두 개의 GCP 클라우드 NAT를 만들어야 합니다.  나타내다link:https://cloud.redhat.com/experts/gcp/osd_preexisting_vpc/["여기"] 지침을 보려면 클릭하세요.
-* 나타내다link:https://docs.openshift.com/dedicated/osd_install_access_delete_cluster/creating-a-gcp-cluster.html#osd-create-gcp-cluster-ccs_osd-creating-a-cluster-on-gcp["여기"] CCS(Customer Cloud Subscription) 청구 모델을 사용하여 GCP에 OSD 클러스터를 설치하는 방법에 대한 지침을 확인하세요.  OSD는 Google Cloud Marketplace에도 포함되어 있습니다.  Google Cloud Marketplace 솔루션을 사용하여 OSD를 설치하는 방법을 보여주는 비디오가 있습니다.link:https://www.youtube.com/watch?v=p9KBFvMDQJM["여기"] .
+* Customer Cloud Subscription(CCS) 결제 모델을 사용하여 GCP에 OSD 클러스터를 설치하는 방법에 대한 지침은 link:https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/index#osd-create-gcp-cluster-ccs_osd-creating-a-cluster-on-gcp["여기"^]을(를) 참조하십시오. OSD는 Google Cloud Marketplace에서도 제공됩니다. Google Cloud Marketplace 솔루션을 사용하여 OSD를 설치하는 방법을 보여주는 동영상은 link:https://www.youtube.com/watch?v=p9KBFvMDQJM["여기"]에 있습니다.
 
 
 .Google Cloud NetApp Volumes 활성화
@@ -60,7 +60,7 @@ allowVolumeExpansion: true
 ----
 .OpenShift GitOps(Argo CD)를 사용하여 애플리케이션 배포
 * 클러스터에 OpenShift GitOps 오퍼레이터를 설치하십시오. 지침을 참조하십시오 link:https://docs.redhat.com/en/documentation/red_hat_openshift_gitops/1.13/html/installing_gitops/index["여기"^].
-* 클러스터에 대한 새로운 Argo CD 인스턴스를 설정합니다.  지침을 참조하세요link:https://docs.openshift.com/gitops/1.13/argocd_instance/setting-up-argocd-instance.html["여기"] .
+* SetUp 클러스터용 새 Argo CD 인스턴스를 설정하십시오. 지침 link:https://docs.redhat.com/en/documentation/red_hat_openshift_gitops/1.13/html/argo_cd_instance/setting-up-argocd-instance["여기"^]을 참조하십시오.
 
 
 Argo CD 콘솔을 열고 애플리케이션을 배포합니다. 예를 들어, Helm 차트를 사용하여 Jenkins 애플리케이션을 Argo CD로 배포할 수 있습니다. 애플리케이션을 생성할 때 다음과 같은 세부 정보가 제공됩니다. 프로젝트: default 클러스터: +'https://kubernetes.default.svc'+[](따옴표 제외) 네임스페이스: Jenkins Helm 차트 URL: +'https://charts.bitnami.com/bitnami'+[](따옴표 제외)

@@ -16,7 +16,7 @@ summary: NetApp ONTAP 통한 Red Hat OpenShift 컨테이너 애플리케이션 �
 [role="lead"]
 이 참조 문서 섹션에서는 NetApp ONTAP S3 또는 NetApp StorageGRID S3에서 Velero와 함께 OpenShift API for Data Protection(OADP)을 사용하여 컨테이너 앱의 백업을 만드는 방법에 대한 세부 정보를 제공합니다.  앱의 영구 볼륨(PV)을 포함한 네임스페이스 범위 리소스의 백업은 CSI Trident Snapshots를 사용하여 생성됩니다.
 
-컨테이너 앱의 영구 저장소는 OpenShift 클러스터에 통합된 ONTAP 저장소를 사용하여 백업할 수 있습니다.link:https://docs.netapp.com/us-en/trident/["Trident CSI"] .  이 섹션에서는 다음을 사용합니다.link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs.html["데이터 보호를 위한 OpenShift API(OADP)"] 데이터 볼륨을 포함한 앱의 백업을 수행합니다.
+컨테이너 앱을 위한 영구 스토리지는 link:https://docs.netapp.com/us-en/trident/["Trident CSI"]를 사용하여 OpenShift 클러스터에 통합된 ONTAP 스토리지로 지원될 수 있습니다. 이 섹션에서는 link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#installing-oadp-ocs["데이터 보호를 위한 OpenShift API(OADP)"]를 사용하여 데이터 볼륨을 포함한 앱의 백업을 다음으로 수행합니다.
 
 * ONTAP 객체 스토리지
 * 스토리지그리드
@@ -44,4 +44,4 @@ OADP 1.3은 OpenShift 클러스터 4.12 이상의 운영자 허브에서 사용�
 * helm을 사용하여 postgresql을 설치했습니다.
 
 
-link:https://docs.netapp.com/us-en/trident/["Trident CSI"] link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs.html["데이터 보호를 위한 OpenShift API(OADP)"] link:https://velero.io/["벨레로"]
+link:https://docs.netapp.com/us-en/trident/["Trident CSI"] link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#installing-oadp-ocs["데이터 보호를 위한 OpenShift API(OADP)"] link:https://velero.io/["벨레로"]

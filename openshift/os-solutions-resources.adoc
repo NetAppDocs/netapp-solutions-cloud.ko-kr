@@ -26,7 +26,7 @@ summary:
 . link:https://docs.netapp.com/us-en/ontap/["ONTAP 9"^]
 . link:https://github.com/NetApp/Verda["NetApp 베르다"^] - Verda(오픈 소스)는 인기 있는 클라우드 네이티브 데이터 집약적 애플리케이션을 위한 참조 실행 후크 모음을 제공합니다
 . link:https://bluexp.netapp.com/["NetApp BlueXP"^]
-. link:https://docs.openshift.com/rosa/welcome/index.html["AWS의 Red Hat OpenShift 서비스"^]
+. link:https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4["AWS 클래식 아키텍처 기반 Red Hat OpenShift 서비스"^]
 . link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/["Amazon FSx ONTAP"^]
 . link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/installing_on_google_cloud/index["GCP에 OpenShift 클러스터 설치"^]
 . link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/installing_on_azure/index["Azure에 OpenShift 클러스터 설치"^]

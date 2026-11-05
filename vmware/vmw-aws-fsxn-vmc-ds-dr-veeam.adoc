@@ -53,7 +53,7 @@ image:dr-veeam-fsx-001.png["VMC용 Veeam Replication 및 FSx ONTAP 사용한 DR 
 === 높은 수준의 단계
 
 . Veeam Backup and Replication 소프트웨어는 적절한 네트워크 연결을 갖춘 온프레미스 환경에서 실행됩니다.
-. AWS에서 VMware Cloud 구성, VMware Cloud Tech Zone 문서 참조link:https://vmc.techzone.vmware.com/fsx-guide["Amazon FSx ONTAP 배포 가이드와 VMware Cloud on AWS 통합"] 배포하려면 VMware Cloud on AWS SDDC 및 FSx ONTAP NFS 데이터 저장소로 구성합니다.  (최소한의 구성으로 설정된 조종등 환경은 DR 목적으로 사용될 수 있습니다.  사고 발생 시 VM은 이 클러스터로 장애 조치되며, 추가 노드를 추가할 수 있습니다.
+. VMware Cloud on AWS를 구성하려면 VMware Cloud Tech Zone 문서 link:https://www.vmware.com/docs/vmware-cloud-on-aws-integration-with-amazon-fsx-for-netapp-ontap-deployment-guide["Amazon FSx ONTAP 배포 가이드와 VMware Cloud on AWS 통합"^]를 참조하여 VMware Cloud on AWS SDDC를 배포하고 FSx ONTAP을 NFS 데이터스토어로 구성하십시오. (최소한의 구성으로 설정된 파일럿 라이트 환경을 DR 목적으로 사용할 수 있습니다. 인시던트 발생 시 VM이 이 클러스터로 페일오버되며, 추가 노드를 추가할 수 있습니다.)
 . Veeam Backup and Replication을 사용하여 VM 복제본을 생성하기 위한 복제 작업을 설정합니다.
 . 장애 조치 계획을 수립하고 장애 조치를 수행합니다.
 . 재해 이벤트가 완료되고 기본 사이트가 가동되면 프로덕션 VM으로 다시 전환합니다.

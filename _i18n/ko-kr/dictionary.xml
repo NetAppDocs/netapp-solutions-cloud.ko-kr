@@ -1243,7 +1243,6 @@
   <block id="dc10c0e9cbe76dfe32384430dfaa0783" category="inline-image-macro">앱이 삭제되었습니다</block>
   <block id="5ca41ac886290c321760a70fc153f405" category="paragraph"><block ref="5ca41ac886290c321760a70fc153f405" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2003f0bb711323d885f4b2f0ae1d61bd" category="example-title">동일한 네임스페이스로 복원</block>
-  <block id="19b526387a9916ff1e3f24e7910f1f12" category="paragraph">방금 만든 백업에서 복원하려면 복원 사용자 지정 리소스(CR)를 만들어야 합니다.  이름을 지정하고, 복원하려는 백업의 이름을 지정한 다음 restorePVs를 true로 설정해야 합니다.  추가 매개변수는 표시된 대로 설정할 수 있습니다.<block ref="d4d5c1753093015ad4958595f6604080" category="inline-link-macro-rx"></block> .  만들기 버튼을 클릭하세요.</block>
   <block id="1f38706eb4f3fcc34033d5f026d6870b" category="inline-image-macro">CR 생성 복원</block>
   <block id="d0ae8a335e3948d062402f8adb9d4c68" category="paragraph"><block ref="d0ae8a335e3948d062402f8adb9d4c68" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cb9d44efcb91bddb93de587d2409719a" category="paragraph">단계가 완료로 표시되면 스냅샷을 찍었을 때의 상태로 앱이 복원된 것을 확인할 수 있습니다.  앱이 동일한 네임스페이스로 복원됩니다.</block>
@@ -1282,7 +1281,6 @@
   <block id="7b4753d2cdb78e5f0418ac2b8feacb30" category="paragraph">이 참조 문서 섹션에서는 NetApp ONTAP S3 또는 NetApp StorageGRID S3에서 Velero와 함께 OpenShift API for Data Protection(OADP)을 사용하여 컨테이너 앱의 백업을 만드는 방법에 대한 세부 정보를 제공합니다.  앱의 영구 볼륨(PV)을 포함한 네임스페이스 범위 리소스의 백업은 CSI Trident Snapshots를 사용하여 생성됩니다.</block>
   <block id="4f2e2fd0041732a5bfeffd80536904be" category="inline-link-macro">Trident CSI</block>
   <block id="f2a7e994212d23b2ffccc1bee676f29f" category="inline-link-macro">데이터 보호를 위한 OpenShift API(OADP)</block>
-  <block id="a01e29d3ad3be68d655c5cba9c9a8f4b" category="paragraph">컨테이너 앱의 영구 저장소는 OpenShift 클러스터에 통합된 ONTAP 저장소를 사용하여 백업할 수 있습니다.<block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block> .  이 섹션에서는 다음을 사용합니다.<block ref="aae2b983a17c22c7bfaf66419d8e0186" category="inline-link-macro-rx"></block> 데이터 볼륨을 포함한 앱의 백업을 수행합니다.</block>
   <block id="4e62c9089f3c563d3b9c278e981a164f" category="list-text">ONTAP 객체 스토리지</block>
   <block id="93a85f81fe97cee8e13b0ca36564d827" category="paragraph">필요할 때 백업에서 복원합니다.  백업이 생성된 클러스터에만 앱을 복원할 수 있습니다.</block>
   <block id="645cfb8bb0213c85adb7638ec5054531" category="paragraph">OADP를 사용하면 OpenShift 클러스터에서 애플리케이션의 백업, 복원 및 재해 복구가 가능합니다.  OADP로 보호할 수 있는 데이터에는 Kubernetes 리소스 개체, 영구 볼륨 및 내부 이미지가 포함됩니다.</block>
@@ -1299,7 +1297,6 @@
   <block id="45d1e500370372fc7e76e110b5aff92d" category="list-text">Trident 24.02</block>
   <block id="109770c2c1397dfc771c00e133c261d7" category="list-text">ONTAP 9.12</block>
   <block id="cbb196f192ae4249989f2ccc43af86e2" category="list-text">helm을 사용하여 postgresql을 설치했습니다.</block>
-  <block id="0d2e4b58feb9806fe45271160030d1b1" category="paragraph"><block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block> <block ref="aae2b983a17c22c7bfaf66419d8e0186" category="inline-link-macro-rx"></block> <block ref="baf3dad02604469cf9b36dfd048d949d" category="inline-link-macro-rx"></block></block>
   <block id="2b4ffa904eb16d68fecf846cc9767cb0" category="paragraph">데이터 보호에 대한 요구 사항은 특정 시점의 복사본으로 되돌리는 것부터 인간의 개입 없이 다른 오류 도메인으로 자동으로 장애 조치하는 것까지 다양합니다.  많은 고객이 ONTAP Kubernetes 애플리케이션용 기본 스토리지 플랫폼으로 선택하는 이유는 멀티테넌시, 멀티 프로토콜, 고성능 및 대용량 제공, 다중 사이트 위치에 대한 복제 및 캐싱, 보안 및 유연성과 같은 풍부한 기능 때문입니다.</block>
   <block id="3e27528a048bdb90c1e5af896157ebcf" category="section-title">MetroCluster 통한 비즈니스 연속성</block>
   <block id="75173a4bfbc4b9d0487876943898d53a" category="paragraph">ONTAP 용 하드웨어 플랫폼의 대부분은 장치 장애로부터 보호하는 고가용성 기능을 갖추고 있어 재해 복구를 수행할 필요가 없습니다.  하지만 화재나 기타 재해로부터 보호하고 RPO가 0이고 RTO가 낮은 상태로 사업을 계속하려면 종종 MetroCluster 솔루션이 사용됩니다.</block>
@@ -1353,7 +1350,6 @@
   <block id="518e5d3065cfd484c8e842b4829f7835" category="paragraph"><block ref="518e5d3065cfd484c8e842b4829f7835" category="inline-image-macro-rx" type="image"></block></block>
   <block id="a987ad8d187d1a5fffc9da88dfb19edc" category="list-title">Google Cloud에 OSD 클러스터 설치</block>
   <block id="345db65ec22e4c7389849b0b24094c64" category="list-text">클러스터에 기존 VPC를 사용하려면 OSD 클러스터에 대한 VPC, 두 개의 서브넷, 클라우드 라우터, 두 개의 GCP 클라우드 NAT를 만들어야 합니다.  나타내다<block ref="187acd02e150778713e38fc4eae64a6c" category="inline-link-macro-rx"></block> 지침을 보려면 클릭하세요.</block>
-  <block id="460d28f29dbbd4390977e3ed36f0bbc5" category="list-text">나타내다<block ref="7cbce6c4ab29eafdf8816334d06b446a" category="inline-link-macro-rx"></block> CCS(Customer Cloud Subscription) 청구 모델을 사용하여 GCP에 OSD 클러스터를 설치하는 방법에 대한 지침을 확인하세요.  OSD는 Google Cloud Marketplace에도 포함되어 있습니다.  Google Cloud Marketplace 솔루션을 사용하여 OSD를 설치하는 방법을 보여주는 비디오가 있습니다.<block ref="cdbe8627d776d25dee1ddd985e434d7c" category="inline-link-macro-rx"></block> .</block>
   <block id="c6356a6ff92ca1865e1a12560934bc7e" category="list-title">Google Cloud NetApp Volumes 활성화</block>
   <block id="347ac462ff0ef3401f24a865324be249" category="list-text">나타내다<block ref="751cb98e775d2747cfe530b0942b6a92" category="inline-link-macro-rx"></block> Google Cloud NetApp Volumes 에 대한 액세스 설정에 대한 정보는 다음을 참조하세요.  다음 단계를 모두 따르세요.</block>
   <block id="4e7d1ad4abc6456f5fe1caa1c1235bfa" category="list-text">스토리지 풀을 생성합니다.  나타내다<block ref="fad22d5c3b7ea17dd99ffedacb6a8c86" category="inline-link-macro-rx"></block> Google Cloud NetApp Volumes 에서 스토리지 풀을 설정하는 방법에 대한 정보입니다.  OSD에서 실행되는 상태 저장 Kubernetes 애플리케이션의 볼륨은 스토리지 풀 내에 생성됩니다.</block>
@@ -1364,7 +1360,6 @@
   <block id="ddb3824d66d83c1cb42a0f409b88c3f5" category="list-text">현재 쿠버네티스의 스토리지 클래스 중에 기본값으로 표시된 것이 있다면, 스토리지 클래스를 편집하여 해당 주석을 제거하세요.</block>
   <block id="83a6edfaeb8960933ba30055e77c4031" category="list-text">Trident CSI 프로비저너를 사용하여 NetApp 볼륨에 대한 스토리지 클래스를 하나 이상 만듭니다.  주석을 사용하여 저장 클래스 중 하나만 기본값으로 지정합니다.  이를 통해 PVC는 PVC 매니페스트에서 명시적으로 호출되지 않은 경우에도 이 저장 클래스를 사용할 수 있습니다.  주석이 포함된 예는 아래와 같습니다.</block>
   <block id="bb2978b82e7eef8973a778154ed9d1d8" category="list-title">OpenShift GitOps(Argo CD)를 사용하여 애플리케이션 배포</block>
-  <block id="2f32c13166e5bf78897d9948ab7ba878" category="list-text">클러스터에 대한 새로운 Argo CD 인스턴스를 설정합니다.  지침을 참조하세요<block ref="92e97978dfa95fc31fba8b02ddee3516" category="inline-link-macro-rx"></block> .</block>
   <block id="7d6d4165ad5f6730731dde0ccade66be" category="doc">Red Hat OpenShift 워크로드를 위한 추가 NetApp 하이브리드 멀티클라우드 솔루션</block>
   <block id="8f1d3df73fb3b1a1a98cb44ce73c8c9a" category="section-title">추가 솔루션</block>
   <block id="9b2f9698f9a33314b6eb0d86eb8929c9" category="doc">AWS에서 관리형 Red Hat OpenShift 컨테이너 플랫폼 배포 및 구성</block>
@@ -1373,7 +1368,6 @@
   <block id="073a5b3768d5cfb65b797673701eb957" category="admonition">이 솔루션은 AWS의 두 VPC에 있는 두 개의 ROSA 클러스터를 사용하여 검증되었습니다.  각 ROSA 클러스터는 Trident 사용하여 FSx ONTAP 과 통합되었습니다.  AWS에 ROSA 클러스터와 FSx ONTAP 배포하는 방법에는 여러 가지가 있습니다.  설정에 대한 이러한 간략한 설명은 사용된 특정 방법에 대한 문서 링크를 제공합니다.  제공된 관련 링크에서 다른 방법을 참조할 수 있습니다.<block ref="0dda26563abbac8fd54607a52d591e91" category="inline-link-macro-rx"></block> .</block>
   <block id="776e644936fa311303e288b8df968fc8" category="list-title">ROSA 클러스터 설치</block>
   <block id="b3e83e12e2309b03bb799e34f55ac838" category="list-text">두 개의 VPC를 만들고 VPC 간에 VPC 피어링 연결을 설정합니다.</block>
-  <block id="8d550961a2333f8c7184c49f43b11441" category="list-text">나타내다<block ref="703596d786038115126420be8929a2a3" category="inline-link-macro-rx"></block> ROSA 클러스터를 설치하는 방법에 대한 지침입니다.</block>
   <block id="5b8f991d2394ea231b615e37640d86fe" category="list-title">FSx ONTAP 설치</block>
   <block id="c772e08c8d32e90026f0270b4ddc07bd" category="list-text">BlueXP 에서 VPC에 FSx ONTAP 설치합니다.  나타내다<block ref="34abba7bef53102fd63639b9b9679762" category="inline-link-macro-rx"></block> BlueXP 계정을 생성하고 시작하려면 여기를 클릭하세요.  나타내다<block ref="2295d3162905f9dd45d3ca6c8a209ad1" category="inline-link-macro-rx"></block> FSx ONTAP 설치하기 위해서.  나타내다<block ref="34abba7bef53102fd63639b9b9679762" category="inline-link-macro-rx"></block> AWS에서 FSx ONTAP 관리하기 위한 커넥터를 생성합니다.</block>
   <block id="e80e4c833595d16693cb89be6ffa0411" category="list-text">AWS를 사용하여 FSx ONTAP 배포합니다.  나타내다<block ref="96729d098c0f6096edb6c44f431ce934" category="inline-link-macro-rx"></block> AWS 콘솔을 사용하여 배포합니다.</block>
@@ -1385,7 +1379,6 @@
   <block id="430d3448fd189fd3d6662732feb19292" category="list-text">나타내다<block ref="e128541cde7fad4b75ad1c7ebfcc5826" category="inline-link-macro-rx"></block> 백엔드와 스토리지 클래스 생성에 대한 자세한 내용은 다음을 참조하세요.</block>
   <block id="a13d721aed664ec4974349a0a4cd1184" category="list-text">OpenShift 콘솔에서 Trident CSI를 기본값으로 사용하여 FsxN에 대해 생성된 스토리지 클래스를 만듭니다.  아래의 스크린샷을 참조하세요.</block>
   <block id="ed119532e0d1f0ce424b19f98f51fdcc" category="paragraph"><block ref="ed119532e0d1f0ce424b19f98f51fdcc" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="28832d59ac5a06d16e97fd07fb21b521" category="list-text">클러스터에 OpenShift GitOps 운영자를 설치합니다.  지침을 참조하세요<block ref="946032aa50bddc23d84d8e7c39ffd30b" category="inline-link-macro-rx"></block> .</block>
   <block id="c6900348e4c35229bfdef15cd046933d" category="paragraph">Helm 매개변수: global.storageClass: fsxn-nas</block>
   <block id="a92627d33b05b20f86355f0ec9c1786f" category="doc">관리형 Red Hat OpenShift 컨테이너 플랫폼 워크로드를 갖춘 NetApp 솔루션</block>
   <block id="bcdc55eb7a6d566683a3cf8d0715610c" category="paragraph">고객은 "클라우드에서 태어났을 수도 있고", 현대화 여정의 어느 시점에 데이터 센터에서 일부 선택된 워크로드나 모든 워크로드를 클라우드로 옮길 준비가 되었을 수도 있습니다.  이들은 워크로드를 실행하기 위해 클라우드에서 공급자가 관리하는 OpenShift 컨테이너와 공급자가 관리하는 NetApp 스토리지를 사용하기로 선택할 수 있습니다.  컨테이너 워크로드를 위한 성공적인 프로덕션 준비 환경을 구축하려면 클라우드에서 관리형 Red Hat OpenShift 컨테이너 클러스터를 계획하고 배포해야 합니다.  NetApp 3대 퍼블릭 클라우드에서 관리형 Red Hat 솔루션을 위한 완전 관리형 스토리지 제품을 제공합니다.</block>
@@ -1417,13 +1410,11 @@
   <block id="e1070536ee843d6376c8ed3a46eccf0d" category="paragraph"><block ref="e1070536ee843d6376c8ed3a46eccf0d" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5b731dec060ef838e363b4d57a0df3f4" category="admonition">GCP에 Red Hat OpenShift Container 플랫폼 클러스터를 배포하는 방법에는 여러 가지가 있습니다.  설정에 대한 이러한 간략한 설명은 사용된 특정 방법에 대한 문서 링크를 제공합니다.  제공된 관련 링크에서 다른 방법을 참조할 수 있습니다.<block ref="0dda26563abbac8fd54607a52d591e91" category="inline-link-macro-rx"></block> .</block>
   <block id="3ae2e80b300ee9b0202680dc66869059" category="list-title">CLI에서 GCP에 OCP 클러스터 설치</block>
-  <block id="117ff120e260dc5e661b3393a121010b" category="list-text">명시된 모든 전제 조건을 충족했는지 확인하세요.<block ref="be6e8249837f288f5ffa541c6556a267" category="inline-link-macro-rx"></block> .</block>
   <block id="d5d210b642bee6970b108c1292253a5c" category="list-text">온프레미스와 GCP 간의 VPN 연결을 위해 pfsense VM을 생성하고 구성했습니다.  지침은 다음을 참조하세요.<block ref="33b302582fb38bfafd46fff8cda0e02a" category="inline-link-rx"></block> .</block>
   <block id="2f9a3dab79b69e89256e7de23b10d434" category="list-text">pfsense의 원격 게이트웨이 주소는 Google Cloud Platform에서 VPN 게이트웨이를 생성한 후에만 구성할 수 있습니다.</block>
   <block id="3c1279ad7ce2d9e7432c1e8b385725a8" category="list-text">2단계의 원격 네트워크 IP 주소는 OpenShift 클러스터 설치 프로그램을 실행하고 클러스터의 인프라 구성 요소를 만든 후에만 구성할 수 있습니다.</block>
   <block id="28f59099bf09170bed25b48dc37f4ead" category="list-text">Google Cloud의 VPN은 설치 프로그램을 통해 클러스터의 인프라 구성 요소가 생성된 후에만 구성할 수 있습니다.</block>
   <block id="ab2eb0579850eb69196d32ec15b22505" category="list-text">이제 GCP에 OpenShift 클러스터를 설치합니다.</block>
-  <block id="24483a5baa89ea10ceef5d44317a78fc" category="list-text">설치 프로그램과 풀 시크릿을 얻고 설명서에 제공된 단계에 따라 클러스터를 배포합니다.<block ref="3eebb7ad3b7807e9668b5fb657e73594" category="inline-link-rx"></block> .</block>
   <block id="dfe469b4f1aa9b34f68bdf495d59ca6c" category="list-text">설치하면 Google Cloud Platform에 VPC 네트워크가 생성됩니다.  또한 Cloud DNS에 개인 영역을 만들고 A 레코드를 추가합니다.</block>
   <block id="06b502c8046d1d39f47c31a888cc0f2d" category="list-text">VPC 네트워크의 CIDR 블록 주소를 사용하여 pfsense를 구성하고 VPN 연결을 설정합니다.  방화벽이 올바르게 설정되었는지 확인하세요.</block>
   <block id="48281ea19019ac903b77a194baca154d" category="list-text">Google Cloud DNS의 A 레코드에 있는 IP 주소를 사용하여 온프레미스 환경의 DNS에 A 레코드를 추가합니다.</block>
@@ -1447,7 +1438,6 @@
   <block id="5240532c2919e7351934292a18054058" category="list-text">사내 네트워크에 인터넷 연결이 있습니다.</block>
   <block id="2f9a622f50ad91f20ea33eb464dffed5" category="list-text">3개의 다른 AZ에 3개의 개인 서브넷을 만듭니다.</block>
   <block id="3bc0575c716ca54e3e3f3c18896d2073" category="list-text">VPC에 대한 Route 53 개인 호스팅 영역과 DNS 확인자를 만듭니다.</block>
-  <block id="78e681da9aa719a4fa341bfefe7241dc" category="paragraph">ACM(고급 클러스터 관리) 마법사를 사용하여 AWS에서 OpenShift 클러스터를 만듭니다.  지침을 참조하세요<block ref="a8dc968cbec7f22006c56d08b612b183" category="inline-link-macro-rx"></block> .</block>
   <block id="fdb3ae874409cbcef80a6d9bfeb5f048" category="admonition">ACM을 사용하여 클러스터를 생성할 때, 양식 보기에서 세부 정보를 입력한 후 yaml 파일을 편집하여 설치를 사용자 정의할 수 있습니다.  클러스터가 생성된 후에는 문제 해결이나 추가적인 수동 구성을 위해 클러스터 노드에 ssh 로그인할 수 있습니다.  설치 중에 제공한 ssh 키와 사용자 이름 core를 사용하여 로그인합니다.</block>
   <block id="09896a8f2d501b8991dc697c7cbfa3db" category="example-title">BlueXP 사용하여 AWS에 Cloud Volumes ONTAP 배포합니다.</block>
   <block id="aac68d095e2a2a598854689d3a9118c3" category="list-text">온프레미스 VMware 환경에 커넥터를 설치합니다.  지침을 참조하세요<block ref="09bba0e8799e65970cd5db9fc029a18c" category="inline-link-macro-rx"></block> .</block>
@@ -1494,7 +1484,6 @@
   <block id="203165a49e3a391bdbc44e3a05d54279" category="inline-link-macro">ONTAP 9</block>
   <block id="8c9552895e8b32d168c001c8cb0d41ac" category="inline-link-macro">NetApp 베르다</block>
   <block id="1273c8a63109161e6fd1f18d6998523f" category="inline-link-macro">NetApp BlueXP</block>
-  <block id="d2154db2b88b25388e0f4a7a9080bfc9" category="inline-link-macro">AWS의 Red Hat OpenShift 서비스</block>
   <block id="258dff02bafa822fdd86173cf3a704fd" category="inline-link-macro">GCP에 OpenShift 클러스터 설치</block>
   <block id="d0b55d3b0b9d8025eb06e76618f6bf8a" category="inline-link-macro">Azure에 OpenShift 클러스터 설치</block>
   <block id="7ffdbddadae2331a4b6fe9848564fe3e" category="doc">Red Hat OpenShift 컨테이너와 지원되는 NetApp 스토리지 통합</block>
@@ -1989,7 +1978,6 @@
   <block id="4b25bcde8acd7bf7195e65b64a228dbd" category="section-title">높은 수준의 단계</block>
   <block id="44ea8c7a84c9828862a8017837aae869" category="list-text">Veeam Backup and Replication 소프트웨어는 적절한 네트워크 연결을 갖춘 온프레미스 환경에서 실행됩니다.</block>
   <block id="09c22f03612867bea8f46892b25933ca" category="inline-link-macro">Amazon FSx ONTAP 배포 가이드와 VMware Cloud on AWS 통합</block>
-  <block id="ee7a49efd1cc57f5dfeaf27e0dc9a372" category="list-text">AWS에서 VMware Cloud 구성, VMware Cloud Tech Zone 문서 참조<block ref="0d7b922033d0df251ae919a20e183127" category="inline-link-macro-rx"></block> 배포하려면 VMware Cloud on AWS SDDC 및 FSx ONTAP NFS 데이터 저장소로 구성합니다.  (최소한의 구성으로 설정된 조종등 환경은 DR 목적으로 사용될 수 있습니다.  사고 발생 시 VM은 이 클러스터로 장애 조치되며, 추가 노드를 추가할 수 있습니다.</block>
   <block id="9121ad86c235165aa76a9e7664f75769" category="list-text">Veeam Backup and Replication을 사용하여 VM 복제본을 생성하기 위한 복제 작업을 설정합니다.</block>
   <block id="d49d8ad9dc8563c65436285afb482e25" category="list-text">장애 조치 계획을 수립하고 장애 조치를 수행합니다.</block>
   <block id="bb019a34acaf81adf99aa88e527764c3" category="list-text">재해 이벤트가 완료되고 기본 사이트가 가동되면 프로덕션 VM으로 다시 전환합니다.</block>
@@ -6300,8 +6288,20 @@
   <block id="1bc28ada1e3a8c93363efbd956281f27" category="list-text"><block ref="1bc28ada1e3a8c93363efbd956281f27" category="inline-link-macro-rx"></block></block>
   <block id="f16dd96ff15aa34fe7db06e2c8c45330" category="list-text"><block ref="ce06c104c0af95b337c108430c00cd74" category="inline-link-macro-rx"></block> - Verda(오픈 소스)는 인기 있는 클라우드 네이티브 데이터 집약적 애플리케이션을 위한 참조 실행 후크 모음을 제공합니다</block>
   <block id="0de368763e843138fe700f4b2508ce20" category="list-text"><block ref="0de368763e843138fe700f4b2508ce20" category="inline-link-macro-rx"></block></block>
-  <block id="f113175d4e4221a09932cde3e24f9fa2" category="list-text"><block ref="f113175d4e4221a09932cde3e24f9fa2" category="inline-link-macro-rx"></block></block>
   <block id="0590cece0084ebc06cfbb1e44bbd49fb" category="list-text"><block ref="0590cece0084ebc06cfbb1e44bbd49fb" category="inline-link-macro-rx"></block></block>
   <block id="103d083d560520cc80800305ed72e735" category="list-text"><block ref="103d083d560520cc80800305ed72e735" category="inline-link-macro-rx"></block></block>
   <block id="995ab6d6d5bb69975037b3f28adcc6f3" category="list-text"><block ref="995ab6d6d5bb69975037b3f28adcc6f3" category="inline-link-macro-rx"></block></block>
+  <block id="d4a5b612320433023dfb61645cef0421" category="paragraph">방금 생성한 백업에서 복원하려면 Restore Custom Resource(CR)를 생성해야 합니다. 이름을 지정하고, 복원할 백업의 이름을 지정한 다음, restorePVs를 true로 설정해야 합니다. 추가 매개변수는 <block ref="1a82867c0af30d6e16bc841d36e1facc" category="inline-link-macro-rx"></block>에 표시된 대로 설정할 수 있습니다. Create 버튼을 클릭합니다.</block>
+  <block id="241d6d5f13f4bb9de6b3aa704087686c" category="paragraph">컨테이너 앱을 위한 영구 스토리지는 <block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block>를 사용하여 OpenShift 클러스터에 통합된 ONTAP 스토리지로 지원될 수 있습니다. 이 섹션에서는 <block ref="8a14287582a7c02d0caa238813d6814a" category="inline-link-macro-rx"></block>를 사용하여 데이터 볼륨을 포함한 앱의 백업을 다음으로 수행합니다.</block>
+  <block id="4ab9bed1c385dc418ab1542d8665a0fb" category="paragraph"><block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block> <block ref="8a14287582a7c02d0caa238813d6814a" category="inline-link-macro-rx"></block> <block ref="baf3dad02604469cf9b36dfd048d949d" category="inline-link-macro-rx"></block></block>
+  <block id="c3d0c4c71b8edceefd570d2b32b37306" category="list-text">Customer Cloud Subscription(CCS) 결제 모델을 사용하여 GCP에 OSD 클러스터를 설치하는 방법에 대한 지침은 <block ref="188fae905f5cfc3230cc680377df09b6" category="inline-link-macro-rx"></block>을(를) 참조하십시오. OSD는 Google Cloud Marketplace에서도 제공됩니다. Google Cloud Marketplace 솔루션을 사용하여 OSD를 설치하는 방법을 보여주는 동영상은 <block ref="cdbe8627d776d25dee1ddd985e434d7c" category="inline-link-macro-rx"></block>에 있습니다.</block>
+  <block id="7e39de1751b6db6722dca1d0b0334122" category="list-text">SetUp 클러스터용 새 Argo CD 인스턴스를 설정하십시오. 지침 <block ref="8cda188f6ea57317c01cbf20815a497e" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="58b3c8834906746fc519802c0aa54c38" category="list-text">ROSA 클러스터 설치 지침은 <block ref="56ee0337542214c494c4769978b0eff0" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="f114d6115f92ed73898981b8634fd8a9" category="list-text">클러스터에 OpenShift GitOps 오퍼레이터를 설치하십시오. 지침 <block ref="2e4a49440fcd26c0e8231aa91a262143" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="9c9a7f3a596c674b56229790023105df" category="list-text"><block ref="71e0446524f6b1eaa3af312993392f81" category="inline-link-macro-rx"></block>에 명시된 모든 필수 조건을 충족했는지 확인하십시오.</block>
+  <block id="ce55815cd79e3d48516e0f16ce93a1de" category="list-text">설치 프로그램과 풀 시크릿을 얻은 후, 설명서에 제공된 단계에 따라 클러스터를 배포하십시오<block ref="bb717eb9cf0407401b7dfbc88ff5ff58" category="inline-link-rx"></block>.</block>
+  <block id="a600c4b69482583bad51bb93834f7ed6" category="paragraph">Advanced Cluster Management(ACM) 마법사에서 AWS에 OpenShift 클러스터를 생성하십시오. 지침 <block ref="f990f3f6b7ad039ab7330f118ee9b77f" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="aeaece73e35427cd110235fe07465efa" category="inline-link-macro">AWS 클래식 아키텍처 기반 Red Hat OpenShift 서비스</block>
+  <block id="71dc7e7b294a93352ae90298511cd77a" category="list-text"><block ref="71dc7e7b294a93352ae90298511cd77a" category="inline-link-macro-rx"></block></block>
+  <block id="5e8103bb1916579dd98fa386e2c79112" category="list-text">VMware Cloud on AWS를 구성하려면 VMware Cloud Tech Zone 문서 <block ref="e8043ec5591ebbd4394405d542308830" category="inline-link-macro-rx"></block>를 참조하여 VMware Cloud on AWS SDDC를 배포하고 FSx ONTAP을 NFS 데이터스토어로 구성하십시오. (최소한의 구성으로 설정된 파일럿 라이트 환경을 DR 목적으로 사용할 수 있습니다. 인시던트 발생 시 VM이 이 클러스터로 페일오버되며, 추가 노드를 추가할 수 있습니다.)</block>
 </blocks>
