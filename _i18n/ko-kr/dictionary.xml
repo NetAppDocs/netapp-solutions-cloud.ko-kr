@@ -1323,7 +1323,6 @@
   <block id="643c48205940ae10b1f2c5f6f8aa5f64" category="paragraph">이는 허브 클러스터의 고급 클러스터 관리 운영자를 사용하여 설치됩니다.  지침을 참조하세요<block ref="4bb39576c102d9630dc961b3998ecbd9" category="inline-link-macro-rx"></block> .</block>
   <block id="c0090a527266898baf1b6d9a9978eeb3" category="example-title">두 개의 추가 OCP 클러스터(소스 및 대상)를 설치합니다.</block>
   <block id="a4fcf9c2586b5e93f63d9c1290438839" category="list-text">추가 클러스터는 허브 클러스터의 ACM을 사용하여 배포할 수 있습니다.</block>
-  <block id="24ed1bd1ba2dc78d194e4186a2a7b0a1" category="list-text">지침을 참조하세요<block ref="61a11e403c83c9c41ff797a7a780dbff" category="inline-link-macro-rx"></block> .</block>
   <block id="4cb2dca6265c22cd883513131d603c5f" category="example-title">NetApp ONTAP 스토리지 구성</block>
   <block id="31114fdb67ca9ac1afd2af9e1a830e4e" category="list-text">VMWare 환경에서 OCP VM에 연결할 수 있는 ONTAP 클러스터를 설치합니다.</block>
   <block id="15a89333d6100097518836f27ebc981d" category="list-text">SVM을 생성합니다.</block>
@@ -6304,4 +6303,5 @@
   <block id="aeaece73e35427cd110235fe07465efa" category="inline-link-macro">AWS 클래식 아키텍처 기반 Red Hat OpenShift 서비스</block>
   <block id="71dc7e7b294a93352ae90298511cd77a" category="list-text"><block ref="71dc7e7b294a93352ae90298511cd77a" category="inline-link-macro-rx"></block></block>
   <block id="5e8103bb1916579dd98fa386e2c79112" category="list-text">VMware Cloud on AWS를 구성하려면 VMware Cloud Tech Zone 문서 <block ref="e8043ec5591ebbd4394405d542308830" category="inline-link-macro-rx"></block>를 참조하여 VMware Cloud on AWS SDDC를 배포하고 FSx ONTAP을 NFS 데이터스토어로 구성하십시오. (최소한의 구성으로 설정된 파일럿 라이트 환경을 DR 목적으로 사용할 수 있습니다. 인시던트 발생 시 VM이 이 클러스터로 페일오버되며, 추가 노드를 추가할 수 있습니다.)</block>
+  <block id="5b1325f759c14b5e2dece9541c225fe7" category="list-text">지침을 참조하십시오 <block ref="79bea77f03fef0626d8f9094b6973fe2" category="inline-link-macro-rx"></block>.</block>
 </blocks>
