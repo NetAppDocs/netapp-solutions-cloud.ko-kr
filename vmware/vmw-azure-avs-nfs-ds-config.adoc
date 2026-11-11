@@ -310,14 +310,14 @@ ANF 데이터 저장소의 가장 큰 장점 중 하나는 VM을 백업하고 �
 
 NOTE: ANF 데이터 저장소를 사용하면 새 볼륨으로 복원 옵션을 사용하여 전체 데이터 저장소 볼륨을 복제할 수 있으며, 복원된 볼륨을 AVS SDDC 내의 호스트에 다른 데이터 저장소로 마운트할 수 있습니다.  데이터스토어가 마운트된 후에는 해당 데이터스토어 내부의 VM을 개별적으로 복제된 VM처럼 등록, 재구성, 사용자 지정할 수 있습니다.
 
-.가상 머신을 위한 BlueXP backup and recovery
+.가상 머신용 NetApp Backup and Recovery
 [%collapsible%open]
 =====
-가상 머신을 위한 BlueXP backup and recovery vCenter에서 vSphere 웹 클라이언트 GUI를 제공하여 백업 정책을 통해 Azure VMware Solution 가상 머신과 Azure NetApp 파일 데이터 저장소를 보호합니다.  이러한 정책은 일정, 보존 및 기타 기능을 정의할 수 있습니다.  가상 머신 기능을 위한 BlueXP backup and recovery 실행 명령을 사용하여 배포할 수 있습니다.
+NetApp Backup and Recovery for Virtual Machines는 백업 정책을 통해 Azure VMware Solution 가상 머신 및 Azure NetApp Files 데이터스토어를 보호하기 위해 vCenter의 vSphere 웹 클라이언트 GUI를 제공합니다. 이러한 정책은 일정, 보존 기간 및 기타 기능을 정의할 수 있습니다. NetApp Backup and Recovery for Virtual Machine 기능은 Run 명령을 사용하여 배포할 수 있습니다.
 
 다음 단계를 완료하면 설정 및 보호 정책을 설치할 수 있습니다.
 
-. 실행 명령을 사용하여 Azure VMware Solution 프라이빗 클라우드의 가상 머신에 대한 BlueXP backup and recovery 설치합니다.
+. 실행 명령을 사용하여 Azure VMware Solution 프라이빗 클라우드에 NetApp Backup and Recovery for Virtual Machine을 설치합니다.
 . 클라우드 구독 자격 증명(클라이언트 및 비밀 값)을 추가한 다음, 보호하려는 리소스가 포함된 클라우드 구독 계정(NetApp 계정 및 관련 리소스 그룹)을 추가합니다.
 . 리소스 그룹 백업의 보존, 빈도 및 기타 설정을 관리하는 하나 이상의 백업 정책을 만듭니다.
 . 백업 정책으로 보호해야 하는 하나 이상의 리소스를 추가하기 위해 컨테이너를 만듭니다.

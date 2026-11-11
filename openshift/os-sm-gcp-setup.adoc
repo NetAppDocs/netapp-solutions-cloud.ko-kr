@@ -52,9 +52,9 @@ NOTE: GCP에 Red Hat OpenShift Container 플랫폼 클러스터를 배포하는 
 * Google Cloud NetApp Volumes 설명된 대로 프로젝트에 추가할 수 있습니다.link:https://cloud.google.com/netapp/volumes/docs/discover/overview["여기"] .
 
 
-.BlueXP 사용하여 GCP에 Cloud Volumes ONTAP 배포
-* Google Cloud에 커넥터를 설치합니다.  지침을 참조하세요 https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-google-bluexp-gcloud.html["여기"] .
-* 커넥터를 사용하여 Google Cloud에 CVO 인스턴스를 배포합니다.  여기의 지침을 참조하세요. https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-getting-started-gcp.html[]
+.NetApp Console을 사용하여 GCP에 Cloud Volumes ONTAP 배포
+* Google Cloud에 콘솔 에이전트를 설치하십시오. 지침을 참조하십시오 https://docs.netapp.com/us-en/console-setup-admin/task-install-agent-google-console-gcloud.html["여기"].
+* 에이전트를 사용하여 Google Cloud에 CVO 인스턴스를 배포합니다. 지침을 참조하십시오 https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-getting-started-gcp.html["여기"].
 
 
 .GCP의 OCP 클러스터에 Trident 설치

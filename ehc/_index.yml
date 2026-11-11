@@ -60,9 +60,9 @@ indexpage:
       url: https://netapp-automation.github.io/dro-simulator/?intro-1
     - title: AVS 시뮬레이터를 사용한 ANF용 DRO
       url: https://netapp-automation.github.io/dro-simulator-avs-anf/?intro-1
-    - title: BlueXP DRaaS 시뮬레이터
+    - title: NetApp Disaster Recovery 시뮬레이터
       url: https://netapp-automation.github.io/DRaaS_Simulator/?0.1
-    - title: BlueXP - VM 백업 및 복구 시뮬레이터
+    - title: VM용 NetApp Backup and Recovery 시뮬레이터
       url: https://netapp-automation.github.io/Backup_and_Recovery_for_VMs_Simulator/?0.1
   - title: TCO 계산기
     links:
@@ -72,13 +72,14 @@ indexpage:
       url: https://tco.solutions.netapp.com/anfavstco/
     - title: GCVE + NetApp Volumes TCO 추정기
       url: https://tco.solutions.netapp.com/gcvegcnvtco/
-  - title: BlueXP disaster recovery
+  - title: NetApp Disaster Recovery
     links:
-    - title: SnapCenter 플러그인과 BlueXP backup and recovery 통해 VM에 대한 VMware 데이터 보호
+    - title: SnapCenter 플러그인 및 NetApp Backup and Recovery for VMs를 사용하여 VMware 데이터를
+        보호하십시오.
       url: "../vmware/vmw-hybrid-321-dp-scv.html"
-    - title: BlueXP 사용한 재해 복구
+    - title: NetApp을 사용한 재해 복구
       url: "../vmware/vmw-hybrid-dr-overview.html"
-    - title: NFS 데이터 저장소에 BlueXP 사용한 재해 복구
+    - title: NetApp NFS 데이터스토어 재해 복구
       url: "../vmware/vmw-hybrid-dr-nfs.html"
-    - title: VMFS 데이터 저장소에 BlueXP 사용한 재해 복구
+    - title: NetApp VMFS 데이터스토어용 재해 복구
       url: "../vmware/vmw-hybrid-dr-vmfs.html"

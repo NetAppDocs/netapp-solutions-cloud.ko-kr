@@ -317,7 +317,7 @@ image:aws-cvo-guest-002.png["입력/출력 대화 상자 또는 서면 내용을
 
 image:aws-cvo-guest-003.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-. BlueXP 분류, BlueXP backup and recovery, Cloud Insights 를 포함하여 Cloud Volumes ONTAP 배포를 위한 추가 서비스를 선택하세요.  계속을 클릭하세요.
+. NetApp Data Classification, NetApp Backup and Recovery 및 Data Infrastructure Insights를 포함하여 Cloud Volumes ONTAP 배포를 위한 추가 서비스를 선택합니다. 계속을 클릭합니다.
 
 
 image:aws-cvo-guest-004.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]

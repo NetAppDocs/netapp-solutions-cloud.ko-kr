@@ -428,8 +428,8 @@ Veeam을 구성하는 마지막 단계는 새로 만든 SOBR을 백업 대상으
 ====
 
 
-[[bluexp-backup-and-recovery-tools-and-configuration]]
-=== BlueXP backup and recovery 도구와 구성
+[[netapp-backup-and-recovery-tools-and-configuration]]
+=== NetApp Backup and Recovery 툴 및 구성
 
 AWS에서 실행되는 VMware Cloud Volume 서비스로 애플리케이션 VM 및 데이터베이스 볼륨의 장애 조치를 수행하려면 SnapCenter Server와 Veeam Backup and Replication Server의 실행 인스턴스를 설치하고 구성해야 합니다.  장애 조치가 완료된 후에는 온프레미스 데이터 센터로의 장애 복구를 계획하고 실행할 때까지 정상적인 백업 작업을 재개하도록 이러한 도구를 구성해야 합니다.
 

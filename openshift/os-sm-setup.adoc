@@ -43,7 +43,7 @@ NOTE: OpenShift 하이브리드 클라우드 콘솔에서 AWS에 클러스터를
 TIP: ACM을 사용하여 클러스터를 생성할 때, 양식 보기에서 세부 정보를 입력한 후 yaml 파일을 편집하여 설치를 사용자 정의할 수 있습니다.  클러스터가 생성된 후에는 문제 해결이나 추가적인 수동 구성을 위해 클러스터 노드에 ssh 로그인할 수 있습니다.  설치 중에 제공한 ssh 키와 사용자 이름 core를 사용하여 로그인합니다.
 
 ====
-.BlueXP 사용하여 AWS에 Cloud Volumes ONTAP 배포합니다.
+.NetApp Console을 사용하여 AWS에 Cloud Volumes ONTAP을 배포합니다.
 [%collapsible%open]
 ====
 * 온프레미스 VMware 환경에 커넥터를 설치합니다.  지침을 참조하세요link:https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-install-connector-on-prem.html#install-the-connector["여기"] .

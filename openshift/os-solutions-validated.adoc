@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-이 솔루션은 OpenShift Container Platform(OCP), OpenShift Advanced Cluster Manager(ACM), NetApp ONTAP, NetApp BlueXP 및 NetApp Trident Protect를 사용한 마이그레이션 및 중앙 집중식 데이터 보호 기능을 테스트하고 검증합니다.
+이 솔루션은 OpenShift Container Platform(OCP), OpenShift Advanced Cluster Manager(ACM), NetApp ONTAP, NetApp Console 및 NetApp Trident Protect를 사용한 마이그레이션 및 중앙 집중식 데이터 보호 기능을 테스트하고 검증합니다.
 
 이 솔루션의 경우 다음 시나리오가 NetApp 에서 테스트되어 검증되었습니다.  솔루션은 다음과 같은 특성에 따라 여러 시나리오로 구분됩니다.
 
@@ -70,7 +70,7 @@ image:rhhc-self-managed-aws.png["입력/출력 대화 상자 또는 서면 내�
 
 **온프레미스: 자체 관리형 OpenShift 클러스터 및 자체 관리형 스토리지** **AWS 클라우드: 공급자 관리형 OpenShift 클러스터(ROSA) 및 공급자 관리형 스토리지(FSx ONTAP)**
 
-* BlueXP 사용하여 영구 볼륨(FSx ONTAP) 복제를 수행합니다.
+* NetApp Console을 사용하여 영구 볼륨(FSx ONTAP)의 복제를 수행합니다.
 * OpenShift GitOps를 사용하여 애플리케이션 메타데이터를 다시 생성합니다.
 
 

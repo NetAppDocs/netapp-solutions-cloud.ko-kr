@@ -206,18 +206,19 @@ entries:
       url: "/google/gcp-gcnv-service-operation.html"
     - title: 추가 정보
       url: "/vmware/gcp-gcnv-additional-info.html"
-- title: BlueXP disaster recovery
+- title: NetApp Disaster Recovery
   entries:
-  - title: SnapCenter 플러그인과 BlueXP 사용하여 VMware의 데이터를 보호하세요
-    pdf-filename: SnapCenter 플러그인과 BlueXP backup and recovery 통한 VMware용 3-2-1 데이터
-      보호
+  - title: SnapCenter 플러그인 및 NetApp Backup and Recovery for VMs를 사용하여 VMware 데이터를
+      보호하십시오.
+    pdf-filename: SnapCenter 플러그인 및 NetApp Backup and Recovery for VMs를 사용한 VMware용
+      3-2-1 데이터 보호
     url: "/vmware/vmw-hybrid-321-dp-scv.html"
-  - title: BlueXP DRaaS를 사용한 재해 복구
-    pdf-filename: BlueXP DRaaS를 사용한 재해 복구
+  - title: NetApp Disaster Recovery
+    pdf-filename: NetApp Disaster Recovery
     entries:
     - title: 솔루션 개요
       url: "/vmware/vmw-hybrid-dr-overview.html"
-    - title: NFS 데이터 저장소에 대한 재해 복구
+    - title: NFS 데이터스토어를 위한 재해 복구
       url: "/vmware/vmw-hybrid-dr-nfs.html"
-    - title: VMFS 데이터 저장소에 대한 재해 복구
+    - title: VMFS 데이터스토어 재해 복구
       url: "/vmware/vmw-hybrid-dr-vmfs.html"

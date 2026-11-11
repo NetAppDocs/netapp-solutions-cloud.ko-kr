@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmw-hybrid-dr-vmfs.html 
-keywords: dr, draas, bluexp, disaster recovery, vmfs datastore 
-summary: 이 문서의 섹션에서는 온프레미스 VMware VM을 다른 지정된 사이트로 재해 복구하도록 BlueXP DRaaS를 구성하는 방법을 설명합니다. 
+keywords: dr, draas, console, disaster recovery, vmfs datastore 
+summary: 이 문서의 이 섹션에서는 온프레미스 VMware VM에 대한 재해 복구를 지정된 다른 사이트로 설정하기 위한 NetApp Disaster Recovery 구성에 대해 설명합니다. 
 ---
-= VMFS 데이터 저장소에 BlueXP DRaaS를 사용한 DR
+= VMFS 데이터스토어용 NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -16,31 +16,34 @@ summary: 이 문서의 섹션에서는 온프레미스 VMware VM을 다른 지�
 [role="lead"]
 운영 사이트에서 재해 복구 사이트로 블록 수준 복제를 사용하는 재해 복구는 랜섬웨어 공격과 같은 사이트 중단 및 데이터 손상 이벤트로부터 작업 부하를 보호하는 탄력적이고 비용 효율적인 방법입니다.  NetApp SnapMirror 복제를 사용하면 VMFS 데이터 저장소를 사용하는 온프레미스 ONTAP 시스템을 실행하는 VMware 워크로드를 VMware가 상주하는 지정된 복구 데이터 센터의 다른 ONTAP 스토리지 시스템으로 복제할 수 있습니다.
 
-이 문서의 섹션에서는 온프레미스 VMware VM을 다른 지정된 사이트로 재해 복구하도록 BlueXP DRaaS를 구성하는 방법을 설명합니다.  이 설정의 일부로 BlueXP 계정, BlueXP 커넥터, BlueXP 작업 공간 내에 추가된 ONTAP 어레이는 VMware vCenter에서 ONTAP 스토리지로의 통신을 활성화하는 데 필요합니다.  또한, 이 문서에서는 사이트 간 복제를 구성하는 방법과 복구 계획을 설정하고 테스트하는 방법에 대해 자세히 설명합니다.  마지막 섹션에는 전체 사이트 장애 조치를 수행하는 방법과 기본 사이트가 복구되어 온라인으로 전환되었을 때 장애 복구하는 방법에 대한 지침이 나와 있습니다.
+이 문서의 이 섹션에서는 온프레미스 VMware VM을 지정된 다른 사이트로 재해 복구하도록 설정하기 위한 NetApp Disaster Recovery 구성에 대해 설명합니다. 이 설정의 일부로 Console 에이전트, ONTAP 어레이 온보딩, 사이트 정의 및 VMware vCenter 연결이 포함됩니다. 또한 이 문서에서는 사이트 간 복제를 구성하는 방법과 복구 계획을 설정하고 테스트하는 방법에 대해 자세히 설명합니다. 마지막 섹션에서는 전체 사이트 페일오버를 수행하는 방법과 기본 사이트가 복구되어 온라인 상태가 되었을 때 페일백하는 방법에 대한 지침을 제공합니다.
 
-NetApp BlueXP 콘솔에 통합된 BlueXP disaster recovery 서비스를 사용하면 고객은 온프레미스 VMware vCenter와 ONTAP 스토리지를 검색하고, 리소스 그룹을 만들고, 재해 복구 계획을 수립하고, 이를 리소스 그룹과 연결하고, 장애 조치 및 장애 복구를 테스트하거나 실행할 수 있습니다.  SnapMirror 두 사이트를 증분적 변경 사항으로 최신 상태로 유지하기 위해 스토리지 수준 블록 복제를 제공하며, 최대 5분의 RPO를 구현합니다.  운영 및 복제된 데이터 저장소에 영향을 주거나 추가 저장 비용을 발생시키지 않고도 정기적인 훈련으로 DR 절차를 시뮬레이션할 수도 있습니다.  BlueXP disaster recovery ONTAP의 FlexClone 기술을 활용하여 DR 사이트에서 마지막으로 복제된 스냅샷으로부터 VMFS 데이터 저장소의 공간 효율적인 복사본을 생성합니다.  DR 테스트가 완료되면 고객은 실제 복제된 프로덕션 리소스에 아무런 영향을 미치지 않고 간단히 테스트 환경을 삭제할 수 있습니다.  실제 장애 조치(계획된 것이든 계획되지 않은 것이든)가 필요한 경우, 몇 번의 클릭만으로 BlueXP disaster recovery 서비스는 지정된 재해 복구 사이트에서 보호된 가상 머신을 자동으로 불러오는 데 필요한 모든 단계를 조율합니다.  이 서비스는 또한 SnapMirror 기본 사이트와의 관계를 역전시키고, 필요한 경우 장애 복구 작업을 위해 보조 사이트의 변경 사항을 기본 사이트로 복제합니다.  이러한 모든 것들은 다른 잘 알려진 대안과 비교했을 때 훨씬 적은 비용으로 달성할 수 있습니다.
+NetApp Data Services의 일부인 Disaster Recovery를 사용하면 고객이 온프레미스 VMware vCenters와 ONTAP 스토리지를 탐색하고, 리소스 그룹을 생성하고, 재해 복구 계획을 생성하고, 이를 리소스 그룹과 연결하고, 페일오버 및 페일백을 테스트하거나 실행할 수 있습니다. SnapMirror는 스토리지 수준의 블록 복제를 제공하여 두 사이트가 증분 변경 사항으로 최신 상태를 유지하도록 하며, 최대 5분의 RPO를 달성합니다. 프로덕션 및 복제된 데이터스토어에 영향을 주거나 추가 스토리지 비용을 발생시키지 않고 정기적인 훈련으로 DR 절차를 시뮬레이션하는 것도 가능합니다. NetApp Data Services는 ONTAP의 FlexClone 기술을 활용하여 DR 사이트의 마지막 복제된 스니샷에서 VMFS 데이터스토어의 공간 효율적인 복사본을 생성합니다. DR 테스트가 완료되면 고객은 테스트 환경을 간단히 삭제할 수 있으며, 이 경우에도 실제 복제된 프로덕션 리소스에는 아무런 영향이 없습니다. 실제 페일오버가 필요한 경우(계획된 경우든 계획되지 않은 경우든) 몇 번의 클릭만으로 Disaster Recovery가 지정된 재해 복구 사이트에서 보호된 가상 머신을 자동으로 가동하는 데 필요한 모든 단계를 오케스트레이션합니다. 서비스는 필요할 때 페일백 작업을 위해 기본 사이트에 대한 SnapMirror 관계를 역방향으로 전환하고 보조에서 기본으로 변경 사항을 복제합니다. 이 모든 것은 잘 알려진 다른 대안에 비해 훨씬 낮은 비용으로 달성할 수 있습니다.
 
 image:dr-draas-vmfs-030.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
+
+
+NOTE: 재해 복구용 vCenter Server, ESXi 및 ONTAP의 최신 정보 및 지원되는 버전에 대해서는 link:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html["재해 복구 지원 구성"]을(를) 참조하십시오.
 
 
 
 [[getting-started]]
 == 시작하기
 
-BlueXP disaster recovery 시작하려면 BlueXP 콘솔을 사용한 다음 서비스에 액세스하세요.
+재해 복구를 시작하려면 NetApp Console을 사용한 다음 서비스에 액세스하십시오.
 
-. BlueXP 에 로그인하세요.
-. BlueXP 왼쪽 탐색 창에서 보호 > 재해 복구를 선택합니다.
-. BlueXP disaster recovery 보드가 나타납니다.
+. 콘솔에 로그인하십시오.
+. 콘솔 왼쪽 탐색 메뉴에서 보호 > 재해 복구를 선택합니다.
+. 재해 복구 대시보드가 나타납니다.
 
 
 image:dr-draas-vmfs-001.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
 재해 복구 계획을 구성하기 전에 다음 전제 조건이 충족되었는지 확인하세요.
 
-* BlueXP Connector는 NetApp BlueXP 에 설정되어 있습니다.  커넥터는 AWS VPC에 배포되어야 합니다.
-* BlueXP 커넥터 인스턴스는 소스 및 대상 vCenter와 스토리지 시스템에 연결할 수 있습니다.
-* VMware용 VMFS 데이터 저장소를 호스팅하는 온프레미스 NetApp 스토리지 시스템이 BlueXP 에 추가되었습니다.
+* 콘솔 에이전트는 AWS VPC에 배포됩니다.
+* 콘솔 에이전트 인스턴스는 소스 및 대상 vCenter 및 스토리지 시스템에 연결됩니다.
+* VMware용 VMFS 데이터스토어를 호스팅하는 온프레미스 NetApp 스토리지 시스템이 콘솔에 추가됩니다.
 * DNS 이름을 사용하는 경우 DNS 확인이 이루어져야 합니다.  그렇지 않은 경우 vCenter에 IP 주소를 사용하세요.
 * SnapMirror 복제는 지정된 VMFS 기반 데이터 저장소 볼륨에 대해 구성됩니다.
 
@@ -48,7 +51,7 @@ image:dr-draas-vmfs-001.png["입력/출력 대화 상자 또는 서면 내용을
 소스 사이트와 대상 사이트 간의 연결이 설정되면 구성 단계를 진행하세요. 이 작업에는 약 3~5분 정도 소요됩니다.
 
 
-NOTE: NetApp BlueXP 커넥터를 재해 복구 사이트나 제3의 사이트에 배포하여 실제 중단이나 자연 재해 발생 시 BlueXP 커넥터가 네트워크를 통해 소스 및 대상 리소스와 통신할 수 있도록 권장합니다.
+NOTE: NetApp은 콘솔 에이전트를 재해 복구 사이트 또는 제3의 사이트에 배포하여 실제 장애 또는 자연재해 발생 시 콘솔 에이전트가 네트워크를 통해 소스 및 대상 리소스와 통신할 수 있도록 하는 것을 권장합니다.
 
 image:dr-draas-vmfs-002.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
@@ -57,13 +60,13 @@ NOTE: 이 문서를 작성하는 시점에는 온프레미스 간 VMFS 데이터
 
 
 
-[[bluexp-disaster-recovery-configuration]]
-== BlueXP disaster recovery 구성
+[[disaster-recovery-configuration]]
+== 재해 복구 구성
 
-재해 복구를 준비하는 첫 번째 단계는 온프레미스 vCenter 및 스토리지 리소스를 검색하여 BlueXP disaster recovery 에 추가하는 것입니다.
+재해 복구를 준비하는 첫 번째 단계는 온프레미스 vCenter 및 스토리지 리소스를 탐색하고 재해 복구에 추가하는 것입니다.
 
 
-NOTE: 캔버스 내 작업 환경에 ONTAP 스토리지 시스템이 추가되었는지 확인하세요.  BlueXP 콘솔을 열고 왼쪽 탐색에서 *보호 > 재해 복구*를 선택합니다.  *vCenter 서버 검색*을 선택하거나 상단 메뉴를 사용하여 *사이트 > 추가 > vCenter 추가*를 선택합니다.
+NOTE: 캔버스 내 작업 환경에 ONTAP 스토리지 시스템이 추가되었는지 확인하십시오. 콘솔을 열고 왼쪽 탐색 메뉴에서 *보호 > 재해 복구*를 선택합니다. *vCenter 서버 탐색*을 선택하거나 상단 메뉴를 사용하여 *사이트 > 추가 > vCenter 추가*를 선택합니다.
 
 image:dr-draas-vmfs-003.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
@@ -97,11 +100,11 @@ SnapMirror 관계를 끊으면 대상 볼륨을 쓸 수 있게 되며 일반적�
 [[how-to-set-it-up-for-vmware-disaster-recovery]]
 == VMware 재해 복구를 설정하는 방법
 
-SnapMirror 복제를 생성하는 프로세스는 모든 애플리케이션에서 동일하게 유지됩니다.  이 과정은 수동이거나 자동화될 수 있습니다.  가장 쉬운 방법은 BlueXP 활용하여 SnapMirror 복제를 구성하는 것입니다. 즉, 환경의 소스 ONTAP 시스템을 대상 환경으로 간단히 끌어서 놓아 나머지 프로세스를 안내하는 마법사를 실행하는 것입니다.
+어떤 애플리케이션이든 SnapMirror 복제를 생성하는 프로세스는 동일합니다. 이 프로세스는 수동 또는 자동으로 진행할 수 있습니다. 가장 쉬운 방법은 콘솔을 활용하여 환경의 소스 ONTAP 시스템을 대상으로 간단히 드래그 앤 드롭하여 SnapMirror 복제를 구성하는 것입니다. 그러면 마법사가 실행되어 나머지 프로세스를 안내합니다.
 
 image:dr-draas-vmfs-006.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-BlueXP DRaaS는 다음 두 가지 기준이 충족되는 경우 동일한 작업을 자동화할 수도 있습니다.
+NetApp Data Services는 다음 두 가지 조건을 충족하는 경우 동일한 작업을 자동화할 수도 있습니다:
 
 * 소스 클러스터와 대상 클러스터는 피어 관계를 갖습니다.
 * 소스 SVM과 대상 SVM은 피어 관계를 갖습니다.
@@ -110,21 +113,21 @@ BlueXP DRaaS는 다음 두 가지 기준이 충족되는 경우 동일한 작업
 image:dr-draas-vmfs-007.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
 
-NOTE: CLI를 통해 볼륨에 대한 SnapMirror 관계가 이미 구성된 경우 BlueXP DRaaS는 해당 관계를 선택하고 나머지 워크플로 작업을 계속 진행합니다.
+NOTE: CLI를 통해 볼륨에 대해 SnapMirror 관계가 이미 구성된 경우, Console은 해당 관계를 가져와 나머지 워크플로 작업을 계속 진행합니다.
 
 
-NOTE: 위의 접근 방식 외에도 ONTAP CLI나 시스템 관리자를 통해 SnapMirror 복제를 생성할 수도 있습니다.  SnapMirror 사용하여 데이터를 동기화하는 데 사용되는 접근 방식과 관계없이 BlueXP DRaaS는 원활하고 효율적인 재해 복구 작업을 위한 워크플로를 조율합니다.
+NOTE: 위의 방법 외에도 ONTAP CLI 또는 System Manager를 통해 SnapMirror 복제를 생성할 수도 있습니다. SnapMirror를 사용하여 데이터를 동기화하는 데 사용되는 방식과 관계없이, Disaster Recovery는 원활하고 효율적인 재해 복구 작업을 위해 워크플로를 오케스트레이션합니다.
 
 
 
-[[what-can-bluexp-disaster-recovery-do-for-you]]
-== BlueXP disaster recovery 귀사를 위해 무엇을 해드릴 수 있나요?
+[[what-can-disaster-recovery-do-for-you]]
+== 재해 복구는 어떤 도움을 줄 수 있습니까?
 
-소스 사이트와 대상 사이트가 추가되면 BlueXP disaster recovery 자동으로 심층 검색을 수행하고 관련 메타데이터와 함께 VM을 표시합니다.  BlueXP disaster recovery 은 VM에서 사용하는 네트워크와 포트 그룹을 자동으로 감지하여 채웁니다.
+소스 및 대상 사이트가 추가되면 Disaster Recovery는 자동 심층 탐색을 수행하여 관련 메타데이터와 함께 VM을 표시합니다. 또한 Disaster Recovery는 VM에서 사용하는 네트워크 및 포트 그룹을 자동으로 감지하여 채웁니다.
 
 image:dr-draas-vmfs-008.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-사이트가 추가된 후 VM을 리소스 그룹으로 그룹화할 수 있습니다.  BlueXP disaster recovery 리소스 그룹을 사용하면 종속된 VM 세트를 논리적 그룹으로 그룹화할 수 있으며, 이 그룹에는 복구 시 실행될 수 있는 부팅 순서와 부팅 지연이 포함됩니다.  리소스 그룹을 만들려면 *리소스 그룹*으로 이동하여 *새 리소스 그룹 만들기*를 클릭하세요.
+사이트를 추가한 후에는 VM을 리소스 그룹으로 묶을 수 있습니다. 재해 복구 리소스 그룹을 사용하면 종속 VM들을 논리적 그룹으로 묶고, 복구 시 실행될 부팅 순서와 부팅 지연 시간을 지정할 수 있습니다. 리소스 그룹 생성을 시작하려면 *리소스 그룹*으로 이동하여 *새 리소스 그룹 만들기*를 클릭하십시오.
 
 image:dr-draas-vmfs-009.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
@@ -161,7 +164,7 @@ NOTE: 리소스 그룹 내의 각 가상 머신은 순서에 따라 순차적으
 
 image:dr-draas-vmfs-015.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-리소스 그룹을 선택한 후 장애 조치 매핑을 만듭니다.  이 단계에서는 소스 환경의 리소스가 대상 환경에 어떻게 매핑되는지 지정합니다.  여기에는 컴퓨팅 리소스, 가상 네트워크가 포함됩니다.  IP 사용자 정의, 사전 및 사후 스크립트, 부팅 지연, 애플리케이션 일관성 등. 자세한 내용은 다음을 참조하세요.link:https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html#map-source-resources-to-the-target["복제 계획 만들기"] .
+리소스 그룹을 선택한 후에는 장애 조치 매핑을 생성합니다. 이 단계에서는 소스 환경의 리소스가 대상 환경으로 어떻게 매핑되는지 지정합니다. 여기에는 컴퓨팅 리소스, 가상 네트워크가 포함됩니다. IP 사용자 지정, 사전 및 사후 스크립트, 부팅 지연, 애플리케이션 일관성 등입니다. 자세한 내용은 link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html#map-source-resources-to-the-target["복제 계획 만들기"]을(를) 참조하십시오.
 
 image:dr-draas-vmfs-016.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
@@ -184,7 +187,7 @@ image:dr-draas-vmfs-020.png["입력/출력 대화 상자 또는 서면 내용을
 
 image:dr-draas-vmfs-021.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-복제 계획이 생성되면 요구 사항에 따라 장애 조치 옵션, 테스트 장애 조치 옵션 또는 마이그레이션 옵션을 선택하여 장애 조치를 수행할 수 있습니다.  BlueXP disaster recovery 복제 프로세스가 계획에 따라 30분마다 실행되도록 보장합니다.  장애 조치 및 테스트 장애 조치 옵션 동안 가장 최근의 SnapMirror 스냅샷 복사본을 사용할 수도 있고, SnapMirror 의 보존 정책에 따라 특정 시점 스냅샷 복사본에서 특정 스냅샷 복사본을 선택할 수도 있습니다.  랜섬웨어와 같이 최신 복제본이 이미 손상되거나 암호화된 경우와 같이 손상 이벤트가 발생한 경우 특정 시점 옵션이 매우 유용할 수 있습니다.  BlueXP disaster recovery 사용 가능한 모든 복구 지점을 보여줍니다.
+복제 계획이 생성되면 요구 사항에 따라 페일오버 옵션, 테스트 페일오버 옵션 또는 마이그레이션 옵션을 선택하여 페일오버를 수행할 수 있습니다. 재해 복구는 30분마다 계획에 따라 복제 프로세스가 실행되도록 보장합니다. 페일오버 및 테스트 페일오버 옵션 중에는 가장 최근의 SnapMirror 스냅샷 복사본을 사용하거나 특정 시점 스냅샷 복사본에서 특정 스냅샷 복사본을 선택할 수 있습니다(SnapMirror의 보존 정책에 따라). 특정 시점 옵션은 랜섬웨어와 같은 손상 이벤트가 발생하여 가장 최근의 복제본이 이미 손상되었거나 암호화된 경우에 매우 유용할 수 있습니다. 재해 복구는 사용 가능한 모든 복구 지점을 표시합니다.
 
 image:dr-draas-vmfs-022.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
@@ -197,7 +200,7 @@ image:dr-draas-vmfs-023.png["입력/출력 대화 상자 또는 서면 내용을
 [[what-happens-during-a-failover-or-test-failover-operation]]
 == 장애 조치 또는 테스트 장애 조치 작업 중에는 무슨 일이 일어나나요?
 
-테스트 장애 조치 작업 중에 BlueXP disaster recovery 최신 스냅샷 복사본이나 대상 볼륨의 선택한 스냅샷을 사용하여 대상 ONTAP 스토리지 시스템에 FlexClone 볼륨을 생성합니다.
+테스트 페일오버 작업 중에 재해 복구는 대상 볼륨의 최신 스냅샷 복사본 또는 선택한 스냅샷을 사용하여 대상 ONTAP 스토리지 시스템에 FlexClone 볼륨을 생성합니다.
 
 
 NOTE: 테스트 장애 조치 작업은 대상 ONTAP 스토리지 시스템에 복제된 볼륨을 생성합니다.
@@ -207,15 +210,15 @@ NOTE: 테스트 복구 작업을 실행해도 SnapMirror 복제에는 영향을 
 
 image:dr-draas-vmfs-024.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-이 과정에서 BlueXP disaster recovery 원래 대상 볼륨을 매핑하지 않습니다.  대신, 선택한 스냅샷에서 새로운 FlexClone 볼륨을 만들고 FlexClone 볼륨을 백업하는 임시 데이터 저장소를 ESXi 호스트에 매핑합니다.
+이 프로세스 동안 Disaster Recovery는 원래 타겟 볼륨을 매핑하지 않습니다. 대신 선택한 스냅샷에서 새로운 FlexClone 볼륨을 생성하고, FlexClone 볼륨을 지원하는 임시 데이터 저장소가 ESXi 호스트에 매핑됩니다.
 
 image:dr-draas-vmfs-025.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
 image:dr-draas-vmfs-026.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-테스트 장애 조치 작업이 완료되면 "장애 조치 테스트 정리"를 사용하여 정리 작업을 트리거할 수 있습니다.  이 작업 중에 BlueXP disaster recovery 작업에 사용된 FlexClone 볼륨을 파괴합니다.
+테스트 페일오버 작업이 완료되면 *"Clean Up failover test"*를 사용하여 정리 작업을 시작할 수 있습니다. 이 작업 중에 재해 복구는 작업에 사용된 FlexClone 볼륨을 삭제합니다.
 
-실제 재해가 발생하는 경우 BlueXP disaster recovery 다음 단계를 수행합니다.
+실제 재해 발생 시, 재해 복구는 다음과 같은 단계를 수행합니다:
 
 . 사이트 간의 SnapMirror 관계를 끊습니다.
 . 재서명 후 VMFS 데이터 저장소 볼륨을 마운트하여 즉시 사용할 수 있습니다.
@@ -225,13 +228,13 @@ image:dr-draas-vmfs-026.png["입력/출력 대화 상자 또는 서면 내용을
 
 image:dr-draas-vmfs-027.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-기본 사이트가 가동되면 BlueXP disaster recovery 통해 SnapMirror 에 대한 역방향 재동기화가 가능하고 장애 복구도 가능하며, 이 역시 버튼을 클릭하기만 하면 수행할 수 있습니다.
+기본 사이트가 가동되면 재해 복구 기능을 통해 SnapMirror에 대한 역방향 재동기화 및 페일백을 활성화할 수 있으며, 이 또한 버튼 클릭 한 번으로 수행할 수 있습니다.
 
 image:dr-draas-vmfs-028.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
 그리고 마이그레이션 옵션을 선택하면 계획된 장애 조치 이벤트로 간주됩니다.  이 경우 소스 사이트의 가상 머신을 종료하는 추가 단계가 실행됩니다.  나머지 단계는 장애 조치 이벤트와 동일합니다.
 
-BlueXP 또는 ONTAP CLI에서 해당 데이터 저장소 볼륨에 대한 복제 상태를 모니터링할 수 있으며, 작업 모니터링을 통해 장애 조치 또는 테스트 장애 조치의 상태를 추적할 수 있습니다.
+콘솔 또는 ONTAP CLI에서 해당 데이터스토어 볼륨의 복제 상태를 모니터링할 수 있으며, 작업 모니터링을 통해 장애 조치 또는 테스트 장애 조치의 상태를 추적할 수 있습니다.
 
 image:dr-draas-vmfs-029.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 

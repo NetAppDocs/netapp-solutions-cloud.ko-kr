@@ -49,9 +49,9 @@ NetApp 기존 엔터프라이즈 애플리케이션을 현대화하고 Kubernete
 
 image:rhhc-ontap-features.png["입력/출력 대화 상자 또는 서면 내용을 나타내는 그림"]
 
-** NetApp BlueXP**를 사용하면 단일 제어 평면/인터페이스에서 모든 스토리지 및 데이터 자산을 관리할 수 있습니다.
+**NetApp Console**을 사용하면 단일 컨트롤 플레인/인터페이스에서 모든 스토리지 및 데이터 자산을 관리할 수 있습니다.
 
-BlueXP 사용하면 클라우드 스토리지(예: Cloud Volumes ONTAP 및 Azure NetApp Files)를 만들고 관리하고, 데이터를 이동, 보호 및 분석하고, 여러 온프레미스 및 엣지 스토리지 장치를 제어할 수 있습니다.
+NetApp Console을 사용하면 클라우드 스토리지(예: Cloud Volumes ONTAP 및 Azure NetApp Files)를 생성 및 관리하고, 데이터를 이동, 보호 및 분석하며, 다양한 온프레미스 및 엣지 스토리지 장치를 제어할 수 있습니다.
 
 ** NetApp Trident**는 다양한 NetApp 스토리지 옵션에 의해 지원되는 영구 스토리지를 빠르고 쉽게 사용할 수 있도록 하는 CSI 호환 스토리지 오케스트레이터입니다.  NetApp 에서 유지 관리하고 지원하는 오픈 소스 소프트웨어입니다.
 

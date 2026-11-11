@@ -102,11 +102,11 @@ publish: Internal
 pullSecret:
 ....
 ====
-.BlueXP 사용하여 Azure에 Cloud Volumes ONTAP 배포합니다.
+.NetApp 콘솔을 사용하여 Azure에 Cloud Volumes ONTAP을 배포합니다.
 [%collapsible%open]
 ====
-* Azure에 커넥터를 설치합니다.  지침을 참조하세요 https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-azure-bluexp.html["여기"] .
-* 커넥터를 사용하여 Azure에 CVO 인스턴스를 배포합니다.  자세한 지침은 여기 링크를 참조하세요: https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-getting-started-azure.html
+* Azure에 NetApp Console 에이전트를 설치합니다. 지침을 참조하십시오 https://docs.netapp.com/us-en/console-setup-admin/task-install-agent-azure-console.html["여기"].
+* 에이전트를 사용하여 Azure에 CVO 인스턴스를 배포합니다. 지침을 참조하십시오link:https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-getting-started-azure.html["여기"].
 
 
 ====

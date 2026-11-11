@@ -111,7 +111,7 @@ NOTE: 이 문서가 작성되었을 당시에는 게스트 내 스토리지가 �
 === 기억해야 할 점
 
 * 하이브리드 스토리지 모델에서는 호스트 자체의 일부이며 근접해 있기 때문에 특정 지연 시간 요구 사항을 해결하기 위해 vSAN 데이터 저장소에 1계층 또는 높은 우선순위의 워크로드를 배치합니다.  트랜잭션 지연이 허용되는 모든 워크로드 VM에 대해 게스트 내 메커니즘을 사용합니다.
-* NetApp SnapMirror 기술을 사용하면 온프레미스 ONTAP 시스템의 워크로드 데이터를 Cloud Volumes ONTAP 또는 Amazon FSx ONTAP 으로 복제하여 블록 수준 메커니즘을 사용하여 마이그레이션을 용이하게 할 수 있습니다.  이는 Azure NetApp Files 및 Google Cloud NetApp Volumes 에는 적용되지 않습니다.  Azure NetApp Files 또는 Google Cloud NetApp Volumes 로 데이터를 마이그레이션하려면 사용된 파일 프로토콜에 따라 NetApp XCP, BlueXP Copy and Sync, rysnc 또는 robocopy를 사용하세요.
+* 블록 수준 메커니즘을 사용하여 마이그레이션을 간소화하려면 NetApp SnapMirror 기술을 사용하여 온프레미스 ONTAP 시스템의 워크로드 데이터를 Cloud Volumes ONTAP 또는 Amazon FSx ONTAP으로 복제하십시오. 이는 Azure NetApp Files 및 Google Cloud NetApp Volumes에는 적용되지 않습니다. Azure NetApp Files 또는 Google Cloud NetApp Volumes로 데이터를 마이그레이션하려면 사용되는 파일 프로토콜에 따라 NetApp XCP, NetApp Copy and Sync, rysnc 또는 robocopy를 사용하십시오.
 * 테스트 결과, 각 SDDC에서 스토리지에 액세스하는 동안 2~4ms의 추가 지연이 발생하는 것으로 나타났습니다.  저장소를 매핑할 때 애플리케이션 요구 사항에 이러한 추가 지연 시간을 고려하세요.
 * 테스트 장애 조치 및 실제 장애 조치 중에 게스트 연결 스토리지를 마운트하려면 iSCSI 이니시에이터가 재구성되었는지, SMB 공유에 대한 DNS가 업데이트되었는지, NFS 마운트 지점이 fstab에 업데이트되었는지 확인하세요.
 * VM 내부에서 게스트 Microsoft Multipath I/O(MPIO), 방화벽 및 디스크 시간 초과 레지스트리 설정이 올바르게 구성되었는지 확인하세요.
