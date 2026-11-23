@@ -246,7 +246,6 @@
   <block id="71b0cde5c82d4fce43062f4c6ab6ffed" category="paragraph">현재 Kerberos에 사용할 수 있는 가장 강력한 암호화 유형은 AES-256-CTS-HMAC-SHA1입니다.  Google Cloud NetApp Volumes AES-256-CTS-HMAC-SHA1, AES-128-CTS-HMAC-SHA1, DES3 및 NFS용 DES를 지원합니다.  또한 CIFS/SMB 트래픽의 경우 ARCFOUR-HMAC(RC4)를 지원하지만 NFS의 경우 지원하지 않습니다.</block>
   <block id="59417c70dd426d4c6a1a81a09043bb7b" category="paragraph">Kerberos는 NFS 마운트에 대해 세 가지 보안 수준을 제공하며, 이를 통해 Kerberos 보안의 강도를 선택할 수 있습니다.</block>
   <block id="710c8a535ea62cee124026e31e71a5bd" category="inline-link">일반적인 마운트 옵션</block>
-  <block id="e67cbf2de1080fc7770dec46df05c0e9" category="paragraph">RedHat의 경우<block ref="1849b335749f623c227052141b2e8b11" category="inline-link-rx"></block> 선적 서류 비치:</block>
   <block id="babd6b3b4aea27ca41d56a231f2625af" category="paragraph">일반적으로 Kerberos 보안 수준이 높아질수록 클라이언트와 서버가 전송하는 각 패킷에 대한 NFS 작업을 암호화하고 암호 해독하는 데 시간을 소비하므로 성능이 저하됩니다.  많은 클라이언트와 NFS 서버는 더 나은 전반적인 경험을 위해 CPU에 AES-NI 오프로드를 지원하지만, Kerberos 5p(전체 엔드투엔드 암호화)가 성능에 미치는 영향은 Kerberos 5(사용자 인증)가 미치는 영향보다 훨씬 큽니다.</block>
   <block id="986c123032dbfdac18bc180d1a2c3562" category="paragraph">다음 표는 각 수준이 보안과 성능에 미치는 영향의 차이점을 보여줍니다.</block>
   <block id="f12149bd43eabe8557e021017cfb9b1f" category="cell">보안 수준</block>
@@ -1318,7 +1317,6 @@
   <block id="9e925e9341b490bfd3b4c4ca3b0c1ef2" category="inline-link-macro">이것</block>
   <block id="bc4ca673b1da75d1fc9d8fb4c7d5be52" category="admonition">다음 사항을 기억하세요. - 설치 프로그램에 제공할 ssh 공개 키와 개인 키를 생성하세요.  이러한 키는 필요한 경우 마스터 및 워커 노드에 로그인하는 데 사용됩니다.  - 지원 설치 프로그램에서 설치 프로그램을 다운로드하세요.  이 프로그램은 마스터 및 워커 노드에 대해 VMware vSphere 환경에서 생성한 VM을 부팅하는 데 사용됩니다.  - VM은 최소한의 CPU, 메모리, 하드 디스크 요구 사항을 가져야 합니다.  (vm create 명령을 참조하세요.<block ref="ad56d2cae35f81c0593c34aac3d8101d" category="inline-link-macro-rx"></block> (이 정보를 제공하는 마스터 및 워커 노드에 대한 페이지) - 모든 VM에서 diskUUID를 활성화해야 합니다.  - 마스터용으로 최소 3개의 노드와 워커용으로 3개의 노드를 만듭니다.  - 설치 프로그램에서 발견되면 VMware vSphere 통합 토글 버튼을 켭니다.</block>
   <block id="5ee7e5d095a85988457e6852e94af6e8" category="example-title">허브 클러스터에 고급 클러스터 관리 설치</block>
-  <block id="643c48205940ae10b1f2c5f6f8aa5f64" category="paragraph">이는 허브 클러스터의 고급 클러스터 관리 운영자를 사용하여 설치됩니다.  지침을 참조하세요<block ref="4bb39576c102d9630dc961b3998ecbd9" category="inline-link-macro-rx"></block> .</block>
   <block id="c0090a527266898baf1b6d9a9978eeb3" category="example-title">두 개의 추가 OCP 클러스터(소스 및 대상)를 설치합니다.</block>
   <block id="a4fcf9c2586b5e93f63d9c1290438839" category="list-text">추가 클러스터는 허브 클러스터의 ACM을 사용하여 배포할 수 있습니다.</block>
   <block id="4cb2dca6265c22cd883513131d603c5f" category="example-title">NetApp ONTAP 스토리지 구성</block>
@@ -1463,7 +1461,6 @@
   <block id="8b35ba920859760c3b7ab07c1f52df88" category="inline-link-macro">OpenShift 컨테이너 플랫폼 제품 문서</block>
   <block id="010bce66eda52af8597098e33d12e767" category="inline-link-macro">OpenShift 컨테이너 플랫폼 클러스터 설치</block>
   <block id="9e4f27bab2ba4dcc223eabe15d060c22" category="inline-link-macro">고급 클러스터 관리 제품 설명서</block>
-  <block id="0de84e35816fe2bf24a2d62358c71ec0" category="list-text"><block ref="0de84e35816fe2bf24a2d62358c71ec0" category="inline-link-macro-rx"></block></block>
   <block id="1a28b2dbd24896f9ae4e7ea905e79d07" category="inline-link-macro">ACM을 사용하여 클러스터 만들기</block>
   <block id="88c39d9e07dd53d7dfe71bcc634dd892" category="inline-link-macro">OpenShift에 Red Hat Quay 배포</block>
   <block id="10f0fa4079121b371145e16713fdbb44" category="inline-link-macro">Trident</block>
@@ -6113,10 +6110,7 @@
   <block id="b67b5c15053211b1d63473f9df5b1ab8" category="list-text">설치 프로그램과 풀 시크릿을 확보하고 설명서에 제공된 단계에 따라 클러스터를 배포하십시오 <block ref="072197b16ac4bac15f286e5c622d9439" category="inline-link-macro-rx"></block>.</block>
   <block id="bd203bf7c34fef7dccc4c39161c78dc8" category="admonition">OpenShift 하이브리드 클라우드 콘솔에서 AWS에 클러스터를 생성할 수도 있습니다. 자세한 지침은 <block ref="adab8e48d805755a937b8ae49e0ee7b7" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
   <block id="b272b3fad6d7e2dc24417fce138d59f0" category="list-text"><block ref="b272b3fad6d7e2dc24417fce138d59f0" category="inline-link-macro-rx"></block></block>
-  <block id="2e5e19e6aa211b5fbf5ec029c54234c3" category="list-text"><block ref="2e5e19e6aa211b5fbf5ec029c54234c3" category="inline-link-macro-rx"></block></block>
   <block id="ae28a5decafe6d5c821bf3f3af745b68" category="list-text"><block ref="ae28a5decafe6d5c821bf3f3af745b68" category="inline-link-macro-rx"></block></block>
-  <block id="b538fa533b3feb4047e609177c09e0c1" category="list-text"><block ref="b538fa533b3feb4047e609177c09e0c1" category="inline-link-macro-rx"></block></block>
-  <block id="8c6518684f03117be0fa781cb78c25fd" category="list-text"><block ref="8c6518684f03117be0fa781cb78c25fd" category="inline-link-macro-rx"></block></block>
   <block id="122f25fa4135a6f278aee53402db3807" category="list-text"><block ref="122f25fa4135a6f278aee53402db3807" category="inline-link-macro-rx"></block></block>
   <block id="1bc28ada1e3a8c93363efbd956281f27" category="list-text"><block ref="1bc28ada1e3a8c93363efbd956281f27" category="inline-link-macro-rx"></block></block>
   <block id="f16dd96ff15aa34fe7db06e2c8c45330" category="list-text"><block ref="ce06c104c0af95b337c108430c00cd74" category="inline-link-macro-rx"></block> - Verda(오픈 소스)는 인기 있는 클라우드 네이티브 데이터 집약적 애플리케이션을 위한 참조 실행 후크 모음을 제공합니다</block>
@@ -6313,4 +6307,10 @@
   <block id="cda22072a0914c289d071ab25b6c1978" category="sidebar">NetApp VMFS 데이터스토어용 재해 복구</block>
   <block id="51f76c45eb7b32a058fa55ae940a99f6" category="sidebar">NFS 데이터스토어를 위한 재해 복구</block>
   <block id="6de29981a8cf2b52481f931babfac751" category="sidebar">VMFS 데이터스토어 재해 복구</block>
+  <block id="a1eed947bb61e8bc603007f81e00de2e" category="paragraph">RedHat의<block ref="c27a12af4b20a1ce93e32b79d2b84a68" category="inline-link-rx"></block> 문서에 따르면:</block>
+  <block id="10d4600ffb9809c11fd9fbcccc467f7b" category="paragraph">이 기능은 허브 클러스터에서 Advanced Cluster Management Operator를 사용하여 설치됩니다. 지침을 참조하십시오 <block ref="e42622b652f9818f19937989d1f442be" category="inline-link-macro-rx"></block>.</block>
+  <block id="cf6d8997b5ec040231c35073edec56e3" category="list-text"><block ref="cf6d8997b5ec040231c35073edec56e3" category="inline-link-macro-rx"></block></block>
+  <block id="e3e35e1b84c784f9defb3d94a3007b10" category="list-text"><block ref="e3e35e1b84c784f9defb3d94a3007b10" category="inline-link-macro-rx"></block></block>
+  <block id="07d84ad3f5d033273b418d24d10bfcee" category="list-text"><block ref="07d84ad3f5d033273b418d24d10bfcee" category="inline-link-macro-rx"></block></block>
+  <block id="fda45d1fe193d65714509cae66e08eed" category="list-text"><block ref="fda45d1fe193d65714509cae66e08eed" category="inline-link-macro-rx"></block></block>
 </blocks>

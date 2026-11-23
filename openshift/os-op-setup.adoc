@@ -46,7 +46,7 @@ TIP: 다음 사항을 기억하세요. - 설치 프로그램에 제공할 ssh �
 .허브 클러스터에 고급 클러스터 관리 설치
 [%collapsible%open]
 ====
-이는 허브 클러스터의 고급 클러스터 관리 운영자를 사용하여 설치됩니다.  지침을 참조하세요link:https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/install/installing#doc-wrapper["여기"] .
+이 기능은 허브 클러스터에서 Advanced Cluster Management Operator를 사용하여 설치됩니다. 지침을 참조하십시오 link:https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/install/installing#doc-wrapper["여기"^].
 
 ====
 .두 개의 추가 OCP 클러스터(소스 및 대상)를 설치합니다.
